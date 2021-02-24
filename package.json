@@ -1,0 +1,42 @@
+{
+  "name": "Project-Catwalk",
+  "version": "1.0.0",
+  "description": "This is gonna be sick!",
+  "main": "index.js",
+  "scripts": {
+    "test": "live-server --open=./spec/specRunner.html --port=8081",
+    "start": "node https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/",
+    "react-dev": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wejudiza/Project-Catwalk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wejudiza/Project-Catwalk/issues"
+  },
+  "homepage": "https://github.com/wejudiza/Project-Catwalk#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.0",
+    "cors": "^2.8.5",
+    "live-server": "^1.2.1",
+    "mocha": "^8.3.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "webpack-cli": "^4.5.0"
+  }
+}
