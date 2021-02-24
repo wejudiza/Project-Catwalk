@@ -12,10 +12,7 @@ This is gonna be sick!
 
 Hello From Dirk
 # Hello from Weilly
-Hello from Justine!!
-
-Hello this is Justine doing second test! :)
-
-
-Hey everyone, this is my third test -Jus
 # Test 2 from Weilly
+
+
+I deleted the last three test sentences -Justine :))))
