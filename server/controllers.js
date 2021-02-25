@@ -1,76 +1,74 @@
-
 const controllers = {
 
-  //Products//
+  // Products//
   getAllProducts: () => {
 
-  };
+  },
   getProductInfo: () => {
 
-  };
+  },
   getProductStyles: () => {
 
-  };
+  },
   getRelatedProductIds: () => {
 
-  };
+  },
 
-  //Reviews//
+  // Reviews//
   getAllReviews: () => {
 
-  };
+  },
   getMetadataById: () => {
 
-  };
+  },
   postReviewById: () => {
 
-  };
+  },
   markReviewAsHelpful: () => {
 
-  };
+  },
   reportReview: () => {
 
-  };
+  },
 
-  //Q&A//
+  // Q&A//
   getQuestionsById: () => {
 
-  };
+  },
   getAnswersByQuestionId: () => {
 
-  };
+  },
   postQuestionById: () => {
 
-  };
+  },
   postAnswerByQuestionId: () => {
 
-  };
+  },
   markQuestionAsHelpful: () => {
 
-  };
+  },
   reportQuestion: () => {
 
-  };
+  },
   markAnswerAsHelpful: () => {
 
-  };
+  },
   reportAnswer: () => {
 
-  };
+  },
 
-  //Cart//
+  // Cart//
   getCart: () => {
 
-  };
+  },
   postProductToCartBySkuId: () => {
 
-  };
+  },
 
-  //Interactions//
+  // Interactions//
   postInteraction: () => {
 
-  };
-}
-
+  },
+};
 
 module.exports = controllers;

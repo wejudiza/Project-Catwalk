@@ -73,3 +73,5 @@ router
 router
   .route('/interactions')
   .post(controllers.postInteraction);
+
+module.exports = router;
