@@ -4,11 +4,8 @@
   "description": "This is gonna be sick!",
   "main": "index.js",
   "scripts": {
-    "test": "live-server --open=./spec/specRunner.html --port=8081",
     "start": "nodemon ./server/index.js",
-    "react-dev": "webpack -d --watch",
     "test": "jest",
-    "start": "node https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/",
     "react-dev": "webpack -d --watch",
     "initialize": "npx jest --init & npx eslint --init & npm i --save-dev enzyme"
   },
