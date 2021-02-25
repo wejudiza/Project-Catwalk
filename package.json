@@ -1,11 +1,11 @@
 {
-  "name": "Project-Catwalk",
+  "name": "project-catwalk",
   "version": "1.0.0",
   "description": "This is gonna be sick!",
   "main": "index.js",
   "scripts": {
     "test": "live-server --open=./spec/specRunner.html --port=8081",
-    "start": "node https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/",
+    "start": "nodemon ./server/index.js",
     "react-dev": "webpack -d --watch"
   },
   "repository": {
@@ -24,9 +24,11 @@
     "body-parser": "^1.19.0",
     "chai": "^4.3.0",
     "cors": "^2.8.5",
+    "express": "^4.17.1",
     "live-server": "^1.2.1",
     "mocha": "^8.3.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
