@@ -1,75 +1,75 @@
 const router = require('express').Router();
 const controllers = require('./controllers.js');
 
-//PRODUCTS//
+// PRODUCTS//
 router
   .route('/products')
-  .get(controllers.getAllProducts)
+  .get(controllers.getAllProducts);
 
 router
   .route('/products/:product_id')
-  .get(controllers.getProductInfo)
+  .get(controllers.getProductInfo);
 
 router
   .route('/products/:product_id/styles')
-  .get(controllers.getProductStyles)
+  .get(controllers.getProductStyles);
 
 router
-  route('/products/:product_id/related')
-  .get(controllers.getRelatedProductIds)
+  .route('/products/:product_id/related')
+  .get(controllers.getRelatedProductIds);
 
-//REVIEWS//
+// REVIEWS//
 router
   .route('/reviews/')
   .get(controllers.getAllReviews)
-  .post(controllers.postReviewById)
+  .post(controllers.postReviewById);
 
 router
   .route('/reviews/meta')
-  .get(controllers.getMetadataById)
+  .get(controllers.getMetadataById);
 
 router
   .route('/reviews/:review_id/helpful')
-  .put(controllers.markReviewAsHelpful)
+  .put(controllers.markReviewAsHelpful);
 
 router
   .route('/reviews/:review_id/report')
-  .put(controllers.reportReview)
+  .put(controllers.reportReview);
 
-//Q&A//
+// Q&A//
 router
   .route('/qa/questions')
   .get(controllers.getQuestionsById)
-  .post(controllers.postQuestionById)
+  .post(controllers.postQuestionById);
 
 router
   .route('/qa/questions/:question_id/answers')
   .get(controllers.getAnswersByQuestionId)
-  .post(controllers.postAnswerByQuestionId)
+  .post(controllers.postAnswerByQuestionId);
 
 router
   .route('/qa/questions/:question_id/helpful')
-  .put(controllers.markQuestionAsHelpful)
+  .put(controllers.markQuestionAsHelpful);
 
 router
   .route('/qa/questions/:question_id/report')
-  .put(controllers.reportQuestion)
+  .put(controllers.reportQuestion);
 
 router
   .route('/qa/answers/:answer_id/helpful')
-  .put(controllers.markAnswerAsHelpful)
+  .put(controllers.markAnswerAsHelpful);
 
 router
   .route('/qa/answers/:answer_id/report')
-  .put(controllers.reportAnswer)
+  .put(controllers.reportAnswer);
 
-//CART//
+// CART//
 router
   .route('/cart')
   .get(controllers.getCart)
-  .post(controllers.postProductToCartBySkuId)
+  .post(controllers.postProductToCartBySkuId);
 
-//INTERACTIONS//
+// INTERACTIONS//
 router
   .route('/interactions')
-  .post(controllers.postInteraction)
+  .post(controllers.postInteraction);
