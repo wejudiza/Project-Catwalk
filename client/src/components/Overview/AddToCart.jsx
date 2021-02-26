@@ -12,6 +12,7 @@ export default class AddToCart extends React.Component {
     return (
       <div>
         This is where the AddToCart goes
+        <button type="button" id="cart ">Add to Cart</button>
       </div>
     )
   }

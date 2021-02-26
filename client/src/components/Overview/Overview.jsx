@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo';
 import StyleSelector from './StyleSelector';
-import AddToCart from './AddToCart';
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -33,7 +32,6 @@ export default class Overview extends React.Component {
         This is where the Overview Widget will render
         <ProductInfo product={this.state.product[0]} />
         <StyleSelector />
-        <AddToCart />
       </div>
     );
   }

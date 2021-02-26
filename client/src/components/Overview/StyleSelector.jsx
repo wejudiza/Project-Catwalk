@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ImageGallery from './ImageGallery';
+import AddToCart from './AddToCart';
 
 export default class StyleSelector extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class StyleSelector extends React.Component {
       <div>
         This is where the StyleSelector goes
         <ImageGallery />
+        <AddToCart />
       </div>
     )
   }
