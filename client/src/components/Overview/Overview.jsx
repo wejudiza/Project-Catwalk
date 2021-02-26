@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo';
 import StyleSelector from './StyleSelector';
-import ImageGallery from './ImageGallery';
 import AddToCart from './AddToCart';
 
 export default class Overview extends React.Component {
@@ -11,30 +10,29 @@ export default class Overview extends React.Component {
     this.state = {
       product: [],
     };
+    this.getProduct = this.getProduct.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getProduct();
-  // }
+  componentDidMount() {
+    this.getProduct();
+  }
 
   getProduct() {
     axios.get('/api/products/16056')
       .then((results) => {
         this.setState({
           product: results.data,
-        });
+        }, () => console.log('product state: ', this.state.product));
       })
       .catch((err) => console.log('getProduct err: ', err));
   }
 
   render() {
-    const { product } = this.state;
     return (
       <div>
         This is where the Overview Widget will render
-        <ProductInfo product={product} />
+        <ProductInfo product={this.state.product[0]} />
         <StyleSelector />
-        <ImageGallery />
         <AddToCart />
       </div>
     );
