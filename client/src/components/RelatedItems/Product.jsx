@@ -5,18 +5,39 @@ export default class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      // id: '',
+      // name: '',
+      // slogan: '',
+      // description: '',
+      // category: '',
+      // default_price: '',
+      // features: []
     };
   }
 
-  // Map over a get request of the related items
+  // axios get request to /products/productId
+  // getProductInfo() {
+  //   axios.get(`/products/${productId}`)
+  //     .then((results) => {
+  //       this.setState({
+  //         id: results.data.id,
+  //         name: results.data.name,
+  //         slogan: results.data.slogan,
+  //         description: results.data.description,
+  //         category: results.data.category,
+  //         default_price: results.data.default_price,
+  //         features: []
+  //       });
+  //     });
+  // }
+
   render() {
     const {
-      product
+      productId
     } = this.props;
     return (
       <span>
-        {product}
+        {productId}
       </span>
     );
   }
