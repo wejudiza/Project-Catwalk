@@ -1,8 +1,9 @@
 import React from 'react';
-import ProductInfo from './ProductInfo.jsx';
-import StyleSelector from './StyleSelector.jsx';
-import ImageGallery from './ImageGallery.jsx';
-import AddToCart from './AddToCart.jsx';
+import axios from 'axios';
+import ProductInfo from './ProductInfo';
+import StyleSelector from './StyleSelector';
+import ImageGallery from './ImageGallery';
+import AddToCart from './AddToCart';
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -16,11 +17,22 @@ export default class Overview extends React.Component {
   //   this.getProduct();
   // }
 
+  getProduct() {
+    axios.get('/api/products/16056')
+      .then((results) => {
+        this.setState({
+          product: results.data,
+        });
+      })
+      .catch((err) => console.log('getProduct err: ', err));
+  }
+
   render() {
+    const { product } = this.state;
     return (
       <div>
         This is where the Overview Widget will render
-        <ProductInfo />
+        <ProductInfo product={product} />
         <StyleSelector />
         <ImageGallery />
         <AddToCart />
