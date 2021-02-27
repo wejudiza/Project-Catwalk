@@ -29,6 +29,7 @@ export default class Overview extends React.Component {
   render() {
     return (
       <div>
+        <br />
         This is where the Overview Widget will render
         <ProductInfo product={this.state.product} />
         <StyleSelector />

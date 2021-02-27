@@ -12,6 +12,7 @@ export default class AddToCart extends React.Component {
     return (
       <div>
         This is where the AddToCart goes
+        <br />
         <select>
           Choose Size
           <option>--Sizes--</option>
@@ -20,6 +21,7 @@ export default class AddToCart extends React.Component {
           Choose Quantity
           <option>--Quantity--</option>
         </select>
+        <br />
         <button type="button" id="cart ">Add to Cart</button>
       </div>
     )
