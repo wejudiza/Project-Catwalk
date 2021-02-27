@@ -27,6 +27,7 @@ export default class StyleSelector extends React.Component {
         StyleSelector
         <br />
         <div>
+          {console.log(this.props.styles)}
           {this.props.styles.map((style, index) => (
             <div key={index}>
               {style.name}

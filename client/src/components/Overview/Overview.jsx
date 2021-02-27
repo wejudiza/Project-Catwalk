@@ -16,6 +16,7 @@ export default class Overview extends React.Component {
 
   componentDidMount() {
     this.getProduct();
+    this.getStyles();
   }
 
   getProduct() {
@@ -32,7 +33,7 @@ export default class Overview extends React.Component {
     axios.get('/api/products/16056/styles')
       .then((results) => {
         this.setState({
-          styles: results.data,
+          styles: results.data.results,
         });
       })
       .catch((err) => console.log('getProduct err: ', err));
