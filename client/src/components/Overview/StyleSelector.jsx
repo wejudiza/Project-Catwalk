@@ -11,10 +11,11 @@ export default class StyleSelector extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getStyles();
-  }
+  // componentDidMount() {
+  //   this.getStyles();
+  // }
 
+<<<<<<< HEAD
   getStyles() {
     // axios.get('/api/products/16056/styles')
     //   .then((results) => {
@@ -25,6 +26,18 @@ export default class StyleSelector extends React.Component {
     //   })
     //   .catch((err) => console.log('getProduct err: ', err));
   }
+=======
+  // getStyles() {
+  //   axios.get('/api/products/16056/styles')
+  //     .then((results) => {
+  //       console.log('styles: ', results.data);
+  //       this.setState({
+  //         styles: results.data,
+  //       }, () => console.log('styles state: ', this.state.styles));
+  //     })
+  //     .catch((err) => console.log('getProduct err: ', err));
+  // }
+>>>>>>> main
 
   render() {
     return (

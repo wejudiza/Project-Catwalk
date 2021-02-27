@@ -12,14 +12,14 @@ This is gonna be sick!
     - ✔ Which provider should be used to instrument code for coverage? › babel
     - ✔ Automatically clear mock calls and instances between every test? … yes
   - For eslint:
-    ✔ How would you like to use ESLint? · style
-    ✔ What type of modules does your project use? · esm
-    ✔ Which framework does your project use? · react
-    ✔ Does your project use TypeScript? · No / Yes
-    ✔ Where does your code run? · browser, node
-    ✔ How would you like to define a style for your project? · guide
-    ✔ Which style guide do you want to follow? · airbnb
-    ✔ What format do you want your config file to be in? · JavaScript
+    - ✔ How would you like to use ESLint? · style
+    - ✔ What type of modules does your project use? · esm
+    - ✔ Which framework does your project use? · react
+    - ✔ Does your project use TypeScript? · No / Yes
+    - ✔ Where does your code run? · browser, node
+    - ✔ How would you like to define a style for your project? · guide
+    - ✔ Which style guide do you want to follow? · airbnb
+    - ✔ What format do you want your config file to be in? · JavaScript
 3) npm start
   - to start server at port 8080
 4) npm run react-dev
