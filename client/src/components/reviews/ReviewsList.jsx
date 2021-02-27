@@ -60,6 +60,7 @@ class ReviewsList extends React.Component {
     axios.get('api/reviews/meta/16056')
       .then((rawData) => {
         let charac = rawData.data.characteristics;
+        // console.log(charac)
         this.props.getCharacFromReviewsList(charac);
       })
       .catch((err) => {

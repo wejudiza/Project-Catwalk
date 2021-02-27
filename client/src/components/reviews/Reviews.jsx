@@ -39,10 +39,17 @@ class Reviews extends React.Component {
   }
 
   getCharacFromReviewsList(obj) {
-    this.setState({
-      charac_size: obj.Fit.value,
-      charac_comfort: obj.Comfort.value
-    });
+    if (obj.Fit !== undefined & obj.Comfort !== undefined) {
+      this.setState({
+        charac_size: obj.Fit.value,
+        charac_comfort: obj.Comfort.value
+      });
+    } else {
+      this.setState({
+        charac_size: obj.Size.value,
+        charac_comfort: obj.Comfort.value
+      });
+    }
   }
 
   // componentDidMount() {
