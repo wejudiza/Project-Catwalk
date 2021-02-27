@@ -13,31 +13,53 @@ export default class Product extends React.Component {
       // default_price: '',
       // features: []
     };
+    this.getProductInfo = this.getProductInfo.bind(this);
+  }
+
+  componentDidMount() {
+    this.getProductInfo(this.props.productId);
   }
 
   // axios get request to /products/productId
-  // getProductInfo() {
-  //   axios.get(`/products/${productId}`)
-  //     .then((results) => {
-  //       this.setState({
-  //         id: results.data.id,
-  //         name: results.data.name,
-  //         slogan: results.data.slogan,
-  //         description: results.data.description,
-  //         category: results.data.category,
-  //         default_price: results.data.default_price,
-  //         features: []
-  //       });
-  //     });
-  // }
+  getProductInfo(productId) {
+    axios.get(`api/products/${productId}`)
+      .then((results) => {
+        this.setState({
+          id: results.data.id,
+          name: results.data.name,
+          slogan: results.data.slogan,
+          description: results.data.description,
+          category: results.data.category,
+          default_price: results.data.default_price,
+          features: results.data.features
+        }, ()=> {
+          console.log('state', this.state)
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
-    const {
-      productId
-    } = this.props;
+    // ** Potentially deconstruct props?
+    // const {
+    //   productId
+    // } = this.props;
     return (
       <span>
-        {productId}
+        <div>
+          {this.state.category}
+        </div>
+        <div>
+          {this.state.name}
+        </div>
+        <div>
+          {this.state.default_price}
+        </div>
+        <div>
+          Placeholder for Reviews
+        </div>
       </span>
     );
   }
