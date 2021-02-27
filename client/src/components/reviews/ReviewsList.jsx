@@ -1,14 +1,71 @@
 import React from 'react';
 import Modal from 'react-modal';
 import Review from './Review';
+import axios from 'axios';
 
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalView: false
+      modalView: false,
+      arrOfReviews: [],
     };
     this.handleAddReview = this.handleAddReview.bind(this);
+    this.getReviews = this.getReviews.bind(this);
+    this.getCharac = this.getCharac.bind(this);
+  }
+
+  componentDidMount() {
+    this.getReviews();
+    this.getCharac();
+  }
+
+  getReviews() {
+    axios.get('api/reviews', {
+      params: {
+        product_id: 16056,
+        sort: 'relevant'
+      }
+    })
+      .then((rawData) => {
+        // console.log(rawData.data.results)
+        let arrOfReviews = rawData.data.results
+        let totalRating = 0;
+        let totalRecommend = 0;
+        let numForRating = {};
+        arrOfReviews.forEach((review) => {
+          totalRating += review.rating;
+          if (review.recommend) {
+            totalRecommend ++;
+          };
+          if (numForRating[review.rating] === undefined) {
+            numForRating[review.rating] = 1;
+          } else {
+            numForRating[review.rating] ++;
+          }
+        });
+        this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
+        this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
+        this.props.getNumForRating(numForRating);
+        this.setState({
+          arrOfReviews: arrOfReviews
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  getCharac() {
+    axios.get('api/reviews/meta/16056')
+      .then((rawData) => {
+        let charac = rawData.data.characteristics;
+        // console.log(charac)
+        this.props.getCharacFromReviewsList(charac);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   handleAddReview() {
@@ -20,7 +77,7 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div id="reviewList">
-        <h3>248 reviews, sorted by
+        <h3>{this.state.arrOfReviews.length} reviews, sorted by
           <select>
             <option>relevance</option>
             <option>newest</option>
@@ -28,7 +85,7 @@ class ReviewsList extends React.Component {
           </select>
         </h3>
         <div>
-          <Review />
+          <Review arrOfReviews={this.state.arrOfReviews} />
           <button type="button">MORE REVIEWS</button>
           <button type="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
           <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleAddReview}>
