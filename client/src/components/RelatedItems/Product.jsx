@@ -66,23 +66,23 @@ export default class Product extends React.Component {
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
       .then((results) => {
-        console.log('style results', results.data);
+        // console.log('style results', results.data);
         this.setState({
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price
-        }, () => {
+        }/*, () => {
           console.log('state', this.state);
-        })
+        }*/)
       })
   }
 
   handleModal() {
     this.setState({
       modalView: !this.state.modalView
-    }, () => {
+    }/*, () => {
       console.log(this.state.modalView)
-    })
+    }*/)
   }
 
   render() {
@@ -94,8 +94,8 @@ export default class Product extends React.Component {
       <div>
         {/* ** Add conditional rendering if img isn't available */}
         <button type="button" onClick={this.handleModal}> Modal </button>
-        <Modal isOpen={this.state.modalView}>
-          Comparison Modal
+        <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal}>
+          Comparison Modal Placeholder
           <div>
             <button onClick={this.handleModal}>Back</button>
           </div>
