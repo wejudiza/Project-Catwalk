@@ -28,6 +28,9 @@ export default class ProductsList extends React.Component {
       });
   }
 
+
+
+
   // Map over a get request of the related items
   render() {
     return (
