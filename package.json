@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "test": "jest",
     "react-dev": "webpack -d --watch",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors --watch",
+    "test": "jest --coverage --colors",
     "initialize": "npx jest --init & npx eslint --init & npm i --save-dev enzyme"
   },
   "repository": {
@@ -55,3 +53,4 @@
     "webpack-cli": "^4.5.0"
   }
 }
+
