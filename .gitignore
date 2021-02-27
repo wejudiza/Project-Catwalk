@@ -104,3 +104,6 @@ typings/
 
 # API KEY
 config.js
+
+# bundle file
+bundle.js
