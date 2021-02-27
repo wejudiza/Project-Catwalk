@@ -20,12 +20,13 @@ class Review extends React.Component {
         </p>
         <div>
           Helpful?
-          <em>Yes(number of yes)</em>
-          <em>|</em>
-          <em>Report</em>
+          <span> </span>
+          <span>Yes(number of yes)</span>
+          <span> </span>
+          <span>|</span>
+          <span>  </span>
+          <span>Report</span>
         </div>
-        <button type="button">MORE REVIEWS</button>
-        <button type="button">ADD A REVIEW +</button>
       </div>
     );
   }
