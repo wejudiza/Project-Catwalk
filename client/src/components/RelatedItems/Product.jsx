@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 export default class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalView: false,
       id: '',
       name: '',
       slogan: '',
@@ -20,6 +22,7 @@ export default class Product extends React.Component {
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   componentDidMount() {
@@ -41,10 +44,10 @@ export default class Product extends React.Component {
           default_price: results.data.default_price,
           features: results.data.features
         });
-      })
+      }/*)
       .catch((err) => {
         console.log(err);
-      });
+      }*/);
   }
 
   // ** GET STARS FROM DIRKS WIDGET
@@ -74,14 +77,29 @@ export default class Product extends React.Component {
       })
   }
 
+  handleModal() {
+    this.setState({
+      modalView: !this.state.modalView
+    }, () => {
+      console.log(this.state.modalView)
+    })
+  }
+
   render() {
     // ** Potentially deconstruct props?
     // const {
     //   productId
     // } = this.props;
     return (
-      <span>
+      <div>
         {/* ** Add conditional rendering if img isn't available */}
+        <button type="button" onClick={this.handleModal}> Modal </button>
+        <Modal isOpen={this.state.modalView}>
+          Comparison Modal
+          <div>
+            <button onClick={this.handleModal}>Back</button>
+          </div>
+        </Modal>
         <img src={this.state.thumbnail_url}/>
         <div>
           {this.state.category}
@@ -95,7 +113,7 @@ export default class Product extends React.Component {
         <em>
           Placeholder for Reviews
         </em>
-      </span>
+      </div>
     );
   }
 }
