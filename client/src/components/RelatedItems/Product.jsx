@@ -71,9 +71,9 @@ export default class Product extends React.Component {
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price
-        }/*, () => {
+        }, () => {
           console.log('state', this.state);
-        }*/)
+        })
       })
   }
 
@@ -95,7 +95,20 @@ export default class Product extends React.Component {
         {/* ** Add conditional rendering if img isn't available */}
         <button type="button" onClick={this.handleModal}> Modal </button>
         <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal}>
-          Comparison Modal Placeholder
+          <h3>
+            COMPARING
+          </h3>
+          {this.state.name}
+          <div>
+            {this.state.features.map((feature, key) => {
+              return (
+                <div key={key}>
+                  {feature.feature}
+                  {feature.value}
+                </div>
+              )
+            })}
+          </div>
           <div>
             <button onClick={this.handleModal}>Back</button>
           </div>
@@ -111,7 +124,7 @@ export default class Product extends React.Component {
           {this.state.default_price}
         </div>
         <em>
-          Placeholder for Reviews
+          STAR REVIEW PLACEHOLDER
         </em>
       </div>
     );
