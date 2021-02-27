@@ -37,8 +37,6 @@ export default class ProductInfo extends React.Component {
         <br />
         <span>{this.props.product.name}</span>
         <br />
-        <span>{this.props.product.default_price}</span>
-        <br />
         <span>{this.props.product.slogan}</span>
         <br />
         <p>{this.props.product.description}</p>

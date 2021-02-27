@@ -1,4 +1,5 @@
 import React from 'react';
+// import axios from 'axios';
 
 export default class AddToCart extends React.Component {
   constructor(props) {
@@ -16,6 +17,9 @@ export default class AddToCart extends React.Component {
         <select>
           Choose Size
           <option>--Sizes--</option>
+          <option>
+            {/* {console.log('current style: ', this.props.currentStyle)} */}
+          </option>
         </select>
         <select>
           Choose Quantity
