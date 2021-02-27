@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ImageGallery from './ImageGallery';
 import AddToCart from './AddToCart';
+import Style from './Style';
 
 export default class StyleSelector extends React.Component {
   constructor(props) {
@@ -29,9 +30,7 @@ export default class StyleSelector extends React.Component {
         <div>
           {console.log(this.props.styles)}
           {this.props.styles.map((style, index) => (
-            <div key={index}>
-              {style.name}
-            </div>
+            <Style style={style} key={index} />
           ))}
         </div>
         <ImageGallery />
