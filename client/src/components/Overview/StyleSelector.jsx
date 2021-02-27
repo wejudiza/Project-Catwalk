@@ -16,14 +16,14 @@ export default class StyleSelector extends React.Component {
   }
 
   getStyles() {
-    axios.get('/api/products/16056/styles')
-      .then((results) => {
-        console.log('styles: ', results.data);
-        this.setState({
-          styles: results.data,
-        }, () => console.log('styles state: ', this.state.styles));
-      })
-      .catch((err) => console.log('getProduct err: ', err));
+    // axios.get('/api/products/16056/styles')
+    //   .then((results) => {
+    //     console.log('styles: ', results.data);
+    //     this.setState({
+    //       styles: results.data,
+    //     }, () => console.log('styles state: ', this.state.styles));
+    //   })
+    //   .catch((err) => console.log('getProduct err: ', err));
   }
 
   render() {
