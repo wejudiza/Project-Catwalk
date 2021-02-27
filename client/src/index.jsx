@@ -9,3 +9,5 @@ ReactDOM.render(<Overview />, document.getElementById('products'));
 ReactDOM.render(<RelatedItems />, document.getElementById('relatedItems'));
 
 ReactDOM.render(<Reviews />, document.getElementById('reviews'));
+
+

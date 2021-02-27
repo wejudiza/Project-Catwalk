@@ -9,22 +9,22 @@ export default class Overview extends React.Component {
     this.state = {
       product: [],
     };
-    this.getProduct = this.getProduct.bind(this);
+    // this.getProduct = this.getProduct.bind(this);
   }
 
-  componentDidMount() {
-    this.getProduct();
-  }
+  // componentDidMount() {
+  //   this.getProduct();
+  // }
 
-  getProduct() {
-    axios.get('/api/products/16056')
-      .then((results) => {
-        this.setState({
-          product: results.data,
-        }, () => console.log('product state: ', this.state.product));
-      })
-      .catch((err) => console.log('getProduct err: ', err));
-  }
+  // getProduct() {
+  //   axios.get('/api/products/16056')
+  //     .then((results) => {
+  //       this.setState({
+  //         product: results.data,
+  //       }, () => console.log('product state: ', this.state.product));
+  //     })
+  //     .catch((err) => console.log('getProduct err: ', err));
+  // }
 
   render() {
     return (
