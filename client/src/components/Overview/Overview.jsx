@@ -8,8 +8,10 @@ export default class Overview extends React.Component {
     super(props);
     this.state = {
       product: [],
+      styles: [],
     };
     this.getProduct = this.getProduct.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +23,17 @@ export default class Overview extends React.Component {
       .then((results) => {
         this.setState({
           product: results.data,
-        }, () => console.log('product state: ', this.state.product));
+        });
+      })
+      .catch((err) => console.log('getProduct err: ', err));
+  }
+
+  getStyles() {
+    axios.get('/api/products/16056/styles')
+      .then((results) => {
+        this.setState({
+          styles: results.data,
+        });
       })
       .catch((err) => console.log('getProduct err: ', err));
   }
@@ -32,7 +44,7 @@ export default class Overview extends React.Component {
         <br />
         This is where the Overview Widget will render
         <ProductInfo product={this.state.product} />
-        <StyleSelector />
+        <StyleSelector styles={this.state.styles}/>
         <button type="button">Share on Facebook</button>
         <button type="button">Share on Twitter</button>
         <button type="button">Share on Pinterest</button>

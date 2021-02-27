@@ -11,25 +11,28 @@ export default class StyleSelector extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getStyles();
-  }
-
-  getStyles() {
-    axios.get('/api/products/16056/styles')
-      .then((results) => {
-        console.log('styles: ', results.data);
-        this.setState({
-          styles: results.data,
-        }, () => console.log('styles state: ', this.state.styles));
-      })
-      .catch((err) => console.log('getProduct err: ', err));
-  }
+  // getStyles() {
+  //   axios.get('/api/products/16056/styles')
+  //     .then((results) => {
+  //       this.setState({
+  //         styles: results.data,
+  //       }, () => console.log('styles state: ', this.state.styles));
+  //     })
+  //     .catch((err) => console.log('getProduct err: ', err));
+  // }
 
   render() {
     return (
       <div>
-        This is where the StyleSelector goes
+        StyleSelector
+        <br />
+        <div>
+          {this.props.styles.map((style, index) => (
+            <div key={index}>
+              {style.name}
+            </div>
+          ))}
+        </div>
         <ImageGallery />
         <AddToCart />
       </div>
