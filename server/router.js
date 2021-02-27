@@ -20,12 +20,12 @@ router
 
 // REVIEWS//
 router
-  .route('/reviews/')
+  .route('/reviews')
   .get(controllers.getAllReviews)
   .post(controllers.postReviewById);
 
 router
-  .route('/reviews/meta')
+  .route('/reviews/meta/:product_id')
   .get(controllers.getMetadataById);
 
 router
