@@ -11,24 +11,31 @@ class Review extends React.Component {
   render() {
     return (
       <div>
-        [stars go here]
-        <h3>
-          [title of review goes here]
-        </h3>
-        <p>
-          [content of review goes here]
-        </p>
-        <div>
-          Helpful?
-          <span> </span>
-          <span>Yes(number of yes)</span>
-          <span> </span>
-          <span>|</span>
-          <span>  </span>
-          <span>Report</span>
-        </div>
+        {this.props.arrOfReviews.map((review) => {
+          return (
+            <div key={review.review_id}>
+
+              [change this to show stars later] {review.rating} {review.reviewer_name}, {review.date}
+              <h3>
+                {review.summary}
+              </h3>
+              <p>
+                {review.body}
+              </p>
+              <div>
+                Helpful?
+                <span> </span>
+                <span>Yes({review.helpfulness})</span>
+                <span> </span>
+                <span>|</span>
+                <span>  </span>
+                <span>Report</span>
+              </div>
+            </div>
+          )
+        })}
       </div>
-    );
+    )
   }
 }
 
