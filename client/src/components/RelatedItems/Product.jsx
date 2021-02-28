@@ -95,37 +95,43 @@ export default class Product extends React.Component {
     return (
       <div>
         {/* ** Add conditional rendering if img isn't available */}
-        <button type="button" onClick={this.handleModal}> Modal </button>
-        <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal}>
-          <h3>
-            COMPARING
-          </h3>
-          <h4>
-            {this.state.name}
-          </h4>
-          <div>
-            {this.state.features.map((feature, key) => {
-              return (
-                <div key={key}>
-                  <span>
-                    <Checkmark size='small'/>
-                    {feature.value}
-                  </span>
-                    {feature.feature}
-                  <span>
-                  </span>
-                </div>
-              )
-            })}
-          <h4>
-            PLACEHOLDER FOR OVERVIEW PRODUCT
-          </h4>
-          </div>
-          <div>
-            <button onClick={this.handleModal}>Back</button>
-          </div>
-        </Modal>
-        <img src={this.state.thumbnail_url}/>
+        <div id="modalimg">
+          <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
+          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal'>
+            <h3>
+              COMPARING
+            </h3>
+            <h4>
+              {this.state.name}
+            </h4>
+            <div>
+              {this.state.features.map((feature, key) => {
+                return (
+                  <div key={key}>
+                    <span>
+                      <Checkmark size='small'/>
+                      {feature.value}
+                    </span>
+                      {feature.feature}
+                    <span>
+                    </span>
+                  </div>
+                )
+              })}
+            <h4>
+              PLACEHOLDER FOR OVERVIEW PRODUCT
+            </h4>
+            </div>
+            <div>
+              <button onClick={this.handleModal}>Back</button>
+            </div>
+          </Modal>
+          {this.state.thumbnail_url ?
+            <img id="relatedProdImg" src={this.state.thumbnail_url}/>
+            :
+            <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+          }
+        </div>
         <div>
           {this.state.category}
         </div>
@@ -133,7 +139,7 @@ export default class Product extends React.Component {
           {this.state.name}
         </div>
         <div>
-          {this.state.default_price}
+          ${this.state.default_price}
         </div>
         <div>
           <ReactStars edit={false}/>

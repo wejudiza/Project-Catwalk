@@ -13,3 +13,39 @@
 #reviewList {
   background-color: deeppink;
 }
+
+
+/* RELATED ITEMS */
+#productsList {
+  display: flex;
+  align-items: flex-end;
+}
+
+#relatedProd {
+
+}
+
+#modalimg {
+  position: relative;
+}
+
+#relatedProdImg {
+  /* width: 100%; */
+  /* height: auto; */
+}
+
+#modalBtn {
+  position: absolute;
+  right: 0;
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#modal {
+
+}
