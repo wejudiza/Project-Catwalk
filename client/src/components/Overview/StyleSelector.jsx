@@ -15,27 +15,20 @@ export default class StyleSelector extends React.Component {
     // this.onStyleClick = this.onStyleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.getStyles();
-  }
-
-  // onStyleClick(e) {
-  //   console.log('selected style:', e.target.value);
-  //   this.setState({
-  //     currentStyle: e.target.value,
-  //   });
+  // componentDidMount() {
+  //   this.getStyles();
   // }
 
-  getStyles() {
-    axios.get('/api/products/16056/styles')
-      .then((results) => {
-        this.setState({
-          styles: results.data.results,
-          currentStyle: results.data.results[0],
-        });
-      })
-      .catch((err) => console.log('getProduct err: ', err));
-  }
+  // getStyles() {
+  //   axios.get('/api/products/16056/styles')
+  //     .then((results) => {
+  //       console.log('styles: ', results.data);
+  //       this.setState({
+  //         styles: results.data,
+  //       }, () => console.log('styles state: ', this.state.styles));
+  //     })
+  //     .catch((err) => console.log('getProduct err: ', err));
+  // }
 
   render() {
     const { currentStyle, styles } = this.state;
