@@ -23,9 +23,20 @@ export default class AddToCart extends React.Component {
   }
 
   selectedSizeMode() {
+    var options = [...Array(16).keys()];
+    options.shift();
     if (this.state.size) {
+      if (this.state.quantity < 15) {
+        options = [...Array(this.state.quantity + 1).keys()];
+        options.shift();
+      }
+      // {options.map((option, index) => (
+      //   <option key={index}>{option}</option>
+      // ))}
       return (
-        <option></option>
+        options.map((option, index) => (
+          <option key={index}>{option}</option>
+        ))
       )
     }
   }
@@ -44,8 +55,8 @@ export default class AddToCart extends React.Component {
         </select>
         <select>
           Choose Quantity
-          <option>--Quantity--</option>
           {this.selectedSizeMode()}
+          <option>--Quantity--</option>
         </select>
         <br />
         <button type="button" id="cart ">Add to Cart</button>
@@ -53,29 +64,3 @@ export default class AddToCart extends React.Component {
     )
   }
 }
-
-// const AddToCart = (props) => {
-//   // if (!props.currentStyle !== undefined) {
-//   //   return null;
-//   // }
-//   return (
-//     <div>
-//       <br />
-//       <select>
-//         Choose Size
-//         <option>--Sizes--</option>
-//         <option>
-//           {/* {console.log('current style: ', props.currentStyle)} */}
-//         </option>
-//       </select>
-//       <select>
-//         Choose Quantity
-//         <option>--Quantity--</option>
-//       </select>
-//       <br />
-//       <button type="button" id="cart ">Add to Cart</button>
-//     </div>
-//   )
-// };
-
-// export default AddToCart;
