@@ -5,16 +5,16 @@ export default class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: null,
-      sku: null,
-      quantity: null,
+      size: '',
+      sku: 0,
+      quantity: 0,
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
   }
 
   handleSizeChange(e) {
-    var skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
+    const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
     this.setState({
       size: e.target.value,
       sku: skuNum,
