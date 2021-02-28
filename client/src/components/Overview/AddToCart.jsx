@@ -19,7 +19,7 @@ export default class AddToCart extends React.Component {
       size: e.target.value,
       sku: skuNum,
       quantity: this.props.skus[skuNum].quantity,
-    }, () => console.log('state', this.state));
+    });
   }
 
   selectedSizeMode() {
@@ -50,7 +50,7 @@ export default class AddToCart extends React.Component {
       <div>
         <br />
         <select onChange={this.handleSizeChange}>
-          <option>SELECT SIZE</option>
+          <option>Select Size</option>
           {Object.keys(this.props.skus).map((sku, index) => (
             <option name={sku} key={index}>
               {this.props.skus[sku].size}

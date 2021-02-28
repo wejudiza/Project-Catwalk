@@ -12,11 +12,19 @@ export default class StyleSelector extends React.Component {
       currentStyle: {},
     };
     this.getStyles = this.getStyles.bind(this);
+    // this.onStyleClick = this.onStyleClick.bind(this);
   }
 
   componentDidMount() {
     this.getStyles();
   }
+
+  // onStyleClick(e) {
+  //   console.log('selected style:', e.target.value);
+  //   this.setState({
+  //     currentStyle: e.target.value,
+  //   });
+  // }
 
   getStyles() {
     axios.get('/api/products/16056/styles')
@@ -43,7 +51,7 @@ export default class StyleSelector extends React.Component {
           :selected style:
           <br />
           <div>
-            {console.log('currentStyle state: ', currentStyle)}
+            {/* {console.log('currentStyle state: ', currentStyle)} */}
             {styles.map((style, index) => (
               <Style style={style} key={index} />
             ))}
