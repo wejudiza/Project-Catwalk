@@ -24,19 +24,21 @@ export default class StyleSelector extends React.Component {
       .then((results) => {
         console.log('styles: ', results.data);
         this.setState({
-          styles: results.data,
+          styles: results.data.results,
+          currentStyle: results.data.results[0],
         }, () => console.log('styles state: ', this.state.styles));
       })
       .catch((err) => console.log('getProduct err: ', err));
   }
 
   render() {
-    const { currentStyle, styles } = this.state;
+    // const { currentStyle, styles } = this.state;
     if (this.state.styles.length !== 0) {
+      {console.log('currrentStyle:', this.state.currentStyle)}
       return (
         <div>
           <span>
-            {currentStyle.original_price || currentStyle.original_price}
+            {this.state.currentStyle.original_price || this.state.currentStyle.original_price}
           </span>
           <br />
           STYLE
@@ -44,14 +46,14 @@ export default class StyleSelector extends React.Component {
           :selected style:
           <br />
           <div>
-            {/* {console.log('currentStyle state: ', currentStyle)} */}
-            {styles.map((style, index) => (
+            {/* {console.log('this.state.currentStyle state: ', this.state.currentStyle)} */}
+            {this.state.styles.map((style, index) => (
               <Style style={style} key={index} />
             ))}
           </div>
-          {/* {console.log('current style: ', currentStyle)} */}
-          <ImageGallery currentStyle={currentStyle} />
-          <AddToCart skus={currentStyle.skus} />
+          {/* {console.log('current style: ', this.state.currentStyle)} */}
+          <ImageGallery currentStyle={this.state.currentStyle} />
+          <AddToCart skus={this.state.currentStyle.skus} />
         </div>
       )
     }
