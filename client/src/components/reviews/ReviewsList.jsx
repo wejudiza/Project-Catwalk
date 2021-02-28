@@ -7,12 +7,25 @@ class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      sortMethod: 'relevant',
       modalView: false,
       arrOfReviews: [],
+      product_id: 16056,
+      rating: 5,
+      summary: '',
+      body: '',
+      recommend: true,
+      name: '',
+      email: '',
+      size: 5,
+      comfortable: 5,
     };
-    this.handleAddReview = this.handleAddReview.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.getCharac = this.getCharac.bind(this);
+    this.handleSort = this.handleSort.bind(this);
+    this.handleAddReview = this.handleAddReview.bind(this);
+    this.handleFormInput = this.handleFormInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +37,7 @@ class ReviewsList extends React.Component {
     axios.get('api/reviews', {
       params: {
         product_id: 16056,
-        sort: 'relevant'
+        sort: this.state.sortMethod
       }
     })
       .then((rawData) => {
@@ -74,45 +87,141 @@ class ReviewsList extends React.Component {
     });
   }
 
+  handleSort(e) {
+    this.setState({
+      sortMethod: e.target.value
+    }, ()=> {
+      this.getReviews();
+    });
+  }
+
+  handleFormInput(e) {
+    e.preventDefault();
+    if (e.target.name === 'rating' || e.target.name === 'size' || e.target.name === 'comfortable') {
+      this.setState({
+        [e.target.name]: Number(e.target.value)
+      });
+    } else if (e.target.name === 'recommend') {
+      if (e.target.value === 'Yes') {
+        this.setState({
+          [e.target.name]: true
+        });
+      } else {
+        this.setState({
+          [e.target.name]: false
+        });
+      }
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+    }
+  }
+
+  handleSubmit() {
+    // console.log('reqbody', {
+    //   product_id: this.state.product_id,
+    //   rating: this.state.rating,
+    //   summary: this.state.summary,
+    //   body: this.state.body,
+    //   recommend: this.state.recommend,
+    //   name: this.state.name,
+    //   email: this.state.email,
+    //   photos: [],
+    //   characteristics: {}
+    // })
+    axios.post('/api/reviews', {
+      product_id: this.state.product_id,
+      rating: this.state.rating,
+      summary: this.state.summary,
+      body: this.state.body,
+      recommend: this.state.recommend,
+      name: this.state.name,
+      email: this.state.email,
+      photos: [],
+      characteristics: {}
+    })
+      .then((rawData) => {
+        console.log(rawData.data);
+        this.setState({
+          sortMethod: 'newest',
+          modalView: false,
+          arrOfReviews: [],
+          product_id: 16056,
+          rating: 5,
+          summary: '',
+          body: '',
+          recommend: true,
+          name: '',
+          email: '',
+          size: 5,
+          comfortable: 5,
+        }, () => {
+          this.getReviews();
+        });
+      })
+      .catch((err) => {
+        console.log(rawData.data);
+      })
+  }
+
   render() {
     return (
       <div id="reviewList">
         <h3>{this.state.arrOfReviews.length} reviews, sorted by
-          <select>
+          <select onChange={this.handleSort}>
             <option>relevance</option>
             <option>newest</option>
             <option>helpful</option>
           </select>
         </h3>
         <div>
-          <Review arrOfReviews={this.state.arrOfReviews} />
+          <Review arrOfReviews={this.state.arrOfReviews} getReviews={this.getReviews}/>
           <button type="button">MORE REVIEWS</button>
           <button type="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
           <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleAddReview}>
             <h1>Thank your for giving your feedback</h1>
-            <label>Rating</label><br />
-              <select name="rating">
-                <option>5</option>
-                <option>4</option>
-                <option>3</option>
-                <option>2</option>
-                <option>1</option>
-              </select><br />
-            <label>Summary</label><br />
-              <input name="summary"></input><br />
-            <label>Comments</label><br />
-              <input name="body"></input><br />
-            <label>Will you recommend this product?</label><br />
-              <select name="recommend">
-                <option>Yes</option>
-                <option>No</option>
-              </select><br />
-            <label>Your Name</label><br />
-              <input name="name"></input><br />
-            <label>Your email</label><br />
-              <input name="email"></input><br />
-            <button type="button">Submit</button>
-            <button type="button" onClick={this.handleAddReview}>Cancel</button>
+            <form onChange={this.handleFormInput}>
+              <label>Rating</label><br />
+                <select name="rating">
+                  <option>5</option>
+                  <option>4</option>
+                  <option>3</option>
+                  <option>2</option>
+                  <option>1</option>
+                </select><br />
+              <label>Level of Fit</label><br />
+                <select name="size">
+                  <option>5</option>
+                  <option>4</option>
+                  <option>3</option>
+                  <option>2</option>
+                  <option>1</option>
+                </select><br />
+              <label>Level of Comfortable</label><br />
+                <select name="comfortable">
+                  <option>5</option>
+                  <option>4</option>
+                  <option>3</option>
+                  <option>2</option>
+                  <option>1</option>
+                </select><br />
+              <label>Summary</label><br />
+                <input name="summary"></input><br />
+              <label>Comments</label><br />
+                <input name="body"></input><br />
+              <label>Will you recommend this product?</label><br />
+                <select name="recommend">
+                  <option>Yes</option>
+                  <option>No</option>
+                </select><br />
+              <label>Your Name</label><br />
+                <input name="name"></input><br />
+              <label>Your email</label><br />
+                <input name="email"></input><br />
+              <button type="button" onClick={this.handleSubmit}>Submit</button>
+              <button type="button" onClick={this.handleAddReview}>Cancel</button>
+            </form>
           </Modal>
         </div>
       </div>
