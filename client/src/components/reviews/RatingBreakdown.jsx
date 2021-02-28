@@ -11,14 +11,14 @@ class RatingBreakdown extends React.Component {
   render() {
     return (
       <div id="ratingBreakdown">
-        <h1>[3.5 and stars go here]</h1>
-        <p>[100%] of reviews recommend this product</p>
+        <h1>{this.props.averageRating}[stars go here]</h1>
+        <p>{this.props.percentageOfRecommend} of reviews recommend this product</p>
         <div>
-          <p>5 stars [star bar goes here]</p>
-          <p>4 stars [star bar goes here]</p>
-          <p>3 stars [star bar goes here]</p>
-          <p>2 stars [star bar goes here]</p>
-          <p>1 stars [star bar goes here]</p>
+          <p>5 stars {this.props.numForRating['5'] || 0} [star bar goes here]</p>
+          <p>4 stars {this.props.numForRating['4'] || 0} [star bar goes here]</p>
+          <p>3 stars {this.props.numForRating['3'] || 0} [star bar goes here]</p>
+          <p>2 stars {this.props.numForRating['2'] || 0} [star bar goes here]</p>
+          <p>1 stars {this.props.numForRating['1'] || 0} [star bar goes here]</p>
         </div>
       </div>
     );

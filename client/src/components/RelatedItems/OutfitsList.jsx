@@ -14,8 +14,12 @@ export default class OutfitsList extends React.Component {
   render() {
     return (
       <div>
+        <h4>
         Outfits List
-        <Outfit />
+        </h4>
+        <div>
+          <Outfit />
+        </div>
       </div>
     );
   }
