@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import { Checkmark } from 'react-checkmark';
+import ReactStars from 'react-stars'
 
 export default class Product extends React.Component {
   constructor(props) {
@@ -71,9 +73,9 @@ export default class Product extends React.Component {
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price
-        }, () => {
+        }/*, () => {
           console.log('state', this.state);
-        })
+        }*/)
       })
   }
 
@@ -98,16 +100,26 @@ export default class Product extends React.Component {
           <h3>
             COMPARING
           </h3>
-          {this.state.name}
+          <h4>
+            {this.state.name}
+          </h4>
           <div>
             {this.state.features.map((feature, key) => {
               return (
                 <div key={key}>
-                  {feature.feature}
-                  {feature.value}
+                  <span>
+                    <Checkmark size='small'/>
+                    {feature.value}
+                  </span>
+                    {feature.feature}
+                  <span>
+                  </span>
                 </div>
               )
             })}
+          <h4>
+            PLACEHOLDER FOR OVERVIEW PRODUCT
+          </h4>
           </div>
           <div>
             <button onClick={this.handleModal}>Back</button>
@@ -123,9 +135,9 @@ export default class Product extends React.Component {
         <div>
           {this.state.default_price}
         </div>
-        <em>
-          STAR REVIEW PLACEHOLDER
-        </em>
+        <div>
+          <ReactStars edit={false}/>
+        </div>
       </div>
     );
   }
