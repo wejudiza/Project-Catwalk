@@ -50,7 +50,7 @@ export default class StyleSelector extends React.Component {
           </div>
           {/* {console.log('current style: ', currentStyle)} */}
           <ImageGallery currentStyle={currentStyle} />
-          <AddToCart currentStyle={currentStyle} />
+          <AddToCart skus={currentStyle.skus} />
         </div>
       )
     }
