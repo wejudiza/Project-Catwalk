@@ -30,15 +30,19 @@ export default class AddToCart extends React.Component {
         options = [...Array(this.state.quantity + 1).keys()];
         options.shift();
       }
-      // {options.map((option, index) => (
-      //   <option key={index}>{option}</option>
-      // ))}
       return (
-        options.map((option, index) => (
-          <option key={index}>{option}</option>
-        ))
+        <select>
+          {options.map((option, index) => (
+            <option value={option.value} key={index}>{option}</option>
+          ))}
+        </select>
       )
     }
+    return (
+      <select>
+        <option>--Quantity--</option>
+      </select>
+    )
   }
 
   render() {
@@ -53,11 +57,7 @@ export default class AddToCart extends React.Component {
             </option>
           ))}
         </select>
-        <select>
-          Choose Quantity
-          {this.selectedSizeMode()}
-          <option>--Quantity--</option>
-        </select>
+        {this.selectedSizeMode()}
         <br />
         <button type="button" id="cart ">Add to Cart</button>
       </div>
