@@ -95,7 +95,7 @@ export default class Product extends React.Component {
     return (
       <div>
         {/* ** Add conditional rendering if img isn't available */}
-        <div id="modalimg">
+        <div id="modalContainer">
           <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
           <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal'>
             <h3>
