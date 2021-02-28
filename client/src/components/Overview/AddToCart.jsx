@@ -12,14 +12,16 @@ export default class AddToCart extends React.Component {
   render() {
     return (
       <div>
-        This is where the AddToCart goes
         <br />
         <select>
           Choose Size
           <option>--Sizes--</option>
-          <option>
-            {/* {console.log('current style: ', this.props.currentStyle)} */}
-          </option>
+            {Object.keys(this.props.currentStyle.skus).map((sku, index) => {
+              return(
+                <option key={index}>
+                  {this.props.currentStyle.skus[sku].size}
+                </option>)
+            })}
         </select>
         <select>
           Choose Quantity
@@ -31,3 +33,29 @@ export default class AddToCart extends React.Component {
     )
   }
 }
+
+// const AddToCart = (props) => {
+//   // if (!props.currentStyle !== undefined) {
+//   //   return null;
+//   // }
+//   return (
+//     <div>
+//       <br />
+//       <select>
+//         Choose Size
+//         <option>--Sizes--</option>
+//         <option>
+//           {/* {console.log('current style: ', props.currentStyle)} */}
+//         </option>
+//       </select>
+//       <select>
+//         Choose Quantity
+//         <option>--Quantity--</option>
+//       </select>
+//       <br />
+//       <button type="button" id="cart ">Add to Cart</button>
+//     </div>
+//   )
+// };
+
+// export default AddToCart;

@@ -30,23 +30,33 @@ export default class StyleSelector extends React.Component {
   }
 
   render() {
+    const { currentStyle, styles } = this.state;
+    if (this.state.styles.length !== 0) {
+      return (
+        <div>
+          <span>
+            {currentStyle.original_price || currentStyle.original_price}
+          </span>
+          <br />
+          STYLE
+          {'>'}
+          :selected style:
+          <br />
+          <div>
+            {console.log('currentStyle state: ', currentStyle)}
+            {styles.map((style, index) => (
+              <Style style={style} key={index} />
+            ))}
+          </div>
+          {/* {console.log('current style: ', currentStyle)} */}
+          <ImageGallery currentStyle={currentStyle} />
+          <AddToCart currentStyle={currentStyle} />
+        </div>
+      )
+    }
     return (
       <div>
-        StyleSelector
-        <br />
-        <span>
-          {this.state.currentStyle.original_price || this.state.currentStyle.original_price}
-        </span>
-        <div>
-          {console.log('styles props: ', this.state.styles)}
-          {console.log('currentStyle state: ', this.state.currentStyle)}
-          {this.state.styles.map((style, index) => (
-            <Style style={style} key={index} />
-          ))}
-        </div>
-        {/* {console.log('current style: ', this.state.currentStyle)} */}
-        <ImageGallery currentStyle={this.state.currentStyle} />
-        <AddToCart currentStyle={this.state.currentStyle} />
+        Loading Styles...
       </div>
     )
   }

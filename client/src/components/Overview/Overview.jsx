@@ -8,7 +8,6 @@ export default class Overview extends React.Component {
     super(props);
     this.state = {
       product: [],
-      styles: [],
     };
     this.getProduct = this.getProduct.bind(this);
   }
@@ -28,16 +27,23 @@ export default class Overview extends React.Component {
   }
 
   render() {
+    if (this.state.product.length !== 0) {
+      return (
+        <div>
+          <br />
+          This is where the Overview Widget will render
+          <ProductInfo product={this.state.product} />
+          <StyleSelector />
+          <button type="button">Share on Facebook</button>
+          <button type="button">Share on Twitter</button>
+          <button type="button">Share on Pinterest</button>
+        </div>
+      );
+    }
     return (
       <div>
-        <br />
-        This is where the Overview Widget will render
-        <ProductInfo product={this.state.product} />
-        <StyleSelector />
-        <button type="button">Share on Facebook</button>
-        <button type="button">Share on Twitter</button>
-        <button type="button">Share on Pinterest</button>
+        This should not be seen
       </div>
-    );
+    )
   }
 }
