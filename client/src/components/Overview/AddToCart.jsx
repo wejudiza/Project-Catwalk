@@ -39,8 +39,8 @@ export default class AddToCart extends React.Component {
       )
     }
     return (
-      <select>
-        <option>--Quantity--</option>
+      <select disabled="yes">
+        <option>-</option>
       </select>
     )
   }
