@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
+import { Checkmark } from 'react-checkmark';
+import ReactStars from 'react-stars'
 
 export default class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalView: false,
       id: '',
       name: '',
       slogan: '',
@@ -20,6 +24,7 @@ export default class Product extends React.Component {
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   componentDidMount() {
@@ -41,10 +46,10 @@ export default class Product extends React.Component {
           default_price: results.data.default_price,
           features: results.data.features
         });
-      })
+      }/*)
       .catch((err) => {
         console.log(err);
-      });
+      }*/);
   }
 
   // ** GET STARS FROM DIRKS WIDGET
@@ -63,15 +68,23 @@ export default class Product extends React.Component {
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
       .then((results) => {
-        console.log('style results', results.data);
+        // console.log('style results', results.data);
         this.setState({
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price
-        }, () => {
+        }/*, () => {
           console.log('state', this.state);
-        })
+        }*/)
       })
+  }
+
+  handleModal() {
+    this.setState({
+      modalView: !this.state.modalView
+    }/*, () => {
+      console.log(this.state.modalView)
+    }*/)
   }
 
   render() {
@@ -80,9 +93,45 @@ export default class Product extends React.Component {
     //   productId
     // } = this.props;
     return (
-      <span>
+      <div>
         {/* ** Add conditional rendering if img isn't available */}
-        <img src={this.state.thumbnail_url}/>
+        <div id="modalContainer">
+          <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
+          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal'>
+            <h3>
+              COMPARING
+            </h3>
+            <h4>
+              {this.state.name}
+            </h4>
+            <div>
+              {this.state.features.map((feature, key) => {
+                return (
+                  <div key={key}>
+                    <span>
+                      <Checkmark size='small'/>
+                      {feature.value}
+                    </span>
+                      {feature.feature}
+                    <span>
+                    </span>
+                  </div>
+                )
+              })}
+            <h4>
+              PLACEHOLDER FOR OVERVIEW PRODUCT
+            </h4>
+            </div>
+            <div>
+              <button onClick={this.handleModal}>Back</button>
+            </div>
+          </Modal>
+          {this.state.thumbnail_url ?
+            <img id="relatedProdImg" src={this.state.thumbnail_url}/>
+            :
+            <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+          }
+        </div>
         <div>
           {this.state.category}
         </div>
@@ -90,12 +139,12 @@ export default class Product extends React.Component {
           {this.state.name}
         </div>
         <div>
-          {this.state.default_price}
+          ${this.state.default_price}
         </div>
-        <em>
-          Placeholder for Reviews
-        </em>
-      </span>
+        <div>
+          <ReactStars edit={false}/>
+        </div>
+      </div>
     );
   }
 }

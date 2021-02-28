@@ -29,18 +29,16 @@ export default class ProductsList extends React.Component {
   }
 
 
-
-
   // Map over a get request of the related items
   render() {
     return (
       <div>
         <h4>
-          Products List
+          Related Products
         </h4>
-        <div>
+        <div id="productsList">
           {this.state.productsListId.map((productId, key) => (
-            <div key={key}>
+            <div id="relatedProd" key={key}>
               <Product productId={productId} />
             </div>
           ))}
