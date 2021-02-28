@@ -1,16 +1,63 @@
 import React from 'react';
+import Modal from 'react-modal';
+import axios from 'axios';
 
 class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      modalView: false,
+      modalMessage: ''
     };
+    this.handleClickHelpful = this.handleClickHelpful.bind(this);
+    this.handleClickReport = this.handleClickReport.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  handleClickHelpful(e) {
+    // console.log(typeof e.target.getAttribute('review_id'))
+    axios.put(`/api/reviews/${Number(e.target.getAttribute('review_id'))}/helpful`)
+      .then((rawData) => {
+        // console.log(rawData.data);
+        this.setState({
+          modalView: !this.state.modalView,
+          modalMessage: 'Thank you for your feedback!'
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  handleClickReport(e) {
+    axios.put(`/api/reviews/${Number(e.target.getAttribute('review_id'))}/report`)
+      .then((rawData) => {
+        // console.log(rawData.data);
+        this.setState({
+          modalView: !this.state.modalView,
+          modalMessage: 'Thank you for your report! This review will be removed!'
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  closeModal() {
+    this.setState({
+      modalView: !this.state.modalView
+    }, () => {
+      this.props.getReviews();
+    });
   }
 
   render() {
     return (
       <div>
+        <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal}>
+          {this.state.modalMessage}
+          <button type="button" onClick={this.closeModal}>Back</button>
+        </Modal>
         {this.props.arrOfReviews.map((review) => {
           if (review.response === '' || !review.response) {
             return (
@@ -26,11 +73,12 @@ class Review extends React.Component {
                 <div>
                   Helpful?
                   <span> </span>
-                  <span>Yes({review.helpfulness})</span>
+                  <u review_id={review.review_id} onClick={this.handleClickHelpful}>Yes</u>
+                  <span>({review.helpfulness})</span>
                   <span> </span>
                   <span>|</span>
                   <span>  </span>
-                  <span>Report</span>
+                  <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
                 </div>
               </div>
             )

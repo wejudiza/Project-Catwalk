@@ -60,7 +60,7 @@ const controllers = {
 
   // Reviews//
   getAllReviews: (req, res) => {
-    console.log(req.query)
+    // console.log(req.query)
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/', {
       headers: {
         Authorization: gitToken.TOKEN,
