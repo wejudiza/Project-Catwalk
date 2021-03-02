@@ -29,7 +29,6 @@ export default class StyleSelector extends React.Component {
   getStyles() {
     axios.get(`/api/products/${this.props.currentProduct}/styles`)
       .then((results) => {
-        // console.log('styles: ', results.data);
         this.setState({
           styles: results.data.results,
           currentStyle: results.data.results[0],
@@ -39,9 +38,7 @@ export default class StyleSelector extends React.Component {
   }
 
   render() {
-    // const { currentStyle, styles } = this.state;
     if (this.state.styles.length !== 0) {
-      {console.log('currrentStyle:', this.state.currentStyle)}
       return (
         <div>
           <span>
