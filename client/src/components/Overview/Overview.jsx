@@ -13,7 +13,13 @@ export default class Overview extends React.Component {
   }
 
   componentDidMount() {
-    this.getProduct();
+    this.getProduct()
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.currentProduct !== prevProps.currentProduct) {
+      this.getProduct()
+    }
   }
 
   getProduct() {

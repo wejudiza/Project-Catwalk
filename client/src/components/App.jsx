@@ -13,8 +13,12 @@ class App extends React.Component {
   }
 
   getCurrentProductId(product_id) {
+    console.log('entering getCurrentProductId')
+    console.log('product_id', product_id)
     this.setState({
       currentProduct: product_id,
+    }, ()=> {
+      console.log('this.state', this.state)
     });
   }
 
