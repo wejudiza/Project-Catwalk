@@ -36,6 +36,12 @@ export default class Product extends React.Component {
     this.getProductInfo(this.props.productId);
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.productId !== prevProps.productId) {
+      this.getProductInfo(this.props.productId);
+    }
+  }
+
   handleModal() {
     this.setState({
       modalView: !this.state.modalView,
@@ -150,9 +156,13 @@ export default class Product extends React.Component {
             <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
-            <img id="relatedProdImg" src={this.state.thumbnail_url}/>
+            <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
+              <img id="relatedProdImg" src={this.state.thumbnail_url}/>
+            </div>
             :
-            <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+            <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
+              <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+            </div>
           }
         </div>
         <div>
