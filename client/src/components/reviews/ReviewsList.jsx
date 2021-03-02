@@ -10,7 +10,7 @@ class ReviewsList extends React.Component {
       sortMethod: 'relevant',
       modalView: false,
       arrOfReviews: [],
-      product_id: 16056,
+      product_id: this.props.currentProduct,
       rating: 5,
       summary: '',
       body: '',
@@ -29,14 +29,22 @@ class ReviewsList extends React.Component {
   }
 
   componentDidMount() {
+    // console.log(this.props.currentProduct)
     this.getReviews();
     this.getCharac();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.currentProduct !== prevProps.currentProduct) {
+      this.getReviews();
+      this.getCharac();
+    }
   }
 
   getReviews() {
     axios.get('api/reviews', {
       params: {
-        product_id: 16056,
+        product_id: this.props.currentProduct,
         sort: this.state.sortMethod
       }
     })
@@ -70,7 +78,7 @@ class ReviewsList extends React.Component {
   }
 
   getCharac() {
-    axios.get('api/reviews/meta/16056')
+    axios.get(`api/reviews/meta/${this.props.currentProduct}`)
       .then((rawData) => {
         let charac = rawData.data.characteristics;
         // console.log(charac)
@@ -142,12 +150,12 @@ class ReviewsList extends React.Component {
       characteristics: {}
     })
       .then((rawData) => {
-        console.log(rawData.data);
+        // console.log(rawData.data);
         this.setState({
           sortMethod: 'newest',
           modalView: false,
           arrOfReviews: [],
-          product_id: 16056,
+          product_id: this.props.currentProduct,
           rating: 5,
           summary: '',
           body: '',

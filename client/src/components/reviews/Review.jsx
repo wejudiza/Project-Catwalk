@@ -1,4 +1,5 @@
 import React from 'react';
+import ImgDisplay from './ImgDisplay';
 import Modal from 'react-modal';
 import axios from 'axios';
 
@@ -7,7 +8,7 @@ class Review extends React.Component {
     super(props);
     this.state = {
       modalView: false,
-      modalMessage: ''
+      modalMessage: '',
     };
     this.handleClickHelpful = this.handleClickHelpful.bind(this);
     this.handleClickReport = this.handleClickReport.bind(this);
@@ -70,6 +71,10 @@ class Review extends React.Component {
                 <p>
                   {review.body}
                 </p>
+                {/* <p>
+                  <img src={review.photos[0].url} />
+                </p> */}
+                <ImgDisplay arrOfPhotos={review.photos} />
                 <div>
                   Helpful?
                   <span> </span>
@@ -93,6 +98,10 @@ class Review extends React.Component {
                 <p>
                   {review.body}
                 </p>
+                {/* <p>
+                  <img src={review.photos[0].url} />
+                </p> */}
+                <ImgDisplay arrOfPhotos={review.photos} />
                 <div>
                   <p>Response:</p>
                   <p>{review.response}</p>

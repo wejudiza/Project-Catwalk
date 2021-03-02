@@ -22,6 +22,10 @@ export default class AddToCart extends React.Component {
     });
   }
 
+  onAddToCartClick() {
+
+  }
+
   selectedSizeMode() {
     var options = [...Array(16).keys()];
     options.shift();
@@ -50,7 +54,7 @@ export default class AddToCart extends React.Component {
       <div>
         <br />
         <select onChange={this.handleSizeChange}>
-          <option>Select Size</option>
+          <option value="default">Select Size</option>
           {Object.keys(this.props.skus).map((sku, index) => (
             <option name={sku} key={index}>
               {this.props.skus[sku].size}
