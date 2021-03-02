@@ -10,10 +10,10 @@ export default class StyleSelector extends React.Component {
     this.state = {
       styles: [],
       currentStyle: {},
-      currentStyleId: '',
     };
     this.getStyles = this.getStyles.bind(this);
     this.onStyleClick = this.onStyleClick.bind(this);
+    this.salePriceMode = this.salePriceMode.bind(this);
   }
 
   componentDidMount() {
@@ -21,8 +21,7 @@ export default class StyleSelector extends React.Component {
   }
 
   onStyleClick(e) {
-    const styleIndex = this.state.styles.findIndex(i => i.style_id === Number(e.target.title));
-    // console.log('style index:', styleIndex);
+    const styleIndex = this.state.styles.findIndex((i) => i.style_id === Number(e.target.title));
     this.setState({
       currentStyle: this.state.styles[styleIndex],
     }, () => console.log('state', this.state));
@@ -39,17 +38,32 @@ export default class StyleSelector extends React.Component {
       .catch((err) => console.log('getProduct err: ', err));
   }
 
+  salePriceMode() {
+    if (this.state.currentStyle.sale_price) {
+      return (
+        <div>
+          <span style={{ color: 'red' }}>{this.state.currentStyle.sale_price}</span>
+          {'  '}
+          <span><s>{this.state.currentStyle.original_price}</s></span>
+        </div>
+      )
+    }
+    return (
+      <div>
+        <span>{this.state.currentStyle.original_price}</span>
+      </div>
+    )
+  }
+
   render() {
     if (this.state.styles.length !== 0) {
       return (
         <div>
-          <span>
-            {this.state.currentStyle.sale_price || this.state.currentStyle.original_price}
-          </span>
+          {this.salePriceMode()}
           <br />
           STYLE
           {'>'}
-          :selected style:
+            {this.state.currentStyle.name}
           <br />
           <div id="styles">
             {this.state.styles.map((style, index) => (
