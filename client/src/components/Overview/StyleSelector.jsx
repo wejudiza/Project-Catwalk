@@ -30,7 +30,7 @@ export default class StyleSelector extends React.Component {
     const styleIndex = this.state.styles.findIndex((i) => i.style_id === Number(e.target.title));
     this.setState({
       currentStyle: this.state.styles[styleIndex],
-    }, () => console.log('state', this.state));
+    });
   }
 
   getStyles() {
@@ -39,7 +39,7 @@ export default class StyleSelector extends React.Component {
         this.setState({
           styles: results.data.results,
           currentStyle: results.data.results[0],
-        }, () => console.log('styles: ', this.state));
+        });
       })
       .catch((err) => console.log('getProduct err: ', err));
   }
