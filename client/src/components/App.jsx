@@ -22,10 +22,10 @@ class App extends React.Component {
     return (
       <div>
         <div id="products">
-          <Overview getCurrentProductId={this.getCurrentProductId} />
+          <Overview currentProduct={this.state.currentProduct} />
         </div>
         <div id="relatedItems">
-          <RelatedItems currentProduct={this.state.currentProduct} />
+          <RelatedItems getCurrentProductId={this.getCurrentProductId} />
         </div>
         <div id="reviews">
           <Reviews currentProduct={this.state.currentProduct} />
