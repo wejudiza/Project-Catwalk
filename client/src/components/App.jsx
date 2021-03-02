@@ -25,7 +25,7 @@ class App extends React.Component {
           <Overview currentProduct={this.state.currentProduct} />
         </div>
         <div id="relatedItems">
-          <RelatedItems getCurrentProductId={this.getCurrentProductId} />
+          <RelatedItems currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId} />
         </div>
         <div id="reviews">
           <Reviews currentProduct={this.state.currentProduct} />

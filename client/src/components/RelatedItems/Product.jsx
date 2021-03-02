@@ -19,18 +19,27 @@ export default class Product extends React.Component {
       ratings: {},
       thumbnail_url: '',
       original_price: '',
-      sale_price: ''
+      sale_price: '',
+      // EVERYTHING BELOW IS THE CURRENT PRODUCT DISPLAY ON PRODUCT DETAIL
+      currentProductId: this.props.currentProduct,
+      currentProductName: '',
+      currentProductFeatures: '',
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
+    this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo(this.props.productId);
-    this.getStars(this.props.productId);
-    this.getStyles(this.props.productId);
+  }
+
+  handleModal() {
+    this.setState({
+      modalView: !this.state.modalView,
+    });
   }
 
   // axios get request to /products/productId
@@ -44,12 +53,18 @@ export default class Product extends React.Component {
           description: results.data.description,
           category: results.data.category,
           default_price: results.data.default_price,
-          features: results.data.features
+          features: results.data.features,
         });
-      }/*)
-      .catch((err) => {
-        console.log(err);
-      }*/);
+      })
+      .then(() => {
+        this.getDisplayedProductInfo(this.state.currentProductId);
+      })
+      .then(() => {
+        this.getStars(this.props.productId);
+      })
+      .then(() => {
+        this.getStyles(this.props.productId);
+      });
   }
 
   // ** GET STARS FROM DIRKS WIDGET
@@ -58,7 +73,7 @@ export default class Product extends React.Component {
       .then((results) => {
         this.setState({
           ratings: results.ratings
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -72,19 +87,19 @@ export default class Product extends React.Component {
         this.setState({
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
-          sale_price: results.data.results[0].sale_price
-        }/*, () => {
-          console.log('state', this.state);
-        }*/)
-      })
+          sale_price: results.data.results[0].sale_price,
+        });
+      });
   }
 
-  handleModal() {
-    this.setState({
-      modalView: !this.state.modalView
-    }/*, () => {
-      console.log(this.state.modalView)
-    }*/)
+  getDisplayedProductInfo(currentProductId) {
+    axios.get(`api/products/${currentProductId}`)
+      .then((results) => {
+        this.setState({
+          currentProductName: results.data.name,
+          currentProductFeatures: results.data.features,
+        });
+      });
   }
 
   render() {
@@ -104,27 +119,35 @@ export default class Product extends React.Component {
             <h4>
               {this.state.name}
             </h4>
-            <div>
-              {this.state.features.map((feature, key) => {
-                return (
+              <div>
+                {this.state.features.map((feature, key) => (
                   <div key={key}>
                     <span>
                       <Checkmark size='small'/>
                       {feature.value}
-                    </span>
                       {feature.feature}
-                    <span>
                     </span>
                   </div>
-                )
-              })}
+                ))}
+              </div>
             <h4>
-              PLACEHOLDER FOR OVERVIEW PRODUCT
+              {this.state.currentProductName}
             </h4>
-            </div>
-            <div>
-              <button onClick={this.handleModal}>Back</button>
-            </div>
+              <div>
+                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
+                {this.state.currentProductFeatures
+                  ? this.state.currentProductFeatures.map((feature, key) => (
+                    <div key={key}>
+                      <span>
+                        <Checkmark size='small'/>
+                        {feature.value}
+                        {feature.feature}
+                      </span>
+                    </div>
+                  ))
+                  : null}
+              </div>
+            <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
             <img id="relatedProdImg" src={this.state.thumbnail_url}/>
