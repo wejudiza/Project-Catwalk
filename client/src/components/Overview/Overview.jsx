@@ -17,7 +17,7 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
-    axios.get('/api/products/16056')
+    axios.get(`/api/products/${this.props.currentProduct}`)
       .then((results) => {
         this.setState({
           product: results.data,
@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
           <br />
           This is where the Overview Widget will render
           <ProductInfo product={this.state.product} />
-          <StyleSelector />
+          <StyleSelector currentProduct={this.props.currentProduct}/>
           <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
           <button type="button">Share on Pinterest</button>

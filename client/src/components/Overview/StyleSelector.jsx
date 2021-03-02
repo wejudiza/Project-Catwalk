@@ -10,13 +10,20 @@ export default class StyleSelector extends React.Component {
     this.state = {
       styles: [],
       currentStyle: {},
+      currentStyleId: '',
     };
     this.getStyles = this.getStyles.bind(this);
-    // this.onStyleClick = this.onStyleClick.bind(this);
+    this.onStyleClick = this.onStyleClick.bind(this);
   }
 
   componentDidMount() {
     this.getStyles();
+  }
+
+  onStyleClick(e) {
+    this.setState({
+      currentStyleId: e.target.title,
+    }, () => console.log('state', this.state));
   }
 
   getStyles() {
@@ -34,11 +41,11 @@ export default class StyleSelector extends React.Component {
   render() {
     // const { currentStyle, styles } = this.state;
     if (this.state.styles.length !== 0) {
-      // {console.log('currrentStyle:', this.state.currentStyle)}
+      {console.log('currrentStyle:', this.state.currentStyle)}
       return (
         <div>
           <span>
-            {this.state.currentStyle.original_price || this.state.currentStyle.original_price}
+            {this.state.currentStyle.sale_price || this.state.currentStyle.original_price}
           </span>
           <br />
           STYLE
@@ -47,7 +54,7 @@ export default class StyleSelector extends React.Component {
           <br />
           <div id="styles">
             {this.state.styles.map((style, index) => (
-              <Style style={style} key={index} />
+              <Style style={style} key={index} onStyleClick={this.onStyleClick} />
             ))}
           </div>
           <ImageGallery currentStyle={this.state.currentStyle} />
