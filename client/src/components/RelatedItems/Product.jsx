@@ -21,7 +21,7 @@ export default class Product extends React.Component {
       original_price: '',
       sale_price: '',
       // EVERYTHING BELOW IS THE CURRENT PRODUCT DISPLAY ON PRODUCT DETAIL
-      currentProductId: this.props.currentProduct,
+      currentProductId: '',
       currentProductName: '',
       currentProductFeatures: '',
     };
@@ -63,7 +63,7 @@ export default class Product extends React.Component {
         });
       })
       .then(() => {
-        this.getDisplayedProductInfo(this.state.currentProductId);
+        this.getDisplayedProductInfo(this.props.currentProduct);
       })
       .then(() => {
         this.getStars(this.props.productId);
