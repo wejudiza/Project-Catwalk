@@ -7,21 +7,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      currentProduct: 16056,
     };
+    this.getCurrentProductId = this.getCurrentProductId.bind(this);
+  }
+
+  getCurrentProductId(product_id) {
+    this.setState({
+      currentProduct: product_id,
+    });
   }
 
   render() {
     return (
       <div>
         <div id="products">
-          <Overview />
+          <Overview currentProduct={this.state.currentProduct} />
         </div>
         <div id="relatedItems">
-          <RelatedItems />
+          <RelatedItems getCurrentProductId={this.getCurrentProductId} />
         </div>
-        <div>
-          <Reviews />
+        <div id="reviews">
+          <Reviews currentProduct={this.state.currentProduct} />
         </div>
       </div>
     );
