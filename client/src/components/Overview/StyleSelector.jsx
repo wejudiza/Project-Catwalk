@@ -61,8 +61,8 @@ export default class StyleSelector extends React.Component {
         <div>
           {this.salePriceMode()}
           <br />
-          STYLE
-          {'>'}
+          <span><b>STYLE{' >'}</b></span>
+          {' '}
             {this.state.currentStyle.name}
           <br />
           <div id="styles">
