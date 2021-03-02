@@ -64,3 +64,9 @@
   height: 100px;
   width: 100px;
 }
+
+.displayPhoto {
+  object-fit: cover;
+  width: 600px;
+  height: 600px;
+}

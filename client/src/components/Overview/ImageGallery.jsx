@@ -11,7 +11,7 @@ export default class ImageGallery extends React.Component {
   render() {
     return (
       <div>
-        This is where the ImageGallery goes
+        <img src={this.props.currentStyle.photos[0].url} alt="" className="displayPhoto" />
       </div>
     )
   }
