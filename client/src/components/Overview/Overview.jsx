@@ -22,12 +22,18 @@ export default class Overview extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProduct !== prevProps.currentProduct) {
+      this.getProduct();
+    }
+  }
+
   getProduct() {
     axios.get(`/api/products/${this.props.currentProduct}`)
       .then((results) => {
         this.setState({
           product: results.data,
-        });
+        }, () => console.log('state product: ', this.state));
       })
       .catch((err) => console.log('getProduct err: ', err));
   }
@@ -39,7 +45,11 @@ export default class Overview extends React.Component {
           <br />
           This is where the Overview Widget will render
           <ProductInfo product={this.state.product} />
+<<<<<<< HEAD
           <StyleSelector currentProduct={this.state.product.id}/>
+=======
+          <StyleSelector currentProduct={this.state.product.id} />
+>>>>>>> 87cadf8 (Implementing select dropdown to track default option)
           <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
           <button type="button">Share on Pinterest</button>

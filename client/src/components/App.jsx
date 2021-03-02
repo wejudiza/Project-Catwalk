@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: 16056,
+      currentProduct: 16058,
     };
     this.getCurrentProductId = this.getCurrentProductId.bind(this);
   }

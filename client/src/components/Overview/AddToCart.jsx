@@ -6,8 +6,8 @@ export default class AddToCart extends React.Component {
     super(props);
     this.state = {
       size: '',
-      sku: 0,
       quantity: 0,
+      skus: [],
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
@@ -17,14 +17,13 @@ export default class AddToCart extends React.Component {
     const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
     this.setState({
       size: e.target.value,
-      sku: skuNum,
       quantity: this.props.skus[skuNum].quantity,
     });
   }
 
-  onAddToCartClick() {
+  // onAddToCartClick() {
 
-  }
+  // }
 
   selectedSizeMode() {
     var options = [...Array(16).keys()];
@@ -49,11 +48,19 @@ export default class AddToCart extends React.Component {
     )
   }
 
+  // cartMode() {
+  //   if (this.state.size === 'default') {
+  //     return (
+
+  //     )
+  //   }
+  // }
+
   render() {
     return (
       <div>
         <br />
-        <select onChange={this.handleSizeChange}>
+        <select defaultValue={this.state.selectValue} onChange={this.handleSizeChange}>
           <option value="default">Select Size</option>
           {Object.keys(this.props.skus).map((sku, index) => (
             <option name={sku} key={index}>
@@ -63,7 +70,7 @@ export default class AddToCart extends React.Component {
         </select>
         {this.selectedSizeMode()}
         <br />
-        <button type="button" id="cart ">Add to Cart</button>
+        <button type="button" id="cart">Add to Cart</button>
       </div>
     )
   }
