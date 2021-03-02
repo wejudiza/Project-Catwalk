@@ -6,7 +6,8 @@ export default class ProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productsListId: []
+      currentProduct: this.props.currentProduct,
+      productsListId: [],
     };
     this.getProductsListId = this.getProductsListId.bind(this);
   }
@@ -17,7 +18,7 @@ export default class ProductsList extends React.Component {
 
   // axios get request to /products/16056/related
   getProductsListId() {
-    axios.get('api/products/16056/related')
+    axios.get(`api/products/${this.state.currentProduct}/related`)
       .then((results) => {
         this.setState({
           productsListId: results.data,
@@ -39,7 +40,7 @@ export default class ProductsList extends React.Component {
         <div id="productsList">
           {this.state.productsListId.map((productId, key) => (
             <div id="relatedProd" key={key}>
-              <Product productId={productId} />
+              <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
             </div>
           ))}
         </div>

@@ -18,7 +18,7 @@ export default class RelatedItems extends React.Component {
           RELATED ITEMS & COMPARISON
         </h3>
         <div>
-          <ProductsList />
+          <ProductsList currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
         </div>
         <div>
           <OutfitsList />
