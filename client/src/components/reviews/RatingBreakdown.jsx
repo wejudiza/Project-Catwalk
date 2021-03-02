@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRating from './StarRating';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -11,7 +12,10 @@ class RatingBreakdown extends React.Component {
   render() {
     return (
       <div id="ratingBreakdown">
-        <h1>{this.props.averageRating}[stars go here]</h1>
+        <h1>
+          {this.props.averageRating}
+          <StarRating rating={this.props.averageRating}/>
+        </h1>
         <p>{this.props.percentageOfRecommend} of reviews recommend this product</p>
         <div>
           <p>5 stars {this.props.numForRating['5'] || 0} [star bar goes here]</p>
