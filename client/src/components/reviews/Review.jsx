@@ -53,6 +53,16 @@ class Review extends React.Component {
   }
 
   render() {
+    if (this.props.arrOfReviews.length === 0) {
+      return (
+        <div>
+          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal}>
+            {this.state.modalMessage}
+            <button type="button" onClick={this.closeModal}>Back</button>
+          </Modal>
+        </div>
+      )
+    }
     return (
       <div>
         <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal}>
