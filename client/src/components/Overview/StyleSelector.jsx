@@ -20,13 +20,13 @@ export default class StyleSelector extends React.Component {
   }
 
   getStyles() {
-    axios.get('/api/products/16056/styles')
+    axios.get(`/api/products/${this.props.currentProduct}/styles`)
       .then((results) => {
-        console.log('styles: ', results.data);
+        // console.log('styles: ', results.data);
         this.setState({
           styles: results.data.results,
           currentStyle: results.data.results[0],
-        }, () => console.log('styles state: ', this.state.styles));
+        });
       })
       .catch((err) => console.log('getProduct err: ', err));
   }
@@ -34,7 +34,7 @@ export default class StyleSelector extends React.Component {
   render() {
     // const { currentStyle, styles } = this.state;
     if (this.state.styles.length !== 0) {
-      {console.log('currrentStyle:', this.state.currentStyle)}
+      // {console.log('currrentStyle:', this.state.currentStyle)}
       return (
         <div>
           <span>
@@ -45,13 +45,11 @@ export default class StyleSelector extends React.Component {
           {'>'}
           :selected style:
           <br />
-          <div>
-            {/* {console.log('this.state.currentStyle state: ', this.state.currentStyle)} */}
+          <div id="styles">
             {this.state.styles.map((style, index) => (
               <Style style={style} key={index} />
             ))}
           </div>
-          {/* {console.log('current style: ', this.state.currentStyle)} */}
           <ImageGallery currentStyle={this.state.currentStyle} />
           <AddToCart skus={this.state.currentStyle.skus} />
         </div>
