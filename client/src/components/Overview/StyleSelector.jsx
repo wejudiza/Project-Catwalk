@@ -20,6 +20,12 @@ export default class StyleSelector extends React.Component {
     this.getStyles();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProduct !== prevProps.currentProduct) {
+      this.getStyles();
+    }
+  }
+
   onStyleClick(e) {
     const styleIndex = this.state.styles.findIndex((i) => i.style_id === Number(e.target.title));
     this.setState({

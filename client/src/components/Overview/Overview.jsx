@@ -39,7 +39,7 @@ export default class Overview extends React.Component {
           <br />
           This is where the Overview Widget will render
           <ProductInfo product={this.state.product} />
-          <StyleSelector currentProduct={this.props.currentProduct}/>
+          <StyleSelector currentProduct={this.state.product.id}/>
           <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
           <button type="button">Share on Pinterest</button>

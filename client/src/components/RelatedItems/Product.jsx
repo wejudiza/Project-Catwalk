@@ -36,6 +36,12 @@ export default class Product extends React.Component {
     this.getProductInfo(this.props.productId);
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.productId !== prevProps.productId) {
+      this.getProductInfo(this.props.productId);
+    }
+  }
+
   handleModal() {
     this.setState({
       modalView: !this.state.modalView,
