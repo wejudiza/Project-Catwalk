@@ -3,17 +3,18 @@ import React from 'react';
 export default class Style extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      current: {},
-    }
+    // this.state = {
+    //   current: {},
+    // }
   }
 
   render() {
     return (
       <div key={this.props.index}>
+        {/* {console.log('style props: ', this.props.style)} */}
         {this.props.style.name}
         <br />
-        <img src={this.props.style.photos[0].thumbnail_url} alt="" />
+        <img src={this.props.style.photos[0].thumbnail_url} alt="" title={this.props.style.style_id} className="styleOption" onClick={this.props.onStyleClick} />
       </div>
     )
   }
