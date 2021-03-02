@@ -8,11 +8,11 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      averageRating: 0,
-      percentageOfRecommend: 0,
+      averageRating: 5,
+      percentageOfRecommend: '100%',
       numForRating: {},
-      charac_size: 0,
-      charac_comfort: 0,
+      charac_size: 5,
+      charac_comfort: 5,
     };
     this.getAverageRatingFromReview = this.getAverageRatingFromReview.bind(this);
     this.getPercentageFromReviewsList = this.getPercentageFromReviewsList.bind(this);
@@ -39,12 +39,13 @@ class Reviews extends React.Component {
   }
 
   getCharacFromReviewsList(obj) {
+    // console.log(obj)
     if (obj.Fit !== undefined & obj.Comfort !== undefined) {
       this.setState({
         charac_size: obj.Fit.value,
         charac_comfort: obj.Comfort.value
       });
-    } else {
+    } else if (obj.Size !== undefined & obj.Comfort !== undefined) {
       this.setState({
         charac_size: obj.Size.value,
         charac_comfort: obj.Comfort.value
@@ -62,7 +63,7 @@ class Reviews extends React.Component {
         <h3>RATINGS & REVIEWS</h3>
         <RatingBreakdown averageRating={this.state.averageRating} percentageOfRecommend={this.state.percentageOfRecommend} numForRating={this.state.numForRating}/>
         <ProductBreakdown charac_size={this.state.charac_size} charac_comfort={this.state.charac_comfort}/>
-        <ReviewsList getAverageRatingFromReview={this.getAverageRatingFromReview} getPercentageFromReviewsList={this.getPercentageFromReviewsList} getNumForRating={this.getNumForRating} getCharacFromReviewsList={this.getCharacFromReviewsList}/>
+        <ReviewsList currentProduct={this.props.currentProduct} getAverageRatingFromReview={this.getAverageRatingFromReview} getPercentageFromReviewsList={this.getPercentageFromReviewsList} getNumForRating={this.getNumForRating} getCharacFromReviewsList={this.getCharacFromReviewsList}/>
       </div>
     );
   }
