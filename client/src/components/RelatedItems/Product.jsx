@@ -93,7 +93,7 @@ export default class Product extends React.Component {
     //   productId
     // } = this.props;
     return (
-      <div>
+      <div /*onClick={this.props.getCurrentId(productId)}*/>
         {/* ** Add conditional rendering if img isn't available */}
         <div id="modalContainer">
           <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
