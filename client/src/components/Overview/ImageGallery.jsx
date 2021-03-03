@@ -21,6 +21,16 @@ export default class ImageGallery extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.images !== prevProps.images) {
+      this.setState({
+        thumbnails: this.props.images,
+        currentImage: this.props.images[0],
+        currentImageUrl: this.props.images[0].url,
+      })
+    }
+  }
+
   onImageClick(e) {
     const currentImageIndex = this.state.thumbnails.findIndex((i) => i.url === e.target.title);
     this.setState({
