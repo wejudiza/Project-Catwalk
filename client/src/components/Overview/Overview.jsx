@@ -43,7 +43,7 @@ export default class Overview extends React.Component {
       return (
         <div>
           <br />
-          <ProductInfo product={this.state.product} />
+          <ProductInfo rating={this.props.rating} product={this.state.product} />
           <StyleSelector currentProduct={this.state.product.id} />
           <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>

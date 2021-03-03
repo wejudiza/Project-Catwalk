@@ -36,10 +36,15 @@ class App extends React.Component {
     return (
       <div>
         <div id="products">
-          <Overview currentProduct={this.state.currentProduct} />
+          <Overview
+            rating={this.state.ratingForCurrentProduct}
+            currentProduct={this.state.currentProduct}
+          />
         </div>
         <div id="relatedItems">
-          <RelatedItems currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId} />
+          <RelatedItems
+            currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId}
+          />
         </div>
         <div id="reviews">
           <Reviews

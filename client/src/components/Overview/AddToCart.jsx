@@ -69,7 +69,7 @@ export default class AddToCart extends React.Component {
     return (
       <div>
         <br />
-        <select defaultMenuIsOpen={true} onChange={this.handleSizeChange}>
+        <select onChange={this.handleSizeChange}>
           <option value={this.value}>Select Size</option>
           {Object.keys(this.props.skus).map((sku, index) => (
             <option name={sku} key={index}>
