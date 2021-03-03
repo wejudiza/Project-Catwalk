@@ -17,8 +17,8 @@ export default class Overview extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.currentProduct !== prevProps.currentProduct) {
-      this.getProduct()
+    if (this.props.currentProduct !== prevProps.currentProduct) {
+      this.getProduct();
     }
   }
 
@@ -37,9 +37,8 @@ export default class Overview extends React.Component {
       return (
         <div>
           <br />
-          This is where the Overview Widget will render
-          <ProductInfo product={this.state.product} />
-          <StyleSelector currentProduct={this.state.product.id}/>
+          <ProductInfo rating={this.props.rating} product={this.state.product} />
+          <StyleSelector currentProduct={this.state.product.id} />
           <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
           <button type="button">Share on Pinterest</button>
