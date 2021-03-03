@@ -18,12 +18,16 @@ export default class OutfitsList extends React.Component {
         Outfits List
         </h4>
         <div className='list'>
-          <div className='card'>
-            <Outfit />
-          </div>
-          <div>
-
-          </div>
+          {this.state.outfitsListId.length === 0 ?
+            <div className='card'>
+            </div>
+            :
+            <div className='card'>
+              <Outfit />
+            <div className='card'>
+            </div>
+            </div>
+          }
         </div>
       </div>
     );
