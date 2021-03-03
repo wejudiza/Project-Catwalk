@@ -12,6 +12,7 @@ export default class AddToCart extends React.Component {
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
+    // this.changedSkuMode = this.changedSkuMode.bind(this);
   }
 
   handleSizeChange(e) {
@@ -30,6 +31,8 @@ export default class AddToCart extends React.Component {
 
   onAddToCartClick(e) {
     if (this.state.size === 'Select Size') {
+
+    } else {
 
     }
   }
@@ -56,6 +59,14 @@ export default class AddToCart extends React.Component {
       </select>
     )
   }
+
+  // changedSkuMode(prevProps) {
+  //   if (this.props.skus !== prevProps) {
+  //     this.setState({
+  //       size: 'Select Size',
+  //     })
+  //   }
+  // }
 
   // cartMode() {
   //   if (this.state.size === 'Select Size') {

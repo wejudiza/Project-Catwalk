@@ -81,3 +81,9 @@
   width: 600px;
   height: 600px;
 }
+
+.thumbnails {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}

@@ -76,7 +76,7 @@ export default class StyleSelector extends React.Component {
               <Style style={style} key={index} onStyleClick={this.onStyleClick} />
             ))}
           </div>
-          <ImageGallery currentStyle={this.state.currentStyle} />
+          <ImageGallery images={this.state.currentStyle.photos} />
           <AddToCart skus={this.state.currentStyle.skus} currentStyle={this.state.currentStyle} />
         </div>
       )
