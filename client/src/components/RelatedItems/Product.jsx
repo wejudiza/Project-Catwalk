@@ -157,9 +157,9 @@ export default class Product extends React.Component {
     // } = this.props;
     return (
       <div>
-        <div id="modalContainer">
+        <div>
           <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
-          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
+          <Modal id="modalContainer" isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
             <h3>
               COMPARING
             </h3>
@@ -213,21 +213,23 @@ export default class Product extends React.Component {
             </div>
           }
         </div>
-        <div>
-          {this.state.category}
-        </div>
-        <div>
-          {this.state.name}
-        </div>
-        <div>
-          ${this.state.default_price}
-        </div>
-        <div>
-          {this.state.avgStars ?
-            <RelatedStars avgStars={this.state.avgStars}/>
-            :
-            <RelatedStars avgStars={0}/>
-          }
+        <div className='cardText'>
+          <div>
+            {this.state.category}
+          </div>
+          <div>
+            {this.state.name}
+          </div>
+          <div>
+            ${this.state.default_price}
+          </div>
+          <div>
+            {this.state.avgStars ?
+              <RelatedStars avgStars={this.state.avgStars}/>
+              :
+              <RelatedStars avgStars={0}/>
+            }
+          </div>
         </div>
       </div>
     );

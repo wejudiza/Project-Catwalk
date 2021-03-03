@@ -28,18 +28,31 @@
   position: relative;
   box-shadow: 4px 4px 4px 2px grey;
   margin: 10px;
-  /* width: 200px; */
-  /* border-style: solid; */
+  max-width: 300px;
+  height: 500px;
   border-width: 2px;
 }
 
 .cardImg {
-  /* width: 100%; */
-  /* height: auto; */
+  /* position: absolute; */
+  /* width: 200px;
+  height: 200px; */
+  object-fit: cover;
+  width: 300px;
+  height: 425px;
+  /* max-width: 100%; */
+  /* max-height: 200px; */
+}
+
+.cardText {
+  position: absolute;
+  bottom: 0px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 #modalContainer {
-  position: relative;
+  /* position: relative; */
 }
 
 
