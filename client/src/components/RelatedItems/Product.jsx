@@ -133,31 +133,16 @@ export default class Product extends React.Component {
       }
     })
       .then((rawData) => {
-        console.log(rawData.data.results)
+        // console.log(rawData.data.results)
         let arrOfReviews = rawData.data.results
         let totalRating = 0;
-        let totalRecommend = 0;
-        let numForRating = {};
         arrOfReviews.forEach((review) => {
           totalRating += review.rating;
-          if (review.recommend) {
-            totalRecommend ++;
-          };
-          if (numForRating[review.rating] === undefined) {
-            numForRating[review.rating] = 1;
-          } else {
-            numForRating[review.rating] ++;
-          }
         });
-        console.log('totalRating', totalRating)
-        console.log('arrOfReviews.length', arrOfReviews.length)
-        // this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
-        // this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
-        // this.props.getNumForRating(numForRating);
+        // console.log('totalRating', totalRating)
+        // console.log('arrOfReviews.length', arrOfReviews.length)
         this.setState({
           avgStars: totalRating/ arrOfReviews.length
-        }, () => {
-          console.log('stars', this.state.avgStars)
         })
       })
       .catch((err) => {
