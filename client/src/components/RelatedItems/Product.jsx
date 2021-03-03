@@ -35,12 +35,15 @@ export default class Product extends React.Component {
       currentProductId: '',
       currentProductName: '',
       currentProductFeatures: '',
+      // STAR REVIEWS
+      stars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
+    this.getReviews = this.getReviews.bind(this)
   }
 
   componentDidMount() {
@@ -81,7 +84,10 @@ export default class Product extends React.Component {
       })
       .then(() => {
         this.getStyles(this.props.productId);
-      });
+      })
+      .then(() => {
+        this.getReviews(this.props.productId);
+      })
   }
 
   // ** GET STARS FROM DIRKS WIDGET
@@ -117,6 +123,45 @@ export default class Product extends React.Component {
           currentProductFeatures: results.data.features,
         });
       });
+  }
+
+  getReviews(productId) {
+    axios.get('api/reviews', {
+      params: {
+        product_id: productId,
+      }
+    })
+      .then((rawData) => {
+        console.log(rawData.data.results)
+        let arrOfReviews = rawData.data.results
+        let totalRating = 0;
+        let totalRecommend = 0;
+        let numForRating = {};
+        arrOfReviews.forEach((review) => {
+          totalRating += review.rating;
+          if (review.recommend) {
+            totalRecommend ++;
+          };
+          if (numForRating[review.rating] === undefined) {
+            numForRating[review.rating] = 1;
+          } else {
+            numForRating[review.rating] ++;
+          }
+        });
+        console.log('totalRating', totalRating)
+        console.log('arrOfReviews.length', arrOfReviews.length)
+        // this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
+        // this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
+        // this.props.getNumForRating(numForRating);
+        this.setState({
+          stars: totalRating/ arrOfReviews.length
+        }, () => {
+          console.log('stars', this.state.stars)
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   render() {
