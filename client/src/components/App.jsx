@@ -8,8 +8,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProduct: 16056,
+      ratingForCurrentProduct: 0,
     };
     this.getCurrentProductId = this.getCurrentProductId.bind(this);
+    this.getRating = this.getRating.bind(this);
   }
 
   getCurrentProductId(product_id) {
@@ -22,6 +24,12 @@ class App extends React.Component {
     });
   }
 
+  getRating(rating) {
+    this.setState({
+      ratingForCurrentProduct: rating,
+    }, ()=> {console.log(this.state.ratingForCurrentProduct)});
+  }
+
   render() {
     return (
       <div>
@@ -32,7 +40,10 @@ class App extends React.Component {
           <RelatedItems currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId} />
         </div>
         <div id="reviews">
-          <Reviews currentProduct={this.state.currentProduct} />
+          <Reviews
+            currentProduct={this.state.currentProduct}
+            getRating={this.getRating}
+          />
         </div>
       </div>
     );
