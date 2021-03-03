@@ -140,14 +140,19 @@ export default class Product extends React.Component {
                 <th>{this.state.currentProductName}</th>
               </tr>
               <tr>
-                <td>{/*<Checkmark size='small'/> */}</td>
-                  {this.state.features.map((feature, key) => (
-                    <div key={key}>
-                      {feature.feature} -
-                      {feature.value}
-                      <br/>
-                    </div>
-                  ))}
+                <td><Checkmark size='small'/></td>
+                <td>{this.state.features.map((feature, key) => {
+                    if(feature.value !== null) {
+                      return (
+                        // <td><Checkmark size='small'/></td>
+                          <div key={key}>
+                            {feature.feature} -
+                            {feature.value}
+                            <br/>
+                          </div>
+                      )
+                    }
+                  })}
                   {this.state.currentProductFeatures
                   ? this.state.currentProductFeatures.map((feature, key) => (
                     <div key={key}>
@@ -157,6 +162,7 @@ export default class Product extends React.Component {
                     </div>
                   ))
                   : null}
+                </td>
                 <td>{/*<Checkmark size='small'/> */}</td>
               </tr>
             </table>
