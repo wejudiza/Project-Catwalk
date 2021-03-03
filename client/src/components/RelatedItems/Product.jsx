@@ -170,11 +170,11 @@ export default class Product extends React.Component {
           </Modal>
           {this.state.thumbnail_url ?
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <img id="relatedProdImg" src={this.state.thumbnail_url}/>
+              <img className="cardImg" src={this.state.thumbnail_url}/>
             </div>
             :
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+              <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
             </div>
           }
         </div>

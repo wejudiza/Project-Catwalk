@@ -45,7 +45,7 @@ export default class ProductsList extends React.Component {
         </h4>
         <div id="productsList">
           {this.state.productsListId.map((productId, key) => (
-            <div id="relatedProd" key={key}>
+            <div className="card" key={key}>
               <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
             </div>
           ))}
