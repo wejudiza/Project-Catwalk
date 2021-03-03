@@ -26,12 +26,6 @@ class App extends React.Component {
     });
   }
 
-  getRating(rating) {
-    this.setState({
-      ratingForCurrentProduct: rating,
-    }, ()=> {console.log(this.state.ratingForCurrentProduct)});
-  }
-
   render() {
     return (
       <div>

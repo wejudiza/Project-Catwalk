@@ -17,12 +17,6 @@ export default class Overview extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.currentProduct !== prevProps.currentProduct) {
-      this.getProduct()
-    }
-  }
-
-  componentDidUpdate(prevProps) {
     if (this.props.currentProduct !== prevProps.currentProduct) {
       this.getProduct();
     }

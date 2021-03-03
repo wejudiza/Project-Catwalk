@@ -24,7 +24,7 @@ export default class AddToCart extends React.Component {
       this.setState({
         size: e.target.value,
         quantity: this.props.skus[skuNum].quantity,
-      }, () =>  console.log('cart state: ', this.state));
+      });
     }
   }
 
