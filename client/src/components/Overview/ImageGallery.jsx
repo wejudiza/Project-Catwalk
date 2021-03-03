@@ -1,5 +1,4 @@
 import React from 'react';
-import Gallery from 'react-image-gallery';
 import Images from './Images';
 
 export default class ImageGallery extends React.Component {
@@ -41,10 +40,24 @@ export default class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div>
-        <img src={this.state.currentImageUrl} alt="" className="displayPhoto" />
-        <Images images={this.state.thumbnails} onImageClick={this.onImageClick}/>
+      <div className="mainImage">
+        <img
+        src={this.state.currentImageUrl}
+        alt=""
+        className="displayPhoto" />
+        <div className="overlay">
+          <Images
+          images={this.state.thumbnails}
+          onImageClick={this.onImageClick} />
+        </div>
       </div>
     )
   }
 }
+
+{/* <div class="main_image">
+  <img src="https://goo.gl/SaNNYW" alt="" />
+  <div class="overlay_image">
+    <img src="https://goo.gl/WPTVVv" alt="" />
+  </div>
+</div> */}

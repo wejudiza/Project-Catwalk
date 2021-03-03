@@ -9,8 +9,8 @@ const Images = (props) => {
           src={image.thumbnail_url}
           title={image.url}
           onClick={props.onImageClick}
-          className="thumbnails"
-          key={index} />
+          key={index}
+          className="thumbnails" />
         )
       })}
     </div>

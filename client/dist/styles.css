@@ -82,8 +82,19 @@
   height: 600px;
 }
 
+.mainImage {
+  position: relative;
+  display: inline-block;
+}
+
+.overlay {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+}
+
 .thumbnails {
   object-fit: cover;
-  height: 100px;
-  width: 100px;
+  height: 75px;
+  width: 75px;
 }
