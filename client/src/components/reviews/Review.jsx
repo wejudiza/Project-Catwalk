@@ -1,7 +1,19 @@
 import React from 'react';
 import ImgDisplay from './ImgDisplay';
+import StarRating from './StarRating';
 import Modal from 'react-modal';
 import axios from 'axios';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class Review extends React.Component {
   constructor(props) {
@@ -53,27 +65,34 @@ class Review extends React.Component {
   }
 
   render() {
+    if (this.props.arrOfReviews.length === 0) {
+      return (
+        <div>
+          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal} style={customStyles}>
+            {this.state.modalMessage}<br />
+            <button type="button" onClick={this.closeModal}>Back</button>
+          </Modal>
+        </div>
+      )
+    }
     return (
       <div>
-        <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal}>
-          {this.state.modalMessage}
+        <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal} style={customStyles}>
+          {this.state.modalMessage}<br />
           <button type="button" onClick={this.closeModal}>Back</button>
         </Modal>
         {this.props.arrOfReviews.map((review) => {
           if (review.response === '' || !review.response) {
             return (
               <div key={review.review_id}>
-
-                [change this to show stars later] {review.rating} {review.reviewer_name}, {review.date}
+                <StarRating rating={review.rating} />
+                {review.reviewer_name}, {review.date}
                 <h3>
                   {review.summary}
                 </h3>
                 <p>
                   {review.body}
                 </p>
-                {/* <p>
-                  <img src={review.photos[0].url} />
-                </p> */}
                 <ImgDisplay arrOfPhotos={review.photos} />
                 <div>
                   Helpful?
@@ -90,17 +109,14 @@ class Review extends React.Component {
           } else {
             return (
               <div key={review.review_id}>
-
-                [change this to show stars later] {review.rating} {review.reviewer_name}, {review.date}
+                <StarRating rating={review.rating} />
+                {review.reviewer_name}, {review.date}
                 <h3>
                   {review.summary}
                 </h3>
                 <p>
                   {review.body}
                 </p>
-                {/* <p>
-                  <img src={review.photos[0].url} />
-                </p> */}
                 <ImgDisplay arrOfPhotos={review.photos} />
                 <div>
                   <p>Response:</p>

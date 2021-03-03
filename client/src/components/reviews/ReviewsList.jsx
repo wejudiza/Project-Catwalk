@@ -54,20 +54,29 @@ class ReviewsList extends React.Component {
         let totalRating = 0;
         let totalRecommend = 0;
         let numForRating = {};
-        arrOfReviews.forEach((review) => {
-          totalRating += review.rating;
-          if (review.recommend) {
-            totalRecommend ++;
-          };
-          if (numForRating[review.rating] === undefined) {
-            numForRating[review.rating] = 1;
-          } else {
-            numForRating[review.rating] ++;
-          }
-        });
-        this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
-        this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
-        this.props.getNumForRating(numForRating);
+        if (arrOfReviews.length !== 0) {
+          arrOfReviews.forEach((review) => {
+            totalRating += review.rating;
+            if (review.recommend) {
+              totalRecommend ++;
+            };
+            if (numForRating[review.rating] === undefined) {
+              numForRating[review.rating] = 1;
+            } else {
+              numForRating[review.rating] ++;
+            }
+          });
+          this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
+          this.props.getRating(totalRating/arrOfReviews.length);
+          this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
+          this.props.getNumForRating(numForRating);
+
+        } else {
+          this.props.getAverageRatingFromReview(0);
+          this.props.getRating(0);
+          this.props.getPercentageFromReviewsList(0);
+          this.props.getNumForRating(numForRating);
+        }
         this.setState({
           arrOfReviews: arrOfReviews
         });

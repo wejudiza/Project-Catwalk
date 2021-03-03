@@ -1,4 +1,5 @@
 import React from 'react';
+import Status from './StatusBar';
 
 class ProductBreakdown extends React.Component {
   constructor(props) {
@@ -11,10 +12,10 @@ class ProductBreakdown extends React.Component {
   render() {
     return (
       <div id="productBreakdown">
-      <p>Size</p>
-      <p>{this.props.charac_size} [size bar goes here]</p>
-      <p>Comfort</p>
-      <p>{this.props.charac_comfort} [comfort bar goes here]</p>
+        <p>Size</p>
+        <div><Status completed={this.props.charac_size/5*100 || 0}/></div>
+        <p>Comfort</p>
+        <div><Status completed={this.props.charac_size/5*100 || 0}/></div>
       </div>
     );
   }
