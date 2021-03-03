@@ -6,7 +6,7 @@ export default class OutfitsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      outfitsListId: [],
     };
   }
 
@@ -17,8 +17,13 @@ export default class OutfitsList extends React.Component {
         <h4>
         Outfits List
         </h4>
-        <div>
-          <Outfit />
+        <div className='list'>
+          <div className='card'>
+            <Outfit />
+          </div>
+          <div>
+
+          </div>
         </div>
       </div>
     );

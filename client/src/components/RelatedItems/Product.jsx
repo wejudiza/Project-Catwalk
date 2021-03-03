@@ -108,7 +108,7 @@ export default class Product extends React.Component {
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
       .then((results) => {
-        console.log('style results', results.data);
+        // console.log('style results', results.data);
         this.setState({
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
