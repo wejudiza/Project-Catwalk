@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo';
 import StyleSelector from './StyleSelector';
+import Description from './Description';
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class Overview extends React.Component {
           <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
           <button type="button">Share on Pinterest</button>
+          <Description product={this.state.product}/>
         </div>
       );
     }
