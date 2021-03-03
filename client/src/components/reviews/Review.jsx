@@ -15,6 +15,21 @@ const customStyles = {
   }
 };
 
+const monthTranslate = {
+  '01': 'January',
+  '02': 'February',
+  '03': 'March',
+  '04': 'April',
+  '05': 'May',
+  '06': 'June',
+  '07': 'July',
+  '08': 'August',
+  '09': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December',
+};
+
 class Review extends React.Component {
   constructor(props) {
     super(props);
@@ -86,7 +101,8 @@ class Review extends React.Component {
             return (
               <div key={review.review_id}>
                 <StarRating rating={review.rating} />
-                {review.reviewer_name}, {review.date}
+                {review.reviewer_name}, &nbsp;&nbsp;&nbsp;
+                {`${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
                 <h3>
                   {review.summary}
                 </h3>
@@ -104,6 +120,8 @@ class Review extends React.Component {
                   <span>  </span>
                   <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
                 </div>
+                <hr width='50%' align='left' color='black' />
+                <br /><br />
               </div>
             )
           } else {
