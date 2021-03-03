@@ -12,10 +12,10 @@ class ProductBreakdown extends React.Component {
   render() {
     return (
       <div id="productBreakdown">
-      <p>Size</p>
-      <div><Status completed={this.props.charac_size/5*100 || 0}/></div>
-      <p>Comfort</p>
-      <div><Status completed={this.props.charac_size/5*100 || 0}/></div>
+        <p>Size</p>
+        <div><Status completed={this.props.charac_size/5*100 || 0}/></div>
+        <p>Comfort</p>
+        <div><Status completed={this.props.charac_size/5*100 || 0}/></div>
       </div>
     );
   }

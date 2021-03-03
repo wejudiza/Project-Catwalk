@@ -19,15 +19,13 @@ class App extends React.Component {
     console.log('product_id', product_id)
     this.setState({
       currentProduct: product_id,
-    }, ()=> {
-      console.log('this.state', this.state)
     });
   }
 
   getRating(rating) {
     this.setState({
       ratingForCurrentProduct: rating,
-    }, ()=> {console.log(this.state.ratingForCurrentProduct)});
+    });
   }
 
   render() {
