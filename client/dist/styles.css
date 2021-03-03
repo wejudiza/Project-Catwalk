@@ -73,6 +73,17 @@
 
 }
 
+/* ADD TO OUTFITS LIST BUTTON */
+#outfitsBtn {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#outfitsBtn:hover {
+  background-color: grey;
+}
+
+/* RELATED ITEMS POSITIONING */
 .center {
   /* text-align: center;
   margin: auto;
