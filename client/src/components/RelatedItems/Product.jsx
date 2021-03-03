@@ -138,13 +138,13 @@ export default class Product extends React.Component {
                 <th></th>
                 <th>{this.state.currentProductName}</th>
               </tr>
-              {this.state.features.map((feature, key) => {
-                if(feature.value !== null) {
+              {this.state.features.map((relatedFeature, key) => {
+                if(relatedFeature.value !== null) {
                   return (
                     <tr key={key}>
                       <td><Checkmark size='small'/></td>
-                      <td>
-                        {feature.feature} - {feature.value}
+                      <td className='center'>
+                        {relatedFeature.feature} - {relatedFeature.value}
                         <br/>
                       </td>
                       <td></td>
@@ -154,15 +154,15 @@ export default class Product extends React.Component {
               })}
               {/* conditional render in order to wait for state to be set to currentProductFeatures */}
               {this.state.currentProductFeatures
-              ? this.state.currentProductFeatures.map((feature, key) => (
-                    <tr key={key}>
-                      <td></td>
-                      <td>
-                        {feature.feature} - {feature.value}
-                        <br/>
-                      </td>
-                      <td><Checkmark size='small'/></td>
-                    </tr>
+              ? this.state.currentProductFeatures.map((currentProdFeature, key) => (
+                  <tr key={key}>
+                    <td></td>
+                    <td className='center'>
+                      {currentProdFeature.feature} - {currentProdFeature.value}
+                      <br/>
+                    </td>
+                    <td><Checkmark size='small'/></td>
+                  </tr>
               ))
               : null}
             </table>
