@@ -125,8 +125,7 @@ export default class Product extends React.Component {
     //   productId
     // } = this.props;
     return (
-      <div /*onClick={this.props.getCurrentId(productId)}*/>
-        {/* ** Add conditional rendering if img isn't available */}
+      <div>
         <div id="modalContainer">
           <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
           <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
@@ -139,49 +138,34 @@ export default class Product extends React.Component {
                 <th></th>
                 <th>{this.state.currentProductName}</th>
               </tr>
-              <tr>
-                <td><Checkmark size='small'/></td>
-                <td>{this.state.features.map((feature, key) => {
-                    if(feature.value !== null) {
-                      return (
-                        // <td><Checkmark size='small'/></td>
-                          <div key={key}>
-                            {feature.feature} -
-                            {feature.value}
-                            <br/>
-                          </div>
-                      )
-                    }
-                  })}
-                  {this.state.currentProductFeatures
-                  ? this.state.currentProductFeatures.map((feature, key) => (
-                    <div key={key}>
-                      {feature.feature} -
-                      {feature.value}
-                      <br/>
-                    </div>
-                  ))
-                  : null}
-                </td>
-                <td>{/*<Checkmark size='small'/> */}</td>
-              </tr>
+              {this.state.features.map((feature, key) => {
+                if(feature.value !== null) {
+                  return (
+                    <tr key={key}>
+                      <td><Checkmark size='small'/></td>
+                      <td>
+                        {feature.feature} - {feature.value}
+                        <br/>
+                      </td>
+                      <td></td>
+                    </tr>
+                  )
+                }
+              })}
+              {/* conditional render in order to wait for state to be set to currentProductFeatures */}
+              {this.state.currentProductFeatures
+              ? this.state.currentProductFeatures.map((feature, key) => (
+                    <tr key={key}>
+                      <td></td>
+                      <td>
+                        {feature.feature} - {feature.value}
+                        <br/>
+                      </td>
+                      <td><Checkmark size='small'/></td>
+                    </tr>
+              ))
+              : null}
             </table>
-            {/*
-              <div>
-                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-{/*
-                {this.state.currentProductFeatures
-                  ? this.state.currentProductFeatures.map((feature, key) => (
-                    <div key={key}>
-                      <span>
-                        <Checkmark size='small'/>
-                        {feature.value}
-                        {feature.feature}
-                      </span>
-                    </div>
-                  ))
-                  : null}
-              </div> */}
             <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
