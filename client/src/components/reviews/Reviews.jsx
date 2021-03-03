@@ -63,7 +63,7 @@ class Reviews extends React.Component {
         <h3>RATINGS & REVIEWS</h3>
         <RatingBreakdown averageRating={this.state.averageRating} percentageOfRecommend={this.state.percentageOfRecommend} numForRating={this.state.numForRating}/>
         <ProductBreakdown charac_size={this.state.charac_size} charac_comfort={this.state.charac_comfort}/>
-        <ReviewsList currentProduct={this.props.currentProduct} getAverageRatingFromReview={this.getAverageRatingFromReview} getPercentageFromReviewsList={this.getPercentageFromReviewsList} getNumForRating={this.getNumForRating} getCharacFromReviewsList={this.getCharacFromReviewsList}/>
+        <ReviewsList currentProduct={this.props.currentProduct} getAverageRatingFromReview={this.getAverageRatingFromReview} getPercentageFromReviewsList={this.getPercentageFromReviewsList} getNumForRating={this.getNumForRating} getCharacFromReviewsList={this.getCharacFromReviewsList} getRating={this.props.getRating}/>
       </div>
     );
   }

@@ -66,6 +66,7 @@ class ReviewsList extends React.Component {
           }
         });
         this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
+        this.props.getRating(totalRating/arrOfReviews.length);
         this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
         this.props.getNumForRating(numForRating);
         this.setState({
