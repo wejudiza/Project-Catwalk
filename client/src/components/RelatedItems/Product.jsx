@@ -44,7 +44,8 @@ export default class Product extends React.Component {
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
-    this.getReviews = this.getReviews.bind(this)
+    this.getReviews = this.getReviews.bind(this);
+    this.salePriceMode = this.salePriceMode.bind(this);
   }
 
   componentDidMount() {
@@ -107,7 +108,7 @@ export default class Product extends React.Component {
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
       .then((results) => {
-        // console.log('style results', results.data);
+        console.log('style results', results.data);
         this.setState({
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
@@ -148,6 +149,24 @@ export default class Product extends React.Component {
       .catch((err) => {
         console.log(err);
       })
+  }
+
+  // SALE PRICE STRIKETHOUGH
+  salePriceMode() {
+    return(
+      this.state.sale_price ?
+        <div>
+          <span style={{ color: 'red' }}>${this.state.sale_price}</span>
+          {'  '}
+          <span><s>${this.state.original_price}</s></span>
+        </div>
+      :
+        <div>
+          <span>${this.state.original_price}</span>
+          {' '}
+          <em>(Other Styles May Be On Sale!)</em>
+        </div>
+    )
   }
 
   render() {
@@ -221,7 +240,7 @@ export default class Product extends React.Component {
             {this.state.name}
           </div>
           <div>
-            ${this.state.default_price}
+            {this.salePriceMode()}
           </div>
           <div>
             {this.state.avgStars ?
