@@ -164,38 +164,42 @@ export default class Product extends React.Component {
               COMPARING
             </h3>
             <table className='modalStyle'>
-              <tr>
-                <th>{this.state.name}</th>
-                <th></th>
-                <th>{this.state.currentProductName}</th>
-              </tr>
-              {this.state.features.map((relatedFeature, key) => {
-                if(relatedFeature.value !== null) {
-                  return (
+              <thead>
+                <tr>
+                  <th>{this.state.name}</th>
+                  <th></th>
+                  <th>{this.state.currentProductName}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.features.map((relatedFeature, key) => {
+                  if(relatedFeature.value !== null) {
+                    return (
+                      <tr key={key}>
+                        <td><Checkmark size='small'/></td>
+                        <td className='center'>
+                          {relatedFeature.feature} - {relatedFeature.value}
+                          <br/>
+                        </td>
+                        <td></td>
+                      </tr>
+                    )
+                  }
+                })}
+                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
+                {this.state.currentProductFeatures
+                ? this.state.currentProductFeatures.map((currentProdFeature, key) => (
                     <tr key={key}>
-                      <td><Checkmark size='small'/></td>
+                      <td></td>
                       <td className='center'>
-                        {relatedFeature.feature} - {relatedFeature.value}
+                        {currentProdFeature.feature} - {currentProdFeature.value}
                         <br/>
                       </td>
-                      <td></td>
+                      <td><Checkmark size='small'/></td>
                     </tr>
-                  )
-                }
-              })}
-              {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-              {this.state.currentProductFeatures
-              ? this.state.currentProductFeatures.map((currentProdFeature, key) => (
-                  <tr key={key}>
-                    <td></td>
-                    <td className='center'>
-                      {currentProdFeature.feature} - {currentProdFeature.value}
-                      <br/>
-                    </td>
-                    <td><Checkmark size='small'/></td>
-                  </tr>
-              ))
-              : null}
+                ))
+                : null}
+              </tbody>
             </table>
             <button onClick={this.handleModal}>Back</button>
           </Modal>
