@@ -4,6 +4,17 @@ import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
 import ReactStars from 'react-stars'
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 export default class Product extends React.Component {
   constructor(props) {
     super(props);
@@ -118,29 +129,41 @@ export default class Product extends React.Component {
         {/* ** Add conditional rendering if img isn't available */}
         <div id="modalContainer">
           <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
-          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal'>
+          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
             <h3>
               COMPARING
             </h3>
-            <h4>
-              {this.state.name}
-            </h4>
-              <div>
-                {this.state.features.map((feature, key) => (
-                  <div key={key}>
-                    <span>
-                      <Checkmark size='small'/>
+            <table className='modalStyle'>
+              <tr>
+                <th>{this.state.name}</th>
+                <th></th>
+                <th>{this.state.currentProductName}</th>
+              </tr>
+              <tr>
+                <td>{/*<Checkmark size='small'/> */}</td>
+                  {this.state.features.map((feature, key) => (
+                    <div key={key}>
+                      {feature.feature} -
                       {feature.value}
-                      {feature.feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            <h4>
-              {this.state.currentProductName}
-            </h4>
+                      <br/>
+                    </div>
+                  ))}
+                  {this.state.currentProductFeatures
+                  ? this.state.currentProductFeatures.map((feature, key) => (
+                    <div key={key}>
+                      {feature.feature} -
+                      {feature.value}
+                      <br/>
+                    </div>
+                  ))
+                  : null}
+                <td>{/*<Checkmark size='small'/> */}</td>
+              </tr>
+            </table>
+            {/*
               <div>
                 {/* conditional render in order to wait for state to be set to currentProductFeatures */}
+{/*
                 {this.state.currentProductFeatures
                   ? this.state.currentProductFeatures.map((feature, key) => (
                     <div key={key}>
@@ -152,7 +175,7 @@ export default class Product extends React.Component {
                     </div>
                   ))
                   : null}
-              </div>
+              </div> */}
             <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
