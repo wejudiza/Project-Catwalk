@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
+import RelatedStars from './RelatedStars.jsx'
 
 const customStyles = {
   content : {
@@ -35,12 +36,15 @@ export default class Product extends React.Component {
       currentProductId: '',
       currentProductName: '',
       currentProductFeatures: '',
+      // STAR REVIEWS
+      avgStars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
+    this.getReviews = this.getReviews.bind(this)
   }
 
   componentDidMount() {
@@ -81,7 +85,10 @@ export default class Product extends React.Component {
       })
       .then(() => {
         this.getStyles(this.props.productId);
-      });
+      })
+      .then(() => {
+        this.getReviews(this.props.productId);
+      })
   }
 
   // ** GET STARS FROM DIRKS WIDGET
@@ -117,6 +124,30 @@ export default class Product extends React.Component {
           currentProductFeatures: results.data.features,
         });
       });
+  }
+
+  getReviews(productId) {
+    axios.get('api/reviews', {
+      params: {
+        product_id: productId,
+      }
+    })
+      .then((rawData) => {
+        // console.log(rawData.data.results)
+        let arrOfReviews = rawData.data.results
+        let totalRating = 0;
+        arrOfReviews.forEach((review) => {
+          totalRating += review.rating;
+        });
+        // console.log('totalRating', totalRating)
+        // console.log('arrOfReviews.length', arrOfReviews.length)
+        this.setState({
+          avgStars: totalRating/ arrOfReviews.length
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   render() {
@@ -188,7 +219,11 @@ export default class Product extends React.Component {
           ${this.state.default_price}
         </div>
         <div>
-          <ReactStars edit={false}/>
+          {this.state.avgStars ?
+            <RelatedStars avgStars={this.state.avgStars}/>
+            :
+            <RelatedStars avgStars={0}/>
+          }
         </div>
       </div>
     );
