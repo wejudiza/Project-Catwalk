@@ -53,6 +53,7 @@ export default class ImageGallery extends React.Component {
         </div>
         <i class="fas fa-arrow-right" id="rightArrow"></i>
         <i class="fas fa-arrow-left" id="leftArrow"></i>
+        <i class="fas fa-expand" id="expand"></i>
       </div>
     )
   }
