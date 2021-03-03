@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
+import RelatedStars from './RelatedStars.jsx'
 
 const customStyles = {
   content : {
@@ -36,7 +37,7 @@ export default class Product extends React.Component {
       currentProductName: '',
       currentProductFeatures: '',
       // STAR REVIEWS
-      stars: 0,
+      avgStars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStars = this.getStars.bind(this);
@@ -154,9 +155,9 @@ export default class Product extends React.Component {
         // this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
         // this.props.getNumForRating(numForRating);
         this.setState({
-          stars: totalRating/ arrOfReviews.length
+          avgStars: totalRating/ arrOfReviews.length
         }, () => {
-          console.log('stars', this.state.stars)
+          console.log('stars', this.state.avgStars)
         })
       })
       .catch((err) => {
@@ -233,7 +234,11 @@ export default class Product extends React.Component {
           ${this.state.default_price}
         </div>
         <div>
-          <ReactStars edit={false}/>
+          {this.state.avgStars ?
+            <RelatedStars avgStars={this.state.avgStars}/>
+            :
+            <RelatedStars avgStars={0}/>
+          }
         </div>
       </div>
     );
