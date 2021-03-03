@@ -18,7 +18,7 @@ class RatingBreakdown extends React.Component {
           <StarRating rating={this.props.averageRating}/>
         </h1>
         <p>{this.props.percentageOfRecommend} of reviews recommend this product</p>
-        <p>
+        <div>
           <u>5 stars</u>
           <Status completed={this.props.numForRating['5']/5*100 || 0}/>
           <u>4 stars</u>
@@ -29,7 +29,7 @@ class RatingBreakdown extends React.Component {
           <Status completed={this.props.numForRating['2']/5*100 || 0}/>
           <u>1 stars</u>
           <Status completed={this.props.numForRating['1']/5*100 || 0}/>
-        </p>
+        </div>
       </div>
     );
   }
