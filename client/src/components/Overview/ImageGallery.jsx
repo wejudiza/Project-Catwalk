@@ -49,7 +49,10 @@ export default class ImageGallery extends React.Component {
           <Images
           images={this.state.thumbnails}
           onImageClick={this.onImageClick} />
+          <i class="fas fa-chevron-down" id="downArrow"></i>
         </div>
+        <i class="fas fa-arrow-right" id="rightArrow"></i>
+        <i class="fas fa-arrow-left" id="leftArrow"></i>
       </div>
     )
   }

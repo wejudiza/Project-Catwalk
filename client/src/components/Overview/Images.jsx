@@ -2,7 +2,7 @@ import React from 'react';
 
 const Images = (props) => {
   return (
-    <div>
+    <div className="thumbnailContainer">
       {props.images.map((image, index) => {
         return (
           <img
