@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import StarRating from '../reviews/StarRating';
 
 export default class ProductInfo extends React.Component {
   constructor(props) {
@@ -29,13 +30,11 @@ export default class ProductInfo extends React.Component {
     return (
       <div>
         {/* {console.log('this.props.product: ', this.props.product)} */}
-        PRODUCT INFO
-        <br />
-        put star review here
+        <StarRating rating={this.props.rating} />
         <br />
         <span>{this.props.product.category}</span>
         <br />
-        <span>{this.props.product.name}</span>
+        <span><b>{this.props.product.name}</b></span>
         <br />
         <span>{this.props.product.slogan}</span>
         <br />

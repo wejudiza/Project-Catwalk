@@ -5,31 +5,39 @@ export default class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: '',
-      sku: 0,
+      size: 'Select Size',
       quantity: 0,
+      skus: [],
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
+    this.onAddToCartClick = this.onAddToCartClick.bind(this);
   }
 
   handleSizeChange(e) {
-    const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
-    this.setState({
-      size: e.target.value,
-      sku: skuNum,
-      quantity: this.props.skus[skuNum].quantity,
-    });
+    if (e.target.value === 'Select Size') {
+      this.setState({
+        size: e.target.value,
+      })
+    } else {
+      const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
+      this.setState({
+        size: e.target.value,
+        quantity: this.props.skus[skuNum].quantity,
+      });
+    }
   }
 
-  onAddToCartClick() {
+  onAddToCartClick(e) {
+    if (this.state.size === 'Select Size') {
 
+    }
   }
 
   selectedSizeMode() {
     var options = [...Array(16).keys()];
     options.shift();
-    if (this.state.size) {
+    if (this.state.size !== 'Select Size') {
       if (this.state.quantity < 15) {
         options = [...Array(this.state.quantity + 1).keys()];
         options.shift();
@@ -49,12 +57,20 @@ export default class AddToCart extends React.Component {
     )
   }
 
+  // cartMode() {
+  //   if (this.state.size === 'Select Size') {
+  //     return (
+
+  //     )
+  //   }
+  // }
+
   render() {
     return (
       <div>
         <br />
         <select onChange={this.handleSizeChange}>
-          <option value="default">Select Size</option>
+          <option value={this.value}>Select Size</option>
           {Object.keys(this.props.skus).map((sku, index) => (
             <option name={sku} key={index}>
               {this.props.skus[sku].size}
@@ -63,7 +79,7 @@ export default class AddToCart extends React.Component {
         </select>
         {this.selectedSizeMode()}
         <br />
-        <button type="button" id="cart ">Add to Cart</button>
+        <button type="button" id="cart">Add to Cart</button>
       </div>
     )
   }

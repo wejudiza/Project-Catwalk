@@ -15,29 +15,30 @@ class App extends React.Component {
   }
 
   getCurrentProductId(product_id) {
-    console.log('entering getCurrentProductId')
-    console.log('product_id', product_id)
     this.setState({
       currentProduct: product_id,
-    }, ()=> {
-      console.log('this.state', this.state)
     });
   }
 
   getRating(rating) {
     this.setState({
       ratingForCurrentProduct: rating,
-    }, ()=> {console.log(this.state.ratingForCurrentProduct)});
+    });
   }
 
   render() {
     return (
       <div>
         <div id="products">
-          <Overview currentProduct={this.state.currentProduct} />
+          <Overview
+            rating={this.state.ratingForCurrentProduct}
+            currentProduct={this.state.currentProduct}
+          />
         </div>
         <div id="relatedItems">
-          <RelatedItems currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId} />
+          <RelatedItems
+            currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId}
+          />
         </div>
         <div id="reviews">
           <Reviews
