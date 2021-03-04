@@ -12,18 +12,23 @@ export default class OutfitsList extends React.Component {
   }
 
   addOutfit() {
-    axios.get(`/api/products/${this.props.currentProduct}`)
-      .then((results) => {
-        // console.log('results.data', results.data)
-        // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
-        this.state.outfitsList.push(results.data)
-        this.setState({
-          outfitsList: this.state.outfitsList
-        }/*, () => {
-          console.log('this.state', this.state)
-        }*/);
-      })
-      .catch((err) => console.log('addOutfit err: ', err));
+    const outfitFound = this.state.outfitsList.find((outfit) => (
+      // console.log('outfit.id', outfit.id),
+      outfit.id === this.props.currentProduct
+    ))
+    // console.log('outfitFound', outfitFound)
+    if (outfitFound === undefined) {
+      axios.get(`/api/products/${this.props.currentProduct}`)
+        .then((results) => {
+          // console.log('results.data', results.data)
+          // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
+          this.state.outfitsList.push(results.data)
+          this.setState({
+            outfitsList: this.state.outfitsList
+          });
+        })
+        .catch((err) => console.log('addOutfit err: ', err));
+    }
   }
 
 
