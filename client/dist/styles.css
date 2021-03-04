@@ -172,9 +172,8 @@ body {
   position: relative;
   box-shadow: 4px 4px 4px 2px grey;
   margin: 10px;
-  max-width: 300px;
-  height: 425px;
   width: 300px;
+  height: 425px;
   border-width: 2px;
   border-style: solid;
 }
@@ -229,6 +228,10 @@ body {
 #outfitsBtn {
   cursor: pointer;
   font-size: 20px;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 425px;
+  max-height: 425px;
 }
 
 #outfitsBtn:hover {

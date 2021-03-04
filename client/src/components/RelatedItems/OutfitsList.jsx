@@ -52,7 +52,7 @@ export default class OutfitsList extends React.Component {
         </h4>
         <div>
           {this.state.outfitsList.length === 0 ?
-            <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+            <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             :
             <div className='list'>
               {this.state.outfitsList.map((outfit, key) => {
@@ -63,7 +63,7 @@ export default class OutfitsList extends React.Component {
                   </div>
                 )
               })}
-              <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+              <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             </div>
           }
         </div>
