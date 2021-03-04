@@ -34,13 +34,13 @@ export default class OutfitsList extends React.Component {
 
   removeOutfit(outfitId) {
     console.log('outfitId', outfitId);
-    console.log('this.state.outfitsList', this.state.outfitsList);
+    console.log('outfitsList before', this.state.outfitsList);
     this.setState({
       outfitsList: this.state.outfitsList.filter(outfit => (
         outfitId !== outfit.id
       ))
     }, () => {
-      console.log('this.state.outfitsList', this.state.outfitsList);
+      console.log('outfitsList after', this.state.outfitsList);
     })
   }
 
