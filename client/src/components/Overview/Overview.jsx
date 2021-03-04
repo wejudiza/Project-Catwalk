@@ -88,7 +88,7 @@ export default class Overview extends React.Component {
     }
     return (
       <div>
-        This should not be seen
+        Loading Product...
       </div>
     )
   }
