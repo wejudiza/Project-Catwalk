@@ -17,18 +17,16 @@ export default class AddToCart extends React.Component {
   }
 
   handleSizeChange(e) {
-    if (e) {
+    if (!e) {
+      this.setState({
+        size: 'Select Size',
+        quantity: 0,
+      })
+    } else {
       this.setState({
         size: e.value,
         quantity: e.key,
-      })
-    // } else {
-    //   const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
-    //   this.setState({
-    //     size: e.value,
-    //     quantity: this.props.skus[skuNum].quantity,
-    //   });
-    // }
+      });
     }
   }
 
@@ -48,13 +46,19 @@ export default class AddToCart extends React.Component {
         options = [...Array(this.state.quantity + 1).keys()];
         options.shift();
       }
+      const quantities = options.map((quantity) => (
+        { value: quantity, label: quantity }
+      ));
       return (
-        <Select options={options} />
-      )
+        <Select
+          options={quantities}
+          value={quantities[0]}
+        />
+      );
     }
     return (
-      <Select isDisabled={true} options={['-']} />
-    )
+      <Select isDisabled placeholder="-" />
+    );
   }
 
   // changedSkuMode(prevProps) {
