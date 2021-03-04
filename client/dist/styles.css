@@ -258,6 +258,7 @@ body {
     "main sidebar"
     "footer footer"
   ;
+
   grid-column-gap: 30px;
   align-items: center;
 }
@@ -277,12 +278,12 @@ body {
 /* IMAGE GALLERY */
 #imageGalleryContainer {
   grid-area: main;
-  /* position: relative; */
+  position: relative;
   display: inline-block;
 }
 
 .displayPhoto {
-  position: relative;
+  position: block;
   object-fit: cover;
   width: 600px;
   height: 600px;
