@@ -85,6 +85,7 @@ export default class Outfit extends React.Component {
   render() {
     return (
       <div>
+        <button className="fas fa-times-circle" type="button" id="modalBtn"onClick={() => this.props.removeOutfit(this.props.outfit.id)}></button>
         {this.state.thumbnail_url ?
           <img className="cardImg" src={this.state.thumbnail_url}/>
           :

@@ -9,6 +9,7 @@ export default class OutfitsList extends React.Component {
       outfitsList: [],
     };
     this.addOutfit = this.addOutfit.bind(this);
+    this.removeOutfit = this.removeOutfit.bind(this);
   }
 
   addOutfit() {
@@ -31,13 +32,17 @@ export default class OutfitsList extends React.Component {
     }
   }
 
-  removeOutfit() {
-
-
-
+  removeOutfit(outfitId) {
+    console.log('outfitId', outfitId);
+    console.log('this.state.outfitsList', this.state.outfitsList);
+    this.setState({
+      outfitsList: this.state.outfitsList.filter(outfit => (
+        outfitId !== outfit.id
+      ))
+    }, () => {
+      console.log('this.state.outfitsList', this.state.outfitsList);
+    })
   }
-
-
 
   render() {
     return (
@@ -46,7 +51,6 @@ export default class OutfitsList extends React.Component {
         Outfits List
         </h4>
         <div>
-          {/* *** Include additional logic to check if that outfit ID has already been included in outfitsList */}
           {this.state.outfitsList.length === 0 ?
             <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             :
@@ -55,7 +59,7 @@ export default class OutfitsList extends React.Component {
                 return (
                   <div className='card' key={key}>
                     {/* {console.log('outfit', outfit)} */}
-                    <Outfit outfit={outfit}/>
+                    <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
                   </div>
                 )
               })}
