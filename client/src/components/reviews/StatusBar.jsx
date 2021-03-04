@@ -14,7 +14,7 @@ class Status extends React.Component {
         bgcolor='black'
         baseBgColor='grey'
         borderRadius='0'
-        width='20%'
+        width='100%'
         height='10px'
       />
     )

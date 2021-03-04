@@ -191,8 +191,8 @@ class ReviewsList extends React.Component {
 
   render() {
     return (
-      <div id="reviewList">
-        <h3>{this.state.arrOfReviews.length} reviews, sorted by
+      <div class="container-reviewList">
+        <h3>{this.state.arrOfReviews.length} reviews, &nbsp;sorted by&nbsp;&nbsp;
           <select onChange={this.handleSort}>
             <option>relevance</option>
             <option>newest</option>
@@ -201,7 +201,7 @@ class ReviewsList extends React.Component {
         </h3>
         <div>
           <Review arrOfReviews={this.state.arrOfReviews} getReviews={this.getReviews}/>
-          <button type="button">MORE REVIEWS</button>
+          <button type="button">MORE REVIEWS</button>&nbsp;&nbsp;&nbsp;
           <button type="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
           <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleAddReview}>
             <h1>Thank your for giving your feedback</h1>
