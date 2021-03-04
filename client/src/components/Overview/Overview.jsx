@@ -36,13 +36,13 @@ export default class Overview extends React.Component {
   render() {
     if (this.state.product.length !== 0) {
       return (
-        <div>
+        <div id="overviewContainer">
           <br />
           <ProductInfo rating={this.props.rating} product={this.state.product} />
           <StyleSelector currentProduct={this.state.product.id} />
-          <button type="button">Share on Facebook</button>
+          {/* <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
-          <button type="button">Share on Pinterest</button>
+          <button type="button">Share on Pinterest</button> */}
           <Description product={this.state.product}/>
         </div>
       );

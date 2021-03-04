@@ -28,7 +28,7 @@ export default class ProductInfo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="productInfo">
         {/* {console.log('this.props.product: ', this.props.product)} */}
         <StarRating rating={this.props.rating} />
         {' '}

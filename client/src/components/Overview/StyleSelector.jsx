@@ -64,7 +64,7 @@ export default class StyleSelector extends React.Component {
   render() {
     if (this.state.styles.length !== 0) {
       return (
-        <div>
+        <div className="styleSelector">
           {this.salePriceMode()}
           <br />
           <span><b>STYLE{' >'}</b></span>
@@ -82,7 +82,7 @@ export default class StyleSelector extends React.Component {
       )
     }
     return (
-      <div>
+      <div className="styleSelector">
         Loading Styles...
       </div>
     )
