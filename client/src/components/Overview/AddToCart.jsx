@@ -1,5 +1,6 @@
 import React from 'react';
 // import axios from 'axios';
+import Select from 'react-select'
 
 export default class AddToCart extends React.Component {
   constructor(props) {
@@ -44,19 +45,21 @@ export default class AddToCart extends React.Component {
       if (this.state.quantity < 15) {
         options = [...Array(this.state.quantity + 1).keys()];
         options.shift();
+        console.log('options: ', options);
+
       }
       return (
-        <select>
-          {options.map((option, index) => (
+        <Select options={options}>
+          {/* {options.map((option, index) => (
             <option value={option.value} key={index}>{option}</option>
-          ))}
-        </select>
+          ))} */}
+        </Select>
       )
     }
     return (
-      <select disabled="yes">
-        <option>-</option>
-      </select>
+      <Select isDisabled={true} options={['-']}>
+        {/* <option>-</option> */}
+      </Select>
     )
   }
 
@@ -77,21 +80,35 @@ export default class AddToCart extends React.Component {
   // }
 
   render() {
+    const sizes = Object.keys(this.props.skus).map((sku, index) => (
+      {'value': this.props.skus[sku].size, 'label': this.props.skus[sku].size}
+    ))
     return (
       <div>
         <br />
-        <select onChange={this.handleSizeChange}>
-          <option value={this.value}>Select Size</option>
-          {Object.keys(this.props.skus).map((sku, index) => (
-            <option name={sku} key={index}>
-              {this.props.skus[sku].size}
-            </option>
-          ))}
-        </select>
+        <Select options={sizes} placeholder={'Select Size'}>
+        </Select>
         {this.selectedSizeMode()}
         <br />
         <button type="button" id="cart">Add to Cart</button>
       </div>
     )
+    // return (
+    //   <div>
+    //     <br />
+    //     <Select onChange={this.handleSizeChange}>
+    //       <option value={this.value}>Select Size</option>
+    //       {Object.keys(this.props.skus).map((sku, index) => (
+    //         {value:{sku.size}, label: {sku,size}}
+    //         // <option name={sku} key={index}>
+    //         //   {this.props.skus[sku].size}
+    //         // </option>
+    //       ))}
+    //     </Select>
+    //     {this.selectedSizeMode()}
+    //     <br />
+    //     <button type="button" id="cart">Add to Cart</button>
+    //   </div>
+    // )
   }
 }
