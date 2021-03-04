@@ -40,17 +40,19 @@ export default class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div id="mainImage">
+      <div id="imageGalleryContainer">
         <img
         src={this.state.currentImageUrl}
         alt=""
         className="displayPhoto" />
+
         <div className="overlay">
           <Images
           images={this.state.thumbnails}
           onImageClick={this.onImageClick} />
           <i class="fas fa-chevron-down" id="downArrow"></i>
         </div>
+
         <i class="fas fa-arrow-right" id="rightArrow"></i>
         <i class="fas fa-arrow-left" id="leftArrow"></i>
         <i class="fas fa-expand" id="expand"></i>
