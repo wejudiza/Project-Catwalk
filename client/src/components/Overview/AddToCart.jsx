@@ -32,6 +32,7 @@ export default class AddToCart extends React.Component {
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
     this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
     // this.changedSkuMode = this.changedSkuMode.bind(this);
   }
 
@@ -82,6 +83,12 @@ export default class AddToCart extends React.Component {
     });
   }
 
+  closeMenu() {
+    this.setState({
+      menuIsOpen: false,
+    });
+  }
+
   selectedSizeMode() {
     const numbers = [...Array(16).keys()];
     numbers.shift();
@@ -127,6 +134,7 @@ export default class AddToCart extends React.Component {
           options={sizes}
           placeholder="Select Size"
           onFocus={this.openMenu}
+          onBlur={this.closeMenu}
           onChange={this.handleSizeChange}
           style={{ width: '50%' }}
         />
