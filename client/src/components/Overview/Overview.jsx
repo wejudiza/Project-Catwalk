@@ -67,7 +67,6 @@ export default class Overview extends React.Component {
 
   render() {
     if (this.state.product.length !== 0 && this.state.styles.length !== 0) {
-      {console.log('OV state: ', this.state)}
       return (
         <div id="overviewContainer">
           <br />
