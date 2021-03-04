@@ -30,9 +30,7 @@ export default class ProductsList extends React.Component {
           productsListId: results.data,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log('getProductsListId err: ', err));
   }
 
 

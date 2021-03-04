@@ -8,22 +8,27 @@ export default class OutfitsList extends React.Component {
     this.state = {
       outfitsList: [],
     };
-    this.getProduct = this.getProduct.bind(this);
+    this.getProductInfo = this.getProductInfo.bind(this);
   }
 
-  getProduct() {
+  getProductInfo() {
     axios.get(`/api/products/${this.props.currentProduct}`)
       .then((results) => {
-        console.log('results.data', results.data)
+        // console.log('results.data', results.data)
         this.state.outfitsList.push(results.data)
         this.setState({
           outfitsList: this.state.outfitsList
-        }, () => {
+        }/*, () => {
           console.log('this.state', this.state)
-        });
+        }*/);
       })
-      .catch((err) => console.log('getProduct err: ', err));
+      .catch((err) => console.log('getProductInfoInfo err: ', err));
   }
+
+  // doesOutfitExist() {
+
+
+  // }
 
 
   render() {
@@ -35,18 +40,18 @@ export default class OutfitsList extends React.Component {
         <div>
           {/* *** Include additional logic to check if that outfit ID has already been included in outfitsList */}
           {this.state.outfitsList.length === 0 ?
-            <button className='card' id='outfitsBtn' onClick={this.getProduct}> "Click" to Add to Outfits </button>
+            <button className='card' id='outfitsBtn' onClick={this.getProductInfo}> "Click" to Add to Outfits </button>
             :
             <div className='list'>
               {this.state.outfitsList.map((outfit, key) => {
                 return (
-                  <div className='card'>
-                    {console.log('outfit', outfit)}
+                  <div className='card' key={key}>
+                    {/* {console.log('outfit', outfit)} */}
                     <Outfit outfit={outfit}/>
                   </div>
                 )
               })}
-              <button className='card' id='outfitsBtn' onClick={this.getProduct}> "Click" to Add to Outfits </button>
+              <button className='card' id='outfitsBtn' onClick={this.getProductInfo}> "Click" to Add to Outfits </button>
             </div>
           }
         </div>

@@ -40,7 +40,7 @@ export default class Product extends React.Component {
       avgStars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
-    this.getStars = this.getStars.bind(this);
+    // this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
@@ -81,9 +81,9 @@ export default class Product extends React.Component {
       .then(() => {
         this.getDisplayedProductInfo(this.props.currentProduct);
       })
-      .then(() => {
-        this.getStars(this.props.productId);
-      })
+      // .then(() => {
+      //   this.getStars(this.props.productId);
+      // })
       .then(() => {
         this.getStyles(this.props.productId);
       })
@@ -92,18 +92,18 @@ export default class Product extends React.Component {
       })
   }
 
-  // ** GET STARS FROM DIRKS WIDGET
-  getStars(productId) {
-    axios.get(`api/reviews/meta/${productId}`)
-      .then((results) => {
-        this.setState({
-          ratings: results.ratings
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // ** GET RID OF
+  // getStars(productId) {
+  //   axios.get(`api/reviews/meta/${productId}`)
+  //     .then((results) => {
+  //       this.setState({
+  //         ratings: results.ratings
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
@@ -114,7 +114,8 @@ export default class Product extends React.Component {
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price,
         });
-      });
+      })
+      .catch((err) => console.log('getStyles err: ', err));
   }
 
   getDisplayedProductInfo(currentProductId) {
@@ -124,7 +125,8 @@ export default class Product extends React.Component {
           currentProductName: results.data.name,
           currentProductFeatures: results.data.features,
         });
-      });
+      })
+      .catch((err) => console.log('getDisplayedProductInfo err: ', err));
   }
 
   getReviews(productId) {
@@ -146,9 +148,7 @@ export default class Product extends React.Component {
           avgStars: totalRating/ arrOfReviews.length
         })
       })
-      .catch((err) => {
-        console.log(err);
-      })
+      .catch((err) => console.log('getReviews err: ', err));
   }
 
   // SALE PRICE STRIKETHOUGH
