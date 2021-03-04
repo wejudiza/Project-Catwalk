@@ -34,13 +34,10 @@ export default class ProductInfo extends React.Component {
         {' '}
         <a href="#reviews" style={{ color: 'gray' }}>Read all reviews</a>
         <br />
+        <br />
         <span>{this.props.product.category}</span>
         <br />
-        <span><b>{this.props.product.name}</b></span>
-        {/* <br />
-        <span>{this.props.product.slogan}</span>
-        <br />
-        <p>{this.props.product.description}</p> */}
+        <span style={{ fontSize: '45px' }}><b>{this.props.product.name}</b></span>
       </div>
     )
   }

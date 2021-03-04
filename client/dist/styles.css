@@ -252,7 +252,7 @@ body {
 #overviewContainer {
   display: grid;
   grid-template-columns: [col-start] 2fr [col-2] 1fr;
-  grid-template-rows: [row-start] 1fr [row-2] 2fr [row-end] 1fr;
+  grid-template-rows: [row-start] 1fr [row-2] 3fr [row-end] 1fr;
   grid-template-areas:
     "main header"
     "main sidebar"

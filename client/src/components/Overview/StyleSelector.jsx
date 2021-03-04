@@ -48,15 +48,15 @@ export default class StyleSelector extends React.Component {
     if (this.props.currentStyle.sale_price) {
       return (
         <div>
-          <span style={{ color: 'red' }}>{this.props.currentStyle.sale_price}</span>
+          <span style={{ color: 'red' }}>{`$${this.props.currentStyle.sale_price}`}</span>
           {'  '}
-          <span><s>{this.props.currentStyle.original_price}</s></span>
+          <span><s>{`$${this.props.currentStyle.original_price}`}</s></span>
         </div>
       )
     }
     return (
       <div>
-        <span>{this.props.currentStyle.original_price}</span>
+        <span>{`$${this.props.currentStyle.original_price}`}</span>
       </div>
     )
   }
