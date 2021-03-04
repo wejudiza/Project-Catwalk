@@ -231,7 +231,8 @@ export default class Product extends React.Component {
             </div>
             :
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+              {/* <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/> */}
+              <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE</div>
             </div>
           }
         </div>

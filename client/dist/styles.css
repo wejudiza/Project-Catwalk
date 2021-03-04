@@ -45,6 +45,13 @@
   /* max-height: 200px; */
 }
 
+.cardImgNone {
+  text-align: center;
+  padding: 100px 0;
+  font-size: 36px;
+
+}
+
 .cardText {
   position: absolute;
   bottom: 0px;

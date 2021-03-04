@@ -31,6 +31,12 @@ export default class OutfitsList extends React.Component {
     }
   }
 
+  removeOutfit() {
+
+
+
+  }
+
 
 
   render() {

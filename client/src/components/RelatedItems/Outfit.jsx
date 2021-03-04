@@ -88,7 +88,7 @@ export default class Outfit extends React.Component {
         {this.state.thumbnail_url ?
           <img className="cardImg" src={this.state.thumbnail_url}/>
           :
-          <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+          <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE </div>
         }
         <div className='cardText'>
           <div>
