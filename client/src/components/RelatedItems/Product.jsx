@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
-import ReactStars from 'react-stars';
 import RelatedStars from './RelatedStars.jsx'
 
 const customStyles = {
@@ -40,7 +39,7 @@ export default class Product extends React.Component {
       avgStars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
-    this.getStars = this.getStars.bind(this);
+    // this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
@@ -81,9 +80,9 @@ export default class Product extends React.Component {
       .then(() => {
         this.getDisplayedProductInfo(this.props.currentProduct);
       })
-      .then(() => {
-        this.getStars(this.props.productId);
-      })
+      // .then(() => {
+      //   this.getStars(this.props.productId);
+      // })
       .then(() => {
         this.getStyles(this.props.productId);
       })
@@ -92,29 +91,30 @@ export default class Product extends React.Component {
       })
   }
 
-  // ** GET STARS FROM DIRKS WIDGET
-  getStars(productId) {
-    axios.get(`api/reviews/meta/${productId}`)
-      .then((results) => {
-        this.setState({
-          ratings: results.ratings
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // ** GET RID OF
+  // getStars(productId) {
+  //   axios.get(`api/reviews/meta/${productId}`)
+  //     .then((results) => {
+  //       this.setState({
+  //         ratings: results.ratings
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
       .then((results) => {
-        console.log('style results', results.data);
+        // console.log('style results', results.data);
         this.setState({
           thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price,
         });
-      });
+      })
+      .catch((err) => console.log('getStyles err: ', err));
   }
 
   getDisplayedProductInfo(currentProductId) {
@@ -124,7 +124,8 @@ export default class Product extends React.Component {
           currentProductName: results.data.name,
           currentProductFeatures: results.data.features,
         });
-      });
+      })
+      .catch((err) => console.log('getDisplayedProductInfo err: ', err));
   }
 
   getReviews(productId) {
@@ -146,9 +147,7 @@ export default class Product extends React.Component {
           avgStars: totalRating/ arrOfReviews.length
         })
       })
-      .catch((err) => {
-        console.log(err);
-      })
+      .catch((err) => console.log('getReviews err: ', err));
   }
 
   // SALE PRICE STRIKETHOUGH
@@ -177,7 +176,7 @@ export default class Product extends React.Component {
     return (
       <div>
         <div>
-          <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
+          <button className="fas fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
           <Modal id="modalContainer" isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
             <h3>
               COMPARING
@@ -207,7 +206,9 @@ export default class Product extends React.Component {
                 })}
                 {/* conditional render in order to wait for state to be set to currentProductFeatures */}
                 {this.state.currentProductFeatures
-                ? this.state.currentProductFeatures.map((currentProdFeature, key) => (
+                ? this.state.currentProductFeatures.map((currentProdFeature, key) => {
+                  if(currentProdFeature.value !== null) {
+                    return (
                     <tr key={key}>
                       <td></td>
                       <td className='center'>
@@ -216,7 +217,9 @@ export default class Product extends React.Component {
                       </td>
                       <td><Checkmark size='small'/></td>
                     </tr>
-                ))
+                    )
+                  }
+                })
                 : null}
               </tbody>
             </table>
@@ -228,7 +231,8 @@ export default class Product extends React.Component {
             </div>
             :
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+              {/* <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/> */}
+              <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE</div>
             </div>
           }
         </div>

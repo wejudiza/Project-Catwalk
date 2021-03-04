@@ -18,7 +18,7 @@
 
 
 /* RELATED ITEMS */
-#productsList {
+.list {
   display: flex;
   align-items: flex-end;
 }
@@ -29,19 +29,27 @@
   box-shadow: 4px 4px 4px 2px grey;
   margin: 10px;
   max-width: 300px;
-  height: 500px;
+  height: 425px;
+  width: 300px;
   border-width: 2px;
+  border-style: solid;
 }
 
 .cardImg {
   /* position: absolute; */
-  /* width: 200px;
-  height: 200px; */
   object-fit: cover;
+  object-position: 50% 100%;
   width: 300px;
-  height: 425px;
+  height: 350px;
   /* max-width: 100%; */
   /* max-height: 200px; */
+}
+
+.cardImgNone {
+  text-align: center;
+  padding: 100px 0;
+  font-size: 36px;
+
 }
 
 .cardText {
@@ -66,12 +74,24 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  text-shadow: 0 0 3px #000;
 }
 
 #modal {
 
 }
 
+/* ADD TO OUTFITS LIST BUTTON */
+#outfitsBtn {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#outfitsBtn:hover {
+  background-color: grey;
+}
+
+/* RELATED ITEMS POSITIONING */
 .center {
   /* text-align: center;
   margin: auto;
