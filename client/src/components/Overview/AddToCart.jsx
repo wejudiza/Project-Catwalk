@@ -24,12 +24,14 @@ export default class AddToCart extends React.Component {
       selectedQ: 0,
       showError: false,
       showModal: false,
+      menuIsOpen: false,
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
+    this.openMenu = this.openMenu.bind(this);
     // this.changedSkuMode = this.changedSkuMode.bind(this);
   }
 
@@ -44,6 +46,7 @@ export default class AddToCart extends React.Component {
         size: e.value,
         quantity: e.key,
         showError: false,
+        menuIsOpen: false,
       });
     }
   }
@@ -61,16 +64,22 @@ export default class AddToCart extends React.Component {
   }
 
   onAddToCartClick() {
-    console.log('clicked!')
     if (this.state.size === 'Select Size') {
       this.setState({
         showError: true,
+        menuIsOpen: true,
       });
     } else {
       this.setState({
         showModal: true,
       });
     }
+  }
+
+  openMenu() {
+    this.setState({
+      menuIsOpen: true,
+    });
   }
 
   selectedSizeMode() {
@@ -105,16 +114,8 @@ export default class AddToCart extends React.Component {
   //   }
   // }
 
-  // cartMode() {
-  //   if (this.state.size === 'Select Size') {
-  //     return (
-
-  //     )
-  //   }
-  // }
-
   render() {
-    const sizes = Object.keys(this.props.skus).map((sku, index) => (
+    const sizes = Object.keys(this.props.skus).map((sku) => (
       { value: this.props.skus[sku].size, label: this.props.skus[sku].size, key: this.props.skus[sku].quantity }
     ));
     return (
@@ -122,8 +123,10 @@ export default class AddToCart extends React.Component {
         <br />
         {this.state.showError && <span style={{ color: 'red' }}>Please select size</span>}
         <Select
+          menuIsOpen={this.state.menuIsOpen}
           options={sizes}
           placeholder="Select Size"
+          onFocus={this.openMenu}
           onChange={this.handleSizeChange}
           style={{ width: '50%' }}
         />
