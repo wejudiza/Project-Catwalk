@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
 import Select from 'react-select';
 import ReactModal from 'react-modal';
 
@@ -90,9 +89,9 @@ export default class AddToCart extends React.Component {
   }
 
   selectedSizeMode() {
-    const numbers = [...Array(16).keys()];
-    numbers.shift();
     if (this.state.size !== 'Select Size') {
+      let numbers = [...Array(16).keys()];
+      numbers.shift();
       if (this.state.quantity < 15) {
         numbers = [...Array(this.state.quantity + 1).keys()];
         numbers.shift();
@@ -113,14 +112,6 @@ export default class AddToCart extends React.Component {
     );
   }
 
-  // changedSkuMode(prevProps) {
-  //   if (this.props.skus !== prevProps) {
-  //     this.setState({
-  //       size: 'Select Size',
-  //     })
-  //   }
-  // }
-
   render() {
     const sizes = Object.keys(this.props.skus).map((sku) => (
       { value: this.props.skus[sku].size, label: this.props.skus[sku].size, key: this.props.skus[sku].quantity }
@@ -134,7 +125,8 @@ export default class AddToCart extends React.Component {
           options={sizes}
           placeholder="Select Size"
           onFocus={this.openMenu}
-          onBlur={this.closeMenu}
+          autoBlur
+          // onBlur={this.closeMenu}
           onChange={this.handleSizeChange}
           style={{ width: '50%' }}
         />
@@ -165,22 +157,5 @@ export default class AddToCart extends React.Component {
         )}
       </div>
     );
-    // return (
-    //   <div>
-    //     <br />
-    //     <Select onChange={this.handleSizeChange}>
-    //       <option value={this.value}>Select Size</option>
-    //       {Object.keys(this.props.skus).map((sku, index) => (
-    //         {value:{sku.size}, label: {sku,size}}
-    //         // <option name={sku} key={index}>
-    //         //   {this.props.skus[sku].size}
-    //         // </option>
-    //       ))}
-    //     </Select>
-    //     {this.selectedSizeMode()}
-    //     <br />
-    //     <button type="button" id="cart">Add to Cart</button>
-    //   </div>
-    // )
   }
 }

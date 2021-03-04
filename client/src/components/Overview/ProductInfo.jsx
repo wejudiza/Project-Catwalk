@@ -32,7 +32,7 @@ export default class ProductInfo extends React.Component {
         {/* {console.log('this.props.product: ', this.props.product)} */}
         <StarRating rating={this.props.rating} />
         {' '}
-        <a href="#reviews" id="reviewLink">Read all reviews</a>
+        <a href="#reviews" style={{ color: 'gray' }}>Read all reviews</a>
         <br />
         <span>{this.props.product.category}</span>
         <br />
