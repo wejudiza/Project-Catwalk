@@ -249,6 +249,85 @@ body {
 
 
 /* OVERVIEW */
+#overviewContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "main main header"
+    "main main sidebar"
+    "main main sidebar"
+    ". . ."
+    "footer footer footer"
+  ;
+}
+
+#productInfo {
+  grid-area: header;
+}
+
+.styleSelector {
+  grid-area: sidebar;
+}
+
+#description {
+  grid-area: footer;
+}
+
+/* IMAGE GALLERY */
+#imageGalleryContainer {
+  grid-area: main;
+  position: relative;
+  display: inline-block;
+}
+
+.displayPhoto {
+  position: relative;
+  object-fit: cover;
+  width: 500px;
+  height: 500px;
+}
+
+.overlay {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+}
+
+/* #downArrow {
+  left: 20%;
+} */
+
+.thumbnails {
+  object-fit: cover;
+  height: 75px;
+  width: 75px;
+  padding: 5px;
+}
+
+.thumbnailContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#rightArrow {
+  position: absolute;
+  top: 50%;
+  left: 95%;
+}
+
+#leftArrow {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+}
+
+#expand {
+  position: absolute;
+  top: 3%;
+  left: 95%;
+}
+
 #styles {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -261,8 +340,7 @@ body {
   width: 100px;
 }
 
-.displayPhoto {
-  object-fit: cover;
-  width: 600px;
-  height: 600px;
+#reviewLink {
+  color: gray;
 }
+

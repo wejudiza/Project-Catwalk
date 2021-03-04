@@ -28,17 +28,19 @@ export default class ProductInfo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="productInfo">
         {/* {console.log('this.props.product: ', this.props.product)} */}
         <StarRating rating={this.props.rating} />
+        {' '}
+        <a href="#reviews" id="reviewLink">Read all reviews</a>
         <br />
         <span>{this.props.product.category}</span>
         <br />
         <span><b>{this.props.product.name}</b></span>
-        <br />
+        {/* <br />
         <span>{this.props.product.slogan}</span>
         <br />
-        <p>{this.props.product.description}</p>
+        <p>{this.props.product.description}</p> */}
       </div>
     )
   }
