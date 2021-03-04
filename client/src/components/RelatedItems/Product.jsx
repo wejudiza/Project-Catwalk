@@ -206,7 +206,9 @@ export default class Product extends React.Component {
                 })}
                 {/* conditional render in order to wait for state to be set to currentProductFeatures */}
                 {this.state.currentProductFeatures
-                ? this.state.currentProductFeatures.map((currentProdFeature, key) => (
+                ? this.state.currentProductFeatures.map((currentProdFeature, key) => {
+                  if(currentProdFeature.value !== null) {
+                    return (
                     <tr key={key}>
                       <td></td>
                       <td className='center'>
@@ -215,7 +217,9 @@ export default class Product extends React.Component {
                       </td>
                       <td><Checkmark size='small'/></td>
                     </tr>
-                ))
+                    )
+                  }
+                })
                 : null}
               </tbody>
             </table>
