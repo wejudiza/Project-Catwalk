@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
 import Arrow from './Arrow.jsx';
+import { Carousel } from 'react-responsive-carousel';
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // need a loader
 
 export default class ProductsList extends React.Component {
   constructor(props) {
@@ -9,8 +11,11 @@ export default class ProductsList extends React.Component {
     this.state = {
       // currentProduct: this.props.currentProduct,
       productsListId: [],
+      currentProductIndex: 0
     };
     this.getProductsListId = this.getProductsListId.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
+    this.previousSlide = this.previousSlide.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +39,29 @@ export default class ProductsList extends React.Component {
       .catch((err) => console.log('getProductsListId err: ', err));
   }
 
+  previousSlide () {
+    // const lastIndex = imgUrls.length - 1;
+    // const { currentImageIndex } = this.state;
+    // const shouldResetIndex = currentImageIndex === 0;
+    // const index =  shouldResetIndex ? lastIndex : currentImageIndex - 1;
+
+    // this.setState({
+    //   currentImageIndex: index
+    // });
+  }
+
+  nextSlide () {
+    // const lastIndex = imgUrls.length - 1;
+    // const { currentImageIndex } = this.state;
+    // const shouldResetIndex = currentImageIndex === lastIndex;
+    // const index =  shouldResetIndex ? 0 : currentImageIndex + 1;
+
+    // this.setState({
+    //   currentImageIndex: index
+    // });
+  }
+
+
 
   // Map over a get request of the related items
   render() {
@@ -43,13 +71,16 @@ export default class ProductsList extends React.Component {
           Related Products
         </h4>
         <div className='list'>
-          <Arrow className='fas fa-caret-left slide-arrow left-arrow'/>
-          {this.state.productsListId.map((productId, key) => (
-            <div className="card" key={key}>
-              <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
-            </div>
-          ))}
-          <Arrow className='fas fa-caret-right slide-arrow right-arrow'/>
+          {/* <Carousel className='list' showThumbs={false}> */}
+            <Arrow className='fas fa-caret-left slide-arrow left-arrow'/>
+            {/* e.g if currentProductIndex is greater than 4, then map through productsListId from index 1 - 5 */}
+            {this.state.productsListId.map((productId, key) => (
+              <div className="card" key={key}>
+                <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
+              </div>
+            ))}
+            <Arrow className='fas fa-caret-right slide-arrow right-arrow'/>
+          {/* </Carousel> */}
         </div>
       </div>
     );
