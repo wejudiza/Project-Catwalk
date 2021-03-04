@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import ReactStars from 'react-stars';
 import OutfitStars from './OutfitStars.jsx';
 
 export default class Outfit extends React.Component {

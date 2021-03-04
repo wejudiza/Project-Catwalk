@@ -8,13 +8,14 @@ export default class OutfitsList extends React.Component {
     this.state = {
       outfitsList: [],
     };
-    this.getProductInfo = this.getProductInfo.bind(this);
+    this.addOutfit = this.addOutfit.bind(this);
   }
 
-  getProductInfo() {
+  addOutfit() {
     axios.get(`/api/products/${this.props.currentProduct}`)
       .then((results) => {
         // console.log('results.data', results.data)
+        // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
         this.state.outfitsList.push(results.data)
         this.setState({
           outfitsList: this.state.outfitsList
@@ -22,13 +23,9 @@ export default class OutfitsList extends React.Component {
           console.log('this.state', this.state)
         }*/);
       })
-      .catch((err) => console.log('getProductInfoInfo err: ', err));
+      .catch((err) => console.log('addOutfit err: ', err));
   }
 
-  // doesOutfitExist() {
-
-
-  // }
 
 
   render() {
@@ -40,7 +37,7 @@ export default class OutfitsList extends React.Component {
         <div>
           {/* *** Include additional logic to check if that outfit ID has already been included in outfitsList */}
           {this.state.outfitsList.length === 0 ?
-            <button className='card' id='outfitsBtn' onClick={this.getProductInfo}> "Click" to Add to Outfits </button>
+            <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             :
             <div className='list'>
               {this.state.outfitsList.map((outfit, key) => {
@@ -51,7 +48,7 @@ export default class OutfitsList extends React.Component {
                   </div>
                 )
               })}
-              <button className='card' id='outfitsBtn' onClick={this.getProductInfo}> "Click" to Add to Outfits </button>
+              <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             </div>
           }
         </div>

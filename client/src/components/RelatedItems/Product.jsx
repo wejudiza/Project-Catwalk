@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
-import ReactStars from 'react-stars';
 import RelatedStars from './RelatedStars.jsx'
 
 const customStyles = {
