@@ -10,26 +10,27 @@ export default class AddToCart extends React.Component {
       quantity: 0,
       skus: [],
     };
-    // this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.handleSizeChange = this.handleSizeChange.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
     // this.changedSkuMode = this.changedSkuMode.bind(this);
   }
 
-  // handleSizeChange(e) {
-  //   console.log('e.target: ', e)
-  //   if (e.target.value) {
-  //     this.setState({
-  //       size: e.value,
-  //     })
-  //   } else {
-  //     const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
-  //     this.setState({
-  //       size: e.target.value,
-  //       quantity: this.props.skus[skuNum].quantity,
-  //     }, () => console.log('cart state: ', state));
-  //   }
-  // }
+  handleSizeChange(e) {
+    if (e) {
+      this.setState({
+        size: e.value,
+        quantity: e.key,
+      })
+    // } else {
+    //   const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
+    //   this.setState({
+    //     size: e.value,
+    //     quantity: this.props.skus[skuNum].quantity,
+    //   });
+    // }
+    }
+  }
 
   onAddToCartClick(e) {
     if (this.state.size === 'Select Size') {
@@ -46,8 +47,6 @@ export default class AddToCart extends React.Component {
       if (this.state.quantity < 15) {
         options = [...Array(this.state.quantity + 1).keys()];
         options.shift();
-        console.log('options: ', options);
-
       }
       return (
         <Select options={options} />
@@ -76,7 +75,7 @@ export default class AddToCart extends React.Component {
 
   render() {
     const sizes = Object.keys(this.props.skus).map((sku, index) => (
-      {'value': this.props.skus[sku].size, 'label': this.props.skus[sku].size}
+      {'value': this.props.skus[sku].size, 'label': this.props.skus[sku].size, 'key': this.props.skus[sku].quantity,}
     ))
     return (
       <div>
