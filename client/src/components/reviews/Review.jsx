@@ -15,6 +15,21 @@ const customStyles = {
   }
 };
 
+const monthTranslate = {
+  '01': 'January',
+  '02': 'February',
+  '03': 'March',
+  '04': 'April',
+  '05': 'May',
+  '06': 'June',
+  '07': 'July',
+  '08': 'August',
+  '09': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December',
+};
+
 class Review extends React.Component {
   constructor(props) {
     super(props);
@@ -82,58 +97,75 @@ class Review extends React.Component {
           <button type="button" onClick={this.closeModal}>Back</button>
         </Modal>
         {this.props.arrOfReviews.map((review) => {
-          if (review.response === '' || !review.response) {
-            return (
-              <div key={review.review_id}>
-                <StarRating rating={review.rating} />
-                {review.reviewer_name}, {review.date}
-                <h3>
-                  {review.summary}
-                </h3>
-                <p>
-                  {review.body}
-                </p>
-                <ImgDisplay arrOfPhotos={review.photos} />
-                <div>
-                  Helpful?
-                  <span> </span>
-                  <u review_id={review.review_id} onClick={this.handleClickHelpful}>Yes</u>
-                  <span>({review.helpfulness})</span>
-                  <span> </span>
-                  <span>|</span>
-                  <span>  </span>
-                  <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
-                </div>
+          // if (review.response === '' || !review.response) {
+          return (
+            <div key={review.review_id}>
+              <StarRating rating={review.rating} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {review.reviewer_name}, &nbsp;&nbsp;&nbsp;
+              {`${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
+              <h3>
+                {review.summary}
+              </h3>
+              <p>
+                {review.body}
+              </p>
+              <ImgDisplay arrOfPhotos={review.photos} />
+              {(review.response === '' || !review.response) ?
+                null :
+                (
+                  <div>
+                    <p>Response:</p>
+                    <p>{review.response}</p>
+                  </div>
+                )
+              }
+              <div>
+                Helpful?
+                <span> </span>
+                <u review_id={review.review_id} onClick={this.handleClickHelpful}>Yes</u>
+                <span>({review.helpfulness})</span>
+                <span> </span>
+                <span>|</span>
+                <span>  </span>
+                <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
               </div>
-            )
-          } else {
-            return (
-              <div key={review.review_id}>
-                <StarRating rating={review.rating} />
-                {review.reviewer_name}, {review.date}
-                <h3>
-                  {review.summary}
-                </h3>
-                <p>
-                  {review.body}
-                </p>
-                <ImgDisplay arrOfPhotos={review.photos} />
-                <div>
-                  <p>Response:</p>
-                  <p>{review.response}</p>
-                </div>
-                <div>
-                  Helpful?
-                  <span> </span>
-                  <span>Yes({review.helpfulness})</span>
-                  <span> </span>
-                  <span>|</span>
-                  <span>  </span>
-                  <span>Report</span>
-                </div>
-              </div>
-            )
-          }
+              <hr width='90%' align='left' color='black' />
+              <br /><br />
+            </div>
+          )
+          // }
+          // else {
+          //   return (
+          //     <div key={review.review_id}>
+          //       <StarRating rating={review.rating} />
+          //       {review.reviewer_name}, &nbsp;&nbsp;&nbsp;
+          //       {`${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
+          //       <h3>
+          //         {review.summary}
+          //       </h3>
+          //       <p>
+          //         {review.body}
+          //       </p>
+          //       <ImgDisplay arrOfPhotos={review.photos} />
+          //       <div>
+          //         <p>Response:</p>
+          //         <p>{review.response}</p>
+          //       </div>
+          //       <div>
+          //         Helpful?
+          //         <span> </span>
+          //         <u review_id={review.review_id} onClick={this.handleClickHelpful}>Yes</u>
+          //         <span>({review.helpfulness})</span>
+          //         <span> </span>
+          //         <span>|</span>
+          //         <span>  </span>
+          //         <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
+          //       </div>
+          //       <hr width='50%' align='left' color='black' />
+          //       <br /><br />
+          //     </div>
+          //   )
+          // }
         })}
       </div>
     )

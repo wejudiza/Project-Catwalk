@@ -6,11 +6,44 @@ export default class OutfitsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      outfitsList: [],
     };
+    this.addOutfit = this.addOutfit.bind(this);
+    this.removeOutfit = this.removeOutfit.bind(this);
   }
 
-  // Map over a get request of the related items
+  addOutfit() {
+    const outfitFound = this.state.outfitsList.find((outfit) => (
+      // console.log('outfit.id', outfit.id),
+      outfit.id === this.props.currentProduct
+    ))
+    // console.log('outfitFound', outfitFound)
+    if (outfitFound === undefined) {
+      axios.get(`/api/products/${this.props.currentProduct}`)
+        .then((results) => {
+          // console.log('results.data', results.data)
+          // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
+          this.state.outfitsList.push(results.data)
+          this.setState({
+            outfitsList: this.state.outfitsList
+          });
+        })
+        .catch((err) => console.log('addOutfit err: ', err));
+    }
+  }
+
+  removeOutfit(outfitId) {
+    console.log('outfitId', outfitId);
+    console.log('this.state.outfitsList', this.state.outfitsList);
+    this.setState({
+      outfitsList: this.state.outfitsList.filter(outfit => (
+        outfitId !== outfit.id
+      ))
+    }, () => {
+      console.log('this.state.outfitsList', this.state.outfitsList);
+    })
+  }
+
   render() {
     return (
       <div>
@@ -18,7 +51,21 @@ export default class OutfitsList extends React.Component {
         Outfits List
         </h4>
         <div>
-          <Outfit />
+          {this.state.outfitsList.length === 0 ?
+            <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+            :
+            <div className='list'>
+              {this.state.outfitsList.map((outfit, key) => {
+                return (
+                  <div className='card' key={key}>
+                    {/* {console.log('outfit', outfit)} */}
+                    <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
+                  </div>
+                )
+              })}
+              <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+            </div>
+          }
         </div>
       </div>
     );

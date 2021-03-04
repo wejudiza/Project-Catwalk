@@ -30,9 +30,7 @@ export default class ProductsList extends React.Component {
           productsListId: results.data,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log('getProductsListId err: ', err));
   }
 
 
@@ -43,9 +41,9 @@ export default class ProductsList extends React.Component {
         <h4>
           Related Products
         </h4>
-        <div id="productsList">
+        <div className='list'>
           {this.state.productsListId.map((productId, key) => (
-            <div id="relatedProd" key={key}>
+            <div className="card" key={key}>
               <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
             </div>
           ))}

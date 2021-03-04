@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
-import ReactStars from 'react-stars';
 import RelatedStars from './RelatedStars.jsx'
 
 const customStyles = {
@@ -40,11 +39,12 @@ export default class Product extends React.Component {
       avgStars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
-    this.getStars = this.getStars.bind(this);
+    // this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
-    this.getReviews = this.getReviews.bind(this)
+    this.getReviews = this.getReviews.bind(this);
+    this.salePriceMode = this.salePriceMode.bind(this);
   }
 
   componentDidMount() {
@@ -80,9 +80,9 @@ export default class Product extends React.Component {
       .then(() => {
         this.getDisplayedProductInfo(this.props.currentProduct);
       })
-      .then(() => {
-        this.getStars(this.props.productId);
-      })
+      // .then(() => {
+      //   this.getStars(this.props.productId);
+      // })
       .then(() => {
         this.getStyles(this.props.productId);
       })
@@ -91,18 +91,18 @@ export default class Product extends React.Component {
       })
   }
 
-  // ** GET STARS FROM DIRKS WIDGET
-  getStars(productId) {
-    axios.get(`api/reviews/meta/${productId}`)
-      .then((results) => {
-        this.setState({
-          ratings: results.ratings
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // ** GET RID OF
+  // getStars(productId) {
+  //   axios.get(`api/reviews/meta/${productId}`)
+  //     .then((results) => {
+  //       this.setState({
+  //         ratings: results.ratings
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
@@ -113,7 +113,8 @@ export default class Product extends React.Component {
           original_price: results.data.results[0].original_price,
           sale_price: results.data.results[0].sale_price,
         });
-      });
+      })
+      .catch((err) => console.log('getStyles err: ', err));
   }
 
   getDisplayedProductInfo(currentProductId) {
@@ -123,7 +124,8 @@ export default class Product extends React.Component {
           currentProductName: results.data.name,
           currentProductFeatures: results.data.features,
         });
-      });
+      })
+      .catch((err) => console.log('getDisplayedProductInfo err: ', err));
   }
 
   getReviews(productId) {
@@ -145,9 +147,25 @@ export default class Product extends React.Component {
           avgStars: totalRating/ arrOfReviews.length
         })
       })
-      .catch((err) => {
-        console.log(err);
-      })
+      .catch((err) => console.log('getReviews err: ', err));
+  }
+
+  // SALE PRICE STRIKETHOUGH
+  salePriceMode() {
+    return(
+      this.state.sale_price ?
+        <div>
+          <span style={{ color: 'red' }}>${this.state.sale_price}</span>
+          {'  '}
+          <span><s>${this.state.original_price}</s></span>
+        </div>
+      :
+        <div>
+          <span>${this.state.original_price}</span>
+          {' '}
+          <em>(Other Styles May Be On Sale!)</em>
+        </div>
+    )
   }
 
   render() {
@@ -157,73 +175,84 @@ export default class Product extends React.Component {
     // } = this.props;
     return (
       <div>
-        <div id="modalContainer">
-          <button className="far fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
-          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
+        <div>
+          <button className="fas fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
+          <Modal id="modalContainer" isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
             <h3>
               COMPARING
             </h3>
             <table className='modalStyle'>
-              <tr>
-                <th>{this.state.name}</th>
-                <th></th>
-                <th>{this.state.currentProductName}</th>
-              </tr>
-              {this.state.features.map((relatedFeature, key) => {
-                if(relatedFeature.value !== null) {
-                  return (
+              <thead>
+                <tr>
+                  <th>{this.state.name}</th>
+                  <th></th>
+                  <th>{this.state.currentProductName}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.features.map((relatedFeature, key) => {
+                  if(relatedFeature.value !== null) {
+                    return (
+                      <tr key={key}>
+                        <td><Checkmark size='small'/></td>
+                        <td className='center'>
+                          {relatedFeature.feature} - {relatedFeature.value}
+                          <br/>
+                        </td>
+                        <td></td>
+                      </tr>
+                    )
+                  }
+                })}
+                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
+                {this.state.currentProductFeatures
+                ? this.state.currentProductFeatures.map((currentProdFeature, key) => {
+                  if(currentProdFeature.value !== null) {
+                    return (
                     <tr key={key}>
-                      <td><Checkmark size='small'/></td>
+                      <td></td>
                       <td className='center'>
-                        {relatedFeature.feature} - {relatedFeature.value}
+                        {currentProdFeature.feature} - {currentProdFeature.value}
                         <br/>
                       </td>
-                      <td></td>
+                      <td><Checkmark size='small'/></td>
                     </tr>
-                  )
-                }
-              })}
-              {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-              {this.state.currentProductFeatures
-              ? this.state.currentProductFeatures.map((currentProdFeature, key) => (
-                  <tr key={key}>
-                    <td></td>
-                    <td className='center'>
-                      {currentProdFeature.feature} - {currentProdFeature.value}
-                      <br/>
-                    </td>
-                    <td><Checkmark size='small'/></td>
-                  </tr>
-              ))
-              : null}
+                    )
+                  }
+                })
+                : null}
+              </tbody>
             </table>
             <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <img id="relatedProdImg" src={this.state.thumbnail_url}/>
+              <img className="cardImg" src={this.state.thumbnail_url}/>
             </div>
             :
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/>
+              {/* <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/> */}
+              <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE</div>
             </div>
           }
         </div>
-        <div>
-          {this.state.category}
-        </div>
-        <div>
-          {this.state.name}
-        </div>
-        <div>
-          ${this.state.default_price}
-        </div>
-        <div>
-          {this.state.avgStars ?
-            <RelatedStars avgStars={this.state.avgStars}/>
-            :
-            <RelatedStars avgStars={0}/>
-          }
+        <div className='cardText'>
+          <div>
+            {this.state.category}
+          </div>
+          <div>
+            {this.state.name}
+          </div>
+          <div>
+            {this.salePriceMode()}
+          </div>
+          <div>
+            {this.state.avgStars ?
+              <RelatedStars avgStars={this.state.avgStars}/>
+              :
+              <RelatedStars avgStars={0}/>
+            }
+          </div>
         </div>
       </div>
     );

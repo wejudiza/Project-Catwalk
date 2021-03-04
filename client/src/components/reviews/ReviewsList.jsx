@@ -54,6 +54,7 @@ class ReviewsList extends React.Component {
         let totalRating = 0;
         let totalRecommend = 0;
         let numForRating = {};
+        let totalNumForRating = 0;
         if (arrOfReviews.length !== 0) {
           arrOfReviews.forEach((review) => {
             totalRating += review.rating;
@@ -62,13 +63,19 @@ class ReviewsList extends React.Component {
             };
             if (numForRating[review.rating] === undefined) {
               numForRating[review.rating] = 1;
+              totalNumForRating++;
             } else {
               numForRating[review.rating] ++;
+              totalNumForRating++;
             }
           });
+          // console.log(totalNumForRating)
+          // console.log(totalRecommend/arrOfReviews.length)
+          numForRating['total'] = totalNumForRating;
+          // console.log(numForRating)
           this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
           this.props.getRating(totalRating/arrOfReviews.length);
-          this.props.getPercentageFromReviewsList((totalRecommend/arrOfReviews.length) * 100 + '%');
+          this.props.getPercentageFromReviewsList(Math.floor((totalRecommend/arrOfReviews.length) * 100) + '%');
           this.props.getNumForRating(numForRating);
 
         } else {
@@ -148,7 +155,7 @@ class ReviewsList extends React.Component {
     //   characteristics: {}
     // })
     axios.post('/api/reviews', {
-      product_id: this.state.product_id,
+      product_id: this.props.currentProduct,
       rating: this.state.rating,
       summary: this.state.summary,
       body: this.state.body,
@@ -184,8 +191,8 @@ class ReviewsList extends React.Component {
 
   render() {
     return (
-      <div id="reviewList">
-        <h3>{this.state.arrOfReviews.length} reviews, sorted by
+      <div class="container-reviewList">
+        <h3>{this.state.arrOfReviews.length} reviews, &nbsp;sorted by&nbsp;&nbsp;
           <select onChange={this.handleSort}>
             <option>relevance</option>
             <option>newest</option>
@@ -194,7 +201,7 @@ class ReviewsList extends React.Component {
         </h3>
         <div>
           <Review arrOfReviews={this.state.arrOfReviews} getReviews={this.getReviews}/>
-          <button type="button">MORE REVIEWS</button>
+          <button type="button">MORE REVIEWS</button>&nbsp;&nbsp;&nbsp;
           <button type="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
           <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleAddReview}>
             <h1>Thank your for giving your feedback</h1>
