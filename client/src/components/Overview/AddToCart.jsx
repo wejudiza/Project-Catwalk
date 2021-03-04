@@ -10,25 +10,26 @@ export default class AddToCart extends React.Component {
       quantity: 0,
       skus: [],
     };
-    this.handleSizeChange = this.handleSizeChange.bind(this);
+    // this.handleSizeChange = this.handleSizeChange.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
     // this.changedSkuMode = this.changedSkuMode.bind(this);
   }
 
-  handleSizeChange(e) {
-    if (e.target.value === 'Select Size') {
-      this.setState({
-        size: e.target.value,
-      })
-    } else {
-      const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
-      this.setState({
-        size: e.target.value,
-        quantity: this.props.skus[skuNum].quantity,
-      });
-    }
-  }
+  // handleSizeChange(e) {
+  //   console.log('e.target: ', e)
+  //   if (e.target.value) {
+  //     this.setState({
+  //       size: e.value,
+  //     })
+  //   } else {
+  //     const skuNum = e.target.options[e.target.selectedIndex].getAttribute('name');
+  //     this.setState({
+  //       size: e.target.value,
+  //       quantity: this.props.skus[skuNum].quantity,
+  //     }, () => console.log('cart state: ', state));
+  //   }
+  // }
 
   onAddToCartClick(e) {
     if (this.state.size === 'Select Size') {
@@ -49,17 +50,11 @@ export default class AddToCart extends React.Component {
 
       }
       return (
-        <Select options={options}>
-          {/* {options.map((option, index) => (
-            <option value={option.value} key={index}>{option}</option>
-          ))} */}
-        </Select>
+        <Select options={options} />
       )
     }
     return (
-      <Select isDisabled={true} options={['-']}>
-        {/* <option>-</option> */}
-      </Select>
+      <Select isDisabled={true} options={['-']} />
     )
   }
 
@@ -86,8 +81,11 @@ export default class AddToCart extends React.Component {
     return (
       <div>
         <br />
-        <Select options={sizes} placeholder={'Select Size'}>
-        </Select>
+        <Select
+        options={sizes}
+        placeholder={'Select Size'}
+        onChange={this.handleSizeChange}
+        style={{width: '50%'}} />
         {this.selectedSizeMode()}
         <br />
         <button type="button" id="cart">Add to Cart</button>
