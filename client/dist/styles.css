@@ -167,9 +167,22 @@ body {
   align-items: flex-end;
 }
 
+.slide-arrow {
+  color: black;
+  font-size: 50px;
+  align-self: center;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  /* position: relative; */
+  /* top: 50%; */
+  /* margin: 0 auto; */
+}
+
 /* Individual Card */
 .card {
   position: relative;
+  align-self: center;
   box-shadow: 4px 4px 4px 2px grey;
   margin: 10px;
   width: 300px;
