@@ -100,7 +100,7 @@ class Review extends React.Component {
           // if (review.response === '' || !review.response) {
           return (
             <div key={review.review_id}>
-              <StarRating rating={review.rating} />
+              <StarRating rating={review.rating} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {review.reviewer_name}, &nbsp;&nbsp;&nbsp;
               {`${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
               <h3>
@@ -129,7 +129,7 @@ class Review extends React.Component {
                 <span>  </span>
                 <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
               </div>
-              <hr width='50%' align='left' color='black' />
+              <hr width='90%' align='left' color='black' />
               <br /><br />
             </div>
           )
