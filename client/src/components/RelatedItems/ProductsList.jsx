@@ -43,17 +43,13 @@ export default class ProductsList extends React.Component {
           Related Products
         </h4>
         <div className='list'>
-          <button className='fas fa-caret-left slide-arrow' >
-            <Arrow className='slide-arrow' direction='left'/>
-          </button>
+          <Arrow className='fas fa-caret-left slide-arrow left-arrow'/>
           {this.state.productsListId.map((productId, key) => (
             <div className="card" key={key}>
               <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
             </div>
           ))}
-          <button className='fas fa-caret-right slide-arrow'>
-            <Arrow className='slide-arrow' direction='right' />
-          </button>
+          <Arrow className='fas fa-caret-right slide-arrow right-arrow'/>
         </div>
       </div>
     );
