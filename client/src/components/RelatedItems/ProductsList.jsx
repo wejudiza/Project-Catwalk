@@ -20,11 +20,11 @@ export default class ProductsList extends React.Component {
     this.previousSlide = this.previousSlide.bind(this);
     this.breakPoints = [
       { width: 1, itemsToShow: 1 },
-      { width: 550, itemsToShow: 2 },
+      { width: 550, itemsToShow: 2},
       { width: 850, itemsToShow: 3 },
       { width: 1150, itemsToShow: 4 },
-      // { width: 1450, itemsToShow: 5 },
-      // { width: 1750, itemsToShow: 6 },
+      { width: 1450, itemsToShow: 5 },
+      { width: 1750, itemsToShow: 6 },
     ];
 
   }
@@ -90,16 +90,16 @@ export default class ProductsList extends React.Component {
           Related Products
         </h4>
         <div className='list'>
-          {/* <Carousel breakPoints={this.breakPoints} itemsToShow={4}> */}
-          <Arrow className='fas fa-caret-left slide-arrow left-arrow' clickFunc={this.previousSlide}/>
+          <Carousel breakPoints={this.breakPoints}>
+          {/* <Arrow className='fas fa-caret-left slide-arrow left-arrow' clickFunc={this.previousSlide}/> */}
           {/* e.g if currentProductIndex is greater than 4, then map through productsListId from index 1 - 5 */}
             {this.state.productsListId.map((productId, key) => (
               <div className="card" key={key}>
                 <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
               </div>
             ))}
-          <Arrow className='fas fa-caret-right slide-arrow right-arrow' clickFunc={this.nextSlide} lastIndex={this.state.productsListId.length - 1} currentProductIndex={this.state.currentProductIndex}/>
-          {/* </Carousel> */}
+          {/* <Arrow className='fas fa-caret-right slide-arrow right-arrow' clickFunc={this.nextSlide} lastIndex={this.state.productsListId.length - 1} currentProductIndex={this.state.currentProductIndex}/> */}
+          </Carousel>
         </div>
       </div>
     );
