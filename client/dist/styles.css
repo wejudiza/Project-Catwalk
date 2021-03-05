@@ -478,15 +478,15 @@ body {
 
 .selected-thumbnail {
   object-fit: cover;
-  height: 80px;
-  width: 80px;
-  border: 5px solid white;
+  height: 65px;
+  width: 65px;
+  border: 4px solid white;
 }
 
 .thumbnails {
   object-fit: cover;
-  height: 75px;
-  width: 75px;
+  height: 60px;
+  width: 60px;
   padding: 5px;
 }
 

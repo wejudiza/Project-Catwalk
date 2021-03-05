@@ -13,7 +13,7 @@ const Images = (props) => {
     <div>
       <div className="thumbnailContainer">
         {props.images.map((image, index) => (
-          <div>
+          <div key={index}>
             {/* <img
               src={image.thumbnail_url}
               title={image.url}

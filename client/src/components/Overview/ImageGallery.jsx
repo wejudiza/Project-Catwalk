@@ -17,7 +17,7 @@ export default class ImageGallery extends React.Component {
       thumbnails: this.props.images,
       currentImage: this.props.images[0],
       currentImageUrl: this.props.images[0].url,
-    })
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -26,7 +26,7 @@ export default class ImageGallery extends React.Component {
         thumbnails: this.props.images,
         currentImage: this.props.images[0],
         currentImageUrl: this.props.images[0].url,
-      })
+      });
     }
   }
 
@@ -39,29 +39,40 @@ export default class ImageGallery extends React.Component {
   }
 
   render() {
-    return (
-      <div id="main">
-        <div id="imageGalleryContainer">
-          <img
-            src={this.state.currentImageUrl}
-            alt=""
-            className="displayPhoto"
-          />
-
-          <div className="overlay">
-            <Images
-              images={this.state.thumbnails}
-              onImageClick={this.onImageClick}
-              currentImage={this.state.currentImage}
+    if (this.state.thumbnails.length !== 0) {
+      const lastIndex = this.state.thumbnails.length - 1;
+      return (
+        <div id="main">
+          <div id="imageGalleryContainer">
+            <img
+              src={this.state.currentImageUrl}
+              alt=""
+              className="displayPhoto"
             />
-            <i className="fas fa-chevron-down" id="downArrow" />
-          </div>
 
-          <i className="fas fa-arrow-right" id="rightArrow" />
-          <i className="fas fa-arrow-left" id="leftArrow" />
-          <i className="fas fa-expand" id="expand" />
+            <div className="overlay">
+              <Images
+                images={this.state.thumbnails}
+                onImageClick={this.onImageClick}
+                currentImage={this.state.currentImage}
+              />
+              <i className="fas fa-chevron-down" id="downArrow" />
+            </div>
+            {this.state.currentImage.url === this.state.thumbnails[0].url
+              ? null
+              : <i className="fas fa-arrow-left" id="leftArrow" />}
+            {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
+              ? null
+              : <i className="fas fa-arrow-right" id="rightArrow" />}
+            <i className="fas fa-expand" id="expand" />
+          </div>
         </div>
+      );
+    }
+    return (
+      <div>
+        Loading Images...
       </div>
-    )
+    );
   }
 }
