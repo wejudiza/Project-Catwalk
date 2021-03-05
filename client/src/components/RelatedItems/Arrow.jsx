@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Arrow = ({className}) => (
-  <button className={className}>
-  </button>
-);
+const Arrow = ({className, clickFunc, currentProductIndex, lastIndex}) => {
+  return (
+    <button className={className} onClick={clickFunc}>
+    </button>
+  )
+};
 
 export default Arrow;
 

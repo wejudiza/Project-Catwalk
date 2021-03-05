@@ -23,8 +23,8 @@ export default class ProductsList extends React.Component {
       { width: 550, itemsToShow: 2 },
       { width: 850, itemsToShow: 3 },
       { width: 1150, itemsToShow: 4 },
-      { width: 1450, itemsToShow: 5 },
-      { width: 1750, itemsToShow: 6 },
+      // { width: 1450, itemsToShow: 5 },
+      // { width: 1750, itemsToShow: 6 },
     ];
 
   }
@@ -51,25 +51,33 @@ export default class ProductsList extends React.Component {
   }
 
   previousSlide () {
-    // const lastIndex = imgUrls.length - 1;
-    // const { currentImageIndex } = this.state;
-    // const shouldResetIndex = currentImageIndex === 0;
-    // const index =  shouldResetIndex ? lastIndex : currentImageIndex - 1;
+    const lastIndex = this.state.productsListId.length - 1;
+    // console.log('lastIndex', lastIndex);
+    const shouldResetIndex = this.state.currentProductIndex === 0;
+    console.log('shouldResetIndex', shouldResetIndex);
+    const index =  shouldResetIndex ? lastIndex : this.state.currentProductIndex - 1;
+    // console.log('index', index);
 
-    // this.setState({
-    //   currentImageIndex: index
-    // });
+    this.setState({
+      currentProductIndex: index
+    }, () => {
+      console.log('this.state.currentProductIndex', this.state.currentProductIndex)
+    });
   }
 
   nextSlide () {
-    // const lastIndex = imgUrls.length - 1;
-    // const { currentImageIndex } = this.state;
-    // const shouldResetIndex = currentImageIndex === lastIndex;
-    // const index =  shouldResetIndex ? 0 : currentImageIndex + 1;
+    const lastIndex = this.state.productsListId.length - 1;
+    // console.log('lastIndex', lastIndex);
+    const shouldResetIndex = this.state.currentProductIndex === lastIndex;
+    console.log('shouldResetIndex', shouldResetIndex);
+    const index =  shouldResetIndex ? 0 : this.state.currentProductIndex + 1;
+    // console.log('index', index);
 
-    // this.setState({
-    //   currentImageIndex: index
-    // });
+    this.setState({
+      currentProductIndex: index
+    }, () => {
+      console.log('this.state.currentProductIndex', this.state.currentProductIndex)
+    });
   }
 
 
@@ -82,16 +90,16 @@ export default class ProductsList extends React.Component {
           Related Products
         </h4>
         <div className='list'>
-          <Carousel breakPoints={this.breakPoints}>
-            {/* <Arrow className='fas fa-caret-left slide-arrow left-arrow'/> */}
-            {/* e.g if currentProductIndex is greater than 4, then map through productsListId from index 1 - 5 */}
+          {/* <Carousel breakPoints={this.breakPoints} itemsToShow={4}> */}
+          <Arrow className='fas fa-caret-left slide-arrow left-arrow' clickFunc={this.previousSlide}/>
+          {/* e.g if currentProductIndex is greater than 4, then map through productsListId from index 1 - 5 */}
             {this.state.productsListId.map((productId, key) => (
               <div className="card" key={key}>
                 <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
               </div>
             ))}
-            {/* <Arrow className='fas fa-caret-right slide-arrow right-arrow'/> */}
-          </Carousel>
+          <Arrow className='fas fa-caret-right slide-arrow right-arrow' clickFunc={this.nextSlide} lastIndex={this.state.productsListId.length - 1} currentProductIndex={this.state.currentProductIndex}/>
+          {/* </Carousel> */}
         </div>
       </div>
     );
