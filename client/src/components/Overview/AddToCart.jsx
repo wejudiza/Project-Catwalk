@@ -125,8 +125,8 @@ export default class AddToCart extends React.Component {
           options={sizes}
           placeholder="Select Size"
           onFocus={this.openMenu}
-          autoBlur
-          // onBlur={this.closeMenu}
+          // autoBlur
+          onBlur={this.closeMenu}
           onChange={this.handleSizeChange}
           style={{ width: '50%' }}
         />
