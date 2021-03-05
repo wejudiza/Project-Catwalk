@@ -8,8 +8,11 @@ export default class ImageGallery extends React.Component {
       thumbnails: [],
       currentImage: {},
       currentImageUrl: '',
+      currentImageIndex: 0,
     };
     this.onImageClick = this.onImageClick.bind(this);
+    this.onRightArrowClick = this.onRightArrowClick.bind(this);
+    this.onLeftArrowClick = this.onLeftArrowClick.bind(this);
   }
 
   componentDidMount() {
@@ -31,12 +34,29 @@ export default class ImageGallery extends React.Component {
   }
 
   onImageClick(e) {
-    const currentImageIndex = this.state.thumbnails.findIndex((i) => i.url === e.target.title);
+    const clickedImageIndex = this.state.thumbnails.findIndex((i) => i.url === e.target.title);
     this.setState({
-      currentImage: this.state.thumbnails[currentImageIndex],
+      currentImage: this.state.thumbnails[clickedImageIndex],
       currentImageUrl: e.target.title,
+      currentImageIndex: clickedImageIndex,
     });
   }
+
+  onRightArrowClick(index) {
+    this.setState({
+      currentImage: this.state.thumbnails[index + 1],
+      currentImageUrl: this.state.thumbnails[index + 1].url,
+      currentImageIndex: this.state.currentImageIndex + 1,
+    });
+  };
+
+  onLeftArrowClick(index) {
+    this.setState({
+      currentImage: this.state.thumbnails[index - 1],
+      currentImageUrl: this.state.thumbnails[index - 1].url,
+      currentImageIndex: this.state.currentImageIndex - 1,
+    });
+  };
 
   render() {
     if (this.state.thumbnails.length !== 0) {
@@ -60,10 +80,10 @@ export default class ImageGallery extends React.Component {
             </div>
             {this.state.currentImage.url === this.state.thumbnails[0].url
               ? null
-              : <i className="fas fa-arrow-left" id="leftArrow" />}
+              : <i className="fas fa-arrow-left" id="leftArrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
             {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
               ? null
-              : <i className="fas fa-arrow-right" id="rightArrow" />}
+              : <i className="fas fa-arrow-right" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
             <i className="fas fa-expand" id="expand" />
           </div>
         </div>
