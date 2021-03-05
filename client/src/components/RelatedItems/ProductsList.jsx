@@ -85,11 +85,11 @@ export default class ProductsList extends React.Component {
   // Map over a get request of the related items
   render() {
     return (
-      <div>
-        <h4>
+      <div className="testGrid">
+        <h4 className="title">
           Related Products
         </h4>
-        <div className='list'>
+        <div className='list productsCarousel'>
           <Carousel breakPoints={this.breakPoints}>
           {/* <Arrow className='fas fa-caret-left slide-arrow left-arrow' clickFunc={this.previousSlide}/> */}
           {/* e.g if currentProductIndex is greater than 4, then map through productsListId from index 1 - 5 */}
