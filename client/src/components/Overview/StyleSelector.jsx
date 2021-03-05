@@ -49,7 +49,7 @@ export default class StyleSelector extends React.Component {
       return (
         <div>
           <span style={{ color: 'red' }}>{`$${this.props.currentStyle.sale_price}`}</span>
-          {'  '}
+          &nbsp;&nbsp;
           <span><s>{`$${this.props.currentStyle.original_price}`}</s></span>
         </div>
       )
@@ -71,9 +71,15 @@ export default class StyleSelector extends React.Component {
           {' '}
             {this.props.currentStyle.name}
           <br />
+          <br />
           <div id="styles">
             {this.props.styles.map((style, index) => (
-              <Style style={style} key={index} onStyleClick={this.props.onStyleClick} />
+              <Style
+                style={style}
+                key={index}
+                onStyleClick={this.props.onStyleClick}
+                currentStyle={this.props.currentStyle}
+              />
             ))}
           </div>
           {/* <ImageGallery images={this.props.currentStyle.photos} /> */}

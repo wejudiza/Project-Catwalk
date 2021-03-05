@@ -258,9 +258,7 @@ body {
     "main sidebar"
     "footer footer"
   ;
-
   grid-column-gap: 30px;
-  /* align-items: center; */
 }
 
 #productInfo {
@@ -270,10 +268,12 @@ body {
 
 .styleSelector {
   grid-area: sidebar;
+  align-self: center;
 }
 
 #description {
   grid-area: footer;
+  align-self: center;
   justify-self: center;
 }
 
@@ -341,10 +341,23 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.styleOption {
+.style-option {
+  position: block;
   object-fit: cover;
   border-radius: 50%;
   height: 100px;
   width: 100px;
+}
+
+#style-container {
+  position: relative;
+  display: inline-block;
+}
+
+.fa-check-circle {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background-color: white;
 }
 

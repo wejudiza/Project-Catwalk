@@ -72,13 +72,15 @@ export default class Overview extends React.Component {
           <br />
           <ProductInfo rating={this.props.rating} product={this.state.product} />
           <StyleSelector
-          styles={this.state.styles}
-          currentProduct={this.state.product.id}
-          currentStyle={this.state.currentStyle}
-          onStyleClick={this.onStyleClick} />
+            styles={this.state.styles}
+            currentProduct={this.state.product.id}
+            currentStyle={this.state.currentStyle}
+            onStyleClick={this.onStyleClick}
+          />
           <ImageGallery
-          styles={this.state.styles}
-          images={this.state.currentStyle.photos} />
+            styles={this.state.styles}
+            images={this.state.currentStyle.photos}
+          />
           {/* <button type="button">Share on Facebook</button>
           <button type="button">Share on Twitter</button>
           <button type="button">Share on Pinterest</button> */}
