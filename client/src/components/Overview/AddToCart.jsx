@@ -46,6 +46,7 @@ export default class AddToCart extends React.Component {
       this.setState({
         size: e.value,
         quantity: e.key,
+        selectedQ: 1,
         showError: false,
         menuIsOpen: false,
       });
@@ -105,7 +106,6 @@ export default class AddToCart extends React.Component {
         <Select
           options={quantities}
           value={this.state.defaultValue}
-          // defaultValue={[quantities[0]]}
           onChange={this.handleQuantityChange}
         />
       );
