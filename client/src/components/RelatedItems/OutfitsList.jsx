@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
+import Carousel from "react-elastic-carousel";
 
 export default class OutfitsList extends React.Component {
   constructor(props) {
@@ -10,6 +11,14 @@ export default class OutfitsList extends React.Component {
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
+    this.breakPoints = [
+      { width: 1, itemsToShow: 1 },
+      { width: 550, itemsToShow: 2},
+      { width: 850, itemsToShow: 3 },
+      { width: 1150, itemsToShow: 4 },
+      { width: 1450, itemsToShow: 5 },
+      { width: 1750, itemsToShow: 6 },
+    ]
   }
 
   addOutfit() {
@@ -34,13 +43,13 @@ export default class OutfitsList extends React.Component {
 
   removeOutfit(outfitId) {
     console.log('outfitId', outfitId);
-    console.log('this.state.outfitsList', this.state.outfitsList);
+    console.log('outfitsList before', this.state.outfitsList);
     this.setState({
       outfitsList: this.state.outfitsList.filter(outfit => (
         outfitId !== outfit.id
       ))
     }, () => {
-      console.log('this.state.outfitsList', this.state.outfitsList);
+      console.log('outfitsList after', this.state.outfitsList);
     })
   }
 
@@ -52,18 +61,20 @@ export default class OutfitsList extends React.Component {
         </h4>
         <div>
           {this.state.outfitsList.length === 0 ?
-            <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+            <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             :
             <div className='list'>
-              {this.state.outfitsList.map((outfit, key) => {
-                return (
-                  <div className='card' key={key}>
-                    {/* {console.log('outfit', outfit)} */}
-                    <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
-                  </div>
-                )
-              })}
-              <button className='card' id='outfitsBtn' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+              <Carousel breakPoints={this.breakPoints}>
+                <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+                {this.state.outfitsList.map((outfit, key) => {
+                  return (
+                    <div className='card' key={key}>
+                      {/* {console.log('outfit', outfit)} */}
+                      <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
+                    </div>
+                  )
+                })}
+              </Carousel>
             </div>
           }
         </div>

@@ -24,6 +24,13 @@ export default class Outfit extends React.Component {
     this.getStyles(this.props.outfit.id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.outfit.id !== prevProps.outfit.id) {
+      this.getStyles(this.props.outfit.id);
+    }
+
+  }
+
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
       .then((results) => {
