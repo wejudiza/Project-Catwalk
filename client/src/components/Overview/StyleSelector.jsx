@@ -84,6 +84,10 @@ export default class StyleSelector extends React.Component {
           </div>
           {/* <ImageGallery images={this.props.currentStyle.photos} /> */}
           <AddToCart skus={this.props.currentStyle.skus} currentStyle={this.props.currentStyle} />
+          <br />
+          <button type="button">Share on Facebook</button>
+          <button type="button">Share on Twitter</button>
+          <button type="button">Share on Pinterest</button>
         </div>
       )
     }
