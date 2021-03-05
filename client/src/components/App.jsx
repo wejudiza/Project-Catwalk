@@ -14,12 +14,14 @@ class App extends React.Component {
     this.getRating = this.getRating.bind(this);
   }
 
+  // function to get current product_id from relatedItem and save it to state
   getCurrentProductId(product_id) {
     this.setState({
       currentProduct: product_id,
     });
   }
 
+  // function to get current displaying product's rating from reviews
   getRating(rating) {
     this.setState({
       ratingForCurrentProduct: rating,
@@ -37,7 +39,8 @@ class App extends React.Component {
         </div>
         <div id="relatedItems">
           <RelatedItems
-            currentProduct={this.state.currentProduct} getCurrentProductId={this.getCurrentProductId}
+            currentProduct={this.state.currentProduct}
+            getCurrentProductId={this.getCurrentProductId}
           />
         </div>
         <div id="reviews">
@@ -50,4 +53,5 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;
