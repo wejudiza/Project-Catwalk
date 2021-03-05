@@ -10,16 +10,25 @@ export default class ProductInfo extends React.Component {
     };
   }
 
-  // reviewMode() {
-  //   if ()
-  // }
+  reviewMode() {
+    if (this.props.totalReviews > 0) {
+      return (
+        <div>
+          <StarRating rating={this.props.rating} />
+          {' '}
+          <a href="#reviews" style={{ color: 'gray' }}>
+            Read all {this.props.totalReviews} review(s)
+          </a>
+        </div>
+      );
+    }
+    return <br />
+  }
 
   render() {
     return (
       <div id="productInfo">
-        <StarRating rating={this.props.rating} />
-        {' '}
-        <a href="#reviews" style={{ color: 'gray' }}>Read all reviews</a>
+        {this.reviewMode()}
         <br />
         <br />
         <span>{this.props.product.category}</span>
