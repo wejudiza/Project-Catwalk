@@ -40,7 +40,7 @@ export default class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="main">
         <div id="imageGalleryContainer">
           <img
             src={this.state.currentImageUrl}
