@@ -4,6 +4,7 @@ import StarRating from './StarRating';
 import Modal from 'react-modal';
 import axios from 'axios';
 
+// inline style for modal popups after clicking yes or report
 const customStyles = {
   content : {
     top                   : '50%',
@@ -15,6 +16,7 @@ const customStyles = {
   }
 };
 
+// translate timestamp
 const monthTranslate = {
   '01': 'January',
   '02': 'February',
@@ -42,6 +44,7 @@ class Review extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  // function handling click on yes
   handleClickHelpful(e) {
     // console.log(typeof e.target.getAttribute('review_id'))
     axios.put(`/api/reviews/${Number(e.target.getAttribute('review_id'))}/helpful`)
@@ -57,6 +60,7 @@ class Review extends React.Component {
       })
   }
 
+  // function handling click on report
   handleClickReport(e) {
     axios.put(`/api/reviews/${Number(e.target.getAttribute('review_id'))}/report`)
       .then((rawData) => {
@@ -71,6 +75,7 @@ class Review extends React.Component {
       })
   }
 
+  // function to close modal for helpful and report feedback
   closeModal() {
     this.setState({
       modalView: !this.state.modalView
@@ -83,9 +88,18 @@ class Review extends React.Component {
     if (this.props.arrOfReviews.length === 0) {
       return (
         <div>
-          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal} style={customStyles}>
-            {this.state.modalMessage}<br />
-            <button type="button" onClick={this.closeModal}>Back</button>
+          <Modal
+            isOpen={this.state.modalView}
+            ariaHideApp={false}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+          >{this.state.modalMessage}<br />
+
+            <button
+              type="button"
+              onClick={this.closeModal}
+            >Back</button>
+
           </Modal>
         </div>
       )
@@ -99,27 +113,32 @@ class Review extends React.Component {
         {this.props.arrOfReviews.map((review) => {
           // if (review.response === '' || !review.response) {
           return (
-            <div key={review.review_id}>
-              <StarRating rating={review.rating} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {review.reviewer_name}, &nbsp;&nbsp;&nbsp;
-              {`${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
-              <h3>
+            <div className="container-review" key={review.review_id}>
+              <div className="review-stars">
+                <StarRating rating={review.rating} />
+              </div>
+              <div className="timeStamp">
+              {`${review.reviewer_name}, ${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
+              </div>
+              <h4 className="summary">
                 {review.summary}
-              </h3>
-              <p>
+              </h4>
+              <p className="body">
                 {review.body}
               </p>
-              <ImgDisplay arrOfPhotos={review.photos} />
+              <div className="reviewImg">
+                <ImgDisplay arrOfPhotos={review.photos} />
+              </div>
               {(review.response === '' || !review.response) ?
                 null :
                 (
-                  <div>
+                  <div className="response">
                     <p>Response:</p>
                     <p>{review.response}</p>
                   </div>
                 )
               }
-              <div>
+              <div className="footer">
                 Helpful?
                 <span> </span>
                 <u review_id={review.review_id} onClick={this.handleClickHelpful}>Yes</u>
@@ -128,11 +147,13 @@ class Review extends React.Component {
                 <span>|</span>
                 <span>  </span>
                 <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
+                <hr width='100%' align='left' color='rgb(66, 63, 63)' />
               </div>
-              <hr width='90%' align='left' color='black' />
-              <br /><br />
             </div>
           )
+
+          // DRY VIOLATION!!!!!
+
           // }
           // else {
           //   return (
