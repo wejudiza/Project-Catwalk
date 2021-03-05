@@ -24,6 +24,7 @@ export default class AddToCart extends React.Component {
       showError: false,
       showModal: false,
       menuIsOpen: false,
+      defaultValue: { value: 1, label: 1 },
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -54,6 +55,7 @@ export default class AddToCart extends React.Component {
   handleQuantityChange(e) {
     this.setState({
       selectedQ: e.value,
+      defaultValue: { value: e.value, label: e.value },
     });
   }
 
@@ -102,7 +104,8 @@ export default class AddToCart extends React.Component {
       return (
         <Select
           options={quantities}
-          // defaultValue={quantities[0]}
+          value={this.state.defaultValue}
+          // defaultValue={[quantities[0]]}
           onChange={this.handleQuantityChange}
         />
       );

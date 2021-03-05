@@ -22,14 +22,12 @@ export default class ProductInfo extends React.Component {
         </div>
       );
     }
-    return <br />
   }
 
   render() {
     return (
       <div id="productInfo">
         {this.reviewMode()}
-        <br />
         <br />
         <span>{this.props.product.category}</span>
         <br />
