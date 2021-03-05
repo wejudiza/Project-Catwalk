@@ -26,9 +26,7 @@ import React from 'react';
 //   }
 // }
 const Style = (props) => {
-
   const currentStyleMode = () => {
-    console.log(props.currentStyle.name, props.style.name)
     if (props.currentStyle.name === props.style.name) {
       return (
         <i className="far fa-check-circle" />

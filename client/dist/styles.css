@@ -357,7 +357,7 @@ body {
 .fa-check-circle {
   position: absolute;
   top: 5%;
-  right: 5%;
-  background-color: white;
+  right: 6%;
+  background: radial-gradient(white 60%, transparent 40%);
 }
 
