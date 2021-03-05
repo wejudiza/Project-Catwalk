@@ -476,12 +476,18 @@ body {
   left: 20%;
 } */
 
+.selected-thumbnail {
+  object-fit: cover;
+  height: 80px;
+  width: 80px;
+  border: 5px solid white;
+}
+
 .thumbnails {
   object-fit: cover;
   height: 75px;
   width: 75px;
   padding: 5px;
-  /* border: 5px solid white; */
 }
 
 .thumbnailContainer {
