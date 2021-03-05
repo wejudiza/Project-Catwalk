@@ -30,6 +30,7 @@ export default class ImageGallery extends React.Component {
         thumbnails: this.props.images,
         currentImage: this.props.images[0],
         currentImageUrl: this.props.images[0].url,
+        currentImageIndex: 0,
       });
     }
   }
