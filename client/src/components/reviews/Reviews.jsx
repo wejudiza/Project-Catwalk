@@ -82,7 +82,9 @@ class Reviews extends React.Component {
             getPercentageFromReviewsList={this.getPercentageFromReviewsList}
             getNumForRating={this.getNumForRating}
             getCharacFromReviewsList={this.getCharacFromReviewsList}
-            getRating={this.props.getRating}/>
+            getRating={this.props.getRating}
+            getTotalReviews={this.props.getTotalReviews}
+          />
         </div>
 
       </div>

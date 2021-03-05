@@ -82,10 +82,12 @@ class ReviewsList extends React.Component {
           numForRating['total'] = totalNumForRating;
           // console.log(numForRating)
           this.props.getAverageRatingFromReview(Math.round((totalRating/arrOfReviews.length * 10)) / 10);
-          this.props.getRating(Math.round((totalRating/arrOfReviews.length * 10)) / 10);
           this.props.getPercentageFromReviewsList(Math.floor((totalRecommend/arrOfReviews.length) * 100) + '%');
           this.props.getNumForRating(numForRating);
 
+          // pass data to app.jsx for other components to use
+          this.props.getRating(Math.round((totalRating/arrOfReviews.length * 10)) / 10);
+          this.props.getTotalReviews(totalNumForRating);
         } else {
           this.props.getAverageRatingFromReview(0);
           this.props.getRating(0);
