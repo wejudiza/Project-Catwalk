@@ -40,30 +40,28 @@ export default class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div id="imageGalleryContainer">
-        <img
-        src={this.state.currentImageUrl}
-        alt=""
-        className="displayPhoto" />
+      <div id="main">
+        <div id="imageGalleryContainer">
+          <img
+            src={this.state.currentImageUrl}
+            alt=""
+            className="displayPhoto"
+          />
 
-        <div className="overlay">
-          <Images
-          images={this.state.thumbnails}
-          onImageClick={this.onImageClick} />
-          <i className="fas fa-chevron-down" id="downArrow"></i>
+          <div className="overlay">
+            <Images
+              images={this.state.thumbnails}
+              onImageClick={this.onImageClick}
+              currentImage={this.state.currentImage}
+            />
+            <i className="fas fa-chevron-down" id="downArrow" />
+          </div>
+
+          <i className="fas fa-arrow-right" id="rightArrow" />
+          <i className="fas fa-arrow-left" id="leftArrow" />
+          <i className="fas fa-expand" id="expand" />
         </div>
-
-        <i className="fas fa-arrow-right" id="rightArrow"></i>
-        <i className="fas fa-arrow-left" id="leftArrow"></i>
-        <i className="fas fa-expand" id="expand"></i>
       </div>
     )
   }
 }
-
-{/* <div class="main_image">
-  <img src="https://goo.gl/SaNNYW" alt="" />
-  <div class="overlay_image">
-    <img src="https://goo.gl/WPTVVv" alt="" />
-  </div>
-</div> */}

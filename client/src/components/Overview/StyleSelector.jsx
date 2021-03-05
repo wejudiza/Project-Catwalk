@@ -48,15 +48,15 @@ export default class StyleSelector extends React.Component {
     if (this.props.currentStyle.sale_price) {
       return (
         <div>
-          <span style={{ color: 'red' }}>{this.props.currentStyle.sale_price}</span>
-          {'  '}
-          <span><s>{this.props.currentStyle.original_price}</s></span>
+          <span style={{ color: 'red' }}>{`$${this.props.currentStyle.sale_price}`}</span>
+          &nbsp;&nbsp;
+          <span><s>{`$${this.props.currentStyle.original_price}`}</s></span>
         </div>
       )
     }
     return (
       <div>
-        <span>{this.props.currentStyle.original_price}</span>
+        <span>{`$${this.props.currentStyle.original_price}`}</span>
       </div>
     )
   }
@@ -71,13 +71,23 @@ export default class StyleSelector extends React.Component {
           {' '}
             {this.props.currentStyle.name}
           <br />
+          <br />
           <div id="styles">
             {this.props.styles.map((style, index) => (
-              <Style style={style} key={index} onStyleClick={this.props.onStyleClick} />
+              <Style
+                style={style}
+                key={index}
+                onStyleClick={this.props.onStyleClick}
+                currentStyle={this.props.currentStyle}
+              />
             ))}
           </div>
           {/* <ImageGallery images={this.props.currentStyle.photos} /> */}
           <AddToCart skus={this.props.currentStyle.skus} currentStyle={this.props.currentStyle} />
+          <br />
+          <button type="button">Share on Facebook</button>
+          <button type="button">Share on Twitter</button>
+          <button type="button">Share on Pinterest</button>
         </div>
       )
     }

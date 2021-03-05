@@ -8,39 +8,32 @@ export default class ProductInfo extends React.Component {
     this.state = {
       productInfo: {},
     };
-    // this.getProductInfo = this.getProductInfo.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getProductInfo();
-  // }
-
-  // getProductInfo() {
-  //   axios.get('/api/products/16056')
-  //     .then((results) => {
-  //       console.log('get ProductInfo: ', results.data);
-  //       this.setState({
-  //         productInfo: results.data,
-  //       });
-  //     })
-  //     .catch((err) => console.log('getProductInfo err: ', err));
-  // }
+  reviewMode() {
+    if (this.props.totalReviews > 0) {
+      return (
+        <div>
+          <StarRating rating={this.props.rating} />
+          {' '}
+          <a href="#reviews" style={{ color: 'gray' }}>
+            Read all {this.props.totalReviews} review(s)
+          </a>
+        </div>
+      );
+    }
+    return <br />
+  }
 
   render() {
     return (
       <div id="productInfo">
-        {/* {console.log('this.props.product: ', this.props.product)} */}
-        <StarRating rating={this.props.rating} />
-        {' '}
-        <a href="#reviews" id="reviewLink">Read all reviews</a>
+        {this.reviewMode()}
+        <br />
         <br />
         <span>{this.props.product.category}</span>
         <br />
-        <span><b>{this.props.product.name}</b></span>
-        {/* <br />
-        <span>{this.props.product.slogan}</span>
-        <br />
-        <p>{this.props.product.description}</p> */}
+        <span style={{ fontSize: '45px' }}><b>{this.props.product.name}</b></span>
       </div>
     )
   }

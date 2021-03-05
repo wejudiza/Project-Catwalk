@@ -28,6 +28,13 @@ export default class Overview extends React.Component {
     }
   }
 
+  onStyleClick(e) {
+    const styleIndex = this.state.styles.findIndex((i) => i.style_id === Number(e.target.title));
+    this.setState({
+      currentStyle: this.state.styles[styleIndex],
+    });
+  }
+
   getProduct() {
     axios.get(`/api/products/${this.props.currentProduct}`)
       .then((productResults) => {
@@ -37,32 +44,14 @@ export default class Overview extends React.Component {
       })
       .then(() => {
         axios.get(`/api/products/${this.props.currentProduct}/styles`)
-        .then((stylesResults) => {
-          this.setState({
-            styles: stylesResults.data.results,
-            currentStyle: stylesResults.data.results[0],
+          .then((stylesResults) => {
+            this.setState({
+              styles: stylesResults.data.results,
+              currentStyle: stylesResults.data.results[0],
+            });
           });
-        })
       })
       .catch((err) => console.log('getProduct err: ', err));
-  }
-
-  // getStyles() {
-  //   axios.get(`/api/products/${this.props.currentProduct}/styles`)
-  //     .then((results) => {
-  //       this.setState({
-  //         styles: results.data.results,
-  //         currentStyle: results.data.results[0],
-  //       });
-  //     })
-  //     .catch((err) => console.log('getProduct err: ', err));
-  // }
-
-  onStyleClick(e) {
-    const styleIndex = this.state.styles.findIndex((i) => i.style_id === Number(e.target.title));
-    this.setState({
-      currentStyle: this.state.styles[styleIndex],
-    });
   }
 
   render() {
@@ -70,18 +59,21 @@ export default class Overview extends React.Component {
       return (
         <div id="overviewContainer">
           <br />
-          <ProductInfo rating={this.props.rating} product={this.state.product} />
+          <ProductInfo
+            rating={this.props.rating}
+            product={this.state.product}
+            totalReviews={this.props.totalReviews}
+          />
           <StyleSelector
-          styles={this.state.styles}
-          currentProduct={this.state.product.id}
-          currentStyle={this.state.currentStyle}
-          onStyleClick={this.onStyleClick} />
+            styles={this.state.styles}
+            currentProduct={this.state.product.id}
+            currentStyle={this.state.currentStyle}
+            onStyleClick={this.onStyleClick}
+          />
           <ImageGallery
-          styles={this.state.styles}
-          images={this.state.currentStyle.photos} />
-          {/* <button type="button">Share on Facebook</button>
-          <button type="button">Share on Twitter</button>
-          <button type="button">Share on Pinterest</button> */}
+            styles={this.state.styles}
+            images={this.state.currentStyle.photos}
+          />
           <Description product={this.state.product}/>
         </div>
       );
