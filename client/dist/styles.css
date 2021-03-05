@@ -260,11 +260,12 @@ body {
   ;
 
   grid-column-gap: 30px;
-  align-items: center;
+  /* align-items: center; */
 }
 
 #productInfo {
   grid-area: header;
+  align-self: end;
 }
 
 .styleSelector {
@@ -273,11 +274,13 @@ body {
 
 #description {
   grid-area: footer;
+  justify-self: center;
 }
 
 /* IMAGE GALLERY */
 #main {
   grid-area: main;
+  justify-self: center;
 }
 
 #imageGalleryContainer {
