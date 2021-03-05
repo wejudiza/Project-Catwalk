@@ -10,7 +10,7 @@ class StarRating extends React.Component {
     return (
       <StarRatings
         rating={this.props.rating}
-        starRatedColor="black"
+        starRatedColor="rgb(66, 63, 63)"
         numberOfStars={5}
         starDimension="15px"
         starSpacing="1px"

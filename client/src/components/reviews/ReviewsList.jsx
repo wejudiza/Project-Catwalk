@@ -10,6 +10,8 @@ class ReviewsList extends React.Component {
       sortMethod: 'relevant',
       modalView: false,
       arrOfReviews: [],
+      reviewsSliceEnding: 2,
+      currentDisplayReviews: [],
       product_id: this.props.currentProduct,
       rating: 5,
       summary: '',
@@ -26,14 +28,17 @@ class ReviewsList extends React.Component {
     this.handleAddReview = this.handleAddReview.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMoreReviewClick = this.handleMoreReviewClick.bind(this);
   }
 
+  // initial data fetching
   componentDidMount() {
     // console.log(this.props.currentProduct)
     this.getReviews();
     this.getCharac();
   }
 
+  // monitors product_id changing in props
   componentDidUpdate(prevProps) {
     if(this.props.currentProduct !== prevProps.currentProduct) {
       this.getReviews();
@@ -41,6 +46,7 @@ class ReviewsList extends React.Component {
     }
   }
 
+  // function to get all reviews data for a product and filter data needed
   getReviews() {
     axios.get('api/reviews', {
       params: {
@@ -50,7 +56,9 @@ class ReviewsList extends React.Component {
     })
       .then((rawData) => {
         // console.log(rawData.data.results)
-        let arrOfReviews = rawData.data.results
+        let arrOfReviews = rawData.data.results;
+        let currentDisplayReviews;
+        (arrOfReviews.length < 3) ? currentDisplayReviews = arrOfReviews.slice() : currentDisplayReviews = arrOfReviews.slice(0, this.state.reviewsSliceEnding);
         let totalRating = 0;
         let totalRecommend = 0;
         let numForRating = {};
@@ -73,11 +81,13 @@ class ReviewsList extends React.Component {
           // console.log(totalRecommend/arrOfReviews.length)
           numForRating['total'] = totalNumForRating;
           // console.log(numForRating)
-          this.props.getAverageRatingFromReview(totalRating/arrOfReviews.length);
-          this.props.getRating(totalRating/arrOfReviews.length);
+          this.props.getAverageRatingFromReview(Math.round((totalRating/arrOfReviews.length * 10)) / 10);
           this.props.getPercentageFromReviewsList(Math.floor((totalRecommend/arrOfReviews.length) * 100) + '%');
           this.props.getNumForRating(numForRating);
 
+          // pass data to app.jsx for other components to use
+          this.props.getRating(Math.round((totalRating/arrOfReviews.length * 10)) / 10);
+          this.props.getTotalReviews(totalNumForRating);
         } else {
           this.props.getAverageRatingFromReview(0);
           this.props.getRating(0);
@@ -85,7 +95,8 @@ class ReviewsList extends React.Component {
           this.props.getNumForRating(numForRating);
         }
         this.setState({
-          arrOfReviews: arrOfReviews
+          arrOfReviews: arrOfReviews,
+          currentDisplayReviews: currentDisplayReviews,
         });
       })
       .catch((err) => {
@@ -93,6 +104,7 @@ class ReviewsList extends React.Component {
       })
   }
 
+  // function to get meta reviews data from server
   getCharac() {
     axios.get(`api/reviews/meta/${this.props.currentProduct}`)
       .then((rawData) => {
@@ -105,12 +117,35 @@ class ReviewsList extends React.Component {
       })
   }
 
+  // function controls modal state change
   handleAddReview() {
     this.setState({
       modalView: !this.state.modalView
     });
   }
 
+  // function handling click on more reviews button and changing current display item in state
+  handleMoreReviewClick() {
+    if (this.state.reviewsSliceEnding + 2 < this.state.arrOfReviews.length) {
+      this.setState({
+        reviewsSliceEnding: this.state.reviewsSliceEnding + 2,
+      }, () => {
+        this.setState({
+          currentDisplayReviews: this.state.arrOfReviews.slice(0, this.state.reviewsSliceEnding),
+        });
+      });
+    } else {
+      this.setState({
+        reviewsSliceEnding: this.state.arrOfReviews.length,
+      }, () => {
+        this.setState({
+          currentDisplayReviews: this.state.arrOfReviews.slice(0, this.state.reviewsSliceEnding),
+        });
+      });
+    }
+  }
+
+  // function handling review sort method input and re-render
   handleSort(e) {
     this.setState({
       sortMethod: e.target.value
@@ -119,6 +154,7 @@ class ReviewsList extends React.Component {
     });
   }
 
+  // function handling new review input and save it to state for submission
   handleFormInput(e) {
     e.preventDefault();
     if (e.target.name === 'rating' || e.target.name === 'size' || e.target.name === 'comfortable') {
@@ -142,18 +178,8 @@ class ReviewsList extends React.Component {
     }
   }
 
+  // function handling new review submission
   handleSubmit() {
-    // console.log('reqbody', {
-    //   product_id: this.state.product_id,
-    //   rating: this.state.rating,
-    //   summary: this.state.summary,
-    //   body: this.state.body,
-    //   recommend: this.state.recommend,
-    //   name: this.state.name,
-    //   email: this.state.email,
-    //   photos: [],
-    //   characteristics: {}
-    // })
     axios.post('/api/reviews', {
       product_id: this.props.currentProduct,
       rating: this.state.rating,
@@ -171,6 +197,7 @@ class ReviewsList extends React.Component {
           sortMethod: 'newest',
           modalView: false,
           arrOfReviews: [],
+          currentDisplayReviews: [],
           product_id: this.props.currentProduct,
           rating: 5,
           summary: '',
@@ -191,21 +218,40 @@ class ReviewsList extends React.Component {
 
   render() {
     return (
-      <div class="container-reviewList">
+      <div className="container-reviewList">
         <h3>{this.state.arrOfReviews.length} reviews, &nbsp;sorted by&nbsp;&nbsp;
-          <select onChange={this.handleSort}>
-            <option>relevance</option>
-            <option>newest</option>
-            <option>helpful</option>
+          <select
+            className="select"
+            onChange={this.handleSort}
+          >
+            <option className="option">relevant</option>
+            <option className="option">newest</option>
+            <option className="option">helpful</option>
           </select>
         </h3>
         <div>
-          <Review arrOfReviews={this.state.arrOfReviews} getReviews={this.getReviews}/>
-          <button type="button">MORE REVIEWS</button>&nbsp;&nbsp;&nbsp;
-          <button type="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
-          <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleAddReview}>
+          <Review
+            arrOfReviews={this.state.currentDisplayReviews}
+            getReviews={this.getReviews}
+          />
+          {/* show more reviews button only when there are more than 2 reviews */}
+          {(this.state.arrOfReviews.length > this.state.currentDisplayReviews.length) ?
+            <div>
+              <button type="button" className="button" onClick={this.handleMoreReviewClick}>MORE REVIEWS</button><span> </span><span> </span>
+              <button type="button" className="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
+            </div>
+            :
+            <button type="button" className="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
+          }
+          <Modal
+            isOpen={this.state.modalView}
+            ariaHideApp={false}
+            onRequestClose={this.handleAddReview}
+          >
             <h1>Thank your for giving your feedback</h1>
-            <form onChange={this.handleFormInput}>
+            <form
+              onChange={this.handleFormInput}
+            >
               <label>Rating</label><br />
                 <select name="rating">
                   <option>5</option>
@@ -243,8 +289,14 @@ class ReviewsList extends React.Component {
                 <input name="name"></input><br />
               <label>Your email</label><br />
                 <input name="email"></input><br />
-              <button type="button" onClick={this.handleSubmit}>Submit</button>
-              <button type="button" onClick={this.handleAddReview}>Cancel</button>
+              <button
+                type="button"
+                onClick={this.handleSubmit}
+              >Submit</button>
+              <button
+                type="button"
+                onClick={this.handleAddReview}
+              >Cancel</button>
             </form>
           </Modal>
         </div>

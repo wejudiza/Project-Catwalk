@@ -12,7 +12,7 @@ class Status extends React.Component {
         completed={this.props.completed}
         isLabelVisible={false}
         bgcolor='black'
-        baseBgColor='grey'
+        baseBgColor='lightgrey'
         borderRadius='0'
         width='100%'
         height='10px'
