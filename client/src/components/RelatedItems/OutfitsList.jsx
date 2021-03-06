@@ -91,10 +91,10 @@ export default class OutfitsList extends React.Component {
               {/* <Carousel breakPoints={this.breakPoints}> */}
               <Arrow className='fas fa-caret-left slide-arrow left-arrow'
               clickFunc={this.previousSlide}
-              // productsListLength={this.state.productsListId.length}
-              // displayProductsListLength={this.state.displayProductsList.length}
-              // firstProductId={this.state.productsListId[0]}
-              // firstDisplayProductId={this.state.displayProductsList[0]}
+              productsListLength={this.state.outfitsList.length}
+              displayProductsListLength={this.state.displayProductsList.length}
+              firstProductId={this.state.outfitsList[0]}
+              firstDisplayProductId={this.state.displayProductsList[0]}
               />
                 <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
                 {this.state.displayProductsList.map((outfit, key) => {
