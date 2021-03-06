@@ -65,7 +65,7 @@ export default class ProductsList extends React.Component {
   }
 
   nextSlide () {
-    const currentIndex =  this.state.currentProductIndex + 1;``
+    const currentIndex =  this.state.currentProductIndex + 1;
 
     this.setState({
       currentProductIndex: currentIndex,

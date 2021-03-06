@@ -9,9 +9,9 @@ export default class OutfitsList extends React.Component {
     super(props);
     this.state = {
       outfitsList: [],
-      displayProductsListId: [],
+      displayProductsList: [],
       currentProductIndex: 0,
-      itemsToDisplay: 4,
+      itemsToDisplay: 3,
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
@@ -27,10 +27,8 @@ export default class OutfitsList extends React.Component {
 
   addOutfit() {
     const outfitFound = this.state.outfitsList.find((outfit) => (
-      // console.log('outfit.id', outfit.id),
       outfit.id === this.props.currentProduct
     ))
-    // console.log('outfitFound', outfitFound)
     if (outfitFound === undefined) {
       axios.get(`/api/products/${this.props.currentProduct}`)
         .then((results) => {
@@ -38,7 +36,8 @@ export default class OutfitsList extends React.Component {
           // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
           this.state.outfitsList.push(results.data)
           this.setState({
-            outfitsList: this.state.outfitsList
+            outfitsList: this.state.outfitsList,
+            displayProductsList: this.state.outfitsList.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
           });
         })
         .catch((err) => console.log('addOutfit err: ', err));
@@ -55,6 +54,17 @@ export default class OutfitsList extends React.Component {
     }, () => {
       console.log('outfitsList after', this.state.outfitsList);
     })
+  }
+
+  nextSlide () {
+    const currentIndex =  this.state.currentProductIndex + 1;
+
+    this.setState({
+      currentProductIndex: currentIndex,
+      displayProductsList: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
+    }, () => {
+      console.log('this.state', this.state)
+    });
   }
 
   render() {
@@ -74,10 +84,15 @@ export default class OutfitsList extends React.Component {
               :
             <div className='list'>
               {/* <Carousel breakPoints={this.breakPoints}> */}
-                <Arrow className='fas fa-caret-left slide-arrow left-arrow'
-                />
+              <Arrow className='fas fa-caret-left slide-arrow left-arrow'
+              clickFunc={this.previousSlide}
+              // productsListLength={this.state.productsListId.length}
+              // displayProductsListLength={this.state.displayProductsList.length}
+              // firstProductId={this.state.productsListId[0]}
+              // firstDisplayProductId={this.state.displayProductsList[0]}
+              />
                 <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-                {this.state.outfitsList.map((outfit, key) => {
+                {this.state.displayProductsList.map((outfit, key) => {
                   return (
                     <div className='card' key={key}>
                       {/* {console.log('outfit', outfit)} */}
@@ -85,7 +100,13 @@ export default class OutfitsList extends React.Component {
                     </div>
                   )
                 })}
-                <Arrow className='fas fa-caret-right slide-arrow right-arrow'/>
+              <Arrow className='fas fa-caret-right slide-arrow right-arrow'
+              clickFunc={this.nextSlide}
+              productsListLength={this.state.outfitsList.length}
+              displayProductsListLength={this.state.displayProductsList.length}
+              lastProductId={this.state.outfitsList[this.state.outfitsList.length - 1].id}
+              lastDisplayProductId={this.state.displayProductsList[this.state.displayProductsList.length - 1].id}
+              />
               {/* </Carousel> */}
             </div>
           }
