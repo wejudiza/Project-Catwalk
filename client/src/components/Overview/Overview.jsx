@@ -41,6 +41,7 @@ export default class Overview extends React.Component {
         this.setState({
           product: productResults.data,
         });
+        this.props.getCurrentProductInfo(productResults.data);
       })
       .then(() => {
         axios.get(`/api/products/${this.props.currentProduct}/styles`)
@@ -74,7 +75,7 @@ export default class Overview extends React.Component {
             styles={this.state.styles}
             images={this.state.currentStyle.photos}
           />
-          <Description product={this.state.product}/>
+          <Description product={this.state.product} />
         </div>
       );
     }
