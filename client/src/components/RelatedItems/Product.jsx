@@ -22,27 +22,18 @@ export default class Product extends React.Component {
       modalView: false,
       id: '',
       name: '',
-      slogan: '',
-      description: '',
       category: '',
-      default_price: '',
       features: [],
       ratings: {},
       thumbnail_url: '',
       original_price: '',
       sale_price: '',
-      // EVERYTHING BELOW IS THE CURRENT PRODUCT DISPLAY ON PRODUCT DETAIL
-      currentProductId: '',
-      currentProductName: '',
-      currentProductFeatures: '',
       // STAR REVIEWS
       avgStars: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
-    // this.getStars = this.getStars.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.handleModal = this.handleModal.bind(this);
-    this.getDisplayedProductInfo = this.getDisplayedProductInfo.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.salePriceMode = this.salePriceMode.bind(this);
   }
@@ -78,31 +69,12 @@ export default class Product extends React.Component {
         });
       })
       .then(() => {
-        this.getDisplayedProductInfo(this.props.currentProduct);
-      })
-      // .then(() => {
-      //   this.getStars(this.props.productId);
-      // })
-      .then(() => {
         this.getStyles(this.props.productId);
       })
       .then(() => {
         this.getReviews(this.props.productId);
       })
   }
-
-  // ** GET RID OF
-  // getStars(productId) {
-  //   axios.get(`api/reviews/meta/${productId}`)
-  //     .then((results) => {
-  //       this.setState({
-  //         ratings: results.ratings
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
 
   getStyles(productId) {
     axios.get(`api/products/${productId}/styles`)
@@ -115,17 +87,6 @@ export default class Product extends React.Component {
         });
       })
       .catch((err) => console.log('getStyles err: ', err));
-  }
-
-  getDisplayedProductInfo(currentProductId) {
-    axios.get(`api/products/${currentProductId}`)
-      .then((results) => {
-        this.setState({
-          currentProductName: results.data.name,
-          currentProductFeatures: results.data.features,
-        });
-      })
-      .catch((err) => console.log('getDisplayedProductInfo err: ', err));
   }
 
   getReviews(productId) {
@@ -186,7 +147,7 @@ export default class Product extends React.Component {
                 <tr>
                   <th>{this.state.name}</th>
                   <th></th>
-                  <th>{this.state.currentProductName}</th>
+                  <th>{this.props.productInfo.name}</th>
                 </tr>
               </thead>
               <tbody>
@@ -205,8 +166,8 @@ export default class Product extends React.Component {
                   }
                 })}
                 {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-                {this.state.currentProductFeatures
-                ? this.state.currentProductFeatures.map((currentProdFeature, key) => {
+                {this.props.productInfo.features
+                ? this.props.productInfo.features.map((currentProdFeature, key) => {
                   if(currentProdFeature.value !== null) {
                     return (
                     <tr key={key}>
@@ -231,7 +192,6 @@ export default class Product extends React.Component {
             </div>
             :
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              {/* <img className="cardImg" src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}/> */}
               <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE</div>
             </div>
           }
