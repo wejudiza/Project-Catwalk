@@ -47,7 +47,7 @@ body {
 .container-review {
   display: grid;
   grid-template-rows: [row-start] auto [row-2] auto [row-3] auto [row-4] auto [rol-5] auto [rol-6] auto [rol-7] auto [row-end];
-  grid-template-columns: [col-start] auto [col-2] auto [col-end];
+  grid-template-columns: [col-start] minmax(350px, auto) [col-2] minmax(300px, auto) [col-end];
   grid-template-areas:
   "review-stars timeStamp"
   "summary summary"
@@ -177,7 +177,27 @@ body {
 
 .size-bar {
   grid-area: size-bar;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
+
+.barbackground {
+  background-color: lightgrey;
+  width: 97px;
+  height: 10px;
+
+  /* outline: 1px solid black; */
+}
+
+/* .triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid black;
+} */
 
 .small {
   grid-area: small;
@@ -207,6 +227,9 @@ body {
 
 .comfort-bar {
   grid-area: comfort-bar;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .poor {
@@ -228,7 +251,7 @@ body {
   /* outline: 5px solid black; */
   grid-template-columns: [col-start] 20% [col-2] 80% [col-end];
   grid-template-rows: [row-start] auto [row-2] auto [row-3] auto [row-4] auto [row-5] auto [row-end];
-  grid-gap: 5px;
+  grid-row-gap: 5px;
   grid-template-areas:
   "five-star-context five-star-bar"
   "four-star-context four-star-bar"
