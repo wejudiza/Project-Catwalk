@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import StarRating from '../reviews/StarRating';
 
 export default class ProductInfo extends React.Component {
