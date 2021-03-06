@@ -551,7 +551,8 @@ body {
   object-fit: cover;
   height: 60px;
   width: 60px;
-  padding: 5px;
+  margin: 5px;
+  border: 1px solid darkgrey;
 }
 
 .thumbnailContainer {
@@ -585,9 +586,10 @@ body {
 .style-option {
   position: block;
   object-fit: cover;
+  border: 1px solid darkgrey;
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
+  height: 85px;
+  width: 85px;
 }
 
 #style-container {
