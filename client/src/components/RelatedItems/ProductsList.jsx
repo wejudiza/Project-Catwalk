@@ -20,15 +20,14 @@ export default class ProductsList extends React.Component {
     this.getProductsListId = this.getProductsListId.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
     this.previousSlide = this.previousSlide.bind(this);
-    this.breakPoints = [
-      { width: 1, itemsToShow: 1 },
-      { width: 550, itemsToShow: 2},
-      { width: 850, itemsToShow: 3 },
-      { width: 1150, itemsToShow: 4 },
-      { width: 1450, itemsToShow: 5 },
-      { width: 1750, itemsToShow: 6 },
-    ];
-
+    // this.breakPoints = [
+    //   { width: 1, itemsToShow: 1 },
+    //   { width: 550, itemsToShow: 2},
+    //   { width: 850, itemsToShow: 3 },
+    //   { width: 1150, itemsToShow: 4 },
+    //   { width: 1450, itemsToShow: 5 },
+    //   { width: 1750, itemsToShow: 6 },
+    // ];
   }
 
   componentDidMount() {
@@ -59,12 +58,7 @@ export default class ProductsList extends React.Component {
   }
 
   previousSlide () {
-    // const lastIndex = this.state.productsListId.length - 1;
-    // // console.log('lastIndex', lastIndex);
-    // const shouldResetIndex = this.state.currentProductIndex === 0;
-    // console.log('shouldResetIndex', shouldResetIndex);
     const currentIndex = this.state.currentProductIndex - 1;
-    // console.log('index', index);
 
     this.setState({
       currentProductIndex: currentIndex,
@@ -75,12 +69,7 @@ export default class ProductsList extends React.Component {
   }
 
   nextSlide () {
-    // const lastIndex = this.state.productsListId.length - 1;
-    // console.log('lastIndex', lastIndex);
-    // const shouldResetIndex = this.state.currentProductIndex === lastIndex;
-    // console.log('shouldResetIndex', shouldResetIndex);
     const currentIndex =  this.state.currentProductIndex + 1;
-    // console.log('index', index);
 
     this.setState({
       currentProductIndex: currentIndex,
@@ -90,9 +79,6 @@ export default class ProductsList extends React.Component {
     });
   }
 
-
-
-  // Map over a get request of the related items
   render() {
     return (
       <div className="testGrid">

@@ -315,7 +315,9 @@ body {
   "title"
   "carousel";
   /* width: 80%; */
+  /* minmax() */
 }
+
 
 .title {
   grid-area: title;
@@ -328,7 +330,6 @@ body {
 .list {
   display: flex;
   align-items: flex-end;
-  /* max-width: 550px; */
 }
 
 .slide-arrow {
@@ -344,13 +345,6 @@ body {
   /* margin: 0 auto; */
 }
 
-.left-arrow {
-
-}
-
-.right-arrow {
-
-}
 
 #btnHidden {
   color: black;
