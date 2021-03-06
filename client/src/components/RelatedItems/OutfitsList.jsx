@@ -31,15 +31,15 @@ export default class OutfitsList extends React.Component {
     const outfitFound = this.state.outfitsList.find((outfit) => (
       outfit.id === this.props.currentProduct
     ))
+    // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
     if (outfitFound === undefined) {
       axios.get(`/api/products/${this.props.currentProduct}`)
         .then((results) => {
-          // console.log('results.data', results.data)
-          // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
-          this.state.outfitsList.push(results.data)
+          this.state.outfitsList.unshift(results.data)
           this.setState({
             outfitsList: this.state.outfitsList,
-            displayProductsList: this.state.outfitsList.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
+            // displayProductsList: this.state.outfitsList.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
+            displayProductsList: this.state.outfitsList.slice(0, this.state.itemsToDisplay)
           });
         })
         .catch((err) => console.log('addOutfit err: ', err));
@@ -52,12 +52,14 @@ export default class OutfitsList extends React.Component {
     this.setState({
       outfitsList: this.state.outfitsList.filter(outfit => (
         outfitId !== outfit.id
-      )),
-      displayProductsList: this.state.displayProductsList.filter(outfit => (
-        outfitId !== outfit.id
       ))
+      // displayProductsList: this.state.displayProductsList.filter(outfit => (
+      //   outfitId !== outfit.id
+      // ))
     }, () => {
-      console.log('displayProductsList after', this.state.displayProductsList);
+      this.setState({
+        displayProductsList: this.state.outfitsList.slice(0, this.state.itemsToDisplay)
+      })
     })
   }
 
