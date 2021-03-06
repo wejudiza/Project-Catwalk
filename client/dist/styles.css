@@ -47,7 +47,7 @@ body {
 .container-review {
   display: grid;
   grid-template-rows: [row-start] auto [row-2] auto [row-3] auto [row-4] auto [rol-5] auto [rol-6] auto [rol-7] auto [row-end];
-  grid-template-columns: [col-start] auto [col-2] auto [col-end];
+  grid-template-columns: [col-start] minmax(350px, auto) [col-2] minmax(300px, auto) [col-end];
   grid-template-areas:
   "review-stars timeStamp"
   "summary summary"
