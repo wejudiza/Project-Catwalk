@@ -348,6 +348,25 @@ body {
 
 
 /* RELATED ITEMS */
+.testGrid {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+  "title"
+  "carousel";
+  /* width: 80%; */
+  /* minmax() */
+}
+
+
+.title {
+  grid-area: title;
+}
+
+.productsCarousel {
+  grid-area: carousel;
+}
+
 .list {
   display: flex;
   align-items: flex-end;
@@ -356,6 +375,7 @@ body {
 .slide-arrow {
   color: black;
   font-size: 50px;
+  padding: 6px;
   align-self: center;
   background: transparent;
   cursor: pointer;
@@ -365,12 +385,16 @@ body {
   /* margin: 0 auto; */
 }
 
-.left-arrow {
 
-}
-
-.right-arrow {
-
+#btnHidden {
+  color: black;
+  font-size: 50px;
+  padding: 6px;
+  align-self: center;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  visibility: hidden;
 }
 
 /* Individual Card */

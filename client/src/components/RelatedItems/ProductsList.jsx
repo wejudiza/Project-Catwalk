@@ -13,20 +13,21 @@ export default class ProductsList extends React.Component {
     this.state = {
       // currentProduct: this.props.currentProduct,
       productsListId: [],
-      currentProductIndex: 0
+      displayProductsListId: [],
+      currentProductIndex: 0,
+      itemsToDisplay: 4,
     };
     this.getProductsListId = this.getProductsListId.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
     this.previousSlide = this.previousSlide.bind(this);
-    this.breakPoints = [
-      { width: 1, itemsToShow: 1 },
-      { width: 550, itemsToShow: 2},
-      { width: 850, itemsToShow: 3 },
-      { width: 1150, itemsToShow: 4 },
-      { width: 1450, itemsToShow: 5 },
-      { width: 1750, itemsToShow: 6 },
-    ];
-
+    // this.breakPoints = [
+    //   { width: 1, itemsToShow: 1 },
+    //   { width: 550, itemsToShow: 2},
+    //   { width: 850, itemsToShow: 3 },
+    //   { width: 1150, itemsToShow: 4 },
+    //   { width: 1450, itemsToShow: 5 },
+    //   { width: 1750, itemsToShow: 6 },
+    // ];
   }
 
   componentDidMount() {
@@ -45,61 +46,67 @@ export default class ProductsList extends React.Component {
       .then((results) => {
         this.setState({
           productsListId: results.data,
+          displayProductsListId: results.data.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
+        });
+      })
+      .then(() => {
+        this.setState({
+          displayProductsListId: this.state.productsListId.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
         });
       })
       .catch((err) => console.log('getProductsListId err: ', err));
   }
 
   previousSlide () {
-    const lastIndex = this.state.productsListId.length - 1;
-    // console.log('lastIndex', lastIndex);
-    const shouldResetIndex = this.state.currentProductIndex === 0;
-    console.log('shouldResetIndex', shouldResetIndex);
-    const index =  shouldResetIndex ? lastIndex : this.state.currentProductIndex - 1;
-    // console.log('index', index);
+    const currentIndex = this.state.currentProductIndex - 1;
 
     this.setState({
-      currentProductIndex: index
+      currentProductIndex: currentIndex,
+      displayProductsListId: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
     }, () => {
-      console.log('this.state.currentProductIndex', this.state.currentProductIndex)
+      console.log('this.state', this.state)
     });
   }
 
   nextSlide () {
-    const lastIndex = this.state.productsListId.length - 1;
-    // console.log('lastIndex', lastIndex);
-    const shouldResetIndex = this.state.currentProductIndex === lastIndex;
-    console.log('shouldResetIndex', shouldResetIndex);
-    const index =  shouldResetIndex ? 0 : this.state.currentProductIndex + 1;
-    // console.log('index', index);
+    const currentIndex =  this.state.currentProductIndex + 1;
 
     this.setState({
-      currentProductIndex: index
+      currentProductIndex: currentIndex,
+      displayProductsListId: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
     }, () => {
-      console.log('this.state.currentProductIndex', this.state.currentProductIndex)
+      console.log('this.state', this.state)
     });
   }
 
-
-
-  // Map over a get request of the related items
   render() {
     return (
-      <div>
-        <h4>
-          Related Products
+      <div className="testGrid">
+        <h4 className="title">
+          Related Products`
         </h4>
-        <div className='list'>
-          <Carousel breakPoints={this.breakPoints}>
-          {/* <Arrow className='fas fa-caret-left slide-arrow left-arrow' clickFunc={this.previousSlide}/> */}
-          {/* e.g if currentProductIndex is greater than 4, then map through productsListId from index 1 - 5 */}
-            {this.state.productsListId.map((productId, key) => (
+        <div className='list productsCarousel'>
+          {/* <Carousel breakPoints={this.breakPoints}> */}
+          <Arrow className='fas fa-caret-left slide-arrow left-arrow'
+            clickFunc={this.previousSlide}
+            productsListLength={this.state.productsListId.length}
+            displayProductsListLength={this.state.displayProductsListId.length}
+            firstProductId={this.state.productsListId[0]}
+            firstDisplayProductId={this.state.displayProductsListId[0]}
+          />
+            {this.state.displayProductsListId.map((productId, key) => (
               <div className="card" key={key}>
                 <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
               </div>
             ))}
-          {/* <Arrow className='fas fa-caret-right slide-arrow right-arrow' clickFunc={this.nextSlide} lastIndex={this.state.productsListId.length - 1} currentProductIndex={this.state.currentProductIndex}/> */}
-          </Carousel>
+          <Arrow className='fas fa-caret-right slide-arrow right-arrow'
+            clickFunc={this.nextSlide}
+            productsListLength={this.state.productsListId.length}
+            displayProductsListLength={this.state.displayProductsListId.length}
+            lastProductId={this.state.productsListId[this.state.productsListId.length - 1]}
+            lastDisplayProductId={this.state.displayProductsListId[this.state.displayProductsListId.length - 1]}
+          />
+          {/* </Carousel> */}
         </div>
       </div>
     );
