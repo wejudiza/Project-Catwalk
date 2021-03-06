@@ -1,6 +1,6 @@
 import React from 'react';
 import Images from './Images';
-// import ImageCarousel from './ImageCarousel';
+
 
 export default class ImageGallery extends React.Component {
   constructor(props) {
@@ -72,11 +72,6 @@ export default class ImageGallery extends React.Component {
               className="displayPhoto"
             />
 
-            {/* <ImageCarousel
-              images={this.state.thumbnails}
-              onImageClick={this.onImageClick}
-              currentImage={this.state.currentImage}
-            /> */}
             <div className="overlay">
               <Images
                 images={this.state.thumbnails}

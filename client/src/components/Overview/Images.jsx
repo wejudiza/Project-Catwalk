@@ -75,15 +75,17 @@ export default class Images extends React.Component {
       </div>
     ));
     let displayedThumbnails = allThumbnails.slice(0, 7);
-    if (currentImageIndex > 6) {
-      displayedThumbnails = allThumbnails.slice(currentImageIndex - 6, currentImageIndex + 1)
-    }
+    // if (currentImageIndex > 6) {
+    //   displayedThumbnails = allThumbnails.slice(currentImageIndex - 6, currentImageIndex + 1)
+    // }
     this.setState({
       currentImageIndex: currentImageIndex,
       thumbnails: allThumbnails,
       display: displayedThumbnails,
       displayStartIndex: currentImageIndex,
       displayEndIndex: currentImageIndex + 7,
+      // displayStartIndex: 0,
+      // displayEndIndex: 7,
     });
   }
 
@@ -98,8 +100,7 @@ export default class Images extends React.Component {
           <div className="thumbnailContainer">
             {this.state.display}
           </div>
-          {console.log('test: ', (this.state.thumbnails.length + 1))}
-          {this.state.thumbnails.length > 7 && this.state.currentImageIndex !== (this.state.thumbnails.length - 1)
+          {this.state.thumbnails.length > 7 && this.state.displayEndIndex < (this.state.thumbnails.length)
             ? <i className="fas fa-chevron-down" id="downArrow" onClick={this.onDownArrowClick} />
             : null}
         </div>

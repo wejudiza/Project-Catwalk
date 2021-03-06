@@ -507,8 +507,13 @@ body {
 
 #description {
   grid-area: footer;
-  align-self: center;
-  justify-self: center;
+  align-self: left;
+  justify-self: top;
+  display: flex;
+}
+
+#description-child {
+  max-width: 70%;
 }
 
 /* IMAGE GALLERY */
@@ -604,3 +609,10 @@ body {
   background: radial-gradient(white 60%, transparent 40%);
 }
 
+#divider {
+  display: inline-block;
+  width: 2px;
+  background-color: black;
+  margin: 0 10px;
+  height: 6em;
+}
