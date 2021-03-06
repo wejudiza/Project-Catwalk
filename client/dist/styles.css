@@ -1,23 +1,28 @@
 /* body */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: rgb(66, 63, 63)
+  color: rgb(66, 63, 63);
+  background-color: whitesmoke;
 }
 
 /* reviews */
 #container-reviews {
   /* width: 80%;
   height: 150%; */
-  width: 80%;
-  background-color: whitesmoke;
+  /* width: 80%; */
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  /* background-color: whitesmoke; */
   /* outline: 5px solid black; */
   display: grid;
-  grid-template-columns: [col-start] 25% [col-2] auto [col-end];
-  grid-template-rows: [row-start] auto [row-2] auto [row-end];
+  grid-template-columns: [col-start] minmax(300px, 300px) [col-2] minmax(500px, auto) [col-end];
+  grid-template-rows: [row-start] auto [row-2] minmax(auto, 500px) [row-end];
   grid-template-areas:
   "widgetHeader widgetHeader"
   "breakdowns reviewsList";
-  grid-column-gap: 50px;
+  grid-column-gap: 30px;
   grid-row-gap: 10px;
   /* align-items: start; */
   /* grid-auto-flow: column; */
@@ -25,6 +30,7 @@ body {
 
 .widgetHeader {
   grid-area: widgetHeader;
+  font-weight: lighter;
 }
 
 .breakdowns {
@@ -40,15 +46,17 @@ body {
 
 .container-review {
   display: grid;
-  grid-template-rows: [row-start] auto [row-2] auto [row-3] auto [row-4] auto [rol-5] auto [rol-6] auto [row-end];
-  grid-template-columns: [col-start] 60% [col-2] 40% [col-end];
+  grid-template-rows: [row-start] auto [row-2] auto [row-3] auto [row-4] auto [rol-5] auto [rol-6] auto [rol-7] auto [row-end];
+  grid-template-columns: [col-start] auto [col-2] auto [col-end];
   grid-template-areas:
   "review-stars timeStamp"
   "summary summary"
   "body body"
   "reviewImg reviewImg"
   "response response"
+  "recommend recommend"
   "footer footer";
+  grid-row-gap: 5px;
 }
 
 .review-stars {
@@ -58,6 +66,7 @@ body {
 .timeStamp {
   grid-area: timeStamp;
   text-align: right;
+  margin-right: 20px;
 }
 
 .summary {
@@ -74,20 +83,38 @@ body {
 
 .response {
   grid-area: response;
+  background-color: lightgray;
+}
+
+.recommend {
+  grid-area: recommend;
+  font-weight: lighter;
+  /* background-color: lightgray; */
 }
 
 .footer {
   grid-area: footer;
+  font-size: 13px;
+  font-weight: lighter;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: "cover";
+  /* outline: 5px solid black; */
 }
 
 .container-reviewList {
   /* outline: 5px solid black; */
+  /* grid-template-columns: minmax(350px, 350px); */
 }
 
 .container-breakdowns {
   /* outline: 5px solid black; */
   display: grid;
   grid-template-rows: [row-start] auto [row-2] auto [row-end];
+  grid-template-columns: auto;
   grid-row-gap: 10px;
   grid-template-areas:
   "ratingBreakdown"
@@ -97,7 +124,6 @@ body {
 .container-rating {
   /* outline: 5px solid black; */
   grid-area: ratingBreakdown;
-  grid-row-end: row-2;
 }
 
 .container-productBreakdown {
@@ -123,10 +149,12 @@ body {
 
 .recommendSum {
   grid-area: recommendSum;
+  color: grey;
 }
 
 .starPercent {
   grid-area: starPercent;
+  color: grey;
 }
 
 .container-productBreakdown {
@@ -144,6 +172,7 @@ body {
 
 .size {
   grid-area: size;
+  color: grey;
 }
 
 .size-bar {
@@ -173,6 +202,7 @@ body {
 
 .comfort {
   grid-area: comfort;
+  color: grey;
 }
 
 .comfort-bar {
@@ -198,6 +228,7 @@ body {
   /* outline: 5px solid black; */
   grid-template-columns: [col-start] 20% [col-2] 80% [col-end];
   grid-template-rows: [row-start] auto [row-2] auto [row-3] auto [row-4] auto [row-5] auto [row-end];
+  grid-gap: 5px;
   grid-template-areas:
   "five-star-context five-star-bar"
   "four-star-context four-star-bar"
@@ -304,6 +335,15 @@ body {
   text-decoration: underline;
 }
 
+.newReview {
+  /* outline: 1px solid black; */
+  text-align: center;
+}
+
+.inputForm {
+  text-align: left;
+  /* row-gap: 50px; */
+}
 
 
 

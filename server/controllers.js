@@ -96,6 +96,7 @@ const controllers = {
       });
   },
   postReviewById: (req, res) => {
+    // console.log(req.body)
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/', req.body, {
       headers: {
         Authorization: gitToken.TOKEN,
