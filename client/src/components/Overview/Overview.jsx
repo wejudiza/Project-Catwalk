@@ -74,7 +74,7 @@ export default class Overview extends React.Component {
             styles={this.state.styles}
             images={this.state.currentStyle.photos}
           />
-          <Description product={this.state.product}/>
+          <Description product={this.state.product} />
         </div>
       );
     }
