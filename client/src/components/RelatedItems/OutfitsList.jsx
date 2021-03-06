@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
+import Arrow from './Arrow.jsx';
 import Carousel from "react-elastic-carousel";
 
 export default class OutfitsList extends React.Component {
@@ -8,17 +9,20 @@ export default class OutfitsList extends React.Component {
     super(props);
     this.state = {
       outfitsList: [],
+      displayProductsListId: [],
+      currentProductIndex: 0,
+      itemsToDisplay: 4,
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
-    this.breakPoints = [
-      { width: 1, itemsToShow: 1 },
-      { width: 550, itemsToShow: 2},
-      { width: 850, itemsToShow: 3 },
-      { width: 1150, itemsToShow: 4 },
-      { width: 1450, itemsToShow: 5 },
-      { width: 1750, itemsToShow: 6 },
-    ]
+    // this.breakPoints = [
+    //   { width: 1, itemsToShow: 1 },
+    //   { width: 550, itemsToShow: 2},
+    //   { width: 850, itemsToShow: 3 },
+    //   { width: 1150, itemsToShow: 4 },
+    //   { width: 1450, itemsToShow: 5 },
+    //   { width: 1750, itemsToShow: 6 },
+    // ]
   }
 
   addOutfit() {
@@ -61,10 +65,17 @@ export default class OutfitsList extends React.Component {
         </h4>
         <div>
           {this.state.outfitsList.length === 0 ?
-            <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-            :
+            <>
+              <Arrow className='fas fa-caret-left slide-arrow left-arrow'
+              />
+              <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+              <Arrow className='fas fa-caret-right slide-arrow right-arrow'/>
+            </>
+              :
             <div className='list'>
-              <Carousel breakPoints={this.breakPoints}>
+              {/* <Carousel breakPoints={this.breakPoints}> */}
+                <Arrow className='fas fa-caret-left slide-arrow left-arrow'
+                />
                 <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
                 {this.state.outfitsList.map((outfit, key) => {
                   return (
@@ -74,7 +85,8 @@ export default class OutfitsList extends React.Component {
                     </div>
                   )
                 })}
-              </Carousel>
+                <Arrow className='fas fa-caret-right slide-arrow right-arrow'/>
+              {/* </Carousel> */}
             </div>
           }
         </div>
