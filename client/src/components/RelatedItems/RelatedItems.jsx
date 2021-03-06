@@ -12,12 +12,13 @@ export default class RelatedItems extends React.Component {
       relatedStylesArr: [],
       relatedReviewsArr: [],
     };
-    this.getRelatedData = this.getRelatedData.bind(this);
-  }
+    this.getRelatedInfo = this.getRelatedInfo.bind(this);
+    this.getRelatedStyles = this.getRelatedStyles.bind(this);
+;  }
 
   componentDidMount() {
-    this.getRelatedInfo(this.props.currentProduct)
-
+    this.getRelatedInfo(this.props.currentProduct);
+    this.getRelatedStyles(this.props.currentProduct);
   }
 
   // *** Do all axios requests here
@@ -46,7 +47,24 @@ export default class RelatedItems extends React.Component {
       })
   }
 
-
+  getRelatedStyles(productId) {
+    var relatedStylesResults = this.state.relatedIdArr.map((relatedId) => (
+      axios.get(`api/products/${relatedId}/styles`)
+        .then((result) => {
+          console.log(result);
+          // return result.data
+        })
+    ));
+    console.log(relatedStylesResults)
+    // Promise.all(relatedStylesResults)
+    //   .then((results) => {
+    //     this.setState({
+    //       relatedStylesArr: results
+    //     }, () => {
+    //       console.log(this.state)
+    //     })
+    //   })
+  }
 
 
 
