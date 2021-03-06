@@ -6,14 +6,14 @@ import axios from 'axios';
 
 // inline style for modal popups after clicking yes or report
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  },
 };
 
 // translate timestamp
@@ -27,9 +27,9 @@ const monthTranslate = {
   '07': 'July',
   '08': 'August',
   '09': 'September',
-  '10': 'October',
-  '11': 'November',
-  '12': 'December',
+  10: 'October',
+  11: 'November',
+  12: 'December',
 };
 
 class Review extends React.Component {
@@ -48,31 +48,31 @@ class Review extends React.Component {
   handleClickHelpful(e) {
     // console.log(typeof e.target.getAttribute('review_id'))
     axios.put(`/api/reviews/${Number(e.target.getAttribute('review_id'))}/helpful`)
-      .then((rawData) => {
+      .then(() => {
         // console.log(rawData.data);
         this.setState({
           modalView: !this.state.modalView,
-          modalMessage: 'Thank you for your feedback!'
+          modalMessage: 'Thank you for your feedback!',
         });
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   // function handling click on report
   handleClickReport(e) {
     axios.put(`/api/reviews/${Number(e.target.getAttribute('review_id'))}/report`)
-      .then((rawData) => {
+      .then(() => {
         // console.log(rawData.data);
         this.setState({
           modalView: !this.state.modalView,
-          modalMessage: 'Thank you for your report! This review will be removed!'
+          modalMessage: 'Thank you for your report! This review will be removed!',
         });
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   // function to close modal for helpful and report feedback
@@ -111,14 +111,13 @@ class Review extends React.Component {
           <button type="button" onClick={this.closeModal}>Back</button>
         </Modal>
         {this.props.arrOfReviews.map((review) => {
-          // if (review.response === '' || !review.response) {
           return (
             <div className="container-review" key={review.review_id}>
               <div className="review-stars">
                 <StarRating rating={review.rating} />
               </div>
               <div className="timeStamp">
-              {`${review.reviewer_name}, ${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
+                &#10004;{`${review.reviewer_name}, ${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
               </div>
               <h4 className="summary">
                 {review.summary}
@@ -138,6 +137,16 @@ class Review extends React.Component {
                   </div>
                 )
               }
+              {(review.recommend) ?
+                <div
+                  className="recommend"
+                >
+                  <span>&#128293;</span><span> </span>
+                  I recommend this product
+                </div>
+                :
+                null
+              }
               <div className="footer">
                 Helpful?
                 <span> </span>
@@ -147,13 +156,14 @@ class Review extends React.Component {
                 <span>|</span>
                 <span>  </span>
                 <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
-                <hr width='100%' align='left' color='rgb(66, 63, 63)' />
+                <hr width='97%' align='left' color='rgb(66, 63, 63)' />
               </div>
             </div>
           )
 
           // DRY VIOLATION!!!!!
 
+          // if (review.response === '' || !review.response) {
           // }
           // else {
           //   return (

@@ -3,6 +3,17 @@ import Modal from 'react-modal';
 import Review from './Review';
 import axios from 'axios';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  },
+};
+
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
@@ -95,6 +106,7 @@ class ReviewsList extends React.Component {
           this.props.getNumForRating(numForRating);
           this.props.getTotalReviews(0);
         }
+        console.log(currentDisplayReviews)
         this.setState({
           arrOfReviews: arrOfReviews,
           currentDisplayReviews: currentDisplayReviews,
@@ -121,7 +133,7 @@ class ReviewsList extends React.Component {
   // function controls modal state change
   handleAddReview() {
     this.setState({
-      modalView: !this.state.modalView
+      modalView: !this.state.modalView,
     });
   }
 
@@ -248,57 +260,75 @@ class ReviewsList extends React.Component {
             isOpen={this.state.modalView}
             ariaHideApp={false}
             onRequestClose={this.handleAddReview}
+            style={customStyles}
           >
-            <h1>Thank your for giving your feedback</h1>
-            <form
-              onChange={this.handleFormInput}
-            >
-              <label>Rating</label><br />
-                <select name="rating">
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
-                </select><br />
-              <label>Level of Fit</label><br />
-                <select name="size">
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
-                </select><br />
-              <label>Level of Comfortable</label><br />
-                <select name="comfortable">
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
-                </select><br />
-              <label>Summary</label><br />
-                <input name="summary"></input><br />
-              <label>Comments</label><br />
-                <input name="body"></input><br />
-              <label>Will you recommend this product?</label><br />
-                <select name="recommend">
-                  <option>Yes</option>
-                  <option>No</option>
-                </select><br />
-              <label>Your Name</label><br />
-                <input name="name"></input><br />
-              <label>Your email</label><br />
-                <input name="email"></input><br />
-              <button
-                type="button"
-                onClick={this.handleSubmit}
-              >Submit</button>
-              <button
-                type="button"
-                onClick={this.handleAddReview}
-              >Cancel</button>
-            </form>
+            <div className="newReview">
+              <h1>Thank your for giving your feedback</h1>
+              <form
+                className="inputForm"
+                onChange={this.handleFormInput}
+              >
+                <label>Rating</label>
+                  <select
+                    name="rating"
+                    className="select"
+                  >
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                  </select><br />
+                <label>Level of Fit</label>
+                  <select
+                    name="size"
+                    className="select"
+                  >
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                  </select><br />
+                <label>Level of Comfortable</label>
+                  <select
+                    name="comfortable"
+                    className="select"
+                  >
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                  </select><br />
+                <label>Summary:</label>
+                  <input name="summary"></input><br />
+                <label>Comments:</label>
+                  <input name="body"></input><br />
+                <label>Will you recommend this product?</label>
+                  <select
+                    name="recommend"
+                    className="select"
+                  >
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select><br />
+                <label>Your Name:</label>
+                  <input name="name"></input><br />
+                <label>Your email:</label>
+                  <input name="email"></input><br />
+                <button
+                  type="button"
+                  className="button"
+                  onClick={this.handleSubmit}
+                >Submit</button>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={this.handleAddReview}
+                >Cancel</button>
+              </form>
+            </div>
           </Modal>
         </div>
       </div>
