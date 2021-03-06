@@ -15,6 +15,8 @@ export default class OutfitsList extends React.Component {
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
+    // this.previousSlide = this.previousSlide.bind(this);
     // this.breakPoints = [
     //   { width: 1, itemsToShow: 1 },
     //   { width: 550, itemsToShow: 2},
@@ -46,13 +48,16 @@ export default class OutfitsList extends React.Component {
 
   removeOutfit(outfitId) {
     console.log('outfitId', outfitId);
-    console.log('outfitsList before', this.state.outfitsList);
+    console.log('displayProductsList before', this.state.displayProductsList);
     this.setState({
       outfitsList: this.state.outfitsList.filter(outfit => (
         outfitId !== outfit.id
+      )),
+      displayProductsList: this.state.displayProductsList.filter(outfit => (
+        outfitId !== outfit.id
       ))
     }, () => {
-      console.log('outfitsList after', this.state.outfitsList);
+      console.log('displayProductsList after', this.state.displayProductsList);
     })
   }
 
@@ -61,7 +66,7 @@ export default class OutfitsList extends React.Component {
 
     this.setState({
       currentProductIndex: currentIndex,
-      displayProductsList: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
+      displayProductsList: this.state.outfitsList.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
     }, () => {
       console.log('this.state', this.state)
     });
