@@ -104,6 +104,7 @@ class ReviewsList extends React.Component {
           this.props.getRating(0);
           this.props.getPercentageFromReviewsList(0);
           this.props.getNumForRating(numForRating);
+          this.props.getTotalReviews(0);
         }
         console.log(currentDisplayReviews)
         this.setState({

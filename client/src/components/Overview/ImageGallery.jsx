@@ -1,5 +1,6 @@
 import React from 'react';
-import Images from './Images';
+// import Images from './Images';
+import ImageCarousel from './ImageCarousel';
 
 export default class ImageGallery extends React.Component {
   constructor(props) {
@@ -8,8 +9,11 @@ export default class ImageGallery extends React.Component {
       thumbnails: [],
       currentImage: {},
       currentImageUrl: '',
+      currentImageIndex: 0,
     };
     this.onImageClick = this.onImageClick.bind(this);
+    this.onRightArrowClick = this.onRightArrowClick.bind(this);
+    this.onLeftArrowClick = this.onLeftArrowClick.bind(this);
   }
 
   componentDidMount() {
@@ -17,7 +21,7 @@ export default class ImageGallery extends React.Component {
       thumbnails: this.props.images,
       currentImage: this.props.images[0],
       currentImageUrl: this.props.images[0].url,
-    })
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -26,42 +30,75 @@ export default class ImageGallery extends React.Component {
         thumbnails: this.props.images,
         currentImage: this.props.images[0],
         currentImageUrl: this.props.images[0].url,
-      })
+      });
     }
   }
 
   onImageClick(e) {
-    const currentImageIndex = this.state.thumbnails.findIndex((i) => i.url === e.target.title);
+    const clickedImageIndex = this.state.thumbnails.findIndex((i) => i.url === e.target.title);
     this.setState({
-      currentImage: this.state.thumbnails[currentImageIndex],
+      currentImage: this.state.thumbnails[clickedImageIndex],
       currentImageUrl: e.target.title,
+      currentImageIndex: clickedImageIndex,
     });
   }
 
-  render() {
-    return (
-      <div id="main">
-        <div id="imageGalleryContainer">
-          <img
-            src={this.state.currentImageUrl}
-            alt=""
-            className="displayPhoto"
-          />
+  onRightArrowClick(index) {
+    this.setState({
+      currentImage: this.state.thumbnails[index + 1],
+      currentImageUrl: this.state.thumbnails[index + 1].url,
+      currentImageIndex: this.state.currentImageIndex + 1,
+    });
+  };
 
-          <div className="overlay">
-            <Images
+  onLeftArrowClick(index) {
+    this.setState({
+      currentImage: this.state.thumbnails[index - 1],
+      currentImageUrl: this.state.thumbnails[index - 1].url,
+      currentImageIndex: this.state.currentImageIndex - 1,
+    });
+  };
+
+  render() {
+    if (this.state.thumbnails.length !== 0) {
+      const lastIndex = this.state.thumbnails.length - 1;
+      return (
+        <div id="main">
+          <div id="imageGalleryContainer">
+            <img
+              src={this.state.currentImageUrl}
+              alt=""
+              className="displayPhoto"
+            />
+
+            <ImageCarousel
               images={this.state.thumbnails}
               onImageClick={this.onImageClick}
               currentImage={this.state.currentImage}
             />
-            <i className="fas fa-chevron-down" id="downArrow" />
+            {/* <div className="overlay">
+              <Images
+                images={this.state.thumbnails}
+                onImageClick={this.onImageClick}
+                currentImage={this.state.currentImage}
+              />
+              <i className="fas fa-chevron-down" id="downArrow" />
+            </div> */}
+            {this.state.currentImage.url === this.state.thumbnails[0].url
+              ? null
+              : <i className="fas fa-arrow-left" id="leftArrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
+            {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
+              ? null
+              : <i className="fas fa-arrow-right" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
+            <i className="fas fa-expand" id="expand" />
           </div>
-
-          <i className="fas fa-arrow-right" id="rightArrow" />
-          <i className="fas fa-arrow-left" id="leftArrow" />
-          <i className="fas fa-expand" id="expand" />
         </div>
+      );
+    }
+    return (
+      <div>
+        Loading Images...
       </div>
-    )
+    );
   }
 }
