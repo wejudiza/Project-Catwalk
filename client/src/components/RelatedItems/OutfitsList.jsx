@@ -16,7 +16,7 @@ export default class OutfitsList extends React.Component {
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
-    // this.previousSlide = this.previousSlide.bind(this);
+    this.previousSlide = this.previousSlide.bind(this);
     // this.breakPoints = [
     //   { width: 1, itemsToShow: 1 },
     //   { width: 550, itemsToShow: 2},
@@ -59,6 +59,17 @@ export default class OutfitsList extends React.Component {
     }, () => {
       console.log('displayProductsList after', this.state.displayProductsList);
     })
+  }
+
+  previousSlide () {
+    const currentIndex = this.state.currentProductIndex - 1;
+
+    this.setState({
+      currentProductIndex: currentIndex,
+      displayProductsList: this.state.outfitsList.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
+    }, () => {
+      console.log('this.state', this.state)
+    });
   }
 
   nextSlide () {
