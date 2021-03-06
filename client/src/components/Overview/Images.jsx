@@ -4,9 +4,8 @@ export default class Images extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentImageIndex: 0,
       thumbnails: [],
-      // testThumb: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      // testDisplay: [0, 1, 2, 3, 4, 5, 6],
       display: [],
       displayStartIndex: 0,
       displayEndIndex: 7,
@@ -49,6 +48,7 @@ export default class Images extends React.Component {
   }
 
   setDisplay() {
+    const currentImageIndex = this.props.currentImageIndex;
     const allThumbnails = this.props.images.map((image, index) => (
       <div key={index}>
         {this.props.currentImage.url === image.url
@@ -74,12 +74,16 @@ export default class Images extends React.Component {
           )}
       </div>
     ));
-    const displayedThumbnails = allThumbnails.slice(0, 7);
+    let displayedThumbnails = allThumbnails.slice(0, 7);
+    if (currentImageIndex > 6) {
+      displayedThumbnails = allThumbnails.slice(currentImageIndex - 6, currentImageIndex + 1)
+    }
     this.setState({
+      currentImageIndex: currentImageIndex,
       thumbnails: allThumbnails,
       display: displayedThumbnails,
-      displayStartIndex: 0,
-      displayEndIndex: 7,
+      displayStartIndex: currentImageIndex,
+      displayEndIndex: currentImageIndex + 7,
     });
   }
 
@@ -94,7 +98,8 @@ export default class Images extends React.Component {
           <div className="thumbnailContainer">
             {this.state.display}
           </div>
-          {this.props.images.length > 7 && this.state.displayEndIndex !== this.state.thumbnails.length
+          {console.log('test: ', (this.state.thumbnails.length + 1))}
+          {this.state.thumbnails.length > 7 && this.state.currentImageIndex !== (this.state.thumbnails.length - 1)
             ? <i className="fas fa-chevron-down" id="downArrow" onClick={this.onDownArrowClick} />
             : null}
         </div>

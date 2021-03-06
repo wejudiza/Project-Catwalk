@@ -82,6 +82,7 @@ export default class ImageGallery extends React.Component {
                 images={this.state.thumbnails}
                 onImageClick={this.onImageClick}
                 currentImage={this.state.currentImage}
+                currentImageIndex={this.state.currentImageIndex}
               />
               {/* <i className="fas fa-chevron-down" id="downArrow" /> */}
             </div>
