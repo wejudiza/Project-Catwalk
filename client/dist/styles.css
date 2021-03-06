@@ -334,6 +334,7 @@ body {
 .slide-arrow {
   color: black;
   font-size: 50px;
+  padding: 6px;
   align-self: center;
   background: transparent;
   cursor: pointer;
@@ -349,6 +350,17 @@ body {
 
 .right-arrow {
 
+}
+
+#btnHidden {
+  color: black;
+  font-size: 50px;
+  padding: 6px;
+  align-self: center;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  visibility: hidden;
 }
 
 /* Individual Card */

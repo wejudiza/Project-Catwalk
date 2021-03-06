@@ -105,7 +105,7 @@ export default class ProductsList extends React.Component {
             clickFunc={this.previousSlide}
             productsListLength={this.state.productsListId.length}
             displayProductsListLength={this.state.displayProductsListId.length}
-            currentProductId={this.state.productsListId[this.state.currentProductIndex]}
+            firstProductId={this.state.productsListId[0]}
             firstDisplayProductId={this.state.displayProductsListId[0]}
           />
             {this.state.displayProductsListId.map((productId, key) => (
@@ -115,8 +115,6 @@ export default class ProductsList extends React.Component {
             ))}
           <Arrow className='fas fa-caret-right slide-arrow right-arrow'
             clickFunc={this.nextSlide}
-            // lastIndex={this.state.productsListId.length - 1}
-            // currentProductIndex={this.state.currentProductIndex}
             productsListLength={this.state.productsListId.length}
             displayProductsListLength={this.state.displayProductsListId.length}
             lastProductId={this.state.productsListId[this.state.productsListId.length - 1]}
