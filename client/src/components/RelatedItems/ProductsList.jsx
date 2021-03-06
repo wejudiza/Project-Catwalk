@@ -4,9 +4,6 @@ import Product from './Product.jsx';
 import Arrow from './Arrow.jsx';
 import Carousel from "react-elastic-carousel";
 
-
-
-
 export default class ProductsList extends React.Component {
   constructor(props) {
     super(props);
@@ -45,8 +42,7 @@ export default class ProductsList extends React.Component {
     axios.get(`api/products/${this.props.currentProduct}/related`)
       .then((results) => {
         this.setState({
-          productsListId: results.data,
-          displayProductsListId: results.data.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
+          productsListId: results.data
         });
       })
       .then(() => {
@@ -69,7 +65,7 @@ export default class ProductsList extends React.Component {
   }
 
   nextSlide () {
-    const currentIndex =  this.state.currentProductIndex + 1;
+    const currentIndex =  this.state.currentProductIndex + 1;``
 
     this.setState({
       currentProductIndex: currentIndex,
@@ -96,7 +92,7 @@ export default class ProductsList extends React.Component {
           />
             {this.state.displayProductsListId.map((productId, key) => (
               <div className="card" key={key}>
-                <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId}/>
+                <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
               </div>
             ))}
           <Arrow className='fas fa-caret-right slide-arrow right-arrow'
