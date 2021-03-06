@@ -83,7 +83,7 @@ export default class ImageGallery extends React.Component {
                 onImageClick={this.onImageClick}
                 currentImage={this.state.currentImage}
               />
-              <i className="fas fa-chevron-down" id="downArrow" />
+              {/* <i className="fas fa-chevron-down" id="downArrow" /> */}
             </div>
             {this.state.currentImage.url === this.state.thumbnails[0].url
               ? null

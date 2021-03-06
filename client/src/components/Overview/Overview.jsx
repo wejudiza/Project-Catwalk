@@ -41,6 +41,7 @@ export default class Overview extends React.Component {
         this.setState({
           product: productResults.data,
         });
+        this.props.getCurrentProductInfo(productResults.data);
       })
       .then(() => {
         axios.get(`/api/products/${this.props.currentProduct}/styles`)

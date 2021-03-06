@@ -4,11 +4,13 @@ export default class Images extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allThumbnails: [],
+      thumbnails: [],
       display: [],
+      displayStartIndex: 0,
+      displayEndIndex: 6,
     };
     this.setDisplay = this.setDisplay.bind(this);
-    this.set
+    this.onDownArrowClick = this.onDownArrowClick.bind(this);
   }
 
   componentDidMount() {
@@ -18,14 +20,21 @@ export default class Images extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.currentImage !== prevProps.currentImage) {
       this.setDisplay();
-      // this.setState({
-      //   allThumbnails: this.props.images,
-      // });
     }
   }
 
+  onDownArrowClick() {
+    console.log('thumbnails: ', this.state.thumbnails)
+    const newStartIndex = this.state.displayStartIndex + 1;
+    const newEndIndex = this.state.displayEndIndex + 1;
+    const newDisplay = this.state.thumbnails.slice(newStartIndex, newEndIndex);
+    this.setState({
+      display: newDisplay,
+    });
+  }
+
   setDisplay() {
-    let allThumbnails = this.props.images.map((image, index) => (
+    const allThumbnails = this.props.images.map((image, index) => (
       <div key={index}>
         {this.props.currentImage.url === image.url
           ? (
@@ -50,17 +59,11 @@ export default class Images extends React.Component {
           )}
       </div>
     ));
-    if (allThumbnails.length > 7) {
-      allThumbnails = allThumbnails.slice(0, 7);
-    }
+    const displayedThumbnails = allThumbnails.slice(0, 7);
     this.setState({
-      display: allThumbnails,
+      thumbnails: allThumbnails,
+      display: displayedThumbnails,
     });
-    // return (
-    // <div className="thumbnailContainer">
-    //   {allThumbnails}
-    // </div>
-    // );
   }
 
   render() {
@@ -70,33 +73,9 @@ export default class Images extends React.Component {
           <div className="thumbnailContainer">
             {this.state.display}
           </div>
-          {/* <div className="thumbnailContainer">
-            {this.props.images.map((image, index) => (
-              <div key={index}>
-                {this.props.currentImage.url === image.url
-                  ? (
-                    <img
-                      alt=""
-                      src={image.thumbnail_url}
-                      title={image.url}
-                      onClick={this.props.onImageClick}
-                      key={index}
-                      className="selected-thumbnail"
-                    />
-                  )
-                  : (
-                    <img
-                      alt=""
-                      src={image.thumbnail_url}
-                      title={image.url}
-                      onClick={this.props.onImageClick}
-                      key={index}
-                      className="thumbnails"
-                    />
-                  )}
-              </div>
-            ))}
-          </div> */}
+          {this.props.images.length > 7
+            ? <i className="fas fa-chevron-down" id="downArrow" onClick={this.onDownArrowClick} />
+            : null}
         </div>
       );
     }

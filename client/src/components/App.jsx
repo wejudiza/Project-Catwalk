@@ -10,16 +10,25 @@ class App extends React.Component {
       currentProduct: 16056,
       ratingForCurrentProduct: 0,
       totalReviewsForCurrentProduct: 0,
+      productInfo: {},
     };
     this.getCurrentProductId = this.getCurrentProductId.bind(this);
     this.getRating = this.getRating.bind(this);
     this.getTotalReviews = this.getTotalReviews.bind(this);
+    this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
   }
 
   // function to get current product_id from relatedItem and save it to state
   getCurrentProductId(product_id) {
     this.setState({
       currentProduct: product_id,
+    });
+  }
+
+  // function to get current product info from Overview and save it to state
+  getCurrentProductInfo(info) {
+    this.setState({
+      productInfo: info,
     });
   }
 
@@ -45,11 +54,13 @@ class App extends React.Component {
             rating={this.state.ratingForCurrentProduct}
             currentProduct={this.state.currentProduct}
             totalReviews={this.state.totalReviewsForCurrentProduct}
+            getCurrentProductInfo={this.getCurrentProductInfo}
           />
         </div>
         <div id="relatedItems">
           <RelatedItems
             currentProduct={this.state.currentProduct}
+            productInfo={this.state.productInfo}
             getCurrentProductId={this.getCurrentProductId}
           />
         </div>
