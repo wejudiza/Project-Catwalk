@@ -53,9 +53,9 @@ export default class OutfitsList extends React.Component {
         </h4>
         <div>
           {this.state.outfitsList.length === 0 ?
-            <>
+            <Carousel breakPoints={this.breakPoints} itemsToShow={4}>
               <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-            </>
+            </Carousel>
               :
             <div className='list'>
               <Carousel breakPoints={this.breakPoints} itemsToShow={4}>

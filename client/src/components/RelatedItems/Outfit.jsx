@@ -81,8 +81,8 @@ export default class Outfit extends React.Component {
       :
         <div>
           <span>${this.state.original_price}</span>
-          {' '}
-          <em>(Other Styles May Be On Sale!)</em>
+          {/* {' '}
+          <em>(Other Styles May Be On Sale!)</em> */}
         </div>
     )
   }
@@ -103,7 +103,7 @@ export default class Outfit extends React.Component {
             {this.props.outfit.category}
           </div>
           <div>
-            {this.props.outfit.name}
+            <b>{this.props.outfit.name}</b>
           </div>
           <div>
             {this.salePriceMode()}

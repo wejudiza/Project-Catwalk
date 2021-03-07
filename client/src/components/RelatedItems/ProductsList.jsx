@@ -72,7 +72,7 @@ export default class ProductsList extends React.Component {
       return (
         <div className="testGrid">
           <h4 className="title">
-            Related Products`
+            Related Products
           </h4>
           <ProductsCarousel productsListId={this.state.productsListId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>

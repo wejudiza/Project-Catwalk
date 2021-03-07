@@ -20,7 +20,11 @@ export default class ProductsCarousel extends React.Component {
   render() {
     return (
       <div className='list productsCarousel'>
-        <Carousel breakPoints={this.breakPoints} itemsToShow={4}>
+        <Carousel
+          breakPoints={this.breakPoints}
+          disableArrowsOnEnd={true}
+          itemsToShow={4}
+        >
           {this.props.productsListId.map((productId, key) => (
             <div className="card" key={key}>
               <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
