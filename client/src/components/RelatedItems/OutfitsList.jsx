@@ -14,7 +14,7 @@ export default class OutfitsList extends React.Component {
     this.removeOutfit = this.removeOutfit.bind(this);
     this.breakPoints = [
       { width: 1, itemsToShow: 1 },
-      { width: 550, itemsToShow: 2},
+      { width: 550, itemsToShow: 2 },
       { width: 850, itemsToShow: 3 },
       { width: 1150, itemsToShow: 4 },
       { width: 1450, itemsToShow: 5 }
@@ -27,10 +27,13 @@ export default class OutfitsList extends React.Component {
     ))
     // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
     if (outfitFound === undefined) {
-      this.state.outfitsList.unshift(this.props.productInfo)
-        this.setState({
-          outfitsList: this.state.outfitsList
-        });
+      // Concat let's us make a copy
+      let newOutfitsList = [].concat(this.state.outfitsList)
+      newOutfitsList.unshift(this.props.productInfo)
+      console.log(newOutfitsList);
+      this.setState({
+        outfitsList: newOutfitsList
+      });
     }
   }
 
@@ -49,33 +52,27 @@ export default class OutfitsList extends React.Component {
     return (
       <div>
         <h4>
-        Outfits List
+          Outfits List
         </h4>
         <div>
-          {this.state.outfitsList.length === 0 ?
-            <Carousel breakPoints={this.breakPoints} itemsToShow={4}>
-              <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+          {/* {this.state.outfitsList.length === 0 ?
+            <Carousel breakPoints={this.breakPoints} itemsToShow={4} showEmptySlots>
+              <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
             </Carousel>
-              :
-            <div className='list'>
-              <Carousel breakPoints={this.breakPoints} itemsToShow={4}>
-                <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-                {console.log('this.state.outfitsList', this.state.outfitsList)}
-                {this.state.outfitsList.length ?
-                  this.state.outfitsList.map((outfit, key) => {
-                    return (
-                      <div className='card' key={key}>
-                        {/* {console.log('outfit', outfit)} */}
-                        <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
-                      </div>
-                    )
-                  })
-                  :
-                  null
-                }
-              </Carousel>
-            </div>
-          }
+            : */}
+          <div className='list'>
+            {/* Need to set showEmptySlots to true */}
+            <Carousel breakPoints={this.breakPoints} itemsToShow={4} showEmptySlots>
+              <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
+              {console.log(this.state.outfitsList)}
+              {this.state.outfitsList.map((outfit, key) => (
+                <div className='card' key={`${outfit.id}-${key}`}>
+                  <Outfit outfit={outfit} removeOutfit={this.removeOutfit} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          {/* // } */}
         </div>
       </div>
     );
