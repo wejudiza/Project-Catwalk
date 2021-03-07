@@ -8,23 +8,17 @@ export default class OutfitsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfitsList: [],
-      // displayProductsList: [],
-      // currentProductIndex: 0,
-      // itemsToDisplay: 3,
+      outfitsList: []
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
-    // this.nextSlide = this.nextSlide.bind(this);
-    // this.previousSlide = this.previousSlide.bind(this);
     this.breakPoints = [
       { width: 1, itemsToShow: 1 },
       { width: 550, itemsToShow: 2},
       { width: 850, itemsToShow: 3 },
       { width: 1150, itemsToShow: 4 },
-      { width: 1450, itemsToShow: 5 },
-      { width: 1750, itemsToShow: 6 },
-    ]
+      { width: 1450, itemsToShow: 5 }
+    ];
   }
 
   addOutfit() {
@@ -33,16 +27,10 @@ export default class OutfitsList extends React.Component {
     ))
     // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
     if (outfitFound === undefined) {
-      axios.get(`/api/products/${this.props.currentProduct}`)
-        .then((results) => {
-          this.state.outfitsList.unshift(results.data)
-          this.setState({
-            outfitsList: this.state.outfitsList,
-            // displayProductsList: this.state.outfitsList.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
-            displayProductsList: this.state.outfitsList.slice(0, this.state.itemsToDisplay)
-          });
-        })
-        .catch((err) => console.log('addOutfit err: ', err));
+      this.state.outfitsList.unshift(this.props.productInfo)
+        this.setState({
+          outfitsList: this.state.outfitsList
+        });
     }
   }
 
@@ -53,37 +41,9 @@ export default class OutfitsList extends React.Component {
       outfitsList: this.state.outfitsList.filter(outfit => (
         outfitId !== outfit.id
       ))
-      // displayProductsList: this.state.displayProductsList.filter(outfit => (
-      //   outfitId !== outfit.id
-      // ))
-    }, () => {
-      this.setState({
-        displayProductsList: this.state.outfitsList.slice(0, this.state.itemsToDisplay)
-      })
     })
   }
 
-  // previousSlide () {
-  //   const currentIndex = this.state.currentProductIndex - 1;
-
-  //   this.setState({
-  //     currentProductIndex: currentIndex,
-  //     displayProductsList: this.state.outfitsList.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
-  //   }, () => {
-  //     console.log('this.state', this.state)
-  //   });
-  // }
-
-  // nextSlide () {
-  //   const currentIndex =  this.state.currentProductIndex + 1;
-
-  //   this.setState({
-  //     currentProductIndex: currentIndex,
-  //     displayProductsList: this.state.outfitsList.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
-  //   }, () => {
-  //     console.log('this.state', this.state)
-  //   });
-  // }
 
   render() {
     return (
@@ -94,37 +54,25 @@ export default class OutfitsList extends React.Component {
         <div>
           {this.state.outfitsList.length === 0 ?
             <>
-              {/* <Arrow className='fas fa-caret-left slide-arrow left-arrow'
-              /> */}
               <button id='outfitsBtn' className='card'  onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-              {/* <Arrow className='fas fa-caret-right slide-arrow right-arrow'/> */}
             </>
               :
             <div className='list'>
-              <Carousel breakPoints={this.breakPoints}>
-              {/* <Arrow className='fas fa-caret-left slide-arrow left-arrow'
-              clickFunc={this.previousSlide}
-              productsListLength={this.state.outfitsList.length}
-              displayProductsListLength={this.state.displayProductsList.length}
-              firstProductId={this.state.outfitsList[0]}
-              firstDisplayProductId={this.state.displayProductsList[0]}
-              /> */}
+              <Carousel breakPoints={this.breakPoints} itemsToShow={4}>
                 <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-                {this.state.displayProductsList.map((outfit, key) => {
-                  return (
-                    <div className='card' key={key}>
-                      {/* {console.log('outfit', outfit)} */}
-                      <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
-                    </div>
-                  )
-                })}
-              {/* <Arrow className='fas fa-caret-right slide-arrow right-arrow'
-              clickFunc={this.nextSlide}
-              productsListLength={this.state.outfitsList.length}
-              displayProductsListLength={this.state.displayProductsList.length}
-              lastProductId={this.state.outfitsList[this.state.outfitsList.length - 1].id}
-              lastDisplayProductId={this.state.displayProductsList[this.state.displayProductsList.length - 1].id}
-              /> */}
+                {console.log('this.state.outfitsList', this.state.outfitsList)}
+                {this.state.outfitsList.length ?
+                  this.state.outfitsList.map((outfit, key) => {
+                    return (
+                      <div className='card' key={key}>
+                        {/* {console.log('outfit', outfit)} */}
+                        <Outfit outfit={outfit} removeOutfit={this.removeOutfit}/>
+                      </div>
+                    )
+                  })
+                  :
+                  null
+                }
               </Carousel>
             </div>
           }
