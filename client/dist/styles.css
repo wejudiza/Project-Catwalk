@@ -610,6 +610,18 @@ body {
   left: 20%;
 }
 
+#expanded-left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+}
+
+#expanded-right-arrow {
+  position: absolute;
+  top: 50%;
+  left: 92%;
+}
+
 #expand {
   position: absolute;
   top: 3%;

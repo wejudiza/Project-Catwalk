@@ -116,6 +116,12 @@ export default class ImageGallery extends React.Component {
               alt=""
               className="zoomedDisplayPhoto"
               />
+              {this.state.currentImage.url === this.state.thumbnails[0].url
+              ? null
+              : <i className="fas fa-arrow-left fa-2x" id="expanded-left-arrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
+            {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
+              ? null
+              : <i className="fas fa-arrow-right fa-2x" id="expanded-right-arrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
             </ReactModal>
             )}
 
