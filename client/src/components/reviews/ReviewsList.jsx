@@ -258,12 +258,15 @@ class ReviewsList extends React.Component {
           }
           <Modal
             isOpen={this.state.modalView}
+            // use this line to make modal always open for test purpose
+            // isOpen={true}
             ariaHideApp={false}
             onRequestClose={this.handleAddReview}
             style={customStyles}
           >
             <div className="newReview">
-              <h1>Thank your for giving your feedback</h1>
+              <h1>Write Your Review</h1>
+              <h2>About the {this.props.productInfo.name}</h2>
               <form
                 className="inputForm"
                 onChange={this.handleFormInput}

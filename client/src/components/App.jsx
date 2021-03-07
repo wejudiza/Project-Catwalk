@@ -69,6 +69,7 @@ class App extends React.Component {
             currentProduct={this.state.currentProduct}
             getRating={this.getRating}
             getTotalReviews={this.getTotalReviews}
+            productInfo={this.state.productInfo}
           />
         </div>
       </div>
