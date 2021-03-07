@@ -558,6 +558,10 @@ body {
   height: 600px;
 }
 
+.displayPhoto:hover {
+  cursor: zoom-in;
+}
+
 .zoomedDisplayPhoto {
   object-fit: cover;
   width: 800px;
