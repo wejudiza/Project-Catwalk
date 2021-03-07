@@ -565,18 +565,23 @@ body {
 .zoomedDisplayPhoto {
   position: block;
   object-fit: cover;
-  width: 800px;
-  height: 800px;
+  width: 750px;
+  height: 750px;
+}
+
+.zoomedDisplayPhoto:hover {
+  cursor: crosshair;
 }
 
 .dots-overlay {
   position: absolute;
-  top: 92%;
-  left: center;
+  top: 89%;
+  left: 40%;
 }
 
 .selected-dot {
   border: 4px solid white;
+  border-radius: 50%;
 }
 
 .fa-circle {

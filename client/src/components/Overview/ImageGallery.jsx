@@ -1,7 +1,6 @@
 import React from 'react';
 import Images from './Images';
-// import ReactModal from 'react-modal';
-import Zoom from './Zoom'
+import ExpandedView from './ExpandedView'
 
 export default class ImageGallery extends React.Component {
   constructor(props) {
@@ -94,7 +93,7 @@ export default class ImageGallery extends React.Component {
 
             {this.state.showModal
             && (
-            <Zoom
+            <ExpandedView
               currentImageUrl={this.state.currentImageUrl}
               thumbnails={this.state.thumbnails}
               currentImage={this.state.currentImage}
@@ -102,48 +101,8 @@ export default class ImageGallery extends React.Component {
               onLeftArrowClick={this.onLeftArrowClick}
               onRightArrowClick={this.onRightArrowClick}
               onImageClick={this.onImageClick}
+              handleModal={this.handleModal}
             />
-            // <ReactModal
-            //   isOpen
-            //   style={modalStyle}
-            //   ariaHideApp={false}
-            //   preventScroll={true}
-            //   onRequestClose={this.handleModal}
-            // >
-            //   <img
-            //   src={this.state.currentImageUrl}
-            //   alt=""
-            //   className="zoomedDisplayPhoto"
-            //   />
-            //   {this.state.currentImage.url === this.state.thumbnails[0].url
-            //   ? null
-            //   : <i className="fas fa-arrow-left fa-2x" id="expanded-left-arrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
-            //   {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
-            //   ? null
-            //   : <i className="fas fa-arrow-right fa-2x" id="expanded-right-arrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
-
-            //   <div className="dots-overlay">
-            //     {this.state.thumbnails.map((thumbnail, index) => (
-            //       this.currentImageUrl === thumbnail.url
-            //         ? (
-            //           <i
-            //             key={index}
-            //             className="fas fa-circle selected-dot"
-            //             title={thumbnail.url}
-            //             onClick={this.onImageClick}
-            //           />
-            //         )
-            //         : (
-            //           <i
-            //             key={index}
-            //             className="fas fa-circle"
-            //             title={thumbnail.url}
-            //             onClick={this.onImageClick}
-            //           />
-            //         )
-            //     ))}
-            //   </div>
-            // </ReactModal>
             )}
 
             <div className="overlay">
@@ -153,7 +112,6 @@ export default class ImageGallery extends React.Component {
                 currentImage={this.state.currentImage}
                 currentImageIndex={this.state.currentImageIndex}
               />
-              {/* <i className="fas fa-chevron-down" id="downArrow" /> */}
             </div>
             {this.state.currentImage.url === this.state.thumbnails[0].url
               ? null
