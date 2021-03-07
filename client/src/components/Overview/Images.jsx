@@ -86,15 +86,13 @@ export default class Images extends React.Component {
       start = 14;
     }
     this.setState({
+      currentImage: this.props.currentImage,
       currentImageIndex: currentImageIndex,
-      thumbnails: allThumbnails,
+      thumbnails: this.props.images,
       mappedThumbnails: mappedThumbnails,
       rawDisplay: rawDisplay,
       display: displayedThumbnails,
-      // displayStartIndex: currentImageIndex,
-      // displayEndIndex: currentImageIndex + 7,
       displayStartIndex: start,
-      // displayEndIndex: end,
     });
   }
 

@@ -507,8 +507,8 @@ body {
 
 #description {
   grid-area: footer;
-  align-self: left;
-  justify-self: top;
+  align-self: center;
+  justify-self: center;
   display: flex;
 }
 

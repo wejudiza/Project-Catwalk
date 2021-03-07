@@ -1,6 +1,6 @@
 import React from 'react';
 import Images from './Images';
-
+import ReactModal from 'react-modal';
 
 export default class ImageGallery extends React.Component {
   constructor(props) {
@@ -10,10 +10,13 @@ export default class ImageGallery extends React.Component {
       currentImage: {},
       currentImageUrl: '',
       currentImageIndex: 0,
+      showModal: false,
     };
     this.onImageClick = this.onImageClick.bind(this);
     this.onRightArrowClick = this.onRightArrowClick.bind(this);
     this.onLeftArrowClick = this.onLeftArrowClick.bind(this);
+    this.onDisplayPhotoClick = this.onDisplayPhotoClick.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +36,18 @@ export default class ImageGallery extends React.Component {
         currentImageIndex: 0,
       });
     }
+  }
+
+  handleModal() {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  }
+
+  onDisplayPhotoClick() {
+    this.setState({
+      showModal: true,
+    })
   }
 
   onImageClick(e) {
@@ -62,6 +77,9 @@ export default class ImageGallery extends React.Component {
 
   render() {
     if (this.state.thumbnails.length !== 0) {
+      // const images = this.state.thumbnails.map((thumbnail, index) => (
+      //   thumbnail.url
+      // ));
       const lastIndex = this.state.thumbnails.length - 1;
       return (
         <div id="main">
@@ -70,7 +88,24 @@ export default class ImageGallery extends React.Component {
               src={this.state.currentImageUrl}
               alt=""
               className="displayPhoto"
+              onClick={this.onDisplayPhotoClick}
             />
+
+            {this.state.showModal
+            && (
+            <ReactModal
+              isOpen
+              ariaHideApp={false}
+              preventScroll={true}
+              onRequestClose={this.handleModal}
+            >
+              <img
+              src={this.state.currentImageUrl}
+              alt=""
+              className="zoomedDisplayPhoto"
+              />
+            </ReactModal>
+            )}
 
             <div className="overlay">
               <Images
