@@ -1,17 +1,7 @@
 import React from 'react';
 import Images from './Images';
-import ReactModal from 'react-modal';
-
-const modalStyle = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+// import ReactModal from 'react-modal';
+import Zoom from './Zoom'
 
 export default class ImageGallery extends React.Component {
   constructor(props) {
@@ -104,25 +94,56 @@ export default class ImageGallery extends React.Component {
 
             {this.state.showModal
             && (
-            <ReactModal
-              isOpen
-              style={modalStyle}
-              ariaHideApp={false}
-              preventScroll={true}
-              onRequestClose={this.handleModal}
-            >
-              <img
-              src={this.state.currentImageUrl}
-              alt=""
-              className="zoomedDisplayPhoto"
-              />
-              {this.state.currentImage.url === this.state.thumbnails[0].url
-              ? null
-              : <i className="fas fa-arrow-left fa-2x" id="expanded-left-arrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
-            {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
-              ? null
-              : <i className="fas fa-arrow-right fa-2x" id="expanded-right-arrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
-            </ReactModal>
+            <Zoom
+              currentImageUrl={this.state.currentImageUrl}
+              thumbnails={this.state.thumbnails}
+              currentImage={this.state.currentImage}
+              currentImageIndex={this.state.currentImageIndex}
+              onLeftArrowClick={this.onLeftArrowClick}
+              onRightArrowClick={this.onRightArrowClick}
+              onImageClick={this.onImageClick}
+            />
+            // <ReactModal
+            //   isOpen
+            //   style={modalStyle}
+            //   ariaHideApp={false}
+            //   preventScroll={true}
+            //   onRequestClose={this.handleModal}
+            // >
+            //   <img
+            //   src={this.state.currentImageUrl}
+            //   alt=""
+            //   className="zoomedDisplayPhoto"
+            //   />
+            //   {this.state.currentImage.url === this.state.thumbnails[0].url
+            //   ? null
+            //   : <i className="fas fa-arrow-left fa-2x" id="expanded-left-arrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
+            //   {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
+            //   ? null
+            //   : <i className="fas fa-arrow-right fa-2x" id="expanded-right-arrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
+
+            //   <div className="dots-overlay">
+            //     {this.state.thumbnails.map((thumbnail, index) => (
+            //       this.currentImageUrl === thumbnail.url
+            //         ? (
+            //           <i
+            //             key={index}
+            //             className="fas fa-circle selected-dot"
+            //             title={thumbnail.url}
+            //             onClick={this.onImageClick}
+            //           />
+            //         )
+            //         : (
+            //           <i
+            //             key={index}
+            //             className="fas fa-circle"
+            //             title={thumbnail.url}
+            //             onClick={this.onImageClick}
+            //           />
+            //         )
+            //     ))}
+            //   </div>
+            // </ReactModal>
             )}
 
             <div className="overlay">

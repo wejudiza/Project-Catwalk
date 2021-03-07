@@ -563,9 +563,24 @@ body {
 }
 
 .zoomedDisplayPhoto {
+  position: block;
   object-fit: cover;
   width: 800px;
   height: 800px;
+}
+
+.dots-overlay {
+  position: absolute;
+  top: 92%;
+  left: center;
+}
+
+.selected-dot {
+  border: 4px solid white;
+}
+
+.fa-circle {
+  margin: 5px;
 }
 
 .overlay {
