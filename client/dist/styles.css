@@ -558,6 +558,12 @@ body {
   height: 600px;
 }
 
+.zoomedDisplayPhoto {
+  object-fit: cover;
+  width: 800px;
+  height: 800px;
+}
+
 .overlay {
   position: absolute;
   top: 3%;

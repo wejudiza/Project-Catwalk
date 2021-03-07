@@ -2,6 +2,17 @@ import React from 'react';
 import Images from './Images';
 import ReactModal from 'react-modal';
 
+const modalStyle = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 export default class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
@@ -95,6 +106,7 @@ export default class ImageGallery extends React.Component {
             && (
             <ReactModal
               isOpen
+              style={modalStyle}
               ariaHideApp={false}
               preventScroll={true}
               onRequestClose={this.handleModal}
