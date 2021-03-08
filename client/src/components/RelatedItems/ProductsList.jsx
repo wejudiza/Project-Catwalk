@@ -71,9 +71,9 @@ export default class ProductsList extends React.Component {
     if (this.state.productsListId.length > 0) {
       return (
         <div className="testGrid">
-          <h4 className="title">
-            Related Products
-          </h4>
+          <h3 className=" widgetHeader title">
+            RELATED PRODUCTS
+          </h3>
           <ProductsCarousel productsListId={this.state.productsListId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>
       );

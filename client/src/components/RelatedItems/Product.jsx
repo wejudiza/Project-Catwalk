@@ -192,7 +192,9 @@ export default class Product extends React.Component {
             </div>
             :
             <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
-              <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE</div>
+              <div className="cardImg">
+                <div className="cardImgNone"> NO IMAGE AVAILABLE</div>
+              </div>
             </div>
           }
         </div>

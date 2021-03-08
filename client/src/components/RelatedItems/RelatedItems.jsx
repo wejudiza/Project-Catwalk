@@ -14,9 +14,9 @@ export default class RelatedItems extends React.Component {
   render() {
     return (
       <div>
-        <h3 className='widgetHeader'>
+        {/* <h3 className='widgetHeader'>
           RELATED ITEMS & COMPARISON
-        </h3>
+        </h3> */}
         <div>
           <ProductsList currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>
