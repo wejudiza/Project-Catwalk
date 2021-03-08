@@ -1,6 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
-// import ImageGallery from './ImageGallery';
 import AddToCart from './AddToCart';
 import Style from './Style';
 
@@ -11,38 +9,8 @@ export default class StyleSelector extends React.Component {
       styles: [],
       currentStyle: {},
     };
-    // this.getStyles = this.getStyles.bind(this);
-    // this.onStyleClick = this.onStyleClick.bind(this);
     this.salePriceMode = this.salePriceMode.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.getStyles();
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.currentProduct !== prevProps.currentProduct) {
-  //     this.getStyles();
-  //   }
-  // }
-
-  // onStyleClick(e) {
-  //   const styleIndex = this.state.styles.findIndex((i) => i.style_id === Number(e.target.title));
-  //   this.setState({
-  //     currentStyle: this.state.styles[styleIndex],
-  //   });
-  // }
-
-  // getStyles() {
-  //   axios.get(`/api/products/${this.props.currentProduct}/styles`)
-  //     .then((results) => {
-  //       this.setState({
-  //         styles: results.data.results,
-  //         currentStyle: results.data.results[0],
-  //       });
-  //     })
-  //     .catch((err) => console.log('getProduct err: ', err));
-  // }
 
   salePriceMode() {
     if (this.props.currentStyle.sale_price) {
@@ -82,7 +50,11 @@ export default class StyleSelector extends React.Component {
               />
             ))}
           </div>
-          <AddToCart skus={this.props.currentStyle.skus} currentStyle={this.props.currentStyle} />
+          <AddToCart
+            skus={this.props.currentStyle.skus}
+            currentStyle={this.props.currentStyle}
+            productName={this.props.productName}
+          />
           <br />
         </div>
       )
