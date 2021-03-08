@@ -36,6 +36,15 @@ export default class AddToCart extends React.Component {
     // this.changedSkuMode = this.changedSkuMode.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.currentStyle !== prevProps.currentStyle) {
+      this.setState({
+        size: 'Select Size',
+        defaultValue: { value: 1, label: 1 },
+      });
+    }
+  }
+
   handleSizeChange(e) {
     if (!e) {
       this.setState({
