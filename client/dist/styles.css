@@ -18,7 +18,7 @@ body {
   /* outline: 5px solid black; */
   display: grid;
   grid-template-columns: [col-start] minmax(300px, 300px) [col-2] minmax(500px, auto) [col-end];
-  grid-template-rows: [row-start] auto [row-2] minmax(auto, 500px) [row-end];
+  grid-template-rows: [row-start] auto [row-2] minmax(auto, 400px) [row-end];
   grid-template-areas:
   "widgetHeader widgetHeader"
   "breakdowns reviewsList";
@@ -42,7 +42,15 @@ body {
   grid-area: reviewsList;
   grid-column-end: col-end;
   grid-row-end: row-end;
+  /* overflow: auto; */
+  /* white-space: nowrap; */
 }
+
+/* .scroll {
+  overflow: auto;
+  outline: 5px solid black;
+  white-space: pre;
+} */
 
 .container-review {
   display: grid;
@@ -56,7 +64,7 @@ body {
   "response response"
   "recommend recommend"
   "footer footer";
-  grid-row-gap: 5px;
+  grid-row-gap: 10px;
 }
 
 .review-stars {
@@ -108,6 +116,27 @@ body {
 .container-reviewList {
   /* outline: 5px solid black; */
   /* grid-template-columns: minmax(350px, 350px); */
+  display: grid;
+  grid-template-rows: auto minmax(auto, 410px) auto;
+  grid-template-areas:
+  "sortbar"
+  "reviewlistbody"
+  "bottonbar";
+}
+
+.sortbar {
+  grid-area: sortbar;
+}
+
+.reviewlistbody {
+  grid-area: reviewlistbody;
+  overflow: auto;
+  /* outline: 5px solid black; */
+}
+
+.bottonbar {
+  grid-area: bottonbar;
+  /* outline: 5px solid black; */
 }
 
 .container-breakdowns {
@@ -138,8 +167,8 @@ body {
   /* grid-row-gap: 5px; */
   grid-template-areas:
   "ratingSum"
-  "recommendSum"
-  "starPercent";
+  "starPercent"
+  "recommendSum";
 }
 
 .ratingSum {
@@ -348,6 +377,10 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.button:hover {
+  background-color: green;
 }
 
 .select {

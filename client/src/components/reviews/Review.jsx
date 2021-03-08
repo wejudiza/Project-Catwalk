@@ -119,9 +119,9 @@ class Review extends React.Component {
               <div className="timeStamp">
                 &#10004;{`${review.reviewer_name}, ${monthTranslate[review.date.slice(5, 7)]} ${review.date.slice(8, 10)}, ${review.date.slice(0, 4)}`}
               </div>
-              <h4 className="summary">
-                {review.summary}
-              </h4>
+              <div className="summary">
+                <b>{review.summary}</b>
+              </div>
               <p className="body">
                 {review.body}
               </p>

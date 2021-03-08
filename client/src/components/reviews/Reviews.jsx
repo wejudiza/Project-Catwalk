@@ -78,6 +78,7 @@ class Reviews extends React.Component {
         <div className="reviewsList">
           <ReviewsList
             currentProduct={this.props.currentProduct}
+            productInfo={this.props.productInfo}
             getAverageRatingFromReview={this.getAverageRatingFromReview}
             getPercentageFromReviewsList={this.getPercentageFromReviewsList}
             getNumForRating={this.getNumForRating}
