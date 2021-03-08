@@ -195,7 +195,6 @@ export default class Product extends React.Component {
               <div className="cardImg">
                 <div className="cardImgNone"> NO IMAGE AVAILABLE</div>
               </div>
-
             </div>
           }
         </div>
