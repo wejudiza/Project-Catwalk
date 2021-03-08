@@ -371,16 +371,15 @@ body {
 
 
 /* RELATED ITEMS */
-.testGrid {
+/* .testGrid {
   display: grid;
   grid-template-rows: auto auto;
   grid-template-areas:
   "title"
   "carousel";
-  /* width: 80%; */
-  /* minmax() */
+  width: 80%;
+  minmax()
 }
-
 
 .title {
   grid-area: title;
@@ -388,21 +387,50 @@ body {
 
 .productsCarousel {
   grid-area: carousel;
-}
+} */
 
 .list {
   display: flex;
   align-items: flex-end;
 }
 
-.slide-arrow {
+/* Carousel */
+
+.rec.rec-arrow {
   color: black;
+  background-color: white;
+}
+
+.rec.rec-arrow:hover:enabled, .rec.rec-arrow:focus:enabled {
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: 0 0 2px 0 #333;
+}
+
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+
+button.rec-dot_active {
+  background-color: rgba(0,0,0,0.2);
+  box-shadow: black;
+}
+
+button.rec-dot{
+  /* background-color: white; */
+  box-shadow: 0 0 1px 3px grey;
+}
+
+/* Carousel From Scratch */
+.slide-arrow {
+  /* color: black;
   font-size: 50px;
   padding: 6px;
   align-self: center;
   background: transparent;
   cursor: pointer;
-  border: none;
+  border: none; */
   /* position: relative; */
   /* top: 50%; */
   /* margin: 0 auto; */
@@ -410,14 +438,14 @@ body {
 
 
 #btnHidden {
-  color: black;
+  /* color: black;
   font-size: 50px;
   padding: 6px;
   align-self: center;
   background: transparent;
   cursor: pointer;
   border: none;
-  visibility: hidden;
+  visibility: hidden; */
 }
 
 /* Individual Card */
@@ -427,7 +455,7 @@ body {
   box-shadow: 4px 4px 4px 2px grey;
   margin: 10px;
   width: 300px;
-  height: 425px;
+  height: 375px;
   border-width: 2px;
   border-style: solid;
 }
@@ -437,7 +465,7 @@ body {
   object-fit: cover;
   object-position: 50% 100%;
   width: 300px;
-  height: 350px;
+  height: 275px;
   /* max-width: 100%; */
   /* max-height: 200px; */
 }
@@ -450,10 +478,9 @@ body {
 }
 
 .cardText {
-  position: absolute;
-  bottom: 0px;
-  margin-top: 5px;
-  margin-left: 5px;
+  /* position: relative; */
+  /* bottom: 0px; */
+  margin: 5px 0px 5px 10px;
 }
 
 #modalContainer {
@@ -481,11 +508,9 @@ body {
 /* ADD TO OUTFITS LIST BUTTON */
 #outfitsBtn {
   cursor: pointer;
-  font-size: 20px;
-  min-width: 300px;
-  max-width: 300px;
-  min-height: 425px;
-  max-height: 425px;
+  font-size: 75px;
+  width: 300px;
+  height: 375px;
 }
 
 #outfitsBtn:hover {

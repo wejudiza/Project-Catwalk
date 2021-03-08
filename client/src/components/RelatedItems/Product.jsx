@@ -123,8 +123,8 @@ export default class Product extends React.Component {
       :
         <div>
           <span>${this.state.original_price}</span>
-          {' '}
-          <em>(Other Styles May Be On Sale!)</em>
+          {/* {' '}
+          <em>(Other Styles May Be On Sale!)</em> */}
         </div>
     )
   }
@@ -197,16 +197,16 @@ export default class Product extends React.Component {
           }
         </div>
         <div className='cardText'>
-          <div>
+          <div style={{fontSize: '14px'}}>
             {this.state.category}
           </div>
-          <div>
-            {this.state.name}
+          <div style={{fontSize: '20px'}}>
+            <b>{this.state.name}</b>
           </div>
-          <div>
+          <div style={{fontSize: '14px', margin:'5px 0px'}}>
             {this.salePriceMode()}
           </div>
-          <div>
+          <div style={{fontSize: '14px'}}>
             {this.state.avgStars ?
               <RelatedStars avgStars={this.state.avgStars}/>
               :
