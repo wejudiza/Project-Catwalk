@@ -232,7 +232,7 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className="container-reviewList">
-        <h3>{this.state.arrOfReviews.length} reviews, &nbsp;sorted by&nbsp;&nbsp;
+        <h3 className="sortbar">{this.state.arrOfReviews.length} reviews, &nbsp;sorted by&nbsp;&nbsp;
           <select
             className="select"
             onChange={this.handleSort}
@@ -242,11 +242,13 @@ class ReviewsList extends React.Component {
             <option className="option">helpful</option>
           </select>
         </h3>
-        <div>
+        <div className="reviewlistbody">
           <Review
             arrOfReviews={this.state.currentDisplayReviews}
             getReviews={this.getReviews}
           />
+        </div>
+        <div className="bottonbar">
           {/* show more reviews button only when there are more than 2 reviews */}
           {(this.state.arrOfReviews.length > this.state.currentDisplayReviews.length) ?
             <div>
@@ -274,7 +276,9 @@ class ReviewsList extends React.Component {
                 <label>Rating</label>
                   <select
                     name="rating"
-                    className="select"
+                    style={{
+                      width: "100%",
+                    }}
                   >
                     <option>5</option>
                     <option>4</option>
@@ -285,7 +289,9 @@ class ReviewsList extends React.Component {
                 <label>Level of Fit</label>
                   <select
                     name="size"
-                    className="select"
+                    style={{
+                      width: "100%",
+                    }}
                   >
                     <option>5</option>
                     <option>4</option>
@@ -296,7 +302,9 @@ class ReviewsList extends React.Component {
                 <label>Level of Comfortable</label>
                   <select
                     name="comfortable"
-                    className="select"
+                    style={{
+                      width: "100%",
+                    }}
                   >
                     <option>5</option>
                     <option>4</option>
@@ -304,22 +312,52 @@ class ReviewsList extends React.Component {
                     <option>2</option>
                     <option>1</option>
                   </select><br />
-                <label>Summary:</label>
-                  <input name="summary"></input><br />
-                <label>Comments:</label>
-                  <input name="body"></input><br />
+                <label>Summary:</label><br />
+                  <textarea
+                    name="summary"
+                    placeholder="Example: Best purchase ever!"
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                    }}
+                  ></textarea><br />
+                <label>Comments:</label><br />
+                  <textarea
+                    name="body"
+                    placeholder="Why did you like the product or not?"
+                    style={{
+                      width: "100%",
+                      height: "50px",
+                    }}
+                  ></textarea><br />
                 <label>Will you recommend this product?</label>
                   <select
                     name="recommend"
-                    className="select"
+                    style={{
+                      width: "100%",
+                    }}
                   >
                     <option>Yes</option>
                     <option>No</option>
                   </select><br />
-                <label>Your Name:</label>
-                  <input name="name"></input><br />
-                <label>Your email:</label>
-                  <input name="email"></input><br />
+                <label>Your Name:</label><br />
+                  <textarea
+                    name="name"
+                    placeholder="Example: jackson11!"
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                    }}
+                  ></textarea><br />
+                <label>Your email:</label><br />
+                  <textarea
+                    name="email"
+                    placeholder="Example: jackson11@email.com"
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                    }}
+                  ></textarea><br />
                 <button
                   type="button"
                   className="button"
