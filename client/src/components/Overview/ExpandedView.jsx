@@ -43,7 +43,7 @@ export default class ExpandedView extends React.Component {
               <img
                 src={this.props.currentImageUrl}
                 alt=""
-                className="zoomedDisplayPhoto"
+                className="expanded-display-photo"
                 onClick={this.onExpandedClick}
               />
               {this.props.currentImage.url === this.props.thumbnails[0].url

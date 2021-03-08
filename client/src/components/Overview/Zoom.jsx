@@ -18,8 +18,8 @@ class Zoom extends React.Component {
 
   handleMouseMove(e) {
     const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = (e.pageX - left) / width * 200;
-    const y = (e.pageY - top) / height * 200;
+    const x = (e.pageX - left) / width * 100;
+    const y = (e.pageY - top) / height * 100;
     this.setState({
       backgroundPosition: `${x}% ${y}%`,
     });
@@ -27,10 +27,16 @@ class Zoom extends React.Component {
 
   render() {
     return (
-      <figure onMouseMove={this.handleMouseMove} style={this.state}>
+      <figure
+        onMouseMove={this.handleMouseMove}
+        onClick={this.props.onExpandedClick}
+        style={this.state}
+      >
         <img
+          alt=""
+          id="zoomed-img"
           src={this.props.image}
-          onClick={this.props.onExpandedClick}
+          // onClick={this.props.onExpandedClick}
         />
       </figure>
     )
