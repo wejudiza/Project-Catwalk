@@ -69,6 +69,7 @@ export default class Overview extends React.Component {
             styles={this.state.styles}
             currentProduct={this.state.product.id}
             currentStyle={this.state.currentStyle}
+            productName={this.state.product.name}
             onStyleClick={this.onStyleClick}
           />
           <ImageGallery

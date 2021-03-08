@@ -103,15 +103,23 @@ export default class Images extends React.Component {
       return (
         <div>
           {this.state.displayStartIndex !== 0
-            ? <i className="fas fa-chevron-up" onClick={this.onUpArrowClick} />
-            : null
+            ? <i
+              className="fas fa-sort-up fa-2x"
+              style={{marginLeft:'22px'}}
+              onClick={this.onUpArrowClick} />
+            : <div>
+            <br />
+            </div>
           }
           <div className="thumbnailContainer">
             {this.state.display}
           </div>
           {this.state.thumbnails.length > 7
           && this.state.rawDisplay[lastDisplayIndex].url !== this.state.thumbnails[lastThumbnailIndex].url
-            ? <i className="fas fa-chevron-down" id="downArrow" onClick={this.onDownArrowClick} />
+            ? <i
+              className="fas fa-sort-down fa-2x"
+              style={{marginLeft:'22px'}}
+              onClick={this.onDownArrowClick} />
             : null}
         </div>
       );
