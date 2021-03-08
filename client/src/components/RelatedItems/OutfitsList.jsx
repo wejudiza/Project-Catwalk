@@ -21,10 +21,6 @@ export default class OutfitsList extends React.Component {
     ];
   }
 
-
-
-
-
   addOutfit() {
     const outfitFound = this.state.outfitsList.find((outfit) => (
       outfit.id === this.props.currentProduct
@@ -37,6 +33,15 @@ export default class OutfitsList extends React.Component {
       this.setState({
         outfitsList: newOutfitsList
       });
+      if (localStorage.outfitsList === undefined) {
+        localStorage.setItem('outfitsList', JSON.stringify(newOutfitsList));
+        // console.log('localStorage.outfitsList', localStorage.outfitsList);
+      } else {
+        let storedOutfits = JSON.parse(localStorage.outfitsList)
+        storedOutfits.unshift(this.props.productInfo);
+        localStorage.setItem('outfitsList', JSON.stringify(storedOutfits));
+        // console.log('localStorage.outfitsList', localStorage.outfitsList);
+      }
     }
   }
 
@@ -46,6 +51,11 @@ export default class OutfitsList extends React.Component {
         outfitId !== outfit.id
       ))
     })
+    let storedOutfits = JSON.parse(localStorage.outfitsList);
+    let filteredOutfits = storedOutfits.filter(outfit => (
+      outfitId !== outfit.id
+    ))
+    localStorage.setItem('outfitsList', JSON.stringify(filteredOutfits))
   }
 
 
@@ -65,11 +75,16 @@ export default class OutfitsList extends React.Component {
                 +
                 </button>
               </div>
-              {this.state.outfitsList.map((outfit, key) => (
-                <div className='card' key={`${outfit.id}-${key}`}>
-                  <Outfit outfit={outfit} removeOutfit={this.removeOutfit} />
-                </div>
-              ))}
+              {/* {console.log((localStorage.outfitsList))} */}
+              {localStorage.outfitsList ?
+                JSON.parse(localStorage.outfitsList).map((outfit, key) => (
+                  <div className='card' key={`${outfit.id}-${key}`}>
+                    <Outfit outfit={outfit} removeOutfit={this.removeOutfit} />
+                  </div>
+                ))
+                :
+                null
+              }
             </Carousel>
           </div>
         </div>
