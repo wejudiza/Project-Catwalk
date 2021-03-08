@@ -607,8 +607,8 @@ body {
 
 .thumbnails {
   object-fit: cover;
-  height: 60px;
-  width: 60px;
+  height: 55px;
+  width: 55px;
   margin: 5px;
   border: 1px solid darkgrey;
 }
@@ -621,13 +621,13 @@ body {
 #rightArrow {
   position: absolute;
   top: 50%;
-  left: 95%;
+  left: 94%;
 }
 
 #leftArrow {
   position: absolute;
   top: 50%;
-  left: 20%;
+  left: 16%;
 }
 
 #expanded-left-arrow {
@@ -639,7 +639,7 @@ body {
 #expanded-right-arrow {
   position: absolute;
   top: 50%;
-  left: 92%;
+  left: 91%;
 }
 
 #expand {

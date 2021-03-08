@@ -115,10 +115,10 @@ export default class ImageGallery extends React.Component {
             </div>
             {this.state.currentImage.url === this.state.thumbnails[0].url
               ? null
-              : <i className="fas fa-arrow-left" id="leftArrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
+              : <i className="fas fa-chevron-left fa-2x" id="leftArrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
             {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
               ? null
-              : <i className="fas fa-arrow-right" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
+              : <i className="fas fa-chevron-right fa-2x" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
             <i className="fas fa-expand" id="expand" />
           </div>
         </div>
