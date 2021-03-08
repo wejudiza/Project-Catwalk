@@ -5,6 +5,9 @@ import enzyme, { shallow } from 'enzyme';
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import ProductInfo from '../client/src/components/Overview/ProductInfo.jsx';
 import StyleSelector from '../client/src/components/Overview/StyleSelector.jsx';
+import RelatedItems from '../client/src/components/RelatedItems/RelatedItems.jsx';
+import ProductsList from '../client/src/components/RelatedItems/ProductsList.jsx';
+import OutfitsList from '../client/src/components/RelatedItems/OutfitsList.jsx';
 
 // enzyme.configure({ adapter: new Adapter() });
 
@@ -23,3 +26,15 @@ describe('Render Overview', () => {
   });
 });
 
+
+describe('Render RelatedItems', () => {
+  it('Should have a ProductsList Component', () => {
+    const wrapper = shallow(<RelatedItems />);
+    expect(wrapper.find('ProductsList').exists()).toBe(true);
+  });
+
+  it('Should have a OutfitsList Component', () => {
+    const wrapper = shallow(<RelatedItems />);
+    expect(wrapper.find('OutfitsList').exists()).toBe(true);
+  });
+});

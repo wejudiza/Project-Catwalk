@@ -21,6 +21,10 @@ export default class OutfitsList extends React.Component {
     ];
   }
 
+
+
+
+
   addOutfit() {
     const outfitFound = this.state.outfitsList.find((outfit) => (
       outfit.id === this.props.currentProduct
@@ -52,16 +56,10 @@ export default class OutfitsList extends React.Component {
           OUTFITS LIST
         </h3>
         <div>
-          {/* {this.state.outfitsList.length === 0 ?
-            <Carousel breakPoints={this.breakPoints} itemsToShow={4} showEmptySlots>
-              <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-            </Carousel>
-            : */}
           <div className='list'>
             {/* Need to set showEmptySlots to true */}
             <Carousel breakPoints={this.breakPoints} itemsToShow={4} showEmptySlots>
               <div className='card'>
-
                 <button id='outfitsBtn' onClick={this.addOutfit}>
                 <div style={{fontSize: '24px'}}>Add to Outfit</div>
                 +
@@ -74,7 +72,6 @@ export default class OutfitsList extends React.Component {
               ))}
             </Carousel>
           </div>
-          {/* // } */}
         </div>
       </div>
     );
