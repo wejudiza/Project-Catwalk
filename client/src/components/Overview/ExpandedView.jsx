@@ -34,58 +34,58 @@ export default class ExpandedView extends React.Component {
         isOpen
         style={modalStyle}
         ariaHideApp={false}
-        preventScroll={true}
+        preventScroll
         onRequestClose={this.props.handleModal}
       >
         {!this.state.zoomedView
-        ? (
-          <img
-          src={this.props.currentImageUrl}
-          alt=""
-          className="zoomedDisplayPhoto"
-          onClick={this.onExpandedClick}
-          />
-        )
-        : (
-          <Zoom
-            image={this.props.currentImageUrl}
-            onExpandedClick={this.onExpandedClick}
-          />
-        )
-        }
-        {this.props.currentImage.url === this.props.thumbnails[0].url
-        ? null
-        : <i className="fas fa-chevron-left fa-3x" id="expanded-left-arrow" onClick={() => this.props.onLeftArrowClick(this.props.currentImageIndex)} />}
-        {this.props.currentImage.url === this.props.thumbnails[this.props.thumbnails.length - 1].url
-        ? null
-        : <i className="fas fa-chevron-right fa-3x" id="expanded-right-arrow" onClick={() => this.props.onRightArrowClick(this.props.currentImageIndex)} />}
+          ? (
+            <div>
+              <img
+                src={this.props.currentImageUrl}
+                alt=""
+                className="zoomedDisplayPhoto"
+                onClick={this.onExpandedClick}
+              />
+              {this.props.currentImage.url === this.props.thumbnails[0].url
+                ? null
+                : <i className="fas fa-chevron-left fa-3x" id="expanded-left-arrow" onClick={() => this.props.onLeftArrowClick(this.props.currentImageIndex)} />}
+              {this.props.currentImage.url === this.props.thumbnails[this.props.thumbnails.length - 1].url
+                ? null
+                : <i className="fas fa-chevron-right fa-3x" id="expanded-right-arrow" onClick={() => this.props.onRightArrowClick(this.props.currentImageIndex)} />}
 
-        <div className="dots-overlay">
-          {this.props.thumbnails.map((thumbnail, index) => (
-            this.props.currentImageUrl === thumbnail.url
-              ? (
-                <i
-                  key={index}
-                  className="fas fa-circle selected-dot"
-                  title={thumbnail.url}
-                  onClick={this.props.onImageClick}
-                />
-              )
-              : (
-                <i
-                  key={index}
-                  className="fas fa-circle"
-                  title={thumbnail.url}
-                  onClick={this.props.onImageClick}
-                />
-              )
-          ))}
-        </div>
+              <div className="dots-overlay">
+                {this.props.thumbnails.map((thumbnail, index) => (
+                  this.props.currentImageUrl === thumbnail.url
+                    ? (
+                      <i
+                        key={index}
+                        className="fas fa-circle selected-dot"
+                        title={thumbnail.url}
+                        onClick={this.props.onImageClick}
+                      />
+                    )
+                    : (
+                      <i
+                        key={index}
+                        className="fas fa-circle"
+                        title={thumbnail.url}
+                        onClick={this.props.onImageClick}
+                      />
+                    )
+                ))}
+              </div>
+            </div>
+          )
+          : (
+            <Zoom
+              image={this.props.currentImageUrl}
+              onExpandedClick={this.onExpandedClick}
+            />
+          )}
       </ReactModal>
-    )
+    );
   }
 }
-
 
 // const ExpandedView = (props) => (
 //   <ReactModal

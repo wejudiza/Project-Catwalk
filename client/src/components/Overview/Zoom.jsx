@@ -12,14 +12,14 @@ class Zoom extends React.Component {
 
   componentDidMount() {
     this.setState({
-      backgroundImage: `url(${this.props.currentImageUrl})`
+      backgroundImage: `url(${this.props.image})`
     });
   }
 
   handleMouseMove(e) {
     const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = (e.pageX - left) / width * 100;
-    const y = (e.pageY - top) / height * 100;
+    const x = (e.pageX - left) / width * 200;
+    const y = (e.pageY - top) / height * 200;
     this.setState({
       backgroundPosition: `${x}% ${y}%`,
     });
@@ -29,7 +29,7 @@ class Zoom extends React.Component {
     return (
       <figure onMouseMove={this.handleMouseMove} style={this.state}>
         <img
-          src={this.props.currentImageUrl}
+          src={this.props.image}
           onClick={this.props.onExpandedClick}
         />
       </figure>
