@@ -14,7 +14,7 @@ export default class RelatedItems extends React.Component {
   render() {
     return (
       <div>
-        <h3>
+        <h3 className='widgetHeader'>
           RELATED ITEMS & COMPARISON
         </h3>
         <div>

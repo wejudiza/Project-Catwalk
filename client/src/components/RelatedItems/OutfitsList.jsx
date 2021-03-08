@@ -63,8 +63,9 @@ export default class OutfitsList extends React.Component {
           <div className='list'>
             {/* Need to set showEmptySlots to true */}
             <Carousel breakPoints={this.breakPoints} itemsToShow={4} showEmptySlots>
-              <button id='outfitsBtn' className='card' onClick={this.addOutfit}> "Click" to Add to Outfits </button>
-              {console.log(this.state.outfitsList)}
+              <div className='card'>
+                <button id='outfitsBtn' onClick={this.addOutfit}>+</button>
+              </div>
               {this.state.outfitsList.map((outfit, key) => (
                 <div className='card' key={`${outfit.id}-${key}`}>
                   <Outfit outfit={outfit} removeOutfit={this.removeOutfit} />

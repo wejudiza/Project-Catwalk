@@ -197,16 +197,16 @@ export default class Product extends React.Component {
           }
         </div>
         <div className='cardText'>
-          <div>
+          <div style={{fontSize: '14px'}}>
             {this.state.category}
           </div>
-          <div>
+          <div style={{fontSize: '20px'}}>
             <b>{this.state.name}</b>
           </div>
-          <div>
+          <div style={{fontSize: '14px', margin:'5px 0px'}}>
             {this.salePriceMode()}
           </div>
-          <div>
+          <div style={{fontSize: '14px'}}>
             {this.state.avgStars ?
               <RelatedStars avgStars={this.state.avgStars}/>
               :

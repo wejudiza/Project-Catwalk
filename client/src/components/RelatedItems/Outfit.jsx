@@ -99,16 +99,16 @@ export default class Outfit extends React.Component {
           <div className="cardImgNone cardImg"> NO IMAGE AVAILABLE </div>
         }
         <div className='cardText'>
-          <div>
+          <div style={{fontSize: '14px'}}>
             {this.props.outfit.category}
           </div>
-          <div>
+          <div style={{fontSize: '20px'}}>
             <b>{this.props.outfit.name}</b>
           </div>
-          <div>
+          <div style={{fontSize: '14px', margin:'5px 0px'}}>
             {this.salePriceMode()}
           </div>
-          <div>
+          <div style={{fontSize: '14px'}}>
             {this.state.avgStars ?
               <OutfitStars avgStars={this.state.avgStars}/>
               :
