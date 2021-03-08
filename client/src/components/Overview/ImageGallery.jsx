@@ -1,6 +1,6 @@
 import React from 'react';
 import Images from './Images';
-import ReactModal from 'react-modal';
+import ExpandedView from './ExpandedView'
 
 export default class ImageGallery extends React.Component {
   constructor(props) {
@@ -93,18 +93,16 @@ export default class ImageGallery extends React.Component {
 
             {this.state.showModal
             && (
-            <ReactModal
-              isOpen
-              ariaHideApp={false}
-              preventScroll={true}
-              onRequestClose={this.handleModal}
-            >
-              <img
-              src={this.state.currentImageUrl}
-              alt=""
-              className="zoomedDisplayPhoto"
-              />
-            </ReactModal>
+            <ExpandedView
+              currentImageUrl={this.state.currentImageUrl}
+              thumbnails={this.state.thumbnails}
+              currentImage={this.state.currentImage}
+              currentImageIndex={this.state.currentImageIndex}
+              onLeftArrowClick={this.onLeftArrowClick}
+              onRightArrowClick={this.onRightArrowClick}
+              onImageClick={this.onImageClick}
+              handleModal={this.handleModal}
+            />
             )}
 
             <div className="overlay">
@@ -114,15 +112,14 @@ export default class ImageGallery extends React.Component {
                 currentImage={this.state.currentImage}
                 currentImageIndex={this.state.currentImageIndex}
               />
-              {/* <i className="fas fa-chevron-down" id="downArrow" /> */}
             </div>
             {this.state.currentImage.url === this.state.thumbnails[0].url
               ? null
-              : <i className="fas fa-arrow-left" id="leftArrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
+              : <i className="fas fa-chevron-left fa-2x" id="leftArrow" onClick={() => this.onLeftArrowClick(this.state.currentImageIndex)} />}
             {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
               ? null
-              : <i className="fas fa-arrow-right" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
-            <i className="fas fa-expand" id="expand" />
+              : <i className="fas fa-chevron-right fa-2x" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
+            {/* <i className="fas fa-expand" id="expand" /> */}
           </div>
         </div>
       );

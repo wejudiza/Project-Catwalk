@@ -533,7 +533,7 @@ button.rec-dot{
 /* OVERVIEW */
 #overviewContainer {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(auto,1000px) minmax(auto,500px);
   grid-template-rows: 1fr 3fr 1fr;
   grid-template-areas:
     "main header"
@@ -545,7 +545,7 @@ button.rec-dot{
 
 #productInfo {
   grid-area: header;
-  align-self: end;
+  align-self: center;
 }
 
 .styleSelector {
@@ -583,6 +583,36 @@ button.rec-dot{
   height: 600px;
 }
 
+.displayPhoto:hover {
+  cursor: zoom-in;
+}
+
+.expanded-display-photo {
+  position: block;
+  object-fit: cover;
+  width: 750px;
+  height: 750px;
+}
+
+.expanded-display-photo:hover {
+  cursor: zoom-in;
+}
+
+.dots-overlay {
+  position: absolute;
+  top: 89%;
+  left: 40%;
+}
+
+.selected-dot {
+  border: 4px solid white;
+  border-radius: 50%;
+}
+
+.fa-circle {
+  margin: 5px;
+}
+
 .overlay {
   position: absolute;
   top: 3%;
@@ -602,8 +632,8 @@ button.rec-dot{
 
 .thumbnails {
   object-fit: cover;
-  height: 60px;
-  width: 60px;
+  height: 55px;
+  width: 55px;
   margin: 5px;
   border: 1px solid darkgrey;
 }
@@ -616,13 +646,25 @@ button.rec-dot{
 #rightArrow {
   position: absolute;
   top: 50%;
-  left: 95%;
+  left: 94%;
 }
 
 #leftArrow {
   position: absolute;
   top: 50%;
-  left: 20%;
+  left: 16%;
+}
+
+#expanded-left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+}
+
+#expanded-right-arrow {
+  position: absolute;
+  top: 50%;
+  left: 91%;
 }
 
 #expand {
@@ -663,4 +705,28 @@ button.rec-dot{
   background-color: black;
   margin: 0 10px;
   height: 6em;
+}
+
+figure {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+figure:hover #zoomed-img {
+  opacity: 0;
+  /* width: 250%;
+  height: 250%; */
+  cursor: zoom-out;
+}
+
+#zoomed-img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.feature-item {
+  margin: 10px;
 }

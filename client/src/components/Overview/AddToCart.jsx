@@ -143,6 +143,10 @@ export default class AddToCart extends React.Component {
             <b><u>Added to cart!</u></b>
             <br />
             <br />
+            Product:
+            {' '}
+            {this.props.productName}
+            <br />
             Style:
             {' '}
             {this.props.currentStyle.name}
