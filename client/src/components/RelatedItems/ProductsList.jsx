@@ -45,27 +45,6 @@ export default class ProductsList extends React.Component {
       .catch((err) => console.log('getProductsListId err: ', err));
   }
 
-  // previousSlide () {
-  //   const currentIndex = this.state.currentProductIndex - 1;
-
-  //   this.setState({
-  //     currentProductIndex: currentIndex,
-  //     displayProductsListId: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
-  //   }, () => {
-  //     console.log('this.state', this.state)
-  //   });
-  // }
-
-  // nextSlide () {
-  //   const currentIndex =  this.state.currentProductIndex + 1;
-
-  //   this.setState({
-  //     currentProductIndex: currentIndex,
-  //     displayProductsListId: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
-  //   }, () => {
-  //     console.log('this.state', this.state)
-  //   });
-  // }
 
   render() {
     if (this.state.productsListId.length > 0) {
@@ -77,7 +56,8 @@ export default class ProductsList extends React.Component {
           <ProductsCarousel productsListId={this.state.productsListId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>
       );
-    } else {
+    }
+    else {
       return (
         <div>
           Loading

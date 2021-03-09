@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
-import Arrow from './Arrow.jsx';
 import Carousel from "react-elastic-carousel";
 
 export default class OutfitsList extends React.Component {
@@ -83,7 +82,9 @@ export default class OutfitsList extends React.Component {
                   </div>
                 ))
                 :
-                null
+                <div>
+                  <Outfit/>
+                </div>
               }
             </Carousel>
           </div>
