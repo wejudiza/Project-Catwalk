@@ -67,10 +67,9 @@ export default class Product extends React.Component {
           // *** Checking to see if feature and value are equal and if index are a match
           // findIndex returns very first index of what we're trying to find  - to see if these are duplicates
           let temp = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value && i.item !== feature.item && i.item !== 2))
-          console.log('temp', temp, index)
+          // console.log('temp', temp, index)
           // If has been found, then change feature.item to
           if (temp > -1) {
-            console.log('all good')
             feature.item = 2;
             return true;
           } else {
@@ -83,9 +82,9 @@ export default class Product extends React.Component {
           }
         })
         /*[...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)*/
-      }, () => {
+      }/*, () => {
         console.log('this.state.filteredFeatures', this.state.filteredFeatures)
-      })
+      }*/)
     });
   }
 
@@ -193,72 +192,40 @@ export default class Product extends React.Component {
                   if(feature.value !== null) {
                     if (feature.item === 0) {
                       return (
-                        <tr key={key}>
-                          <td><Checkmark size='small'/></td>
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
                           <td className='center'>
                             {feature.feature} - {feature.value}
                             <br/>
                           </td>
-                          <td></td>
+                          <td className='checkMarks'></td>
+
                         </tr>
                       )
                     } else if (feature.item === 1) {
                       return (
-                        <tr key={key}>
-                          <td></td>
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'></td>
                           <td className='center'>
                             {feature.feature} - {feature.value}
                             <br/>
                           </td>
-                          <td><Checkmark size='small'/></td>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
                         </tr>
                       )
                     } else if (feature.item === 2) {
                       return (
-                        <tr key={key}>
-                          <td><Checkmark size='small'/></td>
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
                           <td className='center'>
                             {feature.feature} - {feature.value}
                             <br/>
                           </td>
-                          <td><Checkmark size='small'/></td>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
                         </tr>
                       )
                     }
                   }
-                {/* List of Related Item features */}
-                  {/* {this.state.features.map((relatedFeature, key) => {
-                    if(relatedFeature.value !== null) {
-                      return (
-                        <tr key={key}>
-                          <td><Checkmark size='small'/></td>
-                          <td className='center'>
-                            {relatedFeature.feature} - {relatedFeature.value}
-                            <br/>
-                          </td>
-                          <td></td>
-                        </tr>
-                      )
-                    }
-                  })} */}
-
-                  {/* List of Current Displayed Item's features */}
-                  {/* {this.state.currentFeatures
-                  ? this.state.currentFeatures.map((currentProdFeature, key) => {
-                    if(currentProdFeature.value !== null) {
-                      return (
-                      <tr key={key}>
-                        <td></td>
-                        <td className='center'>
-                          {currentProdFeature.feature} - {currentProdFeature.value}
-                          <br/>
-                        </td>
-                        <td><Checkmark size='small'/></td>
-                      </tr>
-                      )
-                    }
-                  })
-                  : null} */}
                 })
                 : null
               }
