@@ -8,6 +8,8 @@ import StyleSelector from '../client/src/components/Overview/StyleSelector.jsx';
 import RelatedItems from '../client/src/components/RelatedItems/RelatedItems.jsx';
 import ProductsList from '../client/src/components/RelatedItems/ProductsList.jsx';
 import OutfitsList from '../client/src/components/RelatedItems/OutfitsList.jsx';
+import Reviews from '../client/src/components/reviews/Reviews.jsx';
+
 
 // enzyme.configure({ adapter: new Adapter() });
 
@@ -36,4 +38,16 @@ describe('Render RelatedItems', () => {
     const wrapper = shallow(<RelatedItems />);
     expect(wrapper.find('OutfitsList').exists()).toBe(true);
   });
+});
+
+describe('Render RatingBreakdown', () => {
+  it('Should have a RatingBreakdown Component', () => {
+    const wrapper = shallow(<Reviews />);
+    expect(wrapper.find('RatingBreakdown').exists()).toBe(true);
+  });
+
+  // it('Should have a OutfitsList Component', () => {
+  //   const wrapper = shallow(<RelatedItems />);
+  //   expect(wrapper.find('OutfitsList').exists()).toBe(true);
+  // });
 });
