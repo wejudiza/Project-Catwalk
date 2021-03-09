@@ -11,7 +11,6 @@ import OutfitsList from '../client/src/components/RelatedItems/OutfitsList.jsx';
 
 // enzyme.configure({ adapter: new Adapter() });
 
-
 describe('Render Overview', () => {
   it('Should have a ProductInfo Component', () => {
     const wrapper = shallow(<Overview />);
