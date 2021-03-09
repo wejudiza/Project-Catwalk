@@ -50,6 +50,7 @@ export default class StyleSelector extends React.Component {
               />
             ))}
           </div>
+          <br />
           <AddToCart
             skus={this.props.currentStyle.skus}
             currentStyle={this.props.currentStyle}

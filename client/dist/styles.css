@@ -520,7 +520,8 @@ body {
 
 #productInfo {
   grid-area: header;
-  align-self: center;
+  align-self: end;
+  margin-bottom: 10px;
 }
 
 .styleSelector {
@@ -704,4 +705,39 @@ figure:hover #zoomed-img {
 
 .feature-item {
   margin: 10px;
+}
+
+#dropdown-container {
+  display: grid;
+  grid-template-columns: 170px 90px;
+  grid-template-rows: 60px auto;
+  grid-template-areas:
+    "size header"
+    "cart ."
+  ;
+}
+
+.dropdown-size {
+  grid-area: "size";
+  width: 170px;
+  height: 80px;
+}
+
+.dropdown-quantity {
+  grid-area: "quantity";
+  width: 90px;
+  height: 90px;
+  padding-left: 10px;
+}
+
+#cart {
+  grid-area: "cart";
+  background-color: whitesmoke;
+  border: 2px solid darkgrey;
+  border-radius: 5px;
+  /* padding: 15px 32px; */
+  padding: 10px;
+  text-align: center;
+  /* text-decoration: none; */
+  font-size: 16px;
 }

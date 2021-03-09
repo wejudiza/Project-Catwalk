@@ -25,24 +25,31 @@ export default class AddToCart extends React.Component {
       showModal: false,
       menuIsOpen: false,
       defaultValue: { value: 1, label: 1 },
+      // defaultSize: { value: null, label: 'Select Size' },
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleModal = this.handleModal.bind(this);
+    this.handleSelectReset = this.handleSelectReset.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
-    // this.changedSkuMode = this.changedSkuMode.bind(this);
+    const selectRef = null;
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.currentStyle !== prevProps.currentStyle) {
-      this.setState({
-        size: 'Select Size',
-        defaultValue: { value: 1, label: 1 },
-      });
+      this.handleSelectReset();
     }
+  }
+
+  handleSelectReset() {
+    this.selectRef.select.clearValue();
+    this.selectedSizeMode();
+    this.setState({
+      selectedQ: null,
+    });
   }
 
   handleSizeChange(e) {
@@ -113,6 +120,7 @@ export default class AddToCart extends React.Component {
       ));
       return (
         <Select
+          className="dropdown-quantity"
           options={quantities}
           value={this.state.defaultValue}
           onChange={this.handleQuantityChange}
@@ -120,7 +128,14 @@ export default class AddToCart extends React.Component {
       );
     }
     return (
-      <Select isDisabled placeholder="-" />
+      <Select
+        className="dropdown-quantity"
+        placeholder="-"
+        isDisabled
+        // ref={(ref) => {
+        //   this.selectRef = ref;
+        // }}
+      />
     );
   }
 
@@ -132,19 +147,23 @@ export default class AddToCart extends React.Component {
       <div>
         <br />
         {this.state.showError && <span style={{ color: 'red' }}>Please select size</span>}
-        <Select
-          menuIsOpen={this.state.menuIsOpen}
-          options={sizes}
-          placeholder="Select Size"
-          onFocus={this.openMenu}
-          // autoBlur
-          onBlur={this.closeMenu}
-          onChange={this.handleSizeChange}
-          style={{ width: '50%' }}
-        />
-        {this.selectedSizeMode()}
-        <br />
-        <button type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
+        <div id="dropdown-container">
+          <Select
+            className="dropdown-size"
+            menuIsOpen={this.state.menuIsOpen}
+            options={sizes}
+            ref={(ref) => {
+              this.selectRef = ref;
+            }}
+            placeholder="Select Size"
+            onFocus={this.openMenu}
+            onBlur={this.closeMenu}
+            onChange={this.handleSizeChange}
+            style={{ width: '50%' }}
+          />
+          {this.selectedSizeMode()}
+          <button type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
+        </div>
         {this.state.showModal
         && (
         <ReactModal isOpen contentLabel="test" style={modalStyle} ariaHideApp={false} onRequestClose={this.handleModal}>
