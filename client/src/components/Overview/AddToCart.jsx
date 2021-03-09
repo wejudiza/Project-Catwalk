@@ -135,7 +135,7 @@ export default class AddToCart extends React.Component {
         />
         {this.selectedSizeMode()}
         <br />
-        <button type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
+        <button className="button" type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
         {this.state.showModal
         && (
         <ReactModal isOpen contentLabel="test" style={modalStyle} ariaHideApp={false} onRequestClose={this.handleModal}>
