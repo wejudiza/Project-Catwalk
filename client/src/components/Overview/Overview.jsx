@@ -38,7 +38,7 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
-    console.log(this.props.currentProduct);
+    // console.log(this.props.currentProduct);
     axios.get(`/api/products/${this.props.currentProduct}`)
       .then((productResults) => {
         this.setState({
