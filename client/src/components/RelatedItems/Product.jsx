@@ -36,6 +36,7 @@ export default class Product extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.salePriceMode = this.salePriceMode.bind(this);
+    this.setSessionStorage = this.setSessionStorage.bind(this);
   }
 
   componentDidMount() {
@@ -164,6 +165,13 @@ export default class Product extends React.Component {
     )
   }
 
+  setSessionStorage() {
+    sessionStorage.setItem('productId', this.props.productId);
+    // console.log('sessionStorage', Number(sessionStorage.productId));
+    this.props.getCurrentProductId();
+  }
+
+
   render() {
     // ** Potentially deconstruct props?
     // const {
@@ -234,11 +242,11 @@ export default class Product extends React.Component {
             <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
-            <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
+            <div onClick={this.setSessionStorage}>
               <img className="cardImg" src={this.state.thumbnail_url}/>
             </div>
             :
-            <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
+            <div onClick={this.setSessionStorage}>
               <div className="cardImg">
                 <div className="cardImgNone"> NO IMAGE AVAILABLE</div>
               </div>

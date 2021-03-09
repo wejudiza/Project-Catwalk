@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: 16063,
+      currentProduct: Number(sessionStorage.productId) || 16063,
       ratingForCurrentProduct: 0,
       totalReviewsForCurrentProduct: 0,
       productInfo: {},
@@ -19,9 +19,9 @@ class App extends React.Component {
   }
 
   // function to get current product_id from relatedItem and save it to state
-  getCurrentProductId(product_id) {
+  getCurrentProductId() {
     this.setState({
-      currentProduct: product_id,
+      currentProduct: Number(sessionStorage.productId),
     });
   }
 
