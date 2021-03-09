@@ -13,7 +13,6 @@ import Reviews from '../client/src/components/reviews/Reviews.jsx';
 
 // enzyme.configure({ adapter: new Adapter() });
 
-
 describe('Render Overview', () => {
   it('Should have a ProductInfo Component', () => {
     const wrapper = shallow(<Overview />);
