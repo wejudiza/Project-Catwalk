@@ -49,8 +49,42 @@ export default class Product extends React.Component {
   }
 
   handleModal() {
+    const newFeatures = this.state.features.map((item) => (
+      // *** Creates a copy of item object and checks if item property exists, if not create item property
+      {...item, item: 0}
+    ))
+    const newCurrFeatures = this.state.currentFeatures.map((item) => (
+      {...item, item: 1}
+    ))
+
     this.setState({
       modalView: !this.state.modalView,
+      features: newFeatures,
+      currentFeatures: newCurrFeatures
+    }, () => {
+      this.setState({
+        filteredFeatures: this.state.features.concat(this.state.currentFeatures).filter((feature, index, self) => {
+          // *** Checking to see if feature and value are equal and if index are a match
+          // findIndex returns very first index of what we're trying to find  - to see if these are duplicates
+          let temp = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value && i.item !== feature.item && i.item !== 2))
+          // console.log('temp', temp, index)
+          // If has been found, then change feature.item to
+          if (temp > -1) {
+            feature.item = 2;
+            return true;
+          } else {
+            // It is not a duplicate, now check if has feature and value we're looking for
+            let temp2 = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value)) === index
+            if (temp2) {
+              return true;
+            }
+            return false;
+          }
+        })
+        /*[...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)*/
+      }/*, () => {
+        console.log('this.state.filteredFeatures', this.state.filteredFeatures)
+      }*/)
     });
   }
 
@@ -66,6 +100,7 @@ export default class Product extends React.Component {
           category: results.data.category,
           default_price: results.data.default_price,
           features: results.data.features,
+          currentFeatures: this.props.productInfo.features,
         });
       })
       .then(() => {
@@ -151,37 +186,49 @@ export default class Product extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.features.map((relatedFeature, key) => {
-                  if(relatedFeature.value !== null) {
-                    return (
-                      <tr key={key}>
-                        <td><Checkmark size='small'/></td>
-                        <td className='center'>
-                          {relatedFeature.feature} - {relatedFeature.value}
-                          <br/>
-                        </td>
-                        <td></td>
-                      </tr>
-                    )
-                  }
-                })}
-                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-                {this.props.productInfo.features
-                ? this.props.productInfo.features.map((currentProdFeature, key) => {
-                  if(currentProdFeature.value !== null) {
-                    return (
-                    <tr key={key}>
-                      <td></td>
-                      <td className='center'>
-                        {currentProdFeature.feature} - {currentProdFeature.value}
-                        <br/>
-                      </td>
-                      <td><Checkmark size='small'/></td>
-                    </tr>
-                    )
+              {/* conditional render in order to wait for state to be set to filteredFeatures */}
+              {this.state.filteredFeatures ?
+                this.state.filteredFeatures.map((feature, key) => {
+                  if(feature.value !== null) {
+                    if (feature.item === 0) {
+                      return (
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td className='checkMarks'></td>
+
+                        </tr>
+                      )
+                    } else if (feature.item === 1) {
+                      return (
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                        </tr>
+                      )
+                    } else if (feature.item === 2) {
+                      return (
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                        </tr>
+                      )
+                    }
                   }
                 })
-                : null}
+                : null
+              }
               </tbody>
             </table>
             <button onClick={this.handleModal}>Back</button>

@@ -520,6 +520,24 @@ button.rec-dot{
   margin: 5px 0px 5px 10px;
 }
 
+/* MODAL*/
+.center {
+  /* text-align: center;
+  margin: auto;
+  width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkMarks {
+  width: 150px;
+}
+
+.comparisonRow {
+  /* border-spacing: 200px; */
+}
+
 #modalContainer {
   /* position: relative; */
 }
@@ -554,15 +572,6 @@ button.rec-dot{
   background-color: grey;
 }
 
-/* RELATED ITEMS POSITIONING */
-.center {
-  /* text-align: center;
-  margin: auto;
-  width: 50%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 
 
