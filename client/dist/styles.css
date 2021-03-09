@@ -614,6 +614,10 @@ body {
   border: 1px solid darkgrey;
 }
 
+.thumbnails:hover {
+  cursor: pointer;
+}
+
 .thumbnailContainer {
   display: flex;
   flex-direction: column;
@@ -629,6 +633,10 @@ body {
   position: absolute;
   top: 50%;
   left: 16%;
+}
+
+.fas {
+  cursor: pointer;
 }
 
 #expanded-left-arrow {
@@ -661,6 +669,10 @@ body {
   border-radius: 50%;
   height: 85px;
   width: 85px;
+}
+
+.style-option:hover {
+  cursor: pointer;
 }
 
 #style-container {
@@ -709,9 +721,9 @@ figure:hover #zoomed-img {
 
 #dropdown-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 170px 90px;
   grid-template-rows: auto auto;
-  grid-row-gap: 50px;
+  grid-row-gap: 20px;
   grid-column-gap: 10px;
   grid-template-areas:
     "size header"
@@ -738,5 +750,9 @@ figure:hover #zoomed-img {
   padding: 10px;
   text-align: center;
   font-size: 16px;
-  width: 250px;
+  width: 70%;
+}
+
+#cart:hover {
+  cursor: pointer;
 }

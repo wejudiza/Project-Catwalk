@@ -30,7 +30,7 @@ export default class AddToCart extends React.Component {
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleModal = this.handleModal.bind(this);
-    // this.handleSelectReset = this.handleSelectReset.bind(this);
+    this.handleSelectReset = this.handleSelectReset.bind(this);
     this.selectedSizeMode = this.selectedSizeMode.bind(this);
     this.onAddToCartClick = this.onAddToCartClick.bind(this);
     this.openMenu = this.openMenu.bind(this);
@@ -40,23 +40,18 @@ export default class AddToCart extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.currentStyle.style_id !== prevProps.currentStyle.style_id) {
-      this.selectRef.select.clearValue();
-      console.log(this.selectRef);
-      this.setState({
-        size: 'Select Size',
-        selectedQ: 0,
-        defaultValue: { value: 1, label: 1 },
-      });
+      this.handleSelectReset();
     }
   }
 
-  // handleSelectReset() {
-  //   this.selectRef.select.clearValue();
-  //   this.selectedSizeMode();
-  //   this.setState({
-  //     selectedQ: null,
-  //   });
-  // }
+  handleSelectReset() {
+    this.selectRef.select.clearValue();
+    this.setState({
+      size: 'Select Size',
+      selectedQ: 0,
+      defaultValue: { value: 1, label: 1 },
+    });
+  }
 
   handleSizeChange(e) {
     if (!e) {
@@ -76,7 +71,6 @@ export default class AddToCart extends React.Component {
   }
 
   handleQuantityChange(e) {
-    console.log('e', e)
     this.setState({
       selectedQ: e.value,
       defaultValue: { value: e.value, label: e.value },
