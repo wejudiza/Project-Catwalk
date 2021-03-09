@@ -42,10 +42,10 @@ describe('Render RelatedItems', () => {
 
 
 describe('Render ProductsList', () => {
-  it('Should have a ProductsCarousel Component', () => {
-    const wrapper = shallow(<ProductsList />);
-    expect(wrapper.find('ProductsCarousel').exists()).toBe(true);
-  })
+  // it('Should have a ProductsCarousel Component', () => {
+  //   const wrapper = shallow(<ProductsList />);
+  //   expect(wrapper.find('ProductsCarousel').exists()).toBe(true);
+  // })
 
   // it('Should have a Product Component', () => {
   //   const wrapper = shallow(<ProductsCarousel />);
@@ -59,6 +59,8 @@ describe('Render OutfitsList', () => {
     const wrapper = shallow(<OutfitsList />);
     expect(wrapper.find('Outfit').exists()).toBe(true);
   })
+
+
 
 
 
