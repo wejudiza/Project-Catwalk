@@ -151,6 +151,7 @@ export default class Product extends React.Component {
                 </tr>
               </thead>
               <tbody>
+              {/* Refactor */}
                 {this.state.features.map((relatedFeature, key) => {
                   if(relatedFeature.value !== null) {
                     return (
