@@ -66,6 +66,15 @@ export default class Product extends React.Component {
           category: results.data.category,
           default_price: results.data.default_price,
           features: results.data.features,
+          currentFeatures: this.props.productInfo.features,
+        }, () => {
+          this.setState({
+            filteredFeatures: [...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)
+          }, () => {
+            console.log('this.state.filteredFeatures', this.state.filteredFeatures)
+            console.log('this.state.currentFeatures', this.state.currentFeatures)
+            console.log('this.state.features', this.state.features)
+          })
         });
       })
       .then(() => {
@@ -167,8 +176,8 @@ export default class Product extends React.Component {
                   }
                 })}
                 {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-                {this.props.productInfo.features
-                ? this.props.productInfo.features.map((currentProdFeature, key) => {
+                {this.state.currentFeatures
+                ? this.state.currentFeatures.map((currentProdFeature, key) => {
                   if(currentProdFeature.value !== null) {
                     return (
                     <tr key={key}>
