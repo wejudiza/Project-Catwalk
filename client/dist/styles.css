@@ -1,24 +1,48 @@
 /* body */
-body {
+body.light-theme {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(182, 182, 182);
+  background-color: rgba(0,0,0,0.8);
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 40px;
+}
+
+
+body.dark-theme {
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(66, 63, 63);
   background-color: whitesmoke;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 40px;
 }
+
+#btn-theme {
+  background-color: whitesmoke;
+  border: 2px solid darkgrey;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bolder;
+}
+
 
 /* reviews */
 #container-reviews {
   /* width: 80%;
   height: 150%; */
   /* width: 80%; */
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  /* margin-top: 10px;
+  margin-bottom: 30px; */
   /* background-color: whitesmoke; */
   /* outline: 5px solid black; */
   display: grid;
   grid-template-columns: [col-start] minmax(300px, 300px) [col-2] minmax(500px, auto) [col-end];
-  grid-template-rows: [row-start] auto [row-2] minmax(auto, 500px) [row-end];
+  grid-template-rows: [row-start] auto [row-2] minmax(auto, 400px) [row-end];
   grid-template-areas:
   "widgetHeader widgetHeader"
   "breakdowns reviewsList";
@@ -42,7 +66,15 @@ body {
   grid-area: reviewsList;
   grid-column-end: col-end;
   grid-row-end: row-end;
+  /* overflow: auto; */
+  /* white-space: nowrap; */
 }
+
+/* .scroll {
+  overflow: auto;
+  outline: 5px solid black;
+  white-space: pre;
+} */
 
 .container-review {
   display: grid;
@@ -56,7 +88,7 @@ body {
   "response response"
   "recommend recommend"
   "footer footer";
-  grid-row-gap: 5px;
+  grid-row-gap: 10px;
 }
 
 .review-stars {
@@ -108,6 +140,27 @@ body {
 .container-reviewList {
   /* outline: 5px solid black; */
   /* grid-template-columns: minmax(350px, 350px); */
+  display: grid;
+  grid-template-rows: auto minmax(auto, 410px) auto;
+  grid-template-areas:
+  "sortbar"
+  "reviewlistbody"
+  "bottonbar";
+}
+
+.sortbar {
+  grid-area: sortbar;
+}
+
+.reviewlistbody {
+  grid-area: reviewlistbody;
+  overflow: auto;
+  /* outline: 5px solid black; */
+}
+
+.bottonbar {
+  grid-area: bottonbar;
+  /* outline: 5px solid black; */
 }
 
 .container-breakdowns {
@@ -138,8 +191,8 @@ body {
   /* grid-row-gap: 5px; */
   grid-template-areas:
   "ratingSum"
-  "recommendSum"
-  "starPercent";
+  "starPercent"
+  "recommendSum";
 }
 
 .ratingSum {
@@ -350,6 +403,10 @@ body {
   font-size: 16px;
 }
 
+.button:hover {
+  background-color: green;
+}
+
 .select {
   font-size: inherit;
   color: rgb(66, 63, 63);
@@ -371,16 +428,15 @@ body {
 
 
 /* RELATED ITEMS */
-.testGrid {
+/* .testGrid {
   display: grid;
   grid-template-rows: auto auto;
   grid-template-areas:
   "title"
   "carousel";
-  /* width: 80%; */
-  /* minmax() */
+  width: 80%;
+  minmax()
 }
-
 
 .title {
   grid-area: title;
@@ -388,21 +444,50 @@ body {
 
 .productsCarousel {
   grid-area: carousel;
-}
+} */
 
 .list {
   display: flex;
   align-items: flex-end;
 }
 
-.slide-arrow {
+/* Carousel */
+
+.rec.rec-arrow {
   color: black;
+  background-color: white;
+}
+
+.rec.rec-arrow:hover:enabled, .rec.rec-arrow:focus:enabled {
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: 0 0 2px 0 #333;
+}
+
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+
+button.rec-dot_active {
+  background-color: rgba(0,0,0,0.2);
+  box-shadow: black;
+}
+
+button.rec-dot{
+  /* background-color: white; */
+  box-shadow: 0 0 1px 3px grey;
+}
+
+/* Carousel From Scratch */
+.slide-arrow {
+  /* color: black;
   font-size: 50px;
   padding: 6px;
   align-self: center;
   background: transparent;
   cursor: pointer;
-  border: none;
+  border: none; */
   /* position: relative; */
   /* top: 50%; */
   /* margin: 0 auto; */
@@ -410,14 +495,14 @@ body {
 
 
 #btnHidden {
-  color: black;
+  /* color: black;
   font-size: 50px;
   padding: 6px;
   align-self: center;
   background: transparent;
   cursor: pointer;
   border: none;
-  visibility: hidden;
+  visibility: hidden; */
 }
 
 /* Individual Card */
@@ -427,7 +512,7 @@ body {
   box-shadow: 4px 4px 4px 2px grey;
   margin: 10px;
   width: 300px;
-  height: 425px;
+  height: 375px;
   border-width: 2px;
   border-style: solid;
 }
@@ -437,23 +522,39 @@ body {
   object-fit: cover;
   object-position: 50% 100%;
   width: 300px;
-  height: 350px;
+  height: 275px;
   /* max-width: 100%; */
   /* max-height: 200px; */
 }
 
 .cardImgNone {
   text-align: center;
-  padding: 100px 0;
+  padding-top: 100px;
   font-size: 36px;
-
 }
 
 .cardText {
-  position: absolute;
-  bottom: 0px;
-  margin-top: 5px;
-  margin-left: 5px;
+  /* position: relative; */
+  /* bottom: 0px; */
+  margin: 5px 0px 5px 10px;
+}
+
+/* MODAL*/
+.center {
+  /* text-align: center;
+  margin: auto;
+  width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkMarks {
+  width: 150px;
+}
+
+.comparisonRow {
+  /* border-spacing: 200px; */
 }
 
 #modalContainer {
@@ -481,26 +582,15 @@ body {
 /* ADD TO OUTFITS LIST BUTTON */
 #outfitsBtn {
   cursor: pointer;
-  font-size: 20px;
-  min-width: 300px;
-  max-width: 300px;
-  min-height: 425px;
-  max-height: 425px;
+  font-size: 75px;
+  width: 300px;
+  height: 375px;
 }
 
 #outfitsBtn:hover {
   background-color: grey;
 }
 
-/* RELATED ITEMS POSITIONING */
-.center {
-  /* text-align: center;
-  margin: auto;
-  width: 50%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 
 
@@ -532,8 +622,9 @@ body {
 #description {
   grid-area: footer;
   align-self: center;
-  justify-self: center;
+  justify-self: start;
   display: flex;
+  /* margin-left: 130px; */
 }
 
 #description-child {
@@ -543,7 +634,7 @@ body {
 /* IMAGE GALLERY */
 #main {
   grid-area: main;
-  justify-self: center;
+  justify-self: start;
 }
 
 #imageGalleryContainer {
@@ -576,7 +667,7 @@ body {
 
 .dots-overlay {
   position: absolute;
-  top: 89%;
+  top: 90%;
   left: 40%;
 }
 

@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: 16063,
+      currentProduct: Number(sessionStorage.productId) || 16063,
       ratingForCurrentProduct: 0,
       totalReviewsForCurrentProduct: 0,
       productInfo: {},
@@ -16,12 +16,13 @@ class App extends React.Component {
     this.getRating = this.getRating.bind(this);
     this.getTotalReviews = this.getTotalReviews.bind(this);
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
+    this.toggleTheme = this.toggleTheme.bind(this);
   }
 
   // function to get current product_id from relatedItem and save it to state
-  getCurrentProductId(product_id) {
+  getCurrentProductId() {
     this.setState({
-      currentProduct: product_id,
+      currentProduct: Number(sessionStorage.productId),
     });
   }
 
@@ -46,9 +47,16 @@ class App extends React.Component {
     });
   }
 
+  toggleTheme () {
+    document.body.classList.toggle('dark-theme');
+  }
+
+
+
   render() {
     return (
       <div>
+        <button id="btn-theme" type="button" onClick={this.toggleTheme}> Change Theme </button>
         <div id="products">
           <Overview
             rating={this.state.ratingForCurrentProduct}
@@ -69,6 +77,7 @@ class App extends React.Component {
             currentProduct={this.state.currentProduct}
             getRating={this.getRating}
             getTotalReviews={this.getTotalReviews}
+            productInfo={this.state.productInfo}
           />
         </div>
       </div>
