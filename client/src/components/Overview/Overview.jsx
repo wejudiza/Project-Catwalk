@@ -14,17 +14,19 @@ export default class Overview extends React.Component {
       currentStyle: {},
     };
     this.getProduct = this.getProduct.bind(this);
-    // this.getStyles = this.getStyles.bind(this);
+    this.getStyles = this.getStyles.bind(this);
     this.onStyleClick = this.onStyleClick.bind(this);
   }
 
   componentDidMount() {
     this.getProduct();
+    this.getStyles();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.currentProduct !== prevProps.currentProduct) {
       this.getProduct();
+      this.getStyles();
     }
   }
 
@@ -36,6 +38,7 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
+    console.log(this.props.currentProduct);
     axios.get(`/api/products/${this.props.currentProduct}`)
       .then((productResults) => {
         this.setState({
@@ -43,20 +46,22 @@ export default class Overview extends React.Component {
         });
         this.props.getCurrentProductInfo(productResults.data);
       })
-      .then(() => {
-        axios.get(`/api/products/${this.props.currentProduct}/styles`)
-          .then((stylesResults) => {
-            this.setState({
-              styles: stylesResults.data.results,
-              currentStyle: stylesResults.data.results[0],
-            });
-          });
-      })
       .catch((err) => console.log('getProduct err: ', err));
   }
 
+  getStyles() {
+    axios.get(`/api/products/${this.props.currentProduct}/styles`)
+      .then((stylesResults) => {
+        this.setState({
+          styles: stylesResults.data.results,
+          currentStyle: stylesResults.data.results[0],
+        });
+      })
+      .catch((err) => console.log('getSyles err: ', err));
+  }
+
   render() {
-    if (this.state.product.length !== 0 && this.state.styles.length !== 0) {
+    // if (this.state.product.length !== 0 && this.state.styles.length !== 0) {
       return (
         <div id="overviewContainer">
           <br />
@@ -81,15 +86,15 @@ export default class Overview extends React.Component {
             features={this.state.product.features}
           />
           {/* <button type="button">Share on Facebook</button>
-          <button type="button">Share on Twitter</button>
-          <button type="button">Share on Pinterest</button> */}
+            <button type="button">Share on Twitter</button>
+            <button type="button">Share on Pinterest</button> */}
         </div>
       );
-    }
-    return (
-      <div>
-        Loading Product...
-      </div>
-    )
+    // }
+    // return (
+    //   <div>
+    //     Loading Product...
+    //   </div>
+    // );
   }
 }

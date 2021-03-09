@@ -3,17 +3,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(66, 63, 63);
   background-color: whitesmoke;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 40px;
 }
+
+
 
 /* reviews */
 #container-reviews {
   /* width: 80%;
   height: 150%; */
   /* width: 80%; */
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  /* margin-top: 10px;
+  margin-bottom: 30px; */
   /* background-color: whitesmoke; */
   /* outline: 5px solid black; */
   display: grid;
@@ -632,8 +637,8 @@ button.rec-dot{
 
 .dots-overlay {
   position: absolute;
-  top: 89%;
-  left: 40%;
+  /* top: 89%; */
+  left: 50%;
 }
 
 .selected-dot {

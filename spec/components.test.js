@@ -9,16 +9,23 @@ import RelatedItems from '../client/src/components/RelatedItems/RelatedItems.jsx
 import ProductsList from '../client/src/components/RelatedItems/ProductsList.jsx';
 import ProductsCarousel from '../client/src/components/RelatedItems/ProductsCarousel.jsx';
 import OutfitsList from '../client/src/components/RelatedItems/OutfitsList.jsx';
+<<<<<<< HEAD
 import Outfit from '../client/src/components/RelatedItems/Outfit.jsx';
+=======
+import Reviews from '../client/src/components/reviews/Reviews.jsx';
+>>>>>>> main
 
-// enzyme.configure({ adapter: new Adapter() });
 
+<<<<<<< HEAD
 // describe('Render Overview', () => {
 //   it('Should have a ProductInfo Component', () => {
 //     const wrapper = shallow(<Overview />);
 //     // const { wrapper } = setup();
 //     expect(wrapper.find('ProductInfo').exists()).toBe(true);
 //   });
+=======
+// enzyme.configure({ adapter: new Adapter() });
+>>>>>>> main
 
 //   it('Should have a StyleSelector Component', () => {
 //     const wrapper = shallow(<Overview />);
@@ -62,7 +69,16 @@ describe('Render OutfitsList', () => {
 
 
 
-
-
 });
 
+describe('Render RatingBreakdown', () => {
+  it('Should have a RatingBreakdown Component', () => {
+    const wrapper = shallow(<Reviews />);
+    expect(wrapper.find('RatingBreakdown').exists()).toBe(true);
+  });
+
+  // it('Should have a OutfitsList Component', () => {
+  //   const wrapper = shallow(<RelatedItems />);
+  //   expect(wrapper.find('OutfitsList').exists()).toBe(true);
+  // });
+});

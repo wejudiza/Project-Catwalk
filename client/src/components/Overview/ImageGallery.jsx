@@ -20,11 +20,13 @@ export default class ImageGallery extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      thumbnails: this.props.images,
-      currentImage: this.props.images[0],
-      currentImageUrl: this.props.images[0].url,
-    });
+    if (this.props.images) {
+      this.setState({
+        thumbnails: this.props.images,
+        currentImage: this.props.images[0],
+        currentImageUrl: this.props.images[0].url,
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
