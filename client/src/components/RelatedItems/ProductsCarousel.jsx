@@ -25,11 +25,15 @@ export default class ProductsCarousel extends React.Component {
           disableArrowsOnEnd={true}
           itemsToShow={4}
         >
-          {this.props.productsListId.map((productId, key) => (
-            <div className="card" key={key}>
-              <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
-            </div>
-          ))}
+          {this.props.productsListId ?
+            this.props.productsListId.map((productId, key) => (
+              <div className="card" key={key}>
+                <Product productId={productId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
+              </div>
+            ))
+            :
+            null
+          }
         </Carousel>
       </div>
     )

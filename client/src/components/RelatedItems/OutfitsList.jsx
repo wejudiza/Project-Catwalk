@@ -83,7 +83,9 @@ export default class OutfitsList extends React.Component {
                   </div>
                 ))
                 :
-                null
+                <div>
+                  <Outfit/>
+                </div>
               }
             </Carousel>
           </div>
