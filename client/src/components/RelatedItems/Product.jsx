@@ -187,39 +187,81 @@ export default class Product extends React.Component {
                 </tr>
               </thead>
               <tbody>
-              {/* List of Related Item features */}
-                {this.state.features.map((relatedFeature, key) => {
-                  if(relatedFeature.value !== null) {
-                    return (
+              {/* conditional render in order to wait for state to be set to filteredFeatures */}
+              {this.state.filteredFeatures ?
+                this.state.filteredFeatures.map((feature, key) => {
+                  if(feature.value !== null) {
+                    if (feature.item === 0) {
+                      return (
+                        <tr key={key}>
+                          <td><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td></td>
+                        </tr>
+                      )
+                    } else if (feature.item === 1) {
+                      return (
+                        <tr key={key}>
+                          <td></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td><Checkmark size='small'/></td>
+                        </tr>
+                      )
+                    } else if (feature.item === 2) {
+                      return (
+                        <tr key={key}>
+                          <td><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td><Checkmark size='small'/></td>
+                        </tr>
+                      )
+                    }
+                  }
+                {/* List of Related Item features */}
+                  {/* {this.state.features.map((relatedFeature, key) => {
+                    if(relatedFeature.value !== null) {
+                      return (
+                        <tr key={key}>
+                          <td><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {relatedFeature.feature} - {relatedFeature.value}
+                            <br/>
+                          </td>
+                          <td></td>
+                        </tr>
+                      )
+                    }
+                  })} */}
+
+                  {/* List of Current Displayed Item's features */}
+                  {/* {this.state.currentFeatures
+                  ? this.state.currentFeatures.map((currentProdFeature, key) => {
+                    if(currentProdFeature.value !== null) {
+                      return (
                       <tr key={key}>
-                        <td><Checkmark size='small'/></td>
+                        <td></td>
                         <td className='center'>
-                          {relatedFeature.feature} - {relatedFeature.value}
+                          {currentProdFeature.feature} - {currentProdFeature.value}
                           <br/>
                         </td>
-                        <td></td>
+                        <td><Checkmark size='small'/></td>
                       </tr>
-                    )
-                  }
-                })}
-                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-                {/* List of Current Displayed Item's features */}
-                {this.state.currentFeatures
-                ? this.state.currentFeatures.map((currentProdFeature, key) => {
-                  if(currentProdFeature.value !== null) {
-                    return (
-                    <tr key={key}>
-                      <td></td>
-                      <td className='center'>
-                        {currentProdFeature.feature} - {currentProdFeature.value}
-                        <br/>
-                      </td>
-                      <td><Checkmark size='small'/></td>
-                    </tr>
-                    )
-                  }
+                      )
+                    }
+                  })
+                  : null} */}
                 })
-                : null}
+                : null
+              }
               </tbody>
             </table>
             <button onClick={this.handleModal}>Back</button>
