@@ -709,25 +709,25 @@ figure:hover #zoomed-img {
 
 #dropdown-container {
   display: grid;
-  grid-template-columns: 170px 90px;
-  grid-template-rows: 60px auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-row-gap: 50px;
+  grid-column-gap: 10px;
   grid-template-areas:
     "size header"
-    "cart ."
+    "cart cart"
   ;
 }
 
 .dropdown-size {
   grid-area: "size";
-  width: 170px;
-  height: 80px;
+  /* width: 170px; */
 }
 
 .dropdown-quantity {
   grid-area: "quantity";
   width: 90px;
-  height: 90px;
-  padding-left: 10px;
+  /* padding-left: 10px */
 }
 
 #cart {
@@ -735,9 +735,8 @@ figure:hover #zoomed-img {
   background-color: whitesmoke;
   border: 2px solid darkgrey;
   border-radius: 5px;
-  /* padding: 15px 32px; */
   padding: 10px;
   text-align: center;
-  /* text-decoration: none; */
   font-size: 16px;
+  width: 250px;
 }
