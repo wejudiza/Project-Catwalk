@@ -16,6 +16,7 @@ class App extends React.Component {
     this.getRating = this.getRating.bind(this);
     this.getTotalReviews = this.getTotalReviews.bind(this);
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
+    this.toggleTheme = this.toggleTheme.bind(this);
   }
 
   // function to get current product_id from relatedItem and save it to state
@@ -46,9 +47,16 @@ class App extends React.Component {
     });
   }
 
+  toggleTheme () {
+    document.body.classList.toggle('dark-theme');
+  }
+
+
+
   render() {
     return (
       <div>
+        <button id="btn-theme" type="button" onClick={this.toggleTheme}> Change Theme </button>
         <div id="products">
           <Overview
             rating={this.state.ratingForCurrentProduct}
