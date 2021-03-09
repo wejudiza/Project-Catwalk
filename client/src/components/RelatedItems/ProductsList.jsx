@@ -56,7 +56,8 @@ export default class ProductsList extends React.Component {
           <ProductsCarousel productsListId={this.state.productsListId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>
       );
-    } else {
+    }
+    else {
       return (
         <div>
           Loading
