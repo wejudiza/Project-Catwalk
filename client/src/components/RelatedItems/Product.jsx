@@ -49,8 +49,43 @@ export default class Product extends React.Component {
   }
 
   handleModal() {
+    const newFeatures = this.state.features.map((item) => (
+      // *** Creates a copy of item object and checks if item property exists, if not create item property
+      {...item, item: 0}
+    ))
+    const newCurrFeatures = this.state.currentFeatures.map((item) => (
+      {...item, item: 1}
+    ))
+
     this.setState({
       modalView: !this.state.modalView,
+      features: newFeatures,
+      currentFeatures: newCurrFeatures
+    }, () => {
+      this.setState({
+        filteredFeatures: this.state.features.concat(this.state.currentFeatures).filter((feature, index, self) => {
+          // *** Checking to see if feature and value are equal and if index are a match
+          // findIndex returns very first index of what we're trying to find  - to see if these are duplicates
+          let temp = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value && i.item !== feature.item && i.item !== 2))
+          console.log('temp', temp, index)
+          // If has been found, then change feature.item to
+          if (temp > -1) {
+            console.log('all good')
+            feature.item = 2;
+            return true;
+          } else {
+            // It is not a duplicate, now check if has feature and value we're looking for
+            let temp2 = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value)) === index
+            if (temp2) {
+              return true;
+            }
+            return false;
+          }
+        })
+        /*[...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)*/
+      }, () => {
+        console.log('this.state.filteredFeatures', this.state.filteredFeatures)
+      })
     });
   }
 
@@ -67,14 +102,6 @@ export default class Product extends React.Component {
           default_price: results.data.default_price,
           features: results.data.features,
           currentFeatures: this.props.productInfo.features,
-        }, () => {
-          this.setState({
-            filteredFeatures: [...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)
-          }, () => {
-            console.log('this.state.filteredFeatures', this.state.filteredFeatures)
-            console.log('this.state.currentFeatures', this.state.currentFeatures)
-            console.log('this.state.features', this.state.features)
-          })
         });
       })
       .then(() => {
@@ -160,7 +187,7 @@ export default class Product extends React.Component {
                 </tr>
               </thead>
               <tbody>
-              {/* Refactor */}
+              {/* List of Related Item features */}
                 {this.state.features.map((relatedFeature, key) => {
                   if(relatedFeature.value !== null) {
                     return (
@@ -176,6 +203,7 @@ export default class Product extends React.Component {
                   }
                 })}
                 {/* conditional render in order to wait for state to be set to currentProductFeatures */}
+                {/* List of Current Displayed Item's features */}
                 {this.state.currentFeatures
                 ? this.state.currentFeatures.map((currentProdFeature, key) => {
                   if(currentProdFeature.value !== null) {
