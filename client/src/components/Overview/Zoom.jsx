@@ -5,7 +5,7 @@ class Zoom extends React.Component {
     super(props);
     this.state = {
       backgroundImage: '',
-      backgroundPosition: ''
+      backgroundPosition: '0% 0%'
     }
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
