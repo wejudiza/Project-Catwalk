@@ -614,6 +614,11 @@ button.rec-dot{
 
 
 /* OVERVIEW */
+#products {
+  margin: auto;
+  width: 1100px;
+}
+
 #overviewContainer {
   display: grid;
   grid-template-columns: minmax(auto,700px) minmax(auto,500px);

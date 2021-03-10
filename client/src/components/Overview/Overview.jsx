@@ -108,11 +108,5 @@ export default class Overview extends React.Component {
             <button type="button">Share on Pinterest</button> */}
         </div>
       );
-    // }
-    // return (
-    //   <div>
-    //     Loading Product...
-    //   </div>
-    // );
   }
 }
