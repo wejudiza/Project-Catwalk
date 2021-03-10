@@ -8,15 +8,9 @@ export default class ProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentProduct: this.props.currentProduct,
       productsListId: [],
-      // displayProductsListId: [],
-      // currentProductIndex: 0,
-      // itemsToDisplay: 4,
     };
     this.getProductsListId = this.getProductsListId.bind(this);
-    // this.nextSlide = this.nextSlide.bind(this);
-    // this.previousSlide = this.previousSlide.bind(this);
   }
 
   componentDidMount() {
@@ -31,41 +25,23 @@ export default class ProductsList extends React.Component {
 
   // axios get request to /products/16056/related
   getProductsListId() {
-    axios.get(`api/products/${this.props.currentProduct}/related`)
-      .then((results) => {
-        this.setState({
-          productsListId: results.data
-        });
-      })
-      .then(() => {
-        this.setState({
-          displayProductsListId: this.state.productsListId.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
-        });
-      })
-      .catch((err) => console.log('getProductsListId err: ', err));
+    let dataName = `${this.props.currentProduct}_related`
+    if (!localStorage[dataName]) {
+      axios.get(`api/products/${this.props.currentProduct}/related`)
+        .then((results) => {
+          localStorage.setItem(dataName, JSON.stringify(results.data))
+          this.setState({
+            productsListId: results.data
+          });
+        })
+        .catch((err) => console.log('getProductsListId err: ', err));
+    } else {
+      this.setState({
+        productsListId: JSON.parse(localStorage[dataName])
+      });
+    }
   }
 
-  // previousSlide () {
-  //   const currentIndex = this.state.currentProductIndex - 1;
-
-  //   this.setState({
-  //     currentProductIndex: currentIndex,
-  //     displayProductsListId: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
-  //   }, () => {
-  //     console.log('this.state', this.state)
-  //   });
-  // }
-
-  // nextSlide () {
-  //   const currentIndex =  this.state.currentProductIndex + 1;
-
-  //   this.setState({
-  //     currentProductIndex: currentIndex,
-  //     displayProductsListId: this.state.productsListId.slice(currentIndex, currentIndex + this.state.itemsToDisplay)
-  //   }, () => {
-  //     console.log('this.state', this.state)
-  //   });
-  // }
 
   render() {
     if (this.state.productsListId.length > 0) {
@@ -77,7 +53,8 @@ export default class ProductsList extends React.Component {
           <ProductsCarousel productsListId={this.state.productsListId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>
       );
-    } else {
+    }
+    else {
       return (
         <div>
           Loading

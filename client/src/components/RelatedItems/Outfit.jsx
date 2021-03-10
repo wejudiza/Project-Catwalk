@@ -22,13 +22,14 @@ export default class Outfit extends React.Component {
 
   componentDidMount() {
     this.getStyles(this.props.outfit.id);
+    this.getReviews(this.props.outfit.id);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.outfit.id !== prevProps.outfit.id) {
       this.getStyles(this.props.outfit.id);
+      this.getReviews(this.props.outfit.id);
     }
-
   }
 
   getStyles(productId) {
@@ -41,9 +42,9 @@ export default class Outfit extends React.Component {
           sale_price: results.data.results[0].sale_price,
         });
       })
-      .then(() => {
-        this.getReviews(this.props.outfit.id)
-      })
+      // .then(() => {
+      //   this.getReviews(this.props.outfit.id)
+      // })
       .catch((err) => console.log('getStyles err: ', err));
   }
 

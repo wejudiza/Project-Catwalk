@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Outfit from './Outfit.jsx';
-import Arrow from './Arrow.jsx';
 import Carousel from "react-elastic-carousel";
 
 export default class OutfitsList extends React.Component {
@@ -83,7 +82,11 @@ export default class OutfitsList extends React.Component {
                   </div>
                 ))
                 :
-                null
+                this.state.outfitsList.map((outfit, key) => (
+                  <div className='card' key={`${outfit.id}-${key}`}>
+                    <Outfit outfit={outfit} removeOutfit={this.removeOutfit} />
+                  </div>
+                ))
               }
             </Carousel>
           </div>

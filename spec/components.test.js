@@ -7,12 +7,19 @@ import ProductInfo from '../client/src/components/Overview/ProductInfo.jsx';
 import StyleSelector from '../client/src/components/Overview/StyleSelector.jsx';
 import RelatedItems from '../client/src/components/RelatedItems/RelatedItems.jsx';
 import ProductsList from '../client/src/components/RelatedItems/ProductsList.jsx';
+import ProductsCarousel from '../client/src/components/RelatedItems/ProductsCarousel.jsx';
 import OutfitsList from '../client/src/components/RelatedItems/OutfitsList.jsx';
+import Outfit from '../client/src/components/RelatedItems/Outfit.jsx';
 import Reviews from '../client/src/components/reviews/Reviews.jsx';
 import RatingBreakdown from '../client/src/components/reviews/RatingBreakdown.jsx'
 
 
-// enzyme.configure({ adapter: new Adapter() });
+// describe('Render Overview', () => {
+//   it('Should have a ProductInfo Component', () => {
+//     const wrapper = shallow(<Overview />);
+//     // const { wrapper } = setup();
+//     expect(wrapper.find('ProductInfo').exists()).toBe(true);
+//   });
 
 // describe('Render Overview', () => {
 //   it('Should have a ProductInfo Component', () => {

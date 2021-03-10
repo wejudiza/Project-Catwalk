@@ -36,28 +36,70 @@ export default class Product extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.salePriceMode = this.salePriceMode.bind(this);
+    this.setSessionStorage = this.setSessionStorage.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo(this.props.productId);
+    this.getStyles(this.props.productId);
+    this.getReviews(this.props.productId);
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.productId !== prevProps.productId) {
       this.getProductInfo(this.props.productId);
+      this.getStyles(this.props.productId);
+      this.getReviews(this.props.productId);
     }
   }
 
   handleModal() {
+    const newFeatures = this.state.features.map((item) => (
+      // *** Creates a copy of item object and checks if item property exists, if not create item property
+      {...item, item: 0}
+    ))
+    const newCurrFeatures = this.state.currentFeatures.map((item) => (
+      {...item, item: 1}
+    ))
+
     this.setState({
       modalView: !this.state.modalView,
+      features: newFeatures,
+      currentFeatures: newCurrFeatures
+    }, () => {
+      this.setState({
+        filteredFeatures: this.state.features.concat(this.state.currentFeatures).filter((feature, index, self) => {
+          // *** Checking to see if feature and value are equal and if index are a match
+          // findIndex returns very first index of what we're trying to find  - to see if these are duplicates
+          let temp = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value && i.item !== feature.item && i.item !== 2))
+          // console.log('temp', temp, index)
+          // If has been found, then change feature.item to
+          if (temp > -1) {
+            feature.item = 2;
+            return true;
+          } else {
+            // It is not a duplicate, now check if has feature and value we're looking for
+            let temp2 = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value)) === index
+            if (temp2) {
+              return true;
+            }
+            return false;
+          }
+        })
+        /*[...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)*/
+      }/*, () => {
+        console.log('this.state.filteredFeatures', this.state.filteredFeatures)
+      }*/)
     });
   }
 
   // axios get request to /products/productId
   getProductInfo(productId) {
-    axios.get(`api/products/${productId}`)
+    let dataName = `${productId}_info`;
+    if (!localStorage[dataName]) {
+      axios.get(`api/products/${productId}`)
       .then((results) => {
+        localStorage.setItem(dataName, JSON.stringify(results.data));
         this.setState({
           id: results.data.id,
           name: results.data.name,
@@ -66,27 +108,47 @@ export default class Product extends React.Component {
           category: results.data.category,
           default_price: results.data.default_price,
           features: results.data.features,
+          currentFeatures: this.props.productInfo.features,
         });
       })
-      .then(() => {
-        this.getStyles(this.props.productId);
-      })
-      .then(() => {
-        this.getReviews(this.props.productId);
-      })
+      .catch((err) => console.log('getProductInfo err: ', err));
+    } else {
+      this.setState({
+        id: JSON.parse(localStorage[dataName]).id,
+        name: JSON.parse(localStorage[dataName]).name,
+        slogan: JSON.parse(localStorage[dataName]).slogan,
+        description: JSON.parse(localStorage[dataName]).description,
+        category: JSON.parse(localStorage[dataName]).category,
+        default_price: JSON.parse(localStorage[dataName]).default_price,
+        features: JSON.parse(localStorage[dataName]).features,
+        currentFeatures: this.props.productInfo.features,
+      });
+    }
   }
 
   getStyles(productId) {
-    axios.get(`api/products/${productId}/styles`)
-      .then((results) => {
-        // console.log('style results', results.data);
-        this.setState({
-          thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
-          original_price: results.data.results[0].original_price,
-          sale_price: results.data.results[0].sale_price,
-        });
-      })
-      .catch((err) => console.log('getStyles err: ', err));
+    let dataName = `${productId}_styles`;
+    if (!localStorage[dataName]) {
+      axios.get(`api/products/${productId}/styles`)
+        .then((results) => {
+          // console.log('style results', results.data);
+          // console.log('results.data.results', results.data.results)
+          localStorage.setItem(dataName, JSON.stringify(results.data.results))
+          this.setState({
+            thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
+            original_price: results.data.results[0].original_price,
+            sale_price: results.data.results[0].sale_price,
+          });
+        })
+        .catch((err) => console.log('getStyles err: ', err));
+    } else {
+      // console.log('localStorage', JSON.parse(localStorage[dataName])[0].photos[0].thumbnail_url)
+      this.setState({
+        thumbnail_url: JSON.parse(localStorage[dataName])[0].photos[0].thumbnail_url || '',
+        original_price: JSON.parse(localStorage[dataName])[0].original_price,
+        sale_price: JSON.parse(localStorage[dataName])[0].sale_price,
+      });
+    }
   }
 
   getReviews(productId) {
@@ -129,6 +191,13 @@ export default class Product extends React.Component {
     )
   }
 
+  setSessionStorage() {
+    sessionStorage.setItem('productId', this.props.productId);
+    // console.log('sessionStorage', Number(sessionStorage.productId));
+    this.props.getCurrentProductId();
+  }
+
+
   render() {
     // ** Potentially deconstruct props?
     // const {
@@ -151,47 +220,59 @@ export default class Product extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.features.map((relatedFeature, key) => {
-                  if(relatedFeature.value !== null) {
-                    return (
-                      <tr key={key}>
-                        <td><Checkmark size='small'/></td>
-                        <td className='center'>
-                          {relatedFeature.feature} - {relatedFeature.value}
-                          <br/>
-                        </td>
-                        <td></td>
-                      </tr>
-                    )
-                  }
-                })}
-                {/* conditional render in order to wait for state to be set to currentProductFeatures */}
-                {this.props.productInfo.features
-                ? this.props.productInfo.features.map((currentProdFeature, key) => {
-                  if(currentProdFeature.value !== null) {
-                    return (
-                    <tr key={key}>
-                      <td></td>
-                      <td className='center'>
-                        {currentProdFeature.feature} - {currentProdFeature.value}
-                        <br/>
-                      </td>
-                      <td><Checkmark size='small'/></td>
-                    </tr>
-                    )
+              {/* conditional render in order to wait for state to be set to filteredFeatures */}
+              {this.state.filteredFeatures ?
+                this.state.filteredFeatures.map((feature, key) => {
+                  if(feature.value !== null) {
+                    if (feature.item === 0) {
+                      return (
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td className='checkMarks'></td>
+
+                        </tr>
+                      )
+                    } else if (feature.item === 1) {
+                      return (
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                        </tr>
+                      )
+                    } else if (feature.item === 2) {
+                      return (
+                        <tr key={key} className='comparisonRow'>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                          <td className='center'>
+                            {feature.feature} - {feature.value}
+                            <br/>
+                          </td>
+                          <td className='checkMarks'><Checkmark size='small'/></td>
+                        </tr>
+                      )
+                    }
                   }
                 })
-                : null}
+                : null
+              }
               </tbody>
             </table>
             <button onClick={this.handleModal}>Back</button>
           </Modal>
           {this.state.thumbnail_url ?
-            <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
+            <div onClick={this.setSessionStorage}>
               <img className="cardImg" src={this.state.thumbnail_url}/>
             </div>
             :
-            <div onClick={() => this.props.getCurrentProductId(this.props.productId)}>
+            <div onClick={this.setSessionStorage}>
               <div className="cardImg">
                 <div className="cardImgNone"> NO IMAGE AVAILABLE</div>
               </div>
