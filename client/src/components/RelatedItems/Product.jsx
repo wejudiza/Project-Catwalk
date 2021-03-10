@@ -95,8 +95,11 @@ export default class Product extends React.Component {
 
   // axios get request to /products/productId
   getProductInfo(productId) {
-    axios.get(`api/products/${productId}`)
+    let dataName = `${productId}_info`;
+    if (!localStorage[dataName]) {
+      axios.get(`api/products/${productId}`)
       .then((results) => {
+        localStorage.setItem(dataName, JSON.stringify(results.data));
         this.setState({
           id: results.data.id,
           name: results.data.name,
@@ -108,25 +111,44 @@ export default class Product extends React.Component {
           currentFeatures: this.props.productInfo.features,
         });
       })
-      // .then(() => {
-      //   this.getStyles(this.props.productId);
-      // })
-      // .then(() => {
-      //   this.getReviews(this.props.productId);
-      // })
+      .catch((err) => console.log('getProductInfo err: ', err));
+    } else {
+      this.setState({
+        id: JSON.parse(localStorage[dataName]).id,
+        name: JSON.parse(localStorage[dataName]).name,
+        slogan: JSON.parse(localStorage[dataName]).slogan,
+        description: JSON.parse(localStorage[dataName]).description,
+        category: JSON.parse(localStorage[dataName]).category,
+        default_price: JSON.parse(localStorage[dataName]).default_price,
+        features: JSON.parse(localStorage[dataName]).features,
+        currentFeatures: this.props.productInfo.features,
+      });
+    }
   }
 
   getStyles(productId) {
-    axios.get(`api/products/${productId}/styles`)
-      .then((results) => {
-        // console.log('style results', results.data);
-        this.setState({
-          thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
-          original_price: results.data.results[0].original_price,
-          sale_price: results.data.results[0].sale_price,
-        });
-      })
-      .catch((err) => console.log('getStyles err: ', err));
+    let dataName = `${productId}_styles`;
+    if (!localStorage[dataName]) {
+      axios.get(`api/products/${productId}/styles`)
+        .then((results) => {
+          // console.log('style results', results.data);
+          // console.log('results.data.results', results.data.results)
+          localStorage.setItem(dataName, JSON.stringify(results.data.results))
+          this.setState({
+            thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
+            original_price: results.data.results[0].original_price,
+            sale_price: results.data.results[0].sale_price,
+          });
+        })
+        .catch((err) => console.log('getStyles err: ', err));
+    } else {
+      // console.log('localStorage', JSON.parse(localStorage[dataName])[0].photos[0].thumbnail_url)
+      this.setState({
+        thumbnail_url: JSON.parse(localStorage[dataName])[0].photos[0].thumbnail_url || '',
+        original_price: JSON.parse(localStorage[dataName])[0].original_price,
+        sale_price: JSON.parse(localStorage[dataName])[0].sale_price,
+      });
+    }
   }
 
   getReviews(productId) {

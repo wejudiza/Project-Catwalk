@@ -25,13 +25,21 @@ export default class ProductsList extends React.Component {
 
   // axios get request to /products/16056/related
   getProductsListId() {
-    axios.get(`api/products/${this.props.currentProduct}/related`)
-      .then((results) => {
-        this.setState({
-          productsListId: results.data
-        });
-      })
-      .catch((err) => console.log('getProductsListId err: ', err));
+    let dataName = `${this.props.currentProduct}_related`
+    if (!localStorage[dataName]) {
+      axios.get(`api/products/${this.props.currentProduct}/related`)
+        .then((results) => {
+          localStorage.setItem(dataName, JSON.stringify(results.data))
+          this.setState({
+            productsListId: results.data
+          });
+        })
+        .catch((err) => console.log('getProductsListId err: ', err));
+    } else {
+      this.setState({
+        productsListId: JSON.parse(localStorage[dataName])
+      });
+    }
   }
 
 
