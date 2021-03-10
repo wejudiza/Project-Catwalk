@@ -11,21 +11,30 @@ import ProductsCarousel from '../client/src/components/RelatedItems/ProductsCaro
 import OutfitsList from '../client/src/components/RelatedItems/OutfitsList.jsx';
 import Outfit from '../client/src/components/RelatedItems/Outfit.jsx';
 import Reviews from '../client/src/components/reviews/Reviews.jsx';
+import RatingBreakdown from '../client/src/components/reviews/RatingBreakdown.jsx'
 
 
-// describe('Render Overview', () => {
-//   it('Should have a ProductInfo Component', () => {
-//     const wrapper = shallow(<Overview />);
-//     // const { wrapper } = setup();
-//     expect(wrapper.find('ProductInfo').exists()).toBe(true);
-//   });
+describe('Render Overview', () => {
+  it('Should have a ProductInfo Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('ProductInfo').exists()).toBe(true);
+  });
 
-//   it('Should have a StyleSelector Component', () => {
-//     const wrapper = shallow(<Overview />);
-//     // const { wrapper } = setup();
-//     expect(wrapper.find('StyleSelector').exists()).toBe(true);
-//   });
-// });
+  it('Should have a StyleSelector Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('StyleSelector').exists()).toBe(true);
+  });
+
+  it('Should have a ImageGallery Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('ImageGallery').exists()).toBe(true);
+  });
+
+  it('Should have a Description Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('Description').exists()).toBe(true);
+  });
+});
 
 
 describe('Render RelatedItems', () => {
@@ -40,31 +49,6 @@ describe('Render RelatedItems', () => {
   });
 });
 
-// TESTS NOT PASSING
-describe('Render ProductsList', () => {
-  // it('Should have a ProductsCarousel Component', () => {
-  //   const wrapper = shallow(<ProductsList />);
-  //   expect(wrapper.find('ProductsCarousel').exists()).toBe(true);
-  // })
-
-  // it('Should have a Product Component', () => {
-  //   const wrapper = shallow(<ProductsCarousel />);
-  //   expect(wrapper.find('Product').exists()).toBe(true);
-  // })
-});
-
-// TESTS NOT PASSING
-describe('Render OutfitsList', () => {
-  // it('Should have a Outfit Component', () => {
-  //   const wrapper = shallow(<OutfitsList />);
-  //   expect(wrapper.find('Outfit').exists()).toBe(true);
-  // })
-
-  // it('Should have a OutfitStars Component', () => {
-  //   const wrapper = shallow(<Outfit />);
-  //   expect(wrapper.find('OutfitStars').exists()).toBe(true);
-  // })
-});
 
 describe('Render RatingBreakdown', () => {
   it('Should have a RatingBreakdown Component', () => {
@@ -72,5 +56,13 @@ describe('Render RatingBreakdown', () => {
     expect(wrapper.find('RatingBreakdown').exists()).toBe(true);
   });
 
+  it('Should have a ProductBreakdown Component', () => {
+    const wrapper = shallow(<Reviews />);
+    expect(wrapper.find('ProductBreakdown').exists()).toBe(true);
+  });
 
+  it('Should have a ReviewsList Component', () => {
+    const wrapper = shallow(<Reviews />);
+    expect(wrapper.find('ReviewsList').exists()).toBe(true);
+  });
 });

@@ -41,7 +41,7 @@ const controllers = {
         res.status(200).send(rawData.data);
       })
       .catch((err) => {
-        console.log('err', err)
+        // console.log('err', err)
         res.status(400).send(err);
       });
   },
