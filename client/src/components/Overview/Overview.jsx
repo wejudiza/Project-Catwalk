@@ -52,6 +52,8 @@ export default class Overview extends React.Component {
     } else {
       this.setState({
         product: JSON.parse(localStorage[dataName]),
+      }, () => {
+        this.props.getCurrentProductInfo(this.state.product);
       });
     }
   }
