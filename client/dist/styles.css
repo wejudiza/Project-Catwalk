@@ -676,8 +676,8 @@ button.rec-dot{
 .displayPhoto {
   position: block;
   object-fit: cover;
-  width: 600px;
-  height: 600px;
+  width: 650px;
+  height: 650px;
 }
 
 .displayPhoto:hover {
@@ -768,6 +768,8 @@ button.rec-dot{
 
 .fas {
   cursor: pointer;
+  color:rgba(0, 0, 0, 0.79);
+  /* background: radial-gradient(grey 100%, transparent 100%); */
 }
 
 #expanded-left-arrow {
@@ -876,6 +878,7 @@ figure:hover #zoomed-img {
 #cart {
   grid-area: "cart";
   background-color: whitesmoke;
+  color: black;
   border: 2px solid darkgrey;
   border-radius: 5px;
   padding: 10px;
@@ -886,6 +889,7 @@ figure:hover #zoomed-img {
 
 #cart:hover {
   cursor: pointer;
+  background-color: rgb(162, 161, 161);
 }
 
 .share-button-containter {
@@ -894,6 +898,10 @@ figure:hover #zoomed-img {
 }
 
 .share-button {
-  width: 80px;
+  max-width: 40px;
   margin: 10px;
+}
+
+.share-button:hover {
+  cursor: pointer;
 }
