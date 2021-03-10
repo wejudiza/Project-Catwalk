@@ -28,6 +28,7 @@ export default class Product extends React.Component {
       thumbnail_url: '',
       original_price: '',
       sale_price: '',
+      currentFeatures: JSON.parse(localStorage[`${this.props.currentProduct}_info`]).features,
       // STAR REVIEWS
       avgStars: 0,
     };
@@ -108,7 +109,9 @@ export default class Product extends React.Component {
           category: results.data.category,
           default_price: results.data.default_price,
           features: results.data.features,
-          currentFeatures: this.props.productInfo.features,
+          // currentFeatures: JSON.parse(localStorage[`${this.props.currentProduct}_info`]).features,
+        }, () => {
+          console.log('this.state', this.state)
         });
       })
       .catch((err) => console.log('getProductInfo err: ', err));
@@ -121,7 +124,7 @@ export default class Product extends React.Component {
         category: JSON.parse(localStorage[dataName]).category,
         default_price: JSON.parse(localStorage[dataName]).default_price,
         features: JSON.parse(localStorage[dataName]).features,
-        currentFeatures: this.props.productInfo.features,
+        // currentFeatures: JSON.parse(localStorage[`${this.props.currentProduct}_info`]).features,
       });
     }
   }
