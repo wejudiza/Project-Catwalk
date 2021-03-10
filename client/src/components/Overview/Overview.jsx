@@ -38,26 +38,42 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
-    console.log(this.props.currentProduct);
-    axios.get(`/api/products/${this.props.currentProduct}`)
-      .then((productResults) => {
-        this.setState({
-          product: productResults.data,
-        });
-        this.props.getCurrentProductInfo(productResults.data);
-      })
-      .catch((err) => console.log('getProduct err: ', err));
+    let dataName = `${this.props.currentProduct}_info`;
+    if (!localStorage[dataName]) {
+      axios.get(`/api/products/${this.props.currentProduct}`)
+        .then((productResults) => {
+          localStorage.setItem(dataName, JSON.stringify(productResults.data));
+          this.setState({
+            product: productResults.data,
+          });
+          this.props.getCurrentProductInfo(productResults.data);
+        })
+        .catch((err) => console.log('getProduct err: ', err));
+    } else {
+      this.setState({
+        product: JSON.parse(localStorage[dataName]),
+      });
+    }
   }
 
   getStyles() {
-    axios.get(`/api/products/${this.props.currentProduct}/styles`)
-      .then((stylesResults) => {
-        this.setState({
-          styles: stylesResults.data.results,
-          currentStyle: stylesResults.data.results[0],
-        });
-      })
-      .catch((err) => console.log('getSyles err: ', err));
+    let dataName = `${this.props.currentProduct}_styles`;
+    if (!localStorage[dataName]) {
+      axios.get(`/api/products/${this.props.currentProduct}/styles`)
+        .then((stylesResults) => {
+          localStorage.setItem(dataName, JSON.stringify(stylesResults.data.results));
+          this.setState({
+            styles: stylesResults.data.results,
+            currentStyle: stylesResults.data.results[0],
+          });
+        })
+        .catch((err) => console.log('getSyles err: ', err));
+    } else {
+      this.setState({
+        styles: JSON.parse(localStorage[dataName]),
+        currentStyle: JSON.parse(localStorage[dataName])[0],
+      }, () => console.log(this.state));
+    }
   }
 
   render() {

@@ -710,8 +710,15 @@ button.rec-dot{
 }
 
 .thumbnailContainer {
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.4);
   display: flex;
   flex-direction: column;
+  min-width: 80px;
+  /* max-width: 400px; */
+  flex-basis: auto; /* default value */
+  flex-grow: 1;
+  justify-content: center;
 }
 
 #rightArrow {

@@ -72,14 +72,14 @@ class App extends React.Component {
             getCurrentProductId={this.getCurrentProductId}
           />
         </div>
-        <div id="reviews">
+        {/* <div id="reviews">
           <Reviews
             currentProduct={this.state.currentProduct}
             getRating={this.getRating}
             getTotalReviews={this.getTotalReviews}
             productInfo={this.state.productInfo}
           />
-        </div>
+        </div> */}
       </div>
     );
   }
