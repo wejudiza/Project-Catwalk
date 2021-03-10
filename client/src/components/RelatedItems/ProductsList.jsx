@@ -8,15 +8,9 @@ export default class ProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentProduct: this.props.currentProduct,
       productsListId: [],
-      // displayProductsListId: [],
-      // currentProductIndex: 0,
-      // itemsToDisplay: 4,
     };
     this.getProductsListId = this.getProductsListId.bind(this);
-    // this.nextSlide = this.nextSlide.bind(this);
-    // this.previousSlide = this.previousSlide.bind(this);
   }
 
   componentDidMount() {
@@ -35,11 +29,6 @@ export default class ProductsList extends React.Component {
       .then((results) => {
         this.setState({
           productsListId: results.data
-        });
-      })
-      .then(() => {
-        this.setState({
-          displayProductsListId: this.state.productsListId.slice(this.state.currentProductIndex, this.state.currentProductIndex + this.state.itemsToDisplay)
         });
       })
       .catch((err) => console.log('getProductsListId err: ', err));

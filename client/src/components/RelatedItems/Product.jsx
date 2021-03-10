@@ -41,11 +41,15 @@ export default class Product extends React.Component {
 
   componentDidMount() {
     this.getProductInfo(this.props.productId);
+    this.getStyles(this.props.productId);
+    this.getReviews(this.props.productId);
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.productId !== prevProps.productId) {
       this.getProductInfo(this.props.productId);
+      this.getStyles(this.props.productId);
+      this.getReviews(this.props.productId);
     }
   }
 
@@ -104,12 +108,12 @@ export default class Product extends React.Component {
           currentFeatures: this.props.productInfo.features,
         });
       })
-      .then(() => {
-        this.getStyles(this.props.productId);
-      })
-      .then(() => {
-        this.getReviews(this.props.productId);
-      })
+      // .then(() => {
+      //   this.getStyles(this.props.productId);
+      // })
+      // .then(() => {
+      //   this.getReviews(this.props.productId);
+      // })
   }
 
   getStyles(productId) {
