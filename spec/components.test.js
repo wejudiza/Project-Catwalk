@@ -14,6 +14,7 @@ import Reviews from '../client/src/components/reviews/Reviews.jsx';
 import RatingBreakdown from '../client/src/components/reviews/RatingBreakdown.jsx'
 
 
+<<<<<<< HEAD
 // describe('Render Overview', () => {
 //   it('Should have a ProductInfo Component', () => {
 //     const wrapper = shallow(<Overview />);
@@ -34,6 +35,48 @@ import RatingBreakdown from '../client/src/components/reviews/RatingBreakdown.js
 //     expect(wrapper.find('StyleSelector').exists()).toBe(true);
 //   });
 // });
+=======
+describe('Render Overview', () => {
+  it('Should have a ProductInfo Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('ProductInfo').exists()).toBe(true);
+  });
+
+  it('Should have a StyleSelector Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('StyleSelector').exists()).toBe(true);
+  });
+
+  it('Should have a ImageGallery Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('ImageGallery').exists()).toBe(true);
+  });
+
+  it('Should have a Description Component', () => {
+    const wrapper = shallow(<Overview />);
+    expect(wrapper.find('Description').exists()).toBe(true);
+  });
+});
+>>>>>>> main
+
+// describe('Render ProductInfo', () => {
+//   it('Should have a StarRating Component', () => {
+//     const wrapper = shallow(<ProductInfo />);
+//     expect(wrapper.find('StarRating').exists()).toBe(true);
+//   });
+// });
+
+// describe('Render StyleSelector', () => {
+//   it('Should have a Style Component', () => {
+//     const wrapper = shallow(<StyleSelector />);
+//     expect(wrapper.find('Style').exists()).toBe(true);
+//   });
+
+//   it('Should have a AddToCart Component', () => {
+//     const wrapper = shallow(<StyleSelector />);
+//     expect(wrapper.find('AddToCart').exists()).toBe(true);
+//   });
+// });
 
 
 // describe('Render RelatedItems', () => {
@@ -48,12 +91,43 @@ import RatingBreakdown from '../client/src/components/reviews/RatingBreakdown.js
 //   });
 // });
 
+<<<<<<< HEAD
 describe('Render Reviews', () => {
+=======
+
+describe('Render ProductsList', () => {
+  // it('Should have a ProductsCarousel Component', () => {
+  //   const wrapper = shallow(<ProductsList />);
+  //   expect(wrapper.find('ProductsCarousel').exists()).toBe(true);
+  // })
+
+  // it('Should have a Product Component', () => {
+  //   const wrapper = shallow(<ProductsCarousel />);
+  //   expect(wrapper.find('Product').exists()).toBe(true);
+  // })
+
+});
+
+describe('Render OutfitsList', () => {
+  it('Should have a Outfit Component', () => {
+    const wrapper = shallow(<OutfitsList />);
+    expect(wrapper.find('Outfit').exists()).toBe(true);
+  })
+
+  // it('Should have a OutfitStars Component', () => {
+  //   const wrapper = shallow(<Outfit />);
+  //   expect(wrapper.find('OutfitStars').exists()).toBe(true);
+  // })
+});
+
+describe('Render RatingBreakdown', () => {
+>>>>>>> main
   it('Should have a RatingBreakdown Component', () => {
     const wrapper = shallow(<Reviews />);
     expect(wrapper.find('RatingBreakdown').exists()).toBe(true);
   });
 
+<<<<<<< HEAD
   it('Should have a ProductBreakdown Component', () => {
     const wrapper = shallow(<Reviews />);
     expect(wrapper.find('ProductBreakdown').exists()).toBe(true);
@@ -68,6 +142,9 @@ describe('Render Reviews', () => {
     const wrapper = shallow(<Reviews />);
     expect(wrapper.find('ReviewsList').exists()).toBe(true);
   });
+=======
+
+>>>>>>> main
 });
 
 // describe('Render RatingBreakdown', () => {

@@ -38,17 +38,6 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
-<<<<<<< HEAD
-    // console.log(this.props.currentProduct);
-    axios.get(`/api/products/${this.props.currentProduct}`)
-      .then((productResults) => {
-        this.setState({
-          product: productResults.data,
-        });
-        this.props.getCurrentProductInfo(productResults.data);
-      })
-      .catch((err) => console.log('getProduct err: ', err));
-=======
     let dataName = `${this.props.currentProduct}_info`;
     if (!localStorage[dataName]) {
       axios.get(`/api/products/${this.props.currentProduct}`)
@@ -67,7 +56,6 @@ export default class Overview extends React.Component {
         this.props.getCurrentProductInfo(this.state.product);
       });
     }
->>>>>>> main
   }
 
   getStyles() {
