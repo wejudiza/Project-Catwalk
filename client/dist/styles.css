@@ -626,7 +626,7 @@ button.rec-dot{
   grid-template-areas:
     "main header"
     "main sidebar"
-    "footer footer"
+    "footer features"
   ;
   grid-column-gap: 30px;
 }
@@ -651,7 +651,14 @@ button.rec-dot{
 }
 
 #description-child {
-  max-width: 70%;
+  /* max-width: 70%; */
+}
+
+#features {
+  grid-area: features;
+  align-self: center;
+  justify-self: start;
+  display: flex;
 }
 
 /* IMAGE GALLERY */
@@ -791,8 +798,8 @@ button.rec-dot{
   object-fit: cover;
   border: 1px solid darkgrey;
   border-radius: 50%;
-  height: 85px;
-  width: 85px;
+  height: 75px;
+  width: 75px;
 }
 
 .style-option:hover {
@@ -851,7 +858,7 @@ figure:hover #zoomed-img {
   grid-column-gap: 10px;
   grid-template-areas:
     "size header"
-    "cart cart"
+    "cart share"
   ;
 }
 
@@ -879,4 +886,14 @@ figure:hover #zoomed-img {
 
 #cart:hover {
   cursor: pointer;
+}
+
+.share-button-containter {
+  grid-area: "share";
+  display: flex;
+}
+
+.share-button {
+  width: 80px;
+  margin: 10px;
 }

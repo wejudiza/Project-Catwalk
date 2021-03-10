@@ -8,7 +8,7 @@ const Description = (props) => (
       <p>{props.product.description}</p>
     </div>
 
-    <span id="divider" />
+    {/* <span id="divider" />
 
     <div id="features">
       {props.features
@@ -20,7 +20,7 @@ const Description = (props) => (
           </li>
         ))
         : null}
-    </div>
+    </div> */}
   </div>
 );
 

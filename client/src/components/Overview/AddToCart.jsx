@@ -169,6 +169,12 @@ export default class AddToCart extends React.Component {
           {this.selectedSizeMode()}
           <button type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
         </div>
+        <div className="share-button-containter">
+          <span style={{ margin: "10px" }}>Share On:</span>
+          <button type="button" className="share-button">Facebook</button>
+          <button type="button" className="share-button">Twitter</button>
+          <button type="button" className="share-button">Pinterest</button>
+        </div>
         {this.state.showModal
         && (
         <ReactModal isOpen contentLabel="test" style={modalStyle} ariaHideApp={false} onRequestClose={this.handleModal}>
