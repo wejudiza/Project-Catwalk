@@ -36,19 +36,43 @@ describe('Render Overview', () => {
   });
 });
 
+// describe('Render RelatedItems', () => {
+//   it('Should have a ProductsList Component', () => {
+//     const wrapper = shallow(<RelatedItems />);
+//     expect(wrapper.find('ProductsList').exists()).toBe(true);
+//   });
 
-describe('Render RelatedItems', () => {
-  it('Should have a ProductsList Component', () => {
-    const wrapper = shallow(<RelatedItems />);
-    expect(wrapper.find('ProductsList').exists()).toBe(true);
-  });
+//   it('Should have a OutfitsList Component', () => {
+//     const wrapper = shallow(<RelatedItems />);
+//     expect(wrapper.find('OutfitsList').exists()).toBe(true);
+//   });
+// });
 
-  it('Should have a OutfitsList Component', () => {
-    const wrapper = shallow(<RelatedItems />);
-    expect(wrapper.find('OutfitsList').exists()).toBe(true);
-  });
+
+describe('Render ProductsList', () => {
+  // it('Should have a ProductsCarousel Component', () => {
+  //   const wrapper = shallow(<ProductsList />);
+  //   expect(wrapper.find('ProductsCarousel').exists()).toBe(true);
+  // })
+
+  // it('Should have a Product Component', () => {
+  //   const wrapper = shallow(<ProductsCarousel />);
+  //   expect(wrapper.find('Product').exists()).toBe(true);
+  // })
+
 });
 
+describe('Render OutfitsList', () => {
+  it('Should have a Outfit Component', () => {
+    const wrapper = shallow(<OutfitsList />);
+    expect(wrapper.find('Outfit').exists()).toBe(true);
+  })
+
+  // it('Should have a OutfitStars Component', () => {
+  //   const wrapper = shallow(<Outfit />);
+  //   expect(wrapper.find('OutfitStars').exists()).toBe(true);
+  // })
+});
 
 describe('Render RatingBreakdown', () => {
   it('Should have a RatingBreakdown Component', () => {
@@ -56,13 +80,9 @@ describe('Render RatingBreakdown', () => {
     expect(wrapper.find('RatingBreakdown').exists()).toBe(true);
   });
 
-  it('Should have a ProductBreakdown Component', () => {
-    const wrapper = shallow(<Reviews />);
-    expect(wrapper.find('ProductBreakdown').exists()).toBe(true);
-  });
-
-  it('Should have a ReviewsList Component', () => {
-    const wrapper = shallow(<Reviews />);
-    expect(wrapper.find('ReviewsList').exists()).toBe(true);
-  });
+    it('Should have a ProductBreakdown Component', () => {
+      const wrapper = shallow(<Reviews />);
+      expect(wrapper.find('ProductBreakdown').exists()).toBe(true);
+    });
 });
+
