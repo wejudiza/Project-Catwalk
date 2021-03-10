@@ -82,9 +82,11 @@ export default class OutfitsList extends React.Component {
                   </div>
                 ))
                 :
-                <div>
-                  <Outfit/>
-                </div>
+                this.state.outfitsList.map((outfit, key) => (
+                  <div className='card' key={`${outfit.id}-${key}`}>
+                    <Outfit outfit={outfit} removeOutfit={this.removeOutfit} />
+                  </div>
+                ))
               }
             </Carousel>
           </div>
