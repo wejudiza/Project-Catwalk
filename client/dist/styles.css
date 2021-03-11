@@ -698,10 +698,14 @@ button.rec-dot{
 .dots-overlay {
   position: absolute;
   top: 90%;
-  left: 40%;
-  /* display:flex;
-  justify-content: center; */
+  /* left: 40%; */
 }
+
+#dots-container {
+  display: flex;
+  justify-content: center;
+}
+
 
 .selected-dot {
   border: 4px solid white;

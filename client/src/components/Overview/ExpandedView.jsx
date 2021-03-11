@@ -52,7 +52,7 @@ export default class ExpandedView extends React.Component {
               {this.props.currentImage.url === this.props.thumbnails[this.props.thumbnails.length - 1].url
                 ? null
                 : <i className="fas fa-chevron-right fa-3x" id="expanded-right-arrow" onClick={() => this.props.onRightArrowClick(this.props.currentImageIndex)} />}
-
+            <div id="dots-container">
               <div className="dots-overlay">
                 {this.props.thumbnails.map((thumbnail, index) => (
                   this.props.currentImageUrl === thumbnail.url
@@ -74,6 +74,7 @@ export default class ExpandedView extends React.Component {
                     )
                 ))}
               </div>
+            </div>
             </div>
           )
           : (
