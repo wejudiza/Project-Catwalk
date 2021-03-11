@@ -711,6 +711,12 @@ button.rec-dot{
   background-color: white;
 }
 
+.fa-times {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
 .fa-circle {
   margin: 5px;
 }

@@ -75,7 +75,8 @@ export default class ExpandedView extends React.Component {
                 ))}
               </div>
             </div>
-            </div>
+            <i class="fas fa-times fa-2x" onClick={this.props.handleModal}/>
+          </div>
           )
           : (
             <Zoom
