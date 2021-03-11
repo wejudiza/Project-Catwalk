@@ -687,8 +687,8 @@ button.rec-dot{
 .expanded-display-photo {
   position: block;
   object-fit: cover;
-  width: 750px;
-  height: 750px;
+  width: 800px;
+  height: 800px;
 }
 
 .expanded-display-photo:hover {
@@ -699,11 +699,15 @@ button.rec-dot{
   position: absolute;
   top: 90%;
   left: 40%;
+  /* display:flex;
+  justify-content: center; */
 }
 
 .selected-dot {
   border: 4px solid white;
   border-radius: 50%;
+  display:flex;
+  /* justify-content: center; */
 }
 
 .fa-circle {
