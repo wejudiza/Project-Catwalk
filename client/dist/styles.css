@@ -772,7 +772,8 @@ button.rec-dot{
 
 .fas {
   cursor: pointer;
-  color:rgba(0, 0, 0, 0.79);
+  /* color:rgba(0, 0, 0, 0.79); */
+  color: grey;
   /* background: radial-gradient(grey 100%, transparent 100%); */
 }
 
@@ -797,12 +798,13 @@ button.rec-dot{
 #styles {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
 }
 
 .style-option {
   position: block;
   object-fit: cover;
-  border: 1px solid darkgrey;
+  /* border: 1px solid darkgrey; */
   border-radius: 50%;
   height: 75px;
   width: 75px;
@@ -810,6 +812,7 @@ button.rec-dot{
 
 .style-option:hover {
   cursor: pointer;
+  border: 1px solid darkgrey;
 }
 
 #style-container {

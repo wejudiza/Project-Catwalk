@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import ReactModal from 'react-modal';
+import { Checkmark } from 'react-checkmark'
 
 const modalStyle = {
   content: {
@@ -180,6 +181,8 @@ export default class AddToCart extends React.Component {
         && (
         <ReactModal isOpen contentLabel="test" style={modalStyle} ariaHideApp={false} onRequestClose={this.handleModal}>
           <p>
+            <Checkmark />
+            <br />
             <b><u>Added to cart!</u></b>
             <br />
             <br />
