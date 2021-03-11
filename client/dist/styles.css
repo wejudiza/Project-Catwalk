@@ -919,3 +919,16 @@ figure:hover #zoomed-img {
 .share-button:hover {
   cursor: pointer;
 }
+
+li {
+  list-style: none;
+}
+
+li:before {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAkklEQVQ4T93SwQnCQBAF0JeDJ4tR7EDEoz1YgqVYgj3kpogdiBbjXUYSiGMiLDkI7nX3P2ZnpjLyVCPzfgLMscUuqi+tIMJnXLEuBdrwHRs8SoDecAb2OOCWJjMYzsAJC6w6yNdwBqaoMWuQuI+Gvf05702eQossm4eXbsP6lq5vjIEcMUFAr24PndI9+HD+AHgCGhMcEb/JaCUAAAAASUVORK5CYII=');
+}
+/*
+.feature-container {
+  display: grid;
+  align-content: center;
+} */
