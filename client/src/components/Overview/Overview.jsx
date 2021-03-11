@@ -5,7 +5,7 @@ import StyleSelector from './StyleSelector';
 import ImageGallery from './ImageGallery';
 import Description from './Description';
 
-export default class Overview extends React.Component {
+class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +38,7 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
+    // console.log(this.state)
     let dataName = `${this.props.currentProduct}_info`;
     if (!localStorage[dataName]) {
       axios.get(`/api/products/${this.props.currentProduct}`)
@@ -74,7 +75,7 @@ export default class Overview extends React.Component {
       this.setState({
         styles: JSON.parse(localStorage[dataName]),
         currentStyle: JSON.parse(localStorage[dataName])[0],
-      }, () => console.log(this.state));
+      });
     }
   }
 
@@ -116,3 +117,5 @@ export default class Overview extends React.Component {
     // );
   }
 }
+
+export default Overview;
