@@ -36,17 +36,7 @@ describe('Render Overview', () => {
   });
 });
 
-describe('Render RelatedItems', () => {
-  it('Should have a ProductsList Component', () => {
-    const wrapper = shallow(<RelatedItems />);
-    expect(wrapper.find('ProductsList').exists()).toBe(true);
-  });
 
-  it('Should have a OutfitsList Component', () => {
-    const wrapper = shallow(<RelatedItems />);
-    expect(wrapper.find('OutfitsList').exists()).toBe(true);
-  });
-});
 
 describe('Render RatingBreakdown', () => {
   it('Should have a RatingBreakdown Component', () => {
@@ -63,4 +53,3 @@ describe('Render RatingBreakdown', () => {
     const wrapper = shallow(<Reviews />);
     expect(wrapper.find('ReviewsList').exists()).toBe(true);
   });
-});
