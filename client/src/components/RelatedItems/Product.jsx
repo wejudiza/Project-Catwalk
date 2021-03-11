@@ -88,9 +88,9 @@ export default class Product extends React.Component {
           }
         })
         /*[...new Set(this.state.features.concat(this.state.currentFeatures).map(JSON.stringify))].map(JSON.parse)*/
-      }/*, () => {
+      }, () => {
         console.log('this.state.filteredFeatures', this.state.filteredFeatures)
-      }*/)
+      })
     });
   }
 

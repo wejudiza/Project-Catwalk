@@ -105,3 +105,9 @@ typings/
 
 # API KEY
 config.js
+
+# PEM KEY
+*.pem
+
+#AWS Login
+login.sh
