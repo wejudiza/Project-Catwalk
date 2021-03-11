@@ -33,19 +33,22 @@ export default class Outfit extends React.Component {
   }
 
   getStyles(productId) {
-    axios.get(`api/products/${productId}/styles`)
-      .then((results) => {
-        // console.log('style results', results.data);
-        this.setState({
-          thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
-          original_price: results.data.results[0].original_price,
-          sale_price: results.data.results[0].sale_price,
-        });
-      })
-      // .then(() => {
-      //   this.getReviews(this.props.outfit.id)
-      // })
-      .catch((err) => console.log('getStyles err: ', err));
+    // axios.get(`api/products/${productId}/styles`)
+    //   .then((results) => {
+    //     // console.log('style results', results.data);
+    //     this.setState({
+    //       thumbnail_url: results.data.results[0].photos[0].thumbnail_url,
+    //       original_price: results.data.results[0].original_price,
+    //       sale_price: results.data.results[0].sale_price,
+    //     });
+    //   })
+    //   .catch((err) => console.log('getStyles err: ', err));
+    let dataName = `${productId}_styles`;
+    this.setState({
+      thumbnail_url: JSON.parse(localStorage[dataName])[0].photos[0].thumbnail_url || '',
+      original_price: JSON.parse(localStorage[dataName])[0].original_price,
+      sale_price: JSON.parse(localStorage[dataName])[0].sale_price,
+    });
   }
 
   getReviews(productId) {

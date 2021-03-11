@@ -26,8 +26,9 @@ body.dark-theme {
   grid-template-rows: 100%;
   grid-template-areas: "page-header btn-theme";
   background-color: grey;
+  color: whitesmoke;
   margin-bottom: 10px;
-  border: 2px solid rgba(0,0,0,0.5);
+  /* border: 2px solid rgba(0,0,0,0.5); */
 }
 
 #page-header {
@@ -49,12 +50,12 @@ body.dark-theme {
   background-color: whitesmoke;
   border: 2px solid darkgrey;
   border-radius: 5px;
-  padding: 5px;
+  /* padding: 5px; */
   text-align: center;
   font-size: 12px;
-  font-weight: bolder;
+  font-weight: bold;
   margin: 10px;
-  width: 50%;
+  width: 40%;
 }
 
 
