@@ -111,3 +111,6 @@ config.js
 
 #AWS Login
 login.sh
+
+#Ubuntu Virtual Machine Node Installation Iformation
+install_node.txt
