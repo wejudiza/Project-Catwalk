@@ -17,13 +17,7 @@ const postInteraction = (Component) => {
         time: new Date().toString() + 'FROM WEJUDIZA',
       })
       .then(() => {
-        // console.log(
-        //   {
-        //     element: e.target.outerHTML,
-        //     widget: name,
-        //     time: new Date().toString() + 'FROM WEJUDIZA',
-        //   }
-        // );
+        console.log('User should not be able to see this, but we would like to keep it for our benefits')
       })
       .catch((err) => {
         console.log(err);
