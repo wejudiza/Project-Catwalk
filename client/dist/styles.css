@@ -547,19 +547,24 @@ button.rec-dot{
 }
 
 .cardImg {
-  /* position: absolute; */
   object-fit: cover;
   object-position: 50% 100%;
-  width: 300px;
+  width: 100%;
   height: 275px;
-  /* max-width: 100%; */
-  /* max-height: 200px; */
+}
+
+.cardImg:hover {
+  cursor: pointer;
 }
 
 .cardImgNone {
   text-align: center;
   padding-top: 100px;
   font-size: 36px;
+}
+
+.cardImgNone:hover {
+  cursor: pointer;
 }
 
 .cardText {
@@ -610,7 +615,6 @@ button.rec-dot{
 
 /* ADD TO OUTFITS LIST BUTTON */
 #outfitsBtn {
-  cursor: pointer;
   border-radius: 0;
   font-size: 75px;
   width: 100%;
@@ -619,6 +623,7 @@ button.rec-dot{
 
 #outfitsBtn:hover {
   background-color: grey;
+  cursor: pointer;
 }
 
 
