@@ -56,7 +56,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button id="btn-theme" type="button" onClick={this.toggleTheme}> Change Theme </button>
+        <div className="container-header">
+          <div id="page-header"> Wejudiza Hype-Beast Collection</div>
+          <button id="btn-theme" type="button" onClick={this.toggleTheme}> Change Theme </button>
+        </div>
         <div id="products">
           <Overview
             rating={this.state.ratingForCurrentProduct}
