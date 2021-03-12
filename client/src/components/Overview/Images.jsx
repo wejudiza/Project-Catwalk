@@ -48,7 +48,7 @@ export default class Images extends React.Component {
   }
 
   setDisplay() {
-    const currentImageIndex = this.props.currentImageIndex;
+    const { currentImageIndex } = this.props;
     const allThumbnails = this.props.images;
     const mappedThumbnails = this.props.images.map((image, index) => (
       <div key={index}>
@@ -87,10 +87,10 @@ export default class Images extends React.Component {
     }
     this.setState({
       currentImage: this.props.currentImage,
-      currentImageIndex: currentImageIndex,
+      currentImageIndex,
       thumbnails: this.props.images,
-      mappedThumbnails: mappedThumbnails,
-      rawDisplay: rawDisplay,
+      mappedThumbnails,
+      rawDisplay,
       display: displayedThumbnails,
       displayStartIndex: start,
     });
@@ -103,23 +103,30 @@ export default class Images extends React.Component {
       return (
         <div>
           {this.state.displayStartIndex !== 0
-            ? <i
-              className="fas fa-sort-up fa-2x"
-              style={{marginLeft:'28px'}}
-              onClick={this.onUpArrowClick} />
-            : <div>
-            <br />
-            </div>
-          }
+            ? (
+              <i
+                className="fas fa-sort-up fa-2x"
+                style={{ marginLeft: '28px' }}
+                onClick={this.onUpArrowClick}
+              />
+            )
+            : (
+              <div>
+                <br />
+              </div>
+            )}
           <div className="thumbnailContainer">
             {this.state.display}
           </div>
           {this.state.thumbnails.length > 7
           && this.state.rawDisplay[lastDisplayIndex].url !== this.state.thumbnails[lastThumbnailIndex].url
-            ? <i
-              className="fas fa-sort-down fa-2x"
-              style={{marginLeft:'28px'}}
-              onClick={this.onDownArrowClick} />
+            ? (
+              <i
+                className="fas fa-sort-down fa-2x"
+                style={{ marginLeft: '28px' }}
+                onClick={this.onDownArrowClick}
+              />
+            )
             : null}
         </div>
       );
@@ -131,37 +138,3 @@ export default class Images extends React.Component {
     );
   }
 }
-
-// const Images = (this.props) => (
-// <div>
-//   <div className="thumbnailContainer">
-//     {props.images.map((image, index) => (
-//       <div key={index}>
-//         {props.currentImage.url === image.url
-//           ? (
-//             <img
-//               alt=""
-//               src={image.thumbnail_url}
-//               title={image.url}
-//               onClick={props.onImageClick}
-//               key={index}
-//               className="selected-thumbnail"
-//             />
-//           )
-//           : (
-//             <img
-//               alt=""
-//               src={image.thumbnail_url}
-//               title={image.url}
-//               onClick={props.onImageClick}
-//               key={index}
-//               className="thumbnails"
-//             />
-//           )}
-//       </div>
-//     ))}
-//   </div>
-// </div>
-// );
-
-// export default Images;

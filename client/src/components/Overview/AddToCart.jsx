@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import ReactModal from 'react-modal';
-import { Checkmark } from 'react-checkmark'
+import { Checkmark } from 'react-checkmark';
 
 const modalStyle = {
   content: {
@@ -26,7 +26,6 @@ export default class AddToCart extends React.Component {
       showModal: false,
       menuIsOpen: false,
       defaultValue: { value: 1, label: 1 },
-      // defaultSize: { value: null, label: 'Select Size' },
     };
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);

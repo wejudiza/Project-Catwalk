@@ -15,17 +15,16 @@ const Style = (props) => {
           <i className="far fa-check-circle" />
         </>
       );
-    } else {
-      return (
-        <img
-          src={props.style.photos[0].thumbnail_url}
-          alt=""
-          title={props.style.style_id}
-          className="style-option"
-          onClick={props.onStyleClick}
-        />
-      )
     }
+    return (
+      <img
+        src={props.style.photos[0].thumbnail_url}
+        alt=""
+        title={props.style.style_id}
+        className="style-option"
+        onClick={props.onStyleClick}
+      />
+    );
   };
 
   return (

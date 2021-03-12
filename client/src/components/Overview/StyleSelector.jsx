@@ -20,13 +20,13 @@ export default class StyleSelector extends React.Component {
           &nbsp;&nbsp;
           <span><s>{`$${this.props.currentStyle.original_price}`}</s></span>
         </div>
-      )
+      );
     }
     return (
       <div>
         <span>{`$${this.props.currentStyle.original_price}`}</span>
       </div>
-    )
+    );
   }
 
   render() {
@@ -57,12 +57,12 @@ export default class StyleSelector extends React.Component {
           />
           <br />
         </div>
-      )
+      );
     }
     return (
       <div className="styleSelector">
         Loading Styles...
       </div>
-    )
+    );
   }
 }

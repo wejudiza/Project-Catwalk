@@ -49,7 +49,7 @@ export default class ImageGallery extends React.Component {
   onDisplayPhotoClick() {
     this.setState({
       showModal: true,
-    })
+    });
   }
 
   onImageClick(e) {
@@ -79,9 +79,6 @@ export default class ImageGallery extends React.Component {
 
   render() {
     if (this.state.thumbnails.length !== 0) {
-      // const images = this.state.thumbnails.map((thumbnail, index) => (
-      //   thumbnail.url
-      // ));
       const lastIndex = this.state.thumbnails.length - 1;
       return (
         <div id="main">
@@ -121,7 +118,6 @@ export default class ImageGallery extends React.Component {
             {this.state.currentImage.url === this.state.thumbnails[lastIndex].url
               ? null
               : <i className="fas fa-chevron-right fa-2x" id="rightArrow" onClick={() => this.onRightArrowClick(this.state.currentImageIndex)} />}
-            {/* <i className="fas fa-expand" id="expand" /> */}
           </div>
         </div>
       );
