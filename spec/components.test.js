@@ -36,7 +36,6 @@ describe('Render Overview', () => {
   });
 });
 
-
 describe('Render RelatedItems', () => {
   it('Should have a ProductsList Component', () => {
     const wrapper = shallow(<RelatedItems />);
@@ -48,7 +47,6 @@ describe('Render RelatedItems', () => {
     expect(wrapper.find('OutfitsList').exists()).toBe(true);
   });
 });
-
 
 describe('Render RatingBreakdown', () => {
   it('Should have a RatingBreakdown Component', () => {

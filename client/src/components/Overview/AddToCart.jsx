@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import ReactModal from 'react-modal';
+import { Checkmark } from 'react-checkmark'
 
 const modalStyle = {
   content: {
@@ -169,10 +170,19 @@ export default class AddToCart extends React.Component {
           {this.selectedSizeMode()}
           <button type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
         </div>
+        <br />
+        <div className="share-button-containter">
+          <span style={{ margin: "10px" }}>Share:</span>
+          <button type="button" className="share-button"><i className="fab fa-facebook"></i></button>
+          <button type="button" className="share-button"><i className="fab fa-twitter"></i></button>
+          <button type="button" className="share-button"><i className="fab fa-pinterest"></i></button>
+        </div>
         {this.state.showModal
         && (
         <ReactModal isOpen contentLabel="test" style={modalStyle} ariaHideApp={false} onRequestClose={this.handleModal}>
           <p>
+            <Checkmark />
+            <br />
             <b><u>Added to cart!</u></b>
             <br />
             <br />

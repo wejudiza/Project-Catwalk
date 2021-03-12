@@ -4,6 +4,7 @@ import ProductInfo from './ProductInfo';
 import StyleSelector from './StyleSelector';
 import ImageGallery from './ImageGallery';
 import Description from './Description';
+import Features from './Features';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -102,19 +103,13 @@ class Overview extends React.Component {
           />
           <Description
             product={this.state.product}
+            // features={this.state.product.features}
+          />
+          <Features
             features={this.state.product.features}
           />
-          {/* <button type="button">Share on Facebook</button>
-            <button type="button">Share on Twitter</button>
-            <button type="button">Share on Pinterest</button> */}
         </div>
       );
-    // }
-    // return (
-    //   <div>
-    //     Loading Product...
-    //   </div>
-    // );
   }
 }
 
