@@ -902,7 +902,7 @@ button.rec-dot{
 #divider {
   display: inline-block;
   width: 2px;
-  background-color: black;
+  background-color: rgb(94, 94, 94);
   margin: 0 10px;
   height: 6em;
 }

@@ -15,7 +15,7 @@ export default class ProductInfo extends React.Component {
         <div>
           <StarRating rating={this.props.rating} />
           {' '}
-          <a href="#reviews" style={{ color: '#06c' }}>
+          <a href="#reviews" style={{ color: '#06c', fontSize: '12px' }}>
             Read all
             {' '}
             {this.props.totalReviews}
