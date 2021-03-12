@@ -103,5 +103,9 @@ typings/
 # TernJS port file
 .tern-port
 
-# API KEY
+# KEYS
 config.js
+*.pem
+
+# Node Installation
+installNode.txt

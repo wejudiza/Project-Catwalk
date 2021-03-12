@@ -50,6 +50,7 @@ export default class ProductsList extends React.Component {
           <h3 className=" widgetHeader title">
             RELATED PRODUCTS
           </h3>
+
           <ProductsCarousel productsListId={this.state.productsListId} currentProduct={this.props.currentProduct} getCurrentProductId={this.props.getCurrentProductId} productInfo={this.props.productInfo}/>
         </div>
       );

@@ -2,6 +2,7 @@ import React from 'react';
 import Overview from './Overview/Overview';
 import RelatedItems from './RelatedItems/RelatedItems';
 import Reviews from './reviews/Reviews';
+import postInteraction from './PostInteraction';
 
 class App extends React.Component {
   constructor(props) {
@@ -57,7 +58,10 @@ class App extends React.Component {
     return (
       <div>
         <button id="btn-theme" type="button" onClick={this.toggleTheme}> Change Theme </button>
-        <div id="products">
+        <div
+          id="products"
+          onClick={(e) => this.props.postToApi(e, 'Overview')}
+        >
           <Overview
             rating={this.state.ratingForCurrentProduct}
             currentProduct={this.state.currentProduct}
@@ -65,14 +69,20 @@ class App extends React.Component {
             getCurrentProductInfo={this.getCurrentProductInfo}
           />
         </div>
-        <div id="relatedItems">
+        <div
+          id="relatedItems"
+          onClick={(e) => this.props.postToApi(e, 'Related Items & Comparison')}
+        >
           <RelatedItems
             currentProduct={this.state.currentProduct}
             productInfo={this.state.productInfo}
             getCurrentProductId={this.getCurrentProductId}
           />
         </div>
-        <div id="reviews">
+        <div
+          id="reviews"
+          onClick={(e) => this.props.postToApi(e, 'Ratings & Reviews')}
+        >
           <Reviews
             currentProduct={this.state.currentProduct}
             getRating={this.getRating}
@@ -85,4 +95,5 @@ class App extends React.Component {
   }
 }
 
-export default App;
+// export default App;
+export default postInteraction(App);

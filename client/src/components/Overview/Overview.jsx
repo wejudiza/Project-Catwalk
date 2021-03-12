@@ -6,7 +6,7 @@ import ImageGallery from './ImageGallery';
 import Description from './Description';
 import Features from './Features';
 
-export default class Overview extends React.Component {
+class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +39,7 @@ export default class Overview extends React.Component {
   }
 
   getProduct() {
+    // console.log(this.state)
     let dataName = `${this.props.currentProduct}_info`;
     if (!localStorage[dataName]) {
       axios.get(`/api/products/${this.props.currentProduct}`)
@@ -111,3 +112,5 @@ export default class Overview extends React.Component {
       );
   }
 }
+
+export default Overview;
