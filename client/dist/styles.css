@@ -881,12 +881,12 @@ button.rec-dot{
 .style-option:hover {
   cursor: pointer;
   background: #e1e1e1;
-  box-shadow: 0 0 0 2px #06c;
+  box-shadow: 0 0 0 2px #d0d0d0;
 }
 
 .selected-style-option {
   background: #e1e1e1;
-  box-shadow: 0 0 0 2px #06c;
+  box-shadow: 0 0 0 2px #d0d0d0;
 }
 
 #style-container {
@@ -988,8 +988,8 @@ figure:hover #zoomed-img {
 }
 
 .share-button {
-  max-width: 40px;
-  max-height: 30px;
+  max-width: 35px;
+  max-height: 25px;
   margin: 10px;
   border: none;
   background: transparent;
@@ -997,6 +997,10 @@ figure:hover #zoomed-img {
 
 .share-button:hover {
   cursor: pointer;
+}
+
+.share-button:focus {
+  outline: 0px;
 }
 
 .icon {
