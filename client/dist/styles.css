@@ -511,11 +511,20 @@ body.dark-theme {
   visibility: hidden;
 }
 
+.rec.rec-dot.rec-dot_active {
+  background-color: white;
+  box-shadow: 0 0 1px 3px rgb(0, 102, 204);
+}
 
-button.rec-dot_active {
+.rec.rec-dot:hover  {
+  box-shadow: 0 0 1px 3px rgb(76, 137, 197);
+}
+
+/* button.rec-dot_active {
   background-color: rgba(0,0,0,0.2);
   box-shadow: black;
-}
+} */
+
 
 button.rec-dot{
   /* background-color: white; */
