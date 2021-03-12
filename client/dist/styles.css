@@ -202,6 +202,7 @@ body.dark-theme {
   /* grid-template-columns: minmax(350px, 350px); */
   display: grid;
   grid-template-rows: auto minmax(auto, 410px) auto;
+  grid-row-gap: 10px;
   grid-template-areas:
   "sortbar"
   "reviewlistbody"
@@ -210,6 +211,8 @@ body.dark-theme {
 
 .sortbar {
   grid-area: sortbar;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .reviewlistbody {

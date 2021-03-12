@@ -232,7 +232,7 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className="container-reviewList">
-        <h3 className="sortbar">{this.state.arrOfReviews.length} reviews, &nbsp;
+        <div className="sortbar">{this.state.arrOfReviews.length} reviews, &nbsp;
           <label>sorted by &nbsp;
             <select
               className="select"
@@ -243,7 +243,7 @@ class ReviewsList extends React.Component {
               <option className="option">helpful</option>
             </select>
           </label>
-        </h3>
+        </div>
         <div className="reviewlistbody">
           <Review
             arrOfReviews={this.state.currentDisplayReviews}
