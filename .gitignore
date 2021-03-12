@@ -103,12 +103,14 @@ typings/
 # TernJS port file
 .tern-port
 
-# KEYS
+# API KEY
 config.js
+
+# PEM KEY
 *.pem
 
-# Node Installation
-installNode.txt
-
-#Ubuntu login
+#AWS Login
 login.sh
+
+#Ubuntu Virtual Machine Node Installation Iformation
+installNode.txt
