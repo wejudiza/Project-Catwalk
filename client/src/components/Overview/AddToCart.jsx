@@ -173,9 +173,9 @@ export default class AddToCart extends React.Component {
         <br />
         <div className="share-button-containter">
           <span style={{ margin: "10px" }}>Share:</span>
-          <button type="button" className="share-button"><i class="fab fa-facebook"></i></button>
-          <button type="button" className="share-button" name="twitter"><i class="fab fa-twitter"></i></button>
-          <button type="button" className="share-button" name="pinterest"><i class="fab fa-pinterest"></i></button>
+          <button type="button" className="share-button"><i className="fab fa-facebook"></i></button>
+          <button type="button" className="share-button"><i className="fab fa-twitter"></i></button>
+          <button type="button" className="share-button"><i className="fab fa-pinterest"></i></button>
         </div>
         {this.state.showModal
         && (

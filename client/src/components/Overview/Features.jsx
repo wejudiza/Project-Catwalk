@@ -6,17 +6,14 @@ const Features = (props) => (
     <div>
       {props.features
         ? props.features.map((feature, index) => (
-          <>
+          <li key={index} className="feature-item">
             {' '}
-            <li key={index} className="feature-item">
-              {' '}
-              {feature.feature}
-              {' '}
-              -
-              {' '}
-              {feature.value}
-            </li>
-          </>
+            {feature.feature}
+            {' '}
+            -
+            {' '}
+            {feature.value}
+          </li>
         ))
         : null}
     </div>

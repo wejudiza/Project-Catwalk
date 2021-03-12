@@ -75,7 +75,7 @@ export default class Overview extends React.Component {
       this.setState({
         styles: JSON.parse(localStorage[dataName]),
         currentStyle: JSON.parse(localStorage[dataName])[0],
-      }, () => console.log(this.state));
+      });
     }
   }
 

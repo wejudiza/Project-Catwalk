@@ -19,8 +19,22 @@ export default class ExpandedView extends React.Component {
     this.state = {
       zoomedView: false,
     };
+    // this.handleKeyRight = this.handleKeyRight.bind(this);
     this.onExpandedClick = this.onExpandedClick.bind(this);
   }
+
+  // handleKeyRight(e) {
+  //   console.log('key code:', e.keyCode)
+  //   if (e.keyCode === 38 && this.state.currentImageIndex > 0) {
+  //     this.setState((prevState) => ({
+  //       cursor: prevState.cursor - 1
+  //     }))
+  //   } else if (e.keyCode === 40 && cursor < result.length - 1) {
+  //     this.setState((prevState) => ({
+  //       cursor: prevState.cursor + 1
+  //     }))
+  //   }
+  // }
 
   onExpandedClick() {
     this.setState({
@@ -75,7 +89,7 @@ export default class ExpandedView extends React.Component {
                 ))}
               </div>
             </div>
-            <i class="fas fa-times fa-2x" onClick={this.props.handleModal}/>
+            <i className="fas fa-times fa-2x" onClick={this.props.handleModal}/>
           </div>
           )
           : (
