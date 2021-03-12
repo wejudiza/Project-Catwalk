@@ -12,7 +12,8 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
   },
 };
 
@@ -107,8 +108,14 @@ class Review extends React.Component {
     }
     return (
       <div>
-        <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal} style={customStyles}>
-          {this.state.modalMessage}<br />
+        <Modal
+          isOpen={this.state.modalView}
+          ariaHideApp={false}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+        >
+          {this.state.modalMessage}
+          <br />
           <button
             type="button"
             aria-label="Back"

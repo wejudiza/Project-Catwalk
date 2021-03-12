@@ -10,9 +10,9 @@ class OutfitStars extends React.Component {
     return (
       <StarRatings
         rating={this.props.avgStars}
-        starRatedColor="yellow"
+        starRatedColor="rgb(250, 128, 114)"
+        starEmptyColor="darkgrey"
         numberOfStars={5}
-        starRatedColor="black"
         starDimension="15px"
         starSpacing="1px"
       />

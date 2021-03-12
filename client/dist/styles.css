@@ -449,9 +449,10 @@ body.dark-theme {
 }
 
 .button {
-  background-color: white; /* Green */
-  border: rgb(66, 63, 63) solid;
-  color: rgb(66, 63, 63);
+  background-color: rgb(250, 128, 114);
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -460,7 +461,12 @@ body.dark-theme {
 }
 
 .button:hover {
-  background-color: grey;
+  cursor: pointer;
+  background-color: rgba(250, 128, 114, 0.9);
+}
+
+.button:focus {
+  outline: 0px;
 }
 
 .select {
@@ -510,39 +516,41 @@ body.dark-theme {
 /* Carousel */
 
 .rec.rec-arrow {
-  color: black;
-  background-color: white;
+  color: rgb(250, 128, 114);
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  font-size: 3em;
+  /* background-color: transparent */
 }
 
 .rec.rec-arrow:hover:enabled, .rec.rec-arrow:focus:enabled {
-    color: #fff;
-    background-color: rgba(0,0,0,0.5);
-    box-shadow: 0 0 2px 0 #333;
+  /* color: #fff; */
+  color: rgb(250, 128, 114);
+  background-color: transparent;
+  font-size: 4em;
+  /* background-color: rgba(0,0,0,0.5); */
+  box-shadow: none;
+  /* box-shadow: 0 0 2px 0 #333; */
 }
 
 .rec.rec-arrow:disabled {
   visibility: hidden;
 }
 
+.rec.rec-dot {
+  box-shadow: 0 0 1px 3px rgb(250, 128, 114);
+}
+
 .rec.rec-dot.rec-dot_active {
-  background-color: white;
-  box-shadow: 0 0 1px 3px rgb(0, 102, 204);
+  background-color: rgb(250, 128, 114);
+  box-shadow: 0 0 1px 3px rgb(250, 128, 114);
 }
 
 .rec.rec-dot:hover  {
-  box-shadow: 0 0 1px 3px rgb(76, 137, 197);
+  box-shadow: 0 0 1px 3px rgb(245, 168, 159);
 }
 
-/* button.rec-dot_active {
-  background-color: rgba(0,0,0,0.2);
-  box-shadow: black;
-} */
-
-
-button.rec-dot{
-  /* background-color: white; */
-  box-shadow: 0 0 1px 3px grey;
-}
 
 /* Carousel From Scratch */
 .slide-arrow {
@@ -597,6 +605,7 @@ button.rec-dot{
   cursor: pointer;
 }
 
+
 .cardImgNone {
   text-align: center;
   padding-top: 100px;
@@ -640,13 +649,14 @@ button.rec-dot{
   position: absolute;
   right: 0;
   background: transparent;
-  color: white;
+  color: whitesmoke;
   font-size: 24px;
   padding: 12px 24px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  text-shadow: 0 0 3px #000;
+  /* text-shadow: 0 0 3px #000; */
+  text-shadow: 0px 0px 5px rgb(250, 128, 114);
 }
 
 #modal {
@@ -659,6 +669,7 @@ button.rec-dot{
   font-size: 75px;
   width: 100%;
   height: 375px;
+  border: none;
 }
 
 #outfitsBtn:focus {
