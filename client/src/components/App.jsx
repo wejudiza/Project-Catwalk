@@ -63,9 +63,12 @@ class App extends React.Component {
               src="./logo.jpeg"
               className="logo"
             />
-            Wejudiza HypeBeast Collection
+            WEJUDIZA HYPEBEAST COLLECTION
           </div>
-          <button id="btn-theme" type="button" onClick={this.toggleTheme}> Toggle Theme </button>
+          <button id="btn-theme" type="button" onClick={this.toggleTheme}>
+            <img src="/icons/white_sun.png" className="theme-icons"/>
+            <img src="/icons/white_moon.png" className="theme-icons"/>
+          </button>
         </div>
         <div id="products">
           <Overview
