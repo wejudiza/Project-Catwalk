@@ -21,9 +21,15 @@ export default class OutfitsList extends React.Component {
   }
 
   addOutfit() {
-    const outfitFound = this.state.outfitsList.find((outfit) => (
-      outfit.id === this.props.currentProduct
-    ))
+    if (localStorage.outfitsList) {
+      var outfitFound = JSON.parse(localStorage.outfitsList).find((outfit) => (
+        outfit.id === this.props.currentProduct
+      ))
+    } else {
+      var outfitFound = this.state.outfitsList.find((outfit) => (
+        outfit.id === this.props.currentProduct
+      ))
+    }
     // CHECK IF ID EXISTS IN OUTFITS LIST, if exists -> don't push, otherwise do push
     if (outfitFound === undefined) {
       // Concat let's us make a copy
