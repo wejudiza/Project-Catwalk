@@ -173,9 +173,9 @@ export default class AddToCart extends React.Component {
         <br />
         <div className="share-button-containter">
           <span style={{ margin: "10px" }} id="share-text">Share:</span>
-          <button aria-label="Facebook Link" type="button" className="share-button"><img src="/icons/facebook.png" className="icon"/></button>
-          <button aria-label="Twitter Link" type="button" className="share-button"><img src="/icons/twitter.png" className="icon"/></button>
-          <button aria-label="Pinterest Link" type="button" className="share-button"><img src="/icons/pinterest.png" className="icon"/></button>
+          <button aria-label="Facebook Link" type="button" className="share-button"><img alt="Facebook" src="/icons/facebook.png" className="icon"/></button>
+          <button aria-label="Twitter Link" type="button" className="share-button"><img alt="Twitter" src="/icons/twitter.png" className="icon"/></button>
+          <button aria-label="Pinterest Link" type="button" className="share-button"><img alt="Pinterest" src="/icons/pinterest.png" className="icon"/></button>
         </div>
         {this.state.showModal
         && (

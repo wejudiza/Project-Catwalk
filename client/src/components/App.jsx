@@ -66,8 +66,8 @@ class App extends React.Component {
             WEJUDIZA HYPEBEAST COLLECTION
           </div>
           <button id="btn-theme" type="button" onClick={this.toggleTheme}>
-            <img src="/icons/white_sun.png" className="theme-icons"/>
-            <img src="/icons/white_moon.png" className="theme-icons"/>
+            <img alt="sun" src="/icons/white_sun.png" className="theme-icons"/>
+            <img alt="moon" src="/icons/white_moon.png" className="theme-icons"/>
           </button>
         </div>
         <div id="products">
