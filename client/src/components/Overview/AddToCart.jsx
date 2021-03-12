@@ -182,6 +182,8 @@ export default class AddToCart extends React.Component {
           <p>
             <Checkmark />
             <br />
+            <img alt="" src={this.props.currentStyle.photos[0].thumbnail_url} className="thumbnail" />
+            <br />
             <b><u>Added to cart!</u></b>
             <br />
             <br />
