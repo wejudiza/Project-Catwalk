@@ -11,7 +11,7 @@ class Status extends React.Component {
       <ProgressBar
         completed={this.props.completed}
         isLabelVisible={false}
-        bgcolor='grey'
+        bgcolor='rgb(250, 128, 114)'
         baseBgColor='lightgrey'
         borderRadius='0'
         width='100%'
