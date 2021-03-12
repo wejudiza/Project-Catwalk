@@ -60,6 +60,7 @@ class ImgDisplay extends React.Component {
                   </Modal>
                   <img
                     onClick={this.showImg}
+                    alt="review images"
                     key={photoObj.id}
                     src={photoObj.url}
                     className="thumbnail"
