@@ -209,7 +209,7 @@ export default class Product extends React.Component {
     return (
       <div>
         <div>
-          <button className="fas fa-star"type="button" id="modalBtn"onClick={this.handleModal}></button>
+          <button className="fas fa-star" type="button" id="modalBtn" onClick={this.handleModal} aria-label="Open"></button>
           <Modal id="modalContainer" isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
             <h3>
               COMPARING
@@ -268,11 +268,15 @@ export default class Product extends React.Component {
               }
               </tbody>
             </table>
-            <button onClick={this.handleModal}>Back</button>
+            <button onClick={this.handleModal} aria-label="Close">Back</button>
           </Modal>
           {this.state.thumbnail_url ?
             <div onClick={this.setSessionStorage}>
-              <img className="cardImg" src={this.state.thumbnail_url}/>
+              <img
+                className="cardImg"
+                src={this.state.thumbnail_url}
+                alt="Picture of a Related Item"
+              />
             </div>
             :
             <div onClick={this.setSessionStorage}>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Style = (props) => {
   const currentStyleMode = () => {
-    if (props.currentStyle.name === props.style.name) {
+    if (props.currentStyle.style_id === props.style.style_id) {
       return (
         <>
           <img

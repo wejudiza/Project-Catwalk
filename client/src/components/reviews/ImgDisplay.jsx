@@ -48,6 +48,7 @@ class ImgDisplay extends React.Component {
                     <button
                       type="button"
                       className="button"
+                      aria-label="Close"
                       onClick={this.closeModal}
                     >Back</button>
                     <h1>
@@ -59,6 +60,7 @@ class ImgDisplay extends React.Component {
                   </Modal>
                   <img
                     onClick={this.showImg}
+                    alt="review images"
                     key={photoObj.id}
                     src={photoObj.url}
                     className="thumbnail"

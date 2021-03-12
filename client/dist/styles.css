@@ -22,7 +22,7 @@ body.dark-theme {
 /* Page Header */
 .container-header {
   display: grid;
-  grid-template-columns: [col1] minmax(150px, auto) [col2] auto [col3] minmax(50px, auto)[col4];
+  grid-template-columns: [col-start] minmax(600px, auto) [col2] minmax(600px, auto) [col-end];
   grid-template-rows: 100%;
   grid-template-areas: "page-header btn-theme";
   /* background-color: grey; */
@@ -42,8 +42,8 @@ body.dark-theme {
 
 #page-header {
   grid-area: page-header;
-  grid-column-start: col1;
-  grid-column-end: col2;
+  grid-column-start: col-start;
+  grid-column-end: col-2;
   align-self: center;
   margin: 10px;
   font-size: 36px;
@@ -53,8 +53,8 @@ body.dark-theme {
 
 #btn-theme {
   grid-area: btn-theme;
-  grid-column-start: col3;
-  grid-column-end: col4;
+  grid-column-start: col-2;
+  grid-column-end: col-end;
   justify-self: end;
   background-color: transparent;
   /* border: rgb(66, 63, 63) solid; */

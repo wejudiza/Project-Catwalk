@@ -252,11 +252,26 @@ class ReviewsList extends React.Component {
           {/* show more reviews button only when there are more than 2 reviews */}
           {(this.state.arrOfReviews.length > this.state.currentDisplayReviews.length) ?
             <div>
-              <button type="button" className="button" onClick={this.handleMoreReviewClick}>MORE REVIEWS</button><span> </span><span> </span>
-              <button type="button" className="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
+              <button
+                type="button"
+                aria-label="More Reviews"
+                className="button"
+                onClick={this.handleMoreReviewClick}
+              >MORE REVIEWS</button><span> </span><span> </span>
+              <button
+                type="button"
+                aria-label="Add Reviews"
+                className="button"
+                onClick={this.handleAddReview}
+              >ADD A REVIEW +</button>
             </div>
             :
-            <button type="button" className="button" onClick={this.handleAddReview}>ADD A REVIEW +</button>
+            <button
+              type="button"
+              aria-label="Add Reviews"
+              className="button"
+              onClick={this.handleAddReview}
+            >ADD A REVIEW +</button>
           }
           <Modal
             isOpen={this.state.modalView}
@@ -272,6 +287,7 @@ class ReviewsList extends React.Component {
               <form
                 className="inputForm"
                 onChange={this.handleFormInput}
+                type="new reviews"
               >
                 <label>Rating</label>
                   <select
@@ -360,11 +376,13 @@ class ReviewsList extends React.Component {
                   ></textarea><br />
                 <button
                   type="button"
+                  aria-label="Submit"
                   className="button"
                   onClick={this.handleSubmit}
                 >Submit</button>
                 <button
                   type="button"
+                  aria-label="Cancel"
                   className="button"
                   onClick={this.handleAddReview}
                 >Cancel</button>

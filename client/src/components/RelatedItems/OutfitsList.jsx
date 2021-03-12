@@ -68,15 +68,21 @@ export default class OutfitsList extends React.Component {
     return (
       <div>
         <h3 className=" widgetHeader title">
-          OUTFITS LIST
+          YOUR OUTFIT
         </h3>
         <div>
           <div className='list'>
             {/* Need to set showEmptySlots to true */}
             <Carousel breakPoints={this.breakPoints} itemsToShow={4} showEmptySlots>
               <div className='card'>
-                <button id='outfitsBtn' onClick={this.addOutfit}>
-                <div style={{fontSize: '24px'}}>Add to Outfit</div>
+                <button
+                  id='outfitsBtn'
+                  onClick={this.addOutfit}
+                  aria-label="Add Outfit"
+                >
+                <div style={{fontSize: '24px'}}>
+                  Add to Outfit
+                </div>
                 +
                 </button>
               </div>

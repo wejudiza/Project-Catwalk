@@ -23,7 +23,7 @@ export default class ProductsCarousel extends React.Component {
         <Carousel
           breakPoints={this.breakPoints}
           disableArrowsOnEnd={true}
-          itemsToShow={4}
+          itemsToShow={5}
         >
           {this.props.productsListId ?
             this.props.productsListId.map((productId, key) => (
