@@ -287,6 +287,7 @@ class ReviewsList extends React.Component {
               <form
                 className="inputForm"
                 onChange={this.handleFormInput}
+                type="new reviews"
               >
                 <label>Rating</label>
                   <select
