@@ -168,14 +168,14 @@ export default class AddToCart extends React.Component {
             style={{ width: '50%' }}
           />
           {this.selectedSizeMode()}
-          <button type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
+          <button aria-label="Add To Cart" type="button" id="cart" onClick={this.onAddToCartClick}>Add to Cart</button>
         </div>
         <br />
         <div className="share-button-containter">
           <span style={{ margin: "10px" }} id="share-text">Share:</span>
-          <button type="button" className="share-button"><img src="/icons/facebook.png" className="icon"/></button>
-          <button type="button" className="share-button"><img src="/icons/twitter.png" className="icon"/></button>
-          <button type="button" className="share-button"><img src="/icons/pinterest.png" className="icon"/></button>
+          <button aria-label="Facebook Link" type="button" className="share-button"><img src="/icons/facebook.png" className="icon"/></button>
+          <button aria-label="Twitter Link" type="button" className="share-button"><img src="/icons/twitter.png" className="icon"/></button>
+          <button aria-label="Pinterest Link" type="button" className="share-button"><img src="/icons/pinterest.png" className="icon"/></button>
         </div>
         {this.state.showModal
         && (
@@ -202,7 +202,7 @@ export default class AddToCart extends React.Component {
             {' '}
             {this.state.selectedQ}
           </p>
-          <button onClick={this.handleModal}>Close</button>
+          <button aria-label="Close" onClick={this.handleModal}>Close</button>
         </ReactModal>
         )}
       </div>
