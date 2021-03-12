@@ -10,9 +10,9 @@ class RelatedStars extends React.Component {
     return (
       <StarRatings
         rating={this.props.avgStars}
-        starRatedColor="yellow"
+        starRatedColor="rgb(255,191,0)"
+        starEmptyColor="darkgrey"
         numberOfStars={5}
-        starRatedColor="black"
         starDimension="15px"
         starSpacing="1px"
       />
