@@ -38,7 +38,7 @@ class Zoom extends React.Component {
           src={this.props.image}
         />
       </figure>
-    )
+    );
   }
 }
 

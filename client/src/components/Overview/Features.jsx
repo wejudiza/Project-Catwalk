@@ -8,6 +8,7 @@ const Features = (props) => (
         ? props.features.map((feature, index) => (
           <li key={index} className="feature-item">
             {' '}
+            {' '}
             {feature.feature}
             {' '}
             -

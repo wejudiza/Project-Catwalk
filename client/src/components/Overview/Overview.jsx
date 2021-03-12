@@ -40,7 +40,7 @@ class Overview extends React.Component {
 
   getProduct() {
     // console.log(this.state)
-    let dataName = `${this.props.currentProduct}_info`;
+    const dataName = `${this.props.currentProduct}_info`;
     if (!localStorage[dataName]) {
       axios.get(`/api/products/${this.props.currentProduct}`)
         .then((productResults) => {
@@ -61,7 +61,7 @@ class Overview extends React.Component {
   }
 
   getStyles() {
-    let dataName = `${this.props.currentProduct}_styles`;
+    const dataName = `${this.props.currentProduct}_styles`;
     if (!localStorage[dataName]) {
       axios.get(`/api/products/${this.props.currentProduct}/styles`)
         .then((stylesResults) => {
@@ -81,35 +81,33 @@ class Overview extends React.Component {
   }
 
   render() {
-    // if (this.state.product.length !== 0 && this.state.styles.length !== 0) {
-      return (
-        <div id="overviewContainer">
-          <br />
-          <ProductInfo
-            rating={this.props.rating}
-            product={this.state.product}
-            totalReviews={this.props.totalReviews}
-          />
-          <StyleSelector
-            styles={this.state.styles}
-            currentProduct={this.state.product.id}
-            currentStyle={this.state.currentStyle}
-            productName={this.state.product.name}
-            onStyleClick={this.onStyleClick}
-          />
-          <ImageGallery
-            styles={this.state.styles}
-            images={this.state.currentStyle.photos}
-          />
-          <Description
-            product={this.state.product}
-            // features={this.state.product.features}
-          />
-          <Features
-            features={this.state.product.features}
-          />
-        </div>
-      );
+    return (
+      <div id="overviewContainer">
+        <br />
+        <ProductInfo
+          rating={this.props.rating}
+          product={this.state.product}
+          totalReviews={this.props.totalReviews}
+        />
+        <StyleSelector
+          styles={this.state.styles}
+          currentProduct={this.state.product.id}
+          currentStyle={this.state.currentStyle}
+          productName={this.state.product.name}
+          onStyleClick={this.onStyleClick}
+        />
+        <ImageGallery
+          styles={this.state.styles}
+          images={this.state.currentStyle.photos}
+        />
+        <Description
+          product={this.state.product}
+        />
+        <Features
+          features={this.state.product.features}
+        />
+      </div>
+    );
   }
 }
 
