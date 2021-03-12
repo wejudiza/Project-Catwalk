@@ -186,6 +186,10 @@ body.dark-theme {
   /* font-weight: lighter; */
 }
 
+.footer:hover {
+  cursor: pointer;
+}
+
 .thumbnail {
   width: 100px;
   height: 100px;

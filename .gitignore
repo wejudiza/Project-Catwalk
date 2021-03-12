@@ -114,3 +114,6 @@ login.sh
 
 #Ubuntu Virtual Machine Node Installation Iformation
 installNode.txt
+
+#others
+.DS_Store
