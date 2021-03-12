@@ -28,7 +28,7 @@ class ProductBreakdown extends React.Component {
                 height: 0,
                 borderLeft: '6px solid transparent',
                 borderRight: '6px solid transparent',
-                borderTop: '12px solid black',
+                borderTop: '12px solid rgb(250, 128, 114)',
                 marginLeft: '-6px',
                 left: this.props.charac_size/5*100 || 0,
               }
@@ -54,7 +54,7 @@ class ProductBreakdown extends React.Component {
                 height: 0,
                 borderLeft: '6px solid transparent',
                 borderRight: '6px solid transparent',
-                borderTop: '12px solid black',
+                borderTop: '12px solid rgb(250, 128, 114)',
                 marginLeft: '-6px',
                 left: this.props.charac_comfort/5*100 || 0,
               }
