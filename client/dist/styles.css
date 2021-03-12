@@ -449,9 +449,10 @@ body.dark-theme {
 }
 
 .button {
-  background-color: white; /* Green */
-  border: rgb(66, 63, 63) solid;
-  color: rgb(66, 63, 63);
+  background-color: rgb(250, 128, 114);
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -460,7 +461,12 @@ body.dark-theme {
 }
 
 .button:hover {
-  background-color: grey;
+  cursor: pointer;
+  background-color: rgba(250, 128, 114, 0.9);
+}
+
+.button:focus {
+  outline: 0px;
 }
 
 .select {
