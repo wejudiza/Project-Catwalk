@@ -25,7 +25,8 @@ body.dark-theme {
   grid-template-columns: [col1] minmax(150px, auto) [col2] auto [col3] minmax(50px, auto)[col4];
   grid-template-rows: 100%;
   grid-template-areas: "page-header btn-theme";
-  background-color: grey;
+  /* background-color: grey; */
+  background-color: rgba(0,0,0,0.9) ;
   color: whitesmoke;
   margin-bottom: 10px;
   /* border: 2px solid rgba(0,0,0,0.5); */
@@ -55,22 +56,34 @@ body.dark-theme {
   grid-column-start: col3;
   grid-column-end: col4;
   justify-self: end;
-  background-color: whitesmoke;
-  border: rgb(66, 63, 63) solid;
-  /* border-radius: 5px; */
-  padding: 5px;
+  background-color: transparent;
+  /* border: rgb(66, 63, 63) solid; */
+  border: none;
+  border-radius: 5px;
+  /* padding: 5px; */
   /* color: #06c; */
   text-align: center;
-  font-size: 16px;
+  font-size: 10px;
   /* font-weight: bold; */
   margin: 10px;
-  width: 40%;
+  /* width: 40%; */
+  width: 50px;
+  height: 40px;
+  align-self: center;
+}
+
+.theme-icons {
+  width: 50%;
+  height: 50%;
 }
 
 #btn-theme:hover {
-  background-color: grey;
+  cursor: pointer;
 }
 
+#btn-theme:focus {
+  outline: 0px;
+}
 
 /* reviews */
 #container-reviews {
@@ -569,6 +582,10 @@ button.rec-dot{
   border-style: solid;
 }
 
+.card:focus {
+  outline: 0px;
+}
+
 .cardImg {
   object-fit: cover;
   object-position: 50% 100%;
@@ -642,6 +659,10 @@ button.rec-dot{
   font-size: 75px;
   width: 100%;
   height: 375px;
+}
+
+#outfitsBtn:focus {
+  outline: 0px;
 }
 
 #outfitsBtn:hover {
@@ -860,12 +881,12 @@ button.rec-dot{
 .style-option:hover {
   cursor: pointer;
   background: #e1e1e1;
-  box-shadow: 0 0 0 2px #d0d0d0;
+  box-shadow: 0 0 0 2px #06c;
 }
 
 .selected-style-option {
   background: #e1e1e1;
-  box-shadow: 0 0 0 2px #d0d0d0;
+  box-shadow: 0 0 0 2px #06c;
 }
 
 #style-container {
@@ -947,8 +968,13 @@ figure:hover #zoomed-img {
   width: 70%;
 }
 
+#cart:focus {
+  outline: 0px;
+}
+
 #cart:hover {
   cursor: pointer;
+  border: 2px solid #06c;
   background-color: rgb(162, 161, 161);
 }
 
@@ -957,13 +983,25 @@ figure:hover #zoomed-img {
   display: flex;
 }
 
+#share-text {
+  align-self: center;
+}
+
 .share-button {
   max-width: 40px;
+  max-height: 30px;
   margin: 10px;
+  border: none;
+  background: transparent;
 }
 
 .share-button:hover {
   cursor: pointer;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
 }
 
 li {
