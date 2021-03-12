@@ -232,15 +232,17 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className="container-reviewList">
-        <h3 className="sortbar">{this.state.arrOfReviews.length} reviews, &nbsp;sorted by&nbsp;&nbsp;
-          <select
-            className="select"
-            onChange={this.handleSort}
-          >
-            <option className="option">relevant</option>
-            <option className="option">newest</option>
-            <option className="option">helpful</option>
-          </select>
+        <h3 className="sortbar">{this.state.arrOfReviews.length} reviews, &nbsp;
+          <label>sorted by &nbsp;
+            <select
+              className="select"
+              onChange={this.handleSort}
+            >
+              <option className="option">relevant</option>
+              <option className="option">newest</option>
+              <option className="option">helpful</option>
+            </select>
+          </label>
         </h3>
         <div className="reviewlistbody">
           <Review
@@ -287,7 +289,6 @@ class ReviewsList extends React.Component {
               <form
                 className="inputForm"
                 onChange={this.handleFormInput}
-                type="new reviews"
               >
                 <label>Rating</label>
                   <select
