@@ -97,6 +97,7 @@ class Review extends React.Component {
 
             <button
               type="button"
+              aria-label="Back"
               onClick={this.closeModal}
             >Back</button>
 
@@ -108,7 +109,11 @@ class Review extends React.Component {
       <div>
         <Modal isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.closeModal} style={customStyles}>
           {this.state.modalMessage}<br />
-          <button type="button" onClick={this.closeModal}>Back</button>
+          <button
+            type="button"
+            aria-label="Back"
+            onClick={this.closeModal}
+          >Back</button>
         </Modal>
         {this.props.arrOfReviews.map((review) => {
           return (
