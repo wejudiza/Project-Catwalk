@@ -272,7 +272,11 @@ export default class Product extends React.Component {
           </Modal>
           {this.state.thumbnail_url ?
             <div onClick={this.setSessionStorage}>
-              <img className="cardImg" src={this.state.thumbnail_url}/>
+              <img
+                className="cardImg"
+                src={this.state.thumbnail_url}
+                alt="Picture of a Related Item"
+              />
             </div>
             :
             <div onClick={this.setSessionStorage}>

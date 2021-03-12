@@ -62,6 +62,7 @@ class App extends React.Component {
             <img
               src="./logo.jpeg"
               className="logo"
+              alt="Wejudiza Logo"
             />
             WEJUDIZA HYPEBEAST COLLECTION
           </div>

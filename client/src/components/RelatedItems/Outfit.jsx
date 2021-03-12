@@ -105,7 +105,11 @@ export default class Outfit extends React.Component {
         >
         </button>
         {this.state.thumbnail_url ?
-          <img className="cardImg" src={this.state.thumbnail_url}/>
+          <img
+            className="cardImg"
+            src={this.state.thumbnail_url}
+            alt="Picture of an Added Outfit"
+          />
           :
           <div className="cardImg">
             <div className="cardImgNone">NO IMAGE AVAILABLE </div>
