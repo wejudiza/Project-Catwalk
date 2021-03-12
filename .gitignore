@@ -103,6 +103,7 @@ typings/
 # TernJS port file
 .tern-port
 
+<<<<<<< HEAD
 # API KEY
 config.js
 
@@ -114,3 +115,14 @@ login.sh
 
 #Ubuntu Virtual Machine Node Installation Iformation
 installNode.txt
+=======
+# KEYS
+config.js
+*.pem
+
+# Node Installation
+installNode.txt
+
+#Ubuntu login
+login.sh
+>>>>>>> main

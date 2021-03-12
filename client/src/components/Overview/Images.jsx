@@ -105,7 +105,7 @@ export default class Images extends React.Component {
           {this.state.displayStartIndex !== 0
             ? <i
               className="fas fa-sort-up fa-2x"
-              style={{marginLeft:'22px'}}
+              style={{marginLeft:'28px'}}
               onClick={this.onUpArrowClick} />
             : <div>
             <br />
@@ -118,7 +118,7 @@ export default class Images extends React.Component {
           && this.state.rawDisplay[lastDisplayIndex].url !== this.state.thumbnails[lastThumbnailIndex].url
             ? <i
               className="fas fa-sort-down fa-2x"
-              style={{marginLeft:'22px'}}
+              style={{marginLeft:'28px'}}
               onClick={this.onDownArrowClick} />
             : null}
         </div>
