@@ -1,0 +1,1 @@
+ssh -i "/Users/dirkzhang/Desktop/HR SEIP/Practice for TA/Project-Catwalk/catwalk.pem" ubuntu@ec2-3-22-221-220.us-east-2.compute.amazonaws.com
