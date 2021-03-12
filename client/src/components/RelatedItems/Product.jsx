@@ -209,7 +209,7 @@ export default class Product extends React.Component {
     return (
       <div>
         <div>
-          <button className="fas fa-star"type="button" id="modalBtn"onClick={this.handleModal} aria-label="Open"></button>
+          <button className="fas fa-star" type="button" id="modalBtn" onClick={this.handleModal} aria-label="Open"></button>
           <Modal id="modalContainer" isOpen={this.state.modalView} ariaHideApp={false} onRequestClose={this.handleModal} id='modal' style={customStyles}>
             <h3>
               COMPARING

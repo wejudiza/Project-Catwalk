@@ -65,7 +65,7 @@ class App extends React.Component {
             />
             WEJUDIZA HYPEBEAST COLLECTION
           </div>
-          <button id="btn-theme" type="button" onClick={this.toggleTheme}>
+          <button id="btn-theme" type="button" onClick={this.toggleTheme} aria-label="Change Theme">
             <img src="/icons/white_sun.png" className="theme-icons"/>
             <img src="/icons/white_moon.png" className="theme-icons"/>
           </button>
