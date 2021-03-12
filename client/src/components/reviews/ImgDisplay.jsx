@@ -48,6 +48,7 @@ class ImgDisplay extends React.Component {
                     <button
                       type="button"
                       className="button"
+                      aria-label="Close"
                       onClick={this.closeModal}
                     >Back</button>
                     <h1>
