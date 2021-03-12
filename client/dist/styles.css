@@ -840,9 +840,7 @@ button.rec-dot{
 
 .fas {
   cursor: pointer;
-  /* color:rgba(0, 0, 0, 0.79); */
   color: grey;
-  /* background: radial-gradient(grey 100%, transparent 100%); */
 }
 
 #expanded-left-arrow {
@@ -958,14 +956,16 @@ figure:hover #zoomed-img {
 
 #cart {
   grid-area: "cart";
-  background-color: whitesmoke;
-  color: black;
-  border: 2px solid darkgrey;
+  background-color: rgb(250, 128, 114);
+  color: whitesmoke;
+  border: none;
+  /* border: 2px solid darkgrey; */
   border-radius: 5px;
   padding: 10px;
   text-align: center;
   font-size: 16px;
-  width: 70%;
+  width: 100%;
+  min-height: 55px;
 }
 
 #cart:focus {
@@ -974,8 +974,7 @@ figure:hover #zoomed-img {
 
 #cart:hover {
   cursor: pointer;
-  border: 2px solid #06c;
-  background-color: rgb(162, 161, 161);
+  background-color: rgba(250, 128, 114, 0.9);
 }
 
 .share-button-containter {
