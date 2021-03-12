@@ -6,7 +6,7 @@ body.light-theme {
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 0px;
-  /* margin-top: 40px; */
+  margin-bottom: 250px;
 }
 
 body.dark-theme {
@@ -16,7 +16,7 @@ body.dark-theme {
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 0px;
-  /* margin top: 40px; */
+  margin-bottom: 250px;
 }
 
 /* Page Header */
@@ -64,8 +64,8 @@ body.dark-theme {
   /* width: 80%;
   height: 150%; */
   /* width: 80%; */
-  margin-left: 10%;
-  margin-right: 10%;
+  /* margin-left: 10%;
+  margin-right: 10%; */
   margin-top: 10px;
   margin-bottom: 30px;
   /* background-color: whitesmoke; */
