@@ -57,19 +57,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <div className="container-header">
           <div id="page-header"> Wejudiza HypeBeast Collection</div>
           <button id="btn-theme" type="button" onClick={this.toggleTheme}> Toggle Theme </button>
         </div>
         <div id="products">
-=======
-        <button id="btn-theme" type="button" onClick={this.toggleTheme}> Change Theme </button>
-        <div
-          id="products"
-          onClick={(e) => this.props.postToApi(e, 'Overview')}
-        >
->>>>>>> main
           <Overview
             rating={this.state.ratingForCurrentProduct}
             currentProduct={this.state.currentProduct}
