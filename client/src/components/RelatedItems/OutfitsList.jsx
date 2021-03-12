@@ -68,7 +68,7 @@ export default class OutfitsList extends React.Component {
     return (
       <div>
         <h3 className=" widgetHeader title">
-          OUTFITS LIST
+          YOUR OUTFIT
         </h3>
         <div>
           <div className='list'>
