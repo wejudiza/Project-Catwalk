@@ -58,7 +58,13 @@ class App extends React.Component {
     return (
       <div>
         <div className="container-header">
-          <div id="page-header"> Wejudiza HypeBeast Collection</div>
+          <div id="page-header">
+            <img
+              src="./logo.jpeg"
+              className="logo"
+            />
+            Wejudiza HypeBeast Collection
+          </div>
           <button id="btn-theme" type="button" onClick={this.toggleTheme}> Toggle Theme </button>
         </div>
         <div id="products">

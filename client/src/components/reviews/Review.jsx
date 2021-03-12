@@ -150,13 +150,13 @@ class Review extends React.Component {
               <div className="footer">
                 Helpful?
                 <span> </span>
-                <u review_id={review.review_id} onClick={this.handleClickHelpful}>Yes</u>
-                <span>({review.helpfulness})</span>
+                <u review_id={review.review_id} onClick={this.handleClickHelpful} style={{color: "#06c"}}>Yes</u>
+                <span style={{color: "#06c"}}>({review.helpfulness})</span>
                 <span> </span>
                 <span>|</span>
                 <span>  </span>
-                <u review_id={review.review_id} onClick={this.handleClickReport}>Report</u>
-                <hr width='97%' align='left' color='rgb(66, 63, 63)' />
+                <u review_id={review.review_id} onClick={this.handleClickReport} style={{color: "#06c"}}>Report</u>
+                <hr width='98%' align='left' color='black' />
               </div>
             </div>
           )

@@ -1,20 +1,20 @@
 /* body */
 body.light-theme {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   color: rgb(182, 182, 182);
   background-color: rgba(0,0,0,0.8);
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 7%;
+  margin-right: 7%;
   margin-top: 0px;
   margin-bottom: 250px;
 }
 
 body.dark-theme {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   color: rgb(66, 63, 63);
   background-color: whitesmoke;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 7%;
+  margin-right: 7%;
   margin-top: 0px;
   margin-bottom: 250px;
 }
@@ -29,6 +29,14 @@ body.dark-theme {
   color: whitesmoke;
   margin-bottom: 10px;
   /* border: 2px solid rgba(0,0,0,0.5); */
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-right: 10px;
+  align-content: "center",
 }
 
 #page-header {
@@ -48,14 +56,19 @@ body.dark-theme {
   grid-column-end: col4;
   justify-self: end;
   background-color: whitesmoke;
-  border: 2px solid darkgrey;
-  border-radius: 5px;
-  /* padding: 5px; */
+  border: rgb(66, 63, 63) solid;
+  /* border-radius: 5px; */
+  padding: 5px;
+  /* color: #06c; */
   text-align: center;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 16px;
+  /* font-weight: bold; */
   margin: 10px;
   width: 40%;
+}
+
+#btn-theme:hover {
+  background-color: grey;
 }
 
 
@@ -84,7 +97,7 @@ body.dark-theme {
 
 .widgetHeader {
   grid-area: widgetHeader;
-  font-weight: lighter;
+  /* font-weight: lighter; */
 }
 
 .breakdowns {
@@ -150,14 +163,14 @@ body.dark-theme {
 
 .recommend {
   grid-area: recommend;
-  font-weight: lighter;
+  /* font-weight: lighter; */
   /* background-color: lightgray; */
 }
 
 .footer {
   grid-area: footer;
   font-size: 13px;
-  font-weight: lighter;
+  /* font-weight: lighter; */
 }
 
 .thumbnail {
@@ -434,7 +447,7 @@ body.dark-theme {
 }
 
 .button:hover {
-  background-color: green;
+  background-color: grey;
 }
 
 .select {
