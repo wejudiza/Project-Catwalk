@@ -605,6 +605,9 @@ body.dark-theme {
   cursor: pointer;
 }
 
+.outFitImage:hover {
+  cursor: auto;
+}
 
 .cardImgNone {
   text-align: center;
