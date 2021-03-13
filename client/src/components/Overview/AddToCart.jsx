@@ -125,9 +125,6 @@ export default class AddToCart extends React.Component {
           options={quantities}
           value={this.state.defaultValue}
           onChange={this.handleQuantityChange}
-          // ref={(ref) => {
-          //   this.selectRef = ref;
-          // }}
         />
       );
     }
@@ -178,7 +175,12 @@ export default class AddToCart extends React.Component {
         </div>
         {this.state.showModal
         && (
-        <ReactModal isOpen contentLabel="test" style={modalStyle} ariaHideApp={false} onRequestClose={this.handleModal}>
+        <ReactModal
+          isOpen
+          style={modalStyle}
+          ariaHideApp={false}
+          onRequestClose={this.handleModal}
+        >
           <p>
             <Checkmark />
             <br />
@@ -205,7 +207,7 @@ export default class AddToCart extends React.Component {
               <img alt="" src={this.props.currentStyle.photos[0].thumbnail_url} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
             </div>
           </p>
-          <button aria-label="Close" onClick={this.handleModal}>Close</button>
+          <button aria-label="Close" type="button" onClick={this.handleModal}>Close</button>
         </ReactModal>
         )}
       </div>

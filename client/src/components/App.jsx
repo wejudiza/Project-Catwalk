@@ -52,8 +52,6 @@ class App extends React.Component {
     document.body.classList.toggle('dark-theme');
   }
 
-
-
   render() {
     return (
       <div>
