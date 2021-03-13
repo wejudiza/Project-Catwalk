@@ -108,8 +108,6 @@ export default class Product extends React.Component {
           default_price: results.data.default_price,
           features: results.data.features,
           currentFeatures: JSON.parse(localStorage[`${this.props.currentProduct}_info`]).features,
-        }, () => {
-          console.log('this.state', this.state)
         });
       })
       .catch((err) => console.log('getProductInfo err: ', err));
