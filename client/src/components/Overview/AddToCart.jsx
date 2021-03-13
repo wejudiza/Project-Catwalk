@@ -184,22 +184,26 @@ export default class AddToCart extends React.Component {
             <br />
             <b><u>Added to cart!</u></b>
             <br />
-            <br />
-            Product:
-            {' '}
-            {this.props.productName}
-            <br />
-            Style:
-            {' '}
-            {this.props.currentStyle.name}
-            <br />
-            Size:
-            {' '}
-            {this.state.size}
-            <br />
-            Quantity:
-            {' '}
-            {this.state.selectedQ}
+            <div id="cart-container">
+              <br />
+              Product:
+              {' '}
+              {this.props.productName}
+              <br />
+              Style:
+              {' '}
+              {this.props.currentStyle.name}
+              <br />
+              Size:
+              {' '}
+              {this.state.size}
+              <br />
+              Quantity:
+              {' '}
+              {this.state.selectedQ}
+              <br />
+              <img alt="" src={this.props.currentStyle.photos[0].thumbnail_url} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+            </div>
           </p>
           <button aria-label="Close" onClick={this.handleModal}>Close</button>
         </ReactModal>
