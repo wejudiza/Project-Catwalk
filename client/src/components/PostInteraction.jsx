@@ -14,7 +14,7 @@ const postInteraction = (Component) => {
       axios.post('/api/interactions', {
         element: e.target.outerHTML,
         widget: name,
-        time: new Date().toString() + 'FROM WEJUDIZA',
+        time: new Date().toString() + ' FROM WEJUDIZA',
       })
       .then(() => {
         console.log('User should not be able to see this, but we would like to keep it for our benefits')
