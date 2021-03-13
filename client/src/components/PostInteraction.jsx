@@ -17,7 +17,7 @@ const postInteraction = (Component) => {
         time: new Date().toString() + ' FROM WEJUDIZA',
       })
       .then(() => {
-        console.log('User should not be able to see this, but we would like to keep it for our benefits')
+        null;
       })
       .catch((err) => {
         console.log(err);
