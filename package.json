@@ -42,13 +42,14 @@
     "react-star-ratings": "^2.3.0",
     "regenerator-runtime": "^0.13.7",
     "styled-components": "^5.2.1",
-    "webpack": "^2.2.1"
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "@babel/preset-env": "^7.13.5",
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
+    "brotli-webpack-plugin": "^1.1.0",
     "enzyme": "^3.11.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
