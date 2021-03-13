@@ -820,8 +820,7 @@ body.dark-theme {
 .fas {
   cursor: pointer;
   color: rgb(250, 128, 114);
-  /* background-color: transparent; */
-  /* border: none; */
+
   box-shadow: none;
 }
 
@@ -962,6 +961,10 @@ figure:hover #zoomed-img {
 #cart-container {
   display: flex;
   gap: 10px;
+}
+
+.cart-modal {
+  color: black;
 }
 
 .share-button-containter {
