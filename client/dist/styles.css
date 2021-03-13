@@ -110,6 +110,8 @@ body.dark-theme {
 
 .widgetHeader {
   grid-area: widgetHeader;
+  margin-top: 0;
+  margin-bottom: 0;
   /* font-weight: lighter; */
 }
 
@@ -861,7 +863,10 @@ body.dark-theme {
 
 .fas {
   cursor: pointer;
-  color: grey;
+  color: rgb(250, 128, 114);
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 #expanded-left-arrow {
