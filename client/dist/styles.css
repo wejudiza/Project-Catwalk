@@ -988,6 +988,11 @@ figure:hover #zoomed-img {
   background-color: rgba(250, 128, 114, 0.9);
 }
 
+#cart-container {
+  display: flex;
+  gap: 10px;
+}
+
 .share-button-containter {
   grid-area: "share";
   display: flex;
