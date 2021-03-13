@@ -499,24 +499,6 @@ body.dark-theme {
 
 
 /* RELATED ITEMS */
-/* .testGrid {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-  "title"
-  "carousel";
-  width: 80%;
-  minmax()
-}
-
-.title {
-  grid-area: title;
-}
-
-.productsCarousel {
-  grid-area: carousel;
-} */
-
 .list {
   display: flex;
   align-items: flex-end;
@@ -560,32 +542,6 @@ body.dark-theme {
   box-shadow: 0 0 1px 3px rgb(245, 168, 159);
 }
 
-
-/* Carousel From Scratch */
-.slide-arrow {
-  /* color: black;
-  font-size: 50px;
-  padding: 6px;
-  align-self: center;
-  background: transparent;
-  cursor: pointer;
-  border: none; */
-  /* position: relative; */
-  /* top: 50%; */
-  /* margin: 0 auto; */
-}
-
-
-#btnHidden {
-  /* color: black;
-  font-size: 50px;
-  padding: 6px;
-  align-self: center;
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  visibility: hidden; */
-}
 
 /* Individual Card */
 .card {
