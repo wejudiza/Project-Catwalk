@@ -1,5 +1,5 @@
 # Project-Catwalk
-This is gonna be sick!
+Front-end e-commerce web application
 
 # Setup Instructions
 1) npm install
